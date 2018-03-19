@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B34D5BC8-824D-46DB-A09A-341E977695D0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Scorpion</RootNamespace>
+    <AssemblyName>Scorpion Research System</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>Scorpion.Program</StartupObject>
+    <ApplicationIcon>application_osx_terminal.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IPPrototyper">
+      <HintPath>bin\Debug\Libraries\IPPrototyper.exe</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\DLL Resources\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra">
+      <HintPath>..\DLL Resources\itextsharp.xtra.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Installed\1.1\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.Compatibility, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Installed\1.1\Binaries\OpenTK\Release\OpenTK.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Installed\1.1\Binaries\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProcessInterface">
+      <HintPath>bin\Debug\Libraries\ProcessInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\WindowsFormsIntegration\3.0.0.0__31bf3856ad364e35\WindowsFormsIntegration.dll</HintPath>
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.101.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.101.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.101.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="tracert">
+      <HintPath>bin\Debug\tracert.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="File Operations\Fileopr.cs" />
+    <Compile Include="FTP\ftp_server.cs" />
+    <Compile Include="Game Engine\Scorpion RS.cs" />
+    <Compile Include="GUI\Argument Builder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Argument Builder.Designer.cs">
+      <DependentUpon>Argument Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Crypter.cs" />
+    <Compile Include="Crypto\Cryptographer.cs" />
+    <Compile Include="Dumper.cs" />
+    <Compile Include="FormSerialisor.cs" />
+    <Compile Include="GUI\Settings_Panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Settings_Panel.Designer.cs">
+      <DependentUpon>Settings_Panel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\VDB Analyzer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\VDB Analyzer.Designer.cs">
+      <DependentUpon>VDB Analyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hooking\Hooker.cs" />
+    <Compile Include="Internetwork File Format.cs" />
+    <Compile Include="Library_SHS.cs" />
+    <Compile Include="Memory Security\Secure Memory.cs" />
+    <Compile Include="Obj_vw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Obj_vw.Designer.cs">
+      <DependentUpon>Obj_vw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Save_Hib.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Save_Hib.Designer.cs">
+      <DependentUpon>Save_Hib.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Server\Resources.Designer.cs" />
+    <Compile Include="Server\Settings.Designer.cs" />
+    <Compile Include="SQL\SQL.cs" />
+    <Compile Include="Understander.cs" />
+    <Compile Include="VEE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VEE.Designer.cs">
+      <DependentUpon>VEE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Amatrix Server Lite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Amatrix Server Lite.Designer.cs">
+      <DependentUpon>Amatrix Server Lite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Amatrix Sever Client Lite.cs" />
+    <Compile Include="Diff.cs" />
+    <Compile Include="Dynamic Reader.cs" />
+    <Compile Include="External_Lib.cs" />
+    <Compile Include="GUI\First_Use.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\First_Use.Designer.cs">
+      <DependentUpon>First_Use.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library.cs" />
+    <Compile Include="Library_AI.cs" />
+    <Compile Include="Library_APP.cs" />
+    <Compile Include="Library_DATA.cs" />
+    <Compile Include="Library_ENCODING.cs" />
+    <Compile Include="Library_FNC.cs" />
+    <Compile Include="Library_OBJ.cs" />
+    <Compile Include="Library_GUI.cs" />
+    <Compile Include="Library_IO.cs" />
+    <Compile Include="Library_MATH.cs" />
+    <Compile Include="Library_MEM_MGMT.cs" />
+    <Compile Include="Library_NET.cs" />
+    <Compile Include="Library_TYPE_FUNCTIONS.cs" />
+    <Compile Include="Object Types.cs" />
+    <Compile Include="Objects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pipe_server.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\Argument Builder.resx">
+      <DependentUpon>Argument Builder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form1.en.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Settings_Panel.resx">
+      <DependentUpon>Settings_Panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\VDB Analyzer.resx">
+      <DependentUpon>VDB Analyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Obj_vw.resx">
+      <DependentUpon>Obj_vw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Server\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Server\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VEE.resx">
+      <DependentUpon>VEE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Amatrix Server Lite.resx">
+      <DependentUpon>Amatrix Server Lite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Amatrix Sever Client Lite.resx">
+      <DependentUpon>Amatrix Sever Client Lite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\First_Use.resx">
+      <DependentUpon>First_Use.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Special_TextView.resx">
+      <DependentUpon>Special_TextView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reader.cs">
+    </Compile>
+    <Compile Include="Scorpion_network_administration.cs" />
+    <Compile Include="GUI\Special_TextView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Special_TextView.designer.cs">
+      <DependentUpon>Special_TextView.cs</DependentUpon>
+    </Compile>
+    <None Include="Server\Settings.settings" />
+    <Compile Include="Server\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Amatrix Sever Client Lite.Designer.cs">
+      <DependentUpon>Amatrix Sever Client Lite.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadow - Copy - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadow - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadowdwn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bannrrageconv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BannerTRS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fav on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pl on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mov.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cht on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nssd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Scorp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agplv3-155x51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_lightning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_get.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linedpaperpencil32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bargraph32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_get1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_osx_terminal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="application_osx_terminal.ico" />
+    <Content Include="bt3.ico" />
+    <None Include="Resources\windw.bmp" />
+    <None Include="Resources\doc_stand.png" />
+    <None Include="Resources\table.png" />
+    <None Include="Resources\server.png" />
+    <None Include="Resources\app_window_black&amp;48.png" />
+    <None Include="Resources\filter_icon&amp;16.png" />
+    <None Include="Resources\app_window_shell_icon&amp;16.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\bin_closed.png" />
+    <None Include="Resources\clock.png" />
+    <None Include="Resources\application_delete.png" />
+    <None Include="Resources\text_padding_right.png" />
+    <None Include="Resources\application_view_xp_terminal.png" />
+    <None Include="Resources\buildings.png" />
+    <None Include="Resources\text_horizontalrule.png" />
+    <None Include="Resources\text_linespacing.png" />
+    <None Include="Resources\doc_shred.png" />
+    <None Include="Resources\control_pause.png" />
+    <None Include="Resources\control_play.png" />
+    <None Include="Resources\control_repeat.png" />
+    <None Include="Resources\control_stop.png" />
+    <None Include="Resources\drive_go.png" />
+    <None Include="Resources\basket.png" />
+    <None Include="Resources\drive_delete.png" />
+    <None Include="Resources\application_view_tile.png" />
+    <None Include="Resources\arrow_refresh.png" />
+    <None Include="Resources\lightbulb_off.png" />
+    <None Include="Resources\vector.png" />
+    <None Include="Resources\clipboard_sign.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\bt1.png" />
+    <None Include="Resources\ruler_crop.png" />
+    <None Include="Resources\text_letterspacing.png" />
+    <None Include="Resources\application_edit.png" />
+    <None Include="Resources\application2.png" />
+    <None Include="Resources\paintbrush.png" />
+    <None Include="Resources\hand_point.png" />
+    <None Include="Resources\magnet.png" />
+    <None Include="Resources\chart_curve.png" />
+    <None Include="Resources\chart_pie.png" />
+    <None Include="Resources\link.png" />
+    <None Include="Resources\doc_resize_actual.png" />
+    <None Include="Resources\application_form.png" />
+    <None Include="Resources\funnel.png" />
+    <None Include="Resources\bricks.png" />
+    <None Include="Resources\lightning.png" />
+    <None Include="Resources\highlighter.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\sitemap.png" />
+    <None Include="Resources\grid.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\arrow_branch.png" />
+    <None Include="Resources\hammer_screwdriver.png" />
+    <None Include="Resources\help1.png" />
+    <None Include="Resources\bomb.png" />
+    <None Include="Resources\wand.png" />
+    <None Include="Resources\application1.png" />
+    <None Include="Resources\brick.png" />
+    <None Include="Resources\X-w.png" />
+    <None Include="Resources\application_go.png" />
+    <None Include="Resources\arrow_left.png" />
+    <None Include="Resources\chart_organisation.png" />
+    <None Include="Resources\bt3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IDE\" />
+    <Folder Include="UDP\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

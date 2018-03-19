@@ -1,0 +1,63 @@
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\ResolveAssemblyReference.cache
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+E:\Misc\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+C:\Users\oscar\Desktop\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+D:\My Work\SFT Projects\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csprojResolveAssemblyReference.cache
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+D:\My Work\Software & Research\Amatrix\Projects\Amatrix Data Center Clients\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csprojResolveAssemblyReference.cache
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+E:\My Work\Software & Research\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csprojResolveAssemblyReference.cache
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+F:\Work\Scorpion\DEVELOPMENT\P2P Server System\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+F:\Work\Scorpion\Development\Templates\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.exe
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\bin\Debug\Amatrix Server 1.1.pdb
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csprojResolveAssemblyReference.cache
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Form1.resources
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix_Server_1._1.Properties.Resources.resources
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.csproj.GenerateResource.Cache
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.exe
+C:\Users\Oscar\Source\Workspaces\Workspace\One Platform\Amatrix Server 1.1 - USE ONLY\Amatrix Server 1.1\obj\Debug\Amatrix Server 1.1.pdb

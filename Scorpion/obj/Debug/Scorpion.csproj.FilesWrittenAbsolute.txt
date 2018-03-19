@@ -1,0 +1,51 @@
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/.NETFramework,Version=v4.5.1.AssemblyAttribute.cs
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Argument_Builder.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.GUI.Settings_Panel.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.GUI.VDB_Analyzer.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Obj_vw.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Amatrix_Server_1._1.Form1.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Server.Resources.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.VEE.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.About.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Main.Amatrix_Server_Lite.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Main.Amatrix_Sever_Client_Lite.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.First_Use.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Form1.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion_IDE.Special_TextView.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion.Form1.en.resources
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/en/Scorpion Research System.resources.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Scorpion Research System.exe.config
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Scorpion Research System.exe.mdb
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Scorpion Research System.exe
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug//en/Scorpion Research System.resources.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion Research System.exe
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/obj/Debug/Scorpion Research System.exe.mdb
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/IPPrototyper.exe
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/itextsharp.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/itextsharp.xtra.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/OpenTK.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/OpenTK.Compatibility.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/OpenTK.GLControl.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/ProcessInterface.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/EntityFramework.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Microsoft.Practices.Unity.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Microsoft.Practices.Unity.Configuration.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/Microsoft.Practices.Unity.RegistrationByConvention.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/System.Data.SQLite.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/tracert.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Controls.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Controls.xml
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Imaging.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Imaging.xml
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Math.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Math.xml
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Video.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.Video.xml
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.dll
+/media/oscar/4828F74828F73412/Work/One Platform/Scorpion/bin/Debug/AForge.xml

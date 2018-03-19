@@ -1,0 +1,28 @@
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\scorpion_gui.pdb
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\OpenTK.dll
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\OpenTK.pdb
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\OpenTK.xml
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\OpenTK.GLControl.xml
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.csprojResolveAssemblyReference.cache
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.Form1.resources
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.Properties.Resources.resources
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.csproj.GenerateResource.Cache
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.pdb
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\scorpion_gui.dll.config
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\bin\Debug\scorpion_gui.dll
+C:\Users\Kvart\documents\visual studio 2015\Projects\oscar\scorpion_gui\obj\Debug\scorpion_gui.dll
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\scorpion_gui.dll.config
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\scorpion_gui.dll
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\scorpion_gui.pdb
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\OpenTK.dll
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\OpenTK.GLControl.dll
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\OpenTK.pdb
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\OpenTK.xml
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\bin\Debug\OpenTK.GLControl.xml
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.csprojResolveAssemblyReference.cache
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.Form1.resources
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.Properties.Resources.resources
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.csproj.GenerateResource.Cache
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.dll
+F:\Work\Scorpion\Development\Scorpion For x86 x64\Scorpion\Scorpion IEE - 0.2\scorpion_gui\obj\Debug\scorpion_gui.pdb

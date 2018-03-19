@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Scorpion/Scorpion.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Objects.cs">
+    <Files>
+      <File FileName="Scorpion/Library_SHS.cs" Line="45" Column="101" />
+      <File FileName="Scorpion/Objects.cs" Line="170" Column="178" />
+      <File FileName="Scorpion/Library_NET.cs" Line="120" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
