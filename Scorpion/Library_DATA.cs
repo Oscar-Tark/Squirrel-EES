@@ -73,37 +73,6 @@ namespace Scorpion
             {
                 export_visual(ref Scorp_Line);
             }
-
-            //SQLite
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[125] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.add_connection(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[126] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.create_sql_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[127] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.open_connection(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[128] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.close_connection(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[129] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.verify(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[130] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.setobjects_query(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[131] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.sql.getobjects_query(ref Scorp_Line);
-            }
-
             else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[4] + "} in line {" + Scorp_Line + "}."); }
 
             //clean

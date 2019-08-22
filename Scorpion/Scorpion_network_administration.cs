@@ -63,8 +63,8 @@ namespace Scorpion
             //readr.access_library(message);
             /*this.Invoke(new PipeServer.Server.MessageReceivedHandler(DisplayMessageReceived),
                    new object[] { client, message });*/
-            MessageBox.Show("fribit");
-            lb_.work_(((ArrayList)lb_.ByteArrayToObject(message))[0]);
+            //MessageBox.Show("fribit");
+            //lb_.work_(((ArrayList)lb_.ByteArrayToObject(message))[0]);
             return;
         }
 

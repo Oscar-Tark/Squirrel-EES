@@ -164,7 +164,7 @@ namespace Scorpion.GUI
 
         private void labeledit(object sender, LabelEditEventArgs e)
         {
-            Do_on.readr.lib_SCR.work_("mem.set(*" + tv_db.SelectedNode.Text + "@" + toolStripComboBox1.Text + "@" + lv.Items[e.Item].SubItems[1].Text + ",*\"" + lv.Items[e.Item].Text + "\")");
+            Do_on.readr.lib_SCR.scorpioniee("mem.set(*" + tv_db.SelectedNode.Text + "@" + toolStripComboBox1.Text + "@" + lv.Items[e.Item].SubItems[1].Text + ",*\"" + lv.Items[e.Item].Text + "\")");
             MessageBox.Show("mem.set(*" + tv_db.SelectedNode.Text + "@" + toolStripComboBox1.Text + "@" + lv.Items[e.Item].SubItems[1].Text + ",*\"" + lv.Items[e.Item].Text + "\")");
         }
     }

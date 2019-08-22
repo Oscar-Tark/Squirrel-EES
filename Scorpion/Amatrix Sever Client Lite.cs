@@ -168,7 +168,7 @@ namespace Main
                 //Execute Command
                 for (int i = 3; i < al_hptr.Count; i++)
                 {
-                    fm1.readr.lib_SCR.work_(al_hptr[i].ToString());
+                    fm1.readr.lib_SCR.scorpioniee(al_hptr[i].ToString());
                 }
             }
             

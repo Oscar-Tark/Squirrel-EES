@@ -25,33 +25,15 @@ namespace Scorpion
 {
     public class reader
     {
-        Form1 fmm; 
-        public Librarian lib_SCR = new Librarian();
+        Form1 fmm;
+        public Librarian lib_SCR;
         private Thread th_cross; public bool Re_do = true; public int ndx = 0;
         private delegate void dl_cross();
-        public void read(string Scorpion_String, int Cursor_Index, Form1 Form_Handle)
+        public reader(Form1 Form_Handle)
         {
-            try
-            {
-                fmm = Form_Handle;
-                int n = Cursor_Index;
-                int n2 = Scorpion_String.IndexOf(";", Cursor_Index); //~;
-                ndx = n2 + 1; //2
-                Scorpion_String = Scorpion_String.Remove(n2, Scorpion_String.Length - n2);
-                Scorpion_String = Scorpion_String.Remove(0, Cursor_Index);
-                Re_do = lib_SCR.Decider(Scorpion_String, Form_Handle, this);
-
-                if (Re_do == true)
-                {
-                    Access_strt();
-                }
-                else
-                { fmm.read_again(false); }
-            }
-            catch { }
-
-            //clean
-            Scorpion_String = null;
+           fmm = Form_Handle;
+           lib_SCR = new Librarian(Form_Handle);
+           return;
         }
 
         private void Access_strt()
@@ -90,7 +72,7 @@ namespace Scorpion
         //ACCESS ANY LIB
         public void access_library(string Scorp_Line)
         {
-            lib_SCR.work_(Scorp_Line);
+            lib_SCR.scorpioniee(Scorp_Line);
             Scorp_Line = null;
             return;
         }

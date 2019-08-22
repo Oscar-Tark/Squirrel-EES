@@ -102,7 +102,7 @@ namespace Scorpion
             return;
         }
 
-        public void register_applications()
+        public void register_applications(string Scorp_Line_Exec)
         {
             DirectoryInfo d = new DirectoryInfo(Environment.CurrentDirectory + "\\Tools");
             foreach (FileInfo fi in d.GetFiles("*.exe", SearchOption.AllDirectories))

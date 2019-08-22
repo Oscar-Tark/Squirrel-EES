@@ -52,6 +52,7 @@
             this.f_size = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.objectViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.serverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ww = new System.Windows.Forms.ToolStripButton();
@@ -60,14 +61,11 @@
             this.rtb_final = new System.Windows.Forms.RichTextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.rtb = new System.Windows.Forms.TextBox();
             this.bkk_suggest = new System.ComponentModel.BackgroundWorker();
-            this.analyzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cms.SuspendLayout();
             this.Main_Control_Strip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -323,6 +321,13 @@
             this.objectViewerToolStripMenuItem.Text = "Object Viewer";
             this.objectViewerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
             // 
+            // analyzerToolStripMenuItem
+            // 
+            this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
+            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.analyzerToolStripMenuItem.Text = "DB Analyzer";
+            this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -371,7 +376,7 @@
             this.rtb_final.Margin = new System.Windows.Forms.Padding(0);
             this.rtb_final.Name = "rtb_final";
             this.rtb_final.ReadOnly = true;
-            this.rtb_final.Size = new System.Drawing.Size(202, 399);
+            this.rtb_final.Size = new System.Drawing.Size(233, 399);
             this.rtb_final.TabIndex = 4;
             this.rtb_final.Text = "";
             this.rtb_final.WordWrap = false;
@@ -905,27 +910,12 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rtb_final);
             this.splitContainer1.Size = new System.Drawing.Size(920, 399);
-            this.splitContainer1.SplitterDistance = 714;
+            this.splitContainer1.SplitterDistance = 683;
             this.splitContainer1.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(714, 399);
-            this.panel1.TabIndex = 1;
             // 
             // rtb
             // 
@@ -949,13 +939,6 @@
             // 
             this.bkk_suggest.WorkerSupportsCancellation = true;
             // 
-            // analyzerToolStripMenuItem
-            // 
-            this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
-            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.analyzerToolStripMenuItem.Text = "DB Analyzer";
-            this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
             // Special_TextView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -969,7 +952,6 @@
             this.cms.ResumeLayout(false);
             this.Main_Control_Strip.ResumeLayout(false);
             this.Main_Control_Strip.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -1012,7 +994,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem serverManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
-        public System.Windows.Forms.FlowLayoutPanel panel1;
         private System.Windows.Forms.ToolStripMenuItem analyzerToolStripMenuItem;
     }
 }

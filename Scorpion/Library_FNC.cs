@@ -572,7 +572,7 @@ namespace Scorpion
 
                     hold = Scorpion_String.Remove(n2);
                     hold = hold.Remove(0, Cursor_Index);
-                    work_(hold);
+                    scorpioniee(hold);
                     Cursor_Index = n2 + 2;
                 }
                 catch (Exception erty) { break; }

@@ -35,7 +35,7 @@ namespace Scorpion
 
         private void load_objects()
         {
-            tv.Visible = false;
+            //tv.Visible = false;
             tv.Nodes.Find("NodeRef", true)[0].Text = "References: " + Do_on.AL_CURR_VAR_REF.Count.ToString();
             tv.Nodes.Find("NodeRef", true)[0].Nodes.Clear();
             foreach (object obj in Do_on.AL_CURR_VAR_REF)
@@ -199,7 +199,7 @@ namespace Scorpion
                 index++;
             }
 
-            tv.Visible = true;
+            //tv.Visible = true;
 
             return; 
         }
@@ -218,6 +218,11 @@ namespace Scorpion
         private void bkk_ld_DoWork(object sender, DoWorkEventArgs e)
         {
             th_ld_strt();
+        }
+
+        private void MsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

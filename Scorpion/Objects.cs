@@ -39,6 +39,8 @@ namespace Scorpion
 
         public int GUI_TEMPLATE_COUNT = 0;
 
+        public Scorpion_IDE.Special_TextView spc;
+        public reader readr;
         public Scorpion.GUI.VDB_Analyzer vdb_analyzer;
         public GameWindow game;
         public Dumper.Virtual_Dumper_System vds;
@@ -49,12 +51,11 @@ namespace Scorpion
         public FTP.ftp_server ftp_serv;
         public Scorpion.File_operations.Fileopr fleoper;
         public Scorpion.Game_Engine.Scorpion_RS RS;
-        public Scorpion.SQL_lite.SQL_lite sql;
         public Amatrix_Server_1._1.Form1 serv;
 
         public string SHA;
         public string[] cmdargs;
-        
+
         public string Mess;
         public int Index = 0; //Reader Index
         public string Prog_s; //Application String
@@ -68,17 +69,15 @@ namespace Scorpion
 
         public bool is_hardware_accelerated = false;
 
-        public Scorpion_IDE.Special_TextView spc;
-        public reader readr = new reader();
         public Types types;
-        
+
         public enum list_type { db_list };
 
         //Main Collections
 
         //TERMS/WIKI TERMS
-        public ArrayList AL_TERMS_WIKI_REF = new ArrayList() { "license","windows", "commands" };
-        public ArrayList AL_TERMS_WIKI = new ArrayList() { "[LICENSE]","[WIKI:]", "[COMMANDS:]" };
+        public ArrayList AL_TERMS_WIKI_REF = new ArrayList() { "license", "windows", "commands" };
+        public ArrayList AL_TERMS_WIKI = new ArrayList() { "[LICENSE]", "[WIKI:]", "[COMMANDS:]" };
         public ArrayList AL_WIKI = new ArrayList() {
             "Licensed Under the GNU GPL Version 3\n<One Platform. Noded Command Framework>\nCopyright (C) <2013-2016>  <Oscar Arjun Singh Tark>\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see<http://www.gnu.org/licenses/>.\n\n____________________________________________________________\n\nProgrammers:\n\nOscar Arjun Singh Tark\n\n------------------------------------------------------------------------\n\nIncludes the Following Software:\n\nNONE.\n\n------------------------------------------------------------------------\n\nIncludes the Following Artwork:\n\nLed24.de\n\nhttp://led24.de/iconset/\n\n",
             "If you are trying to start a cmd process and want it to hold. Set the process name as cmd and in the beginning of the first argument put /K as: '/K ping.exe 127.0.0.1'",
@@ -161,13 +160,45 @@ namespace Scorpion
         public ArrayList AL_EXTENSNS = new ArrayList() { ".vds", ".vdb", ".vdsqlite" };
 
         //Accessors Definitions
-        public ArrayList AL_ACC = new ArrayList() { ">>", "*", ".", "(", ")", "\"", "@", "#" };
+        public ArrayList AL_ACC = new ArrayList() { ">>", "*", ".", "(", ")", "\\", "@", "#" };
         public ArrayList AL_SECTIONS = new ArrayList() { "data", "gui", "commands", "variables", "assemblies", "scripts" };
 
         //Operators Definitions
         public ArrayList AL_OPRTRS = new ArrayList() { "+", "-", "/", "*", "%", "&&", "||", "<", ">", "=", "<=", ">=", "!", /*contains*/ "?", /*Union*/"<->", "<-", "->", /*Intersection*/ "<~>" };
-                                                                   //D  D     D      D      D       D         D    D             D       D       D       D       D       D       D       D       D                   D       D       D           D       D   D       D               D       D   D       D       D   D   D       D       D   D       D               D       D           D           D           D               D                   D       D       D       D       D   D       D       D       D       D       D       D       D       D       D       D       D               D           D               D           D           D       D       D       D           D           D           D           D                       D               
-        public ArrayList AL_FNC_SCRP = new ArrayList() { /*APP:*/ "write", "ca", "about", "exit", "restart" /*DATA:*/, "query", "rel" /*FNC:*/, "register", "unregister", "call", "recall", "rcsa", "rcsr", "rcsta", "rcsp", "ucll" /*GUI:*/ , "startgame", "endgame", "gmvsnc", "startvee", "winform", "cadr", "radr" /*IO:*/, "newfile", "deletefile", "savefiletext", "savefilebinary", "newfolder", "deletefolder", "clf", "cp", "mp", "cpd", "md" /*MATH:*/, "add", "subtract", "multiply", "divide", "percentagevalue", "percentageratio", "sin", "sinh", "sign", "asin", "cos", "cosh", "acos", "tan", "tanh", "atan", "atan2", "nlog", "log", "log10", "pow", "bigmul", "divrem32", "divrem64", "ieeeremainder", "larger", "smaller", "cieling", "floor", "exp", "absolute", "squareroot", "truncate", "round", "roundtodecimalpoint", "roundtodecimalmidpoint" /*MEM:*/, "new", "reloadsystem", "deletetag", "tag", "delete", "deletesystem", "hibernate", "unhibernate" /*NET:*/, "sendtcp", "st" /*SHS (80):*/, "run" /*TYP:*/, "add", "addat", "remove", "removeat", "index", "length" /*SHS (87):*/, "ab" /*NET 88*/, "start", "stop" /*GUI 90*/, "addpoint", "removepoint" /*NET 92*/, "startpipe", "stoppipe" /*DATA 94*/, "load", "create", "delete", "save" /*NET (HTTP) 99*/, "httpset", "httpget" /*DATA 101*/, "unload", "link" /*GUI*/, "gwen", "stopvee", /*DATA 105*/ "visualize", /*APP*/ "load" /*GUI 106*/ ,"update", "compileproperties", "editproperties", "callmethod" /*ONE 111*/, "windows", "wiki", "analyzer", "cui" /*MEM 115*/, "set" /*DATA*/, "encrypt" /*FNC HOOK*/, "compile", "importedcall", "import" /*MEM*/, "encrypt", "decrypt" /*FTP* 121*/, "authtable", "sendftp", "recieve" /*IO*/, "upload" /*SQLite 125*/, "sqlconnection", "sqlcreate", "sqlopen", "sqlclose", "sqlverify", "sqlset", "sqlget" /*NET AS SERVER 132*/, "startserver", "stopserver"};
+
+        public string[] AL_KEYS = new string[9]
+        {
+            "fnc",
+            "io",
+            "net",
+            "eng",
+            "db",
+            "mem",
+            "exe",
+            "typ",
+            "sec"
+        };
+
+        /*public string[][] AL_CALLERS = new string[1][]
+        {
+            //ALL KEYS CORRESPOND TO INDEX OF CALLERS
+        };*/
+
+        //D  D     D      D      D       D         D    D             D       D       D       D       D       D       D       D       D                   D       D       D           D       D   D       D               D       D   D       D       D   D   D       D       D   D       D               D       D           D           D           D               D                   D       D       D       D       D   D       D       D       D       D       D       D       D       D       D       D       D               D           D               D           D           D       D       D       D           D           D           D           D                       D               
+        public ArrayList AL_FNC_SCRP = new ArrayList() { /*APP:*/
+            "write",
+            "ca",
+            "about",
+            "exit",
+            "restart"
+            /*DATA:*/,
+            "query",
+            "rel"
+            /*FNC:*/,
+            "register",
+            "unregister",
+            "call",
+            "recall", "rcsa", "rcsr", "rcsta", "rcsp", "ucll" /*GUI:*/ , "startgame", "endgame", "gmvsnc", "startvee", "winform", "cadr", "radr" /*IO:*/, "newfile", "deletefile", "savefiletext", "savefilebinary", "newfolder", "deletefolder", "clf", "cp", "mp", "cpd", "md" /*MATH:*/, "add", "subtract", "multiply", "divide", "percentagevalue", "percentageratio", "sin", "sinh", "sign", "asin", "cos", "cosh", "acos", "tan", "tanh", "atan", "atan2", "nlog", "log", "log10", "pow", "bigmul", "divrem32", "divrem64", "ieeeremainder", "larger", "smaller", "cieling", "floor", "exp", "absolute", "squareroot", "truncate", "round", "roundtodecimalpoint", "roundtodecimalmidpoint" /*MEM:*/, "new", "reloadsystem", "deletetag", "tag", "delete", "deletesystem", "hibernate", "unhibernate" /*NET:*/, "sendtcp", "st" /*SHS (80):*/, "run" /*TYP:*/, "add", "addat", "remove", "removeat", "index", "length" /*SHS (87):*/, "ab" /*NET 88*/, "start", "stop" /*GUI 90*/, "addpoint", "removepoint" /*NET 92*/, "startpipe", "stoppipe" /*DATA 94*/, "load", "create", "delete", "save" /*NET (HTTP) 99*/, "httpset", "httpget" /*DATA 101*/, "unload", "link" /*GUI*/, "gwen", "stopvee", /*DATA 105*/ "visualize", /*APP*/ "load" /*GUI 106*/ ,"update", "compileproperties", "editproperties", "callmethod" /*ONE 111*/, "windows", "wiki", "analyzer", "cui" /*MEM 115*/, "set" /*DATA*/, "encrypt" /*FNC HOOK*/, "compile", "importedcall", "import" /*MEM*/, "encrypt", "decrypt" /*FTP* 121*/, "authtable", "sendftp", "recieve" /*IO*/, "upload" /*SQLite 125*/, "sqlconnection", "sqlcreate", "sqlopen", "sqlclose", "sqlverify", "sqlset", "sqlget" /*NET AS SERVER 132*/, "startserver", "stopserver"};
                                                       //D       D       D   D       D       D       D       D   D
         public ArrayList AL_ACC_SUP = new ArrayList() { "fnc", "io", "net", "one", "db", "mem", "gui", "cmd", /*Defunct*/"typ", "sec" };
 

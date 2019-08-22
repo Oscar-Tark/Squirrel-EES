@@ -30,11 +30,10 @@ namespace Scorpion
     partial class Librarian
     {
         //PASS
-        public void MEMORY(ref string Scorp_Line)
+        /*public void MEMORY(ref string Scorp_Line)
         {
             if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[70] + Do_on.AL_ACC[3].ToString()))
             {
-                var_create(Scorp_Line);
             }
             else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[71] + Do_on.AL_ACC[3].ToString()))
             {
@@ -89,16 +88,11 @@ namespace Scorpion
             else if (Scorp_Line.ToLower().StartsWith("mem.vds("))
             {
                 var_stream_delete(ref Scorp_Line);
-            }*/
-
-            //clean
-            Scorp_Line = null;
-
-            return;
-        }
+            }
+        }*/
 
         //Variables-->
-        private void var_create(string Scorp_Line_Exec)
+        public void var(string Scorp_Line_Exec)
         {
             //(*,*,*,*,...)
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
@@ -211,7 +205,7 @@ namespace Scorpion
 
             Scorp_Line_Exec = Scorp_Line_Exec.Replace("*", "");
 
-            var_delete(Scorp_Line_Exec);
+            delete(Scorp_Line_Exec);
         }
 
         public void var_new(object Variable, string Reference, string Type_)
@@ -253,7 +247,7 @@ namespace Scorpion
             return;
         }
 
-        public void var_delete(String Scorp_Line_Exec)
+        public void delete(string Scorp_Line_Exec)
         {
             //(*,*,*,*,*,...)
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
@@ -299,7 +293,7 @@ namespace Scorpion
         }
 
         //DEFUNCT
-        public void var_delete_all()
+        public void var_delete_all(string Scorp_Line_Exec)
         {
             Do_on.AL_CURR_VAR.Clear();
             Do_on.AL_CURR_VAR_REF.Clear();

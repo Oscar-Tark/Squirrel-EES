@@ -24,234 +24,50 @@ using System.IO;
 using System.Threading;
 using System.Drawing;
 using System.ComponentModel;
+using System.Diagnostics;
 
 //Static Library
 namespace Scorpion
 {
     public partial class Librarian
     {
-        private delegate void del_do(object Scorp_Line);
-        private delegate void del_do_rf_str(ref string Scorp_Line);
-        private delegate void del_do_rf_obj(object Scorp_Line);
-
-        public bool pointered = false;
-        string Temp_str = "";
-        public TreeNode tn_tmp;
-        public string Item_type;
-        public bool cuimode = false;
-        Scorpion_IDE.Special_TextView cui_stview = new Scorpion_IDE.Special_TextView();
-        bool Continue_SCR = true;
-        public Form1 Do_on;
-        reader rdd;
-
-        public NotifyIcon nfy_tmp;
-        public bool resend = false;
-        
-        public string strng_tmp;
-        public ArrayList AL_Ref_EVT = new ArrayList();
-        
-
-        public object FC;
-
-        public bool Decider(string Method, Form1 Frm, reader rd_send)
+        System.Diagnostics.Stopwatch sp = new System.Diagnostics.Stopwatch();
+        public Librarian(Form1 Form_Handle)
         {
-            rdd = rd_send;
-            Temp_str = Method;
-            try
-            {
-                Do_on = Frm;
-                /*if (resend == true)
-                {
-                    FC = fm_temp;
-                }
-                else if (resend == false)
-                {
-                    FC = Do_on;
-                }*/
-            }
-            catch { }
-            do_(Method);
-            return Continue_SCR;
+            Do_on = Form_Handle;
+            return;
         }
 
-        public void do_(string Scorp_Line)
+        public void scorpioniee(object Scorp_Line)
         {
+            sp.Start();
+            string Scorp_Line_Exec = prepare_Scorp_line(ref Scorp_Line);
+            //Threading needed!
             try
             {
-                Thread th_doo = new Thread(new ParameterizedThreadStart(do2_));
-                th_doo.IsBackground = true;
-                th_doo.Start((object)Scorp_Line);
-            }
-            catch { }
-        }
+                string[] functions = get_function(ref Scorp_Line_Exec);
+                object[] paramse = new object[1];
+                paramse[0] = Scorp_Line_Exec;
 
-        private void do2_(object Scorp_Line)
-        {
-            try
-            {
-                del_do ddo = new del_do(work_);
-                ddo.Invoke(Scorp_Line);
-
-                ddo = null;
-            }
-            catch (Exception erty) { MessageBox.Show(erty.Message + " (" + erty.StackTrace + ")"); }
-        }
-        
-        /*ENGINE ENTRY POINT*/
-        public void work_(object Scorp_Line)
-        {
-            string Scorp_Line_Exec = Scorp_Line.ToString();
-            //LIB
-            try
-            {
-                if (Scorp_Line_Exec.Contains(Do_on.AL_ACC[0].ToString()))
+                //NOT THE RIGHT WAY!!!!
+                try
                 {
-                    string Temp_keep = Scorp_Line_Exec;
-                    int n = Scorp_Line_Exec.IndexOf(Do_on.AL_ACC[0].ToString(), 0);
-                    Temp_keep = Temp_keep.Remove(n);
-
-                    try
-                    {
-                        Temp_keep = Temp_keep.TrimStart(null);
-                    }
-                    catch { }
-
-                    int ndxx = 0;
-                    Temp_keep = Temp_keep.Replace("*", "");
-                    ndxx = Do_on.AL_CURR_VAR_REF.IndexOf(Temp_keep);
-
-                    //PROCESS AFTER THE >>
-                    try
-                    {
-                        string Temp_keep2 = Scorp_Line_Exec;
-                        int n3 = Temp_keep2.IndexOf(Do_on.AL_ACC[0].ToString(), 0);
-                        int n4 = 0;
-                        try
-                        {
-                            n4 = Temp_keep2.IndexOf(");", n3);
-                        }
-                        catch { n4 = Temp_keep2.IndexOf("\n", n3); }
-                        Temp_keep2 = Temp_keep2.Remove(0, n3 + 2);
-
-                        if (Temp_keep2.StartsWith(Do_on.AL_ACC[1].ToString()))
-                        {
-                            ((ArrayList)Do_on.AL_CURR_VAR[ndxx])[2] = var_get(Temp_keep2);
-                        }
-                        else
-                        {
-                            ((ArrayList)Do_on.AL_CURR_VAR[ndxx])[2] = Temp_keep2;
-                        }
-
-                        //Object Event Call
-                        if (((ArrayList)Do_on.AL_CURR_VAR[ndxx])[4].ToString() != "")
-                        {
-                            call_function(((ArrayList)Do_on.AL_CURR_VAR[ndxx])[4].ToString());
-                        }
-                    }
-                    catch (Exception erty) { Do_on.write_to_cui("Error: " + erty); }
+                    this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
                 }
-                else
+                catch (Exception erty)
                 {
-                    //hyper threading
-                    if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[0].ToString()))
-                    {
-                        del_do_rf_str ddo3 = new del_do_rf_str(Functions);
-                        ddo3.Invoke(ref Scorp_Line_Exec);
-                        
-                        //clean
-                        ddo3 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[1].ToString()))
-                    {
-                        del_do_rf_str ddo4 = new del_do_rf_str(IO);
-                        ddo4.Invoke(ref Scorp_Line_Exec);
-                        
-                        //clean
-                        ddo4 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[2].ToString()))
-                    {
-                        del_do_rf_str ddo5 = new del_do_rf_str(NET);
-                        ddo5.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo5 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[3].ToString()))
-                    {
-                        del_do_rf_str ddo6 = new del_do_rf_str(APP);
-                        ddo6.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo6 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[4].ToString()))
-                    {
-                        del_do_rf_str ddo8 = new del_do_rf_str(DATA);
-                        ddo8.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo8 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[5].ToString()))
-                    {
-                        del_do_rf_str ddo10 = new del_do_rf_str(MEMORY);
-                        ddo10.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo10 = null;
-                    }
-                    /*else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[8].ToString()))
-                    {
-                        del_do_rf_str ddo10 = new del_do_rf_str(Type_);
-                        ddo10.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo10 = null;
-                    }*/
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[6].ToString()))
-                    {
-                        del_do_rf_str ddo81 = new del_do_rf_str(GUI);
-                        ddo81.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddo81 = null;
-                    }
-                    else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[7].ToString()))
-                    {
-                        del_do_rf_str ddoshs = new del_do_rf_str(SHS);
-                        ddoshs.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddoshs = null;
-                    }
-                    /*else if (Scorp_Line.ToString().ToLower().StartsWith(Do_on.AL_ACC_SUP[9].ToString()))
-                    {
-                        del_do_rf_str ddoshs = new del_do_rf_str(.encrypt_data);
-                        ddoshs.Invoke(ref Scorp_Line_Exec);
-
-                        //clean
-                        ddoshs = null;
-                    }*/
-                    else
-                    {
-                        Do_on.Mess = "NO DIRECTIVE FOUND FOR: " + Scorp_Line_Exec + ". \n\nAvailable Directives are {";
-                        foreach (string s in Do_on.AL_ACC_SUP)
-                        { Do_on.Mess += "[" + s + "]"; }
-                        Do_on.write_to_cui(Do_on.Mess + "}");
-                    }
-                    //END-->
+                    this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, new object[0]);
                 }
-
-                //clean
                 Scorp_Line = null;
             }
             catch (Exception erty)
             {
-                Do_on.Continue = false; 
-                rdd.Re_do = false;
-                Do_on.write_to_cui(erty.Message + "\n\n" + " {Stack: " + erty.StackTrace + "}" + "\n\n" + "[Line of Code that Caused the Error : " + Scorp_Line_Exec + "]");
+                Do_on.write_to_cui("There was an error while processing your function call [Line of Code that Caused the Error : >> " + Scorp_Line_Exec + "]");
             }
+
+            sp.Stop();
+            Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds/1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
+            sp.Reset();
 
             pointered = false;
             Scorp_Line_Exec = null;
@@ -259,20 +75,15 @@ namespace Scorpion
 
             return;
         }
-
-        public void return_result()
+        private string prepare_Scorp_line(ref object Scorp_Line)
         {
-            //returnto
+            return Scorp_Line.ToString().ToLower();
+        }
 
-            /*
-            
-            tcp->al{}->work{}->fucntion(gui,mem...)->return_result(){returnarray}
-            array{command, returnto, id, tempid, return variables{ref,val}}
-
-            */
-
-            //tcp//local//driver//client
-            return;
+        private string[] get_function(ref string Scorp)
+        {
+            char[] delimiterChars = { '.', '(' };
+            return Scorp.Split(delimiterChars);
         }
 
         void del_mem_Click(object sender, EventArgs e)
@@ -289,7 +100,7 @@ namespace Scorpion
             {
                 try
                 {
-                    do_(cui_stview.rtb.Lines[ndx]);
+                    scorpioniee(cui_stview.rtb.Lines[ndx]);
                     ndx++;
                 }
                 catch { }
@@ -304,7 +115,7 @@ namespace Scorpion
                 {
                     int nCUR = cui_stview.rtb.GetLineFromCharIndex(cui_stview.rtb.SelectionStart);
                     string s_rd = cui_stview.rtb.Lines[nCUR];
-                    do_(s_rd);
+                    scorpioniee(s_rd);
                 }
                 catch { }
             }
@@ -441,40 +252,28 @@ namespace Scorpion
 
         public ArrayList cut_variables(string Scorp_Line_Exec)
         {
-            //(*v),(,*v),[*v],[*v,],[*v ]
-            int ndx = 0; int ndx2 = 0; ArrayList al = new ArrayList();
-            foreach (char c in Scorp_Line_Exec)
-            {
-                ndx = Scorp_Line_Exec.IndexOf("*", ndx);
-                if (ndx == -1) { break; }
-                al.Add(Scorp_Line_Exec.Remove(0, ndx));
-
-                al[ndx2] = cut_next_unbearable(al[ndx2].ToString(), ndx);
-
-                ndx++;
-                ndx2++;
-            }
-
-            return al;
+            return split_vars(ref Scorp_Line_Exec);
         }
 
         public ArrayList cut_variables(ref string Scorp_Line_Exec)
         {
-            //(*v),(,*v),[*v],[*v,],[*v ]
-            int ndx = 0; int ndx2 = 0; ArrayList al = new ArrayList();
-            foreach (char c in Scorp_Line_Exec)
+            return split_vars(ref Scorp_Line_Exec);
+        }
+
+        private ArrayList split_vars(ref string Scorp)
+        {
+            string[] vars = Scorp.Split('*', '(', ')', ',');
+            ArrayList vars_ = new ArrayList();
+            int ndx = 0;
+            foreach (string s in vars)
             {
-                ndx = Scorp_Line_Exec.IndexOf("*", ndx);
-                if (ndx == -1) { break; }
-                al.Add(Scorp_Line_Exec.Remove(0, ndx));
-
-                al[ndx2] = cut_next_unbearable(al[ndx2].ToString(), ndx);
-
+                if (s != "" && s != " " && ndx != 0)
+                {
+                    vars_.Add(s);
+                }
                 ndx++;
-                ndx2++;
             }
-
-            return al;
+            return vars_;
         }
 
         public ArrayList cut_query(ref string Scorp_Line_Exec)

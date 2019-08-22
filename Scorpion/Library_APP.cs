@@ -71,7 +71,7 @@ namespace Scorpion
             }
             else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[3] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[112] + Do_on.AL_ACC[3].ToString()))
             {
-                load_analyzer();
+                analyzer();
             }
             else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[3] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[113] + Do_on.AL_ACC[3].ToString()))
             {
@@ -85,7 +85,17 @@ namespace Scorpion
             return;
         }
 
-        public void load_analyzer()
+        public void exit(string Scorp_Line_Exec)
+        {
+            Application.Exit();
+        }
+
+        public void restart(string Scorp_Line_Exec)
+        {
+            Application.Restart();
+        }
+
+        public void analyzer()
         {
             Do_on.start_Analyzer_object();
             Do_on.f.Controls.Add(Do_on.vdb_analyzer);

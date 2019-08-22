@@ -23,7 +23,7 @@ namespace Scorpion
         
         private void button2_Click(object sender, EventArgs e)
         {
-            fm1.readr.lib_SCR.work_(fm1.AL_ACC_SUP[3] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[3] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[4].ToString());
+            fm1.readr.lib_SCR.scorpioniee(fm1.AL_ACC_SUP[3] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[3] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[4].ToString());
         }
         
         public static bool continue_ = false; int ndx = 0;

@@ -43,6 +43,7 @@ namespace Scorpion_IDE
             load_elements();
             load_();
             load_shs_suggestions();
+            add_object_viewer();
         }
 
         /*public void add_xmd(Scorpion.xmd xmd)
@@ -270,7 +271,6 @@ namespace Scorpion_IDE
             return;
         }
 
-        System.Diagnostics.Stopwatch sp = new System.Diagnostics.Stopwatch();
         private void rtb_KeyDown(object sender, KeyEventArgs e)
         {
             //status.Text = "Sel : {" + rtb.SelectionStart.ToString() + "}   Ln : {" + rtb.GetLineFromCharIndex(rtb.SelectionStart) + "}   LST : {" + e.KeyCode.ToString() + "(" + e.KeyValue.ToString() + ")}   BUFF : {'" + buffer.ToLower() + "'}";
@@ -291,20 +291,10 @@ namespace Scorpion_IDE
 
         private void execute()
         {
-            sp.Reset();
-            try
-            {
-                rtb.AutoCompleteCustomSource.Add(rtb.Text);
-                //string s_rd = rtb.Lines[rtb.GetLineFromCharIndex(rtb.SelectionStart)];
-                sp.Start();
-                fm1.readr.access_library(rtb.Text);
-                sp.Stop();
-                rtb_final.AppendText(rtb.Text + " - {Executed successfully (" + sp.ElapsedMilliseconds.ToString() + " ms; " + (sp.ElapsedMilliseconds / 1000).ToString() + " second(s))}" + "\n");
-                rtb.Text = "";
-
-                //s_rd = null;
-            }
-            catch (Exception erty) { message_rtb("Error Executing '" + rtb.Text + "' - {" + erty.StackTrace + "}"); }
+            rtb.AutoCompleteCustomSource.Add(rtb.Text);
+            //string s_rd = rtb.Lines[rtb.GetLineFromCharIndex(rtb.SelectionStart)];
+            fm1.readr.access_library(rtb.Text);
+            rtb.Text = "";
             Scroll_To_End();
 
             return;
@@ -323,16 +313,9 @@ namespace Scorpion_IDE
 
         private void execute(string Command)
         {
-            sp.Reset();
-            try
-            {
-                rtb.AutoCompleteCustomSource.Add(rtb.Text);
-                sp.Start();
-                fm1.readr.access_library(Command);
-                sp.Stop();
-                rtb_final.AppendText(Command + " - {Executed successfully (" + sp.ElapsedMilliseconds.ToString() + " ms; " + (sp.ElapsedMilliseconds / 1000).ToString() + " second(s))}" + "\n");
-            }
-            catch (Exception erty) { message_rtb("Error Executing '" + rtb.Text + "' - {" + erty.StackTrace + "}"); }
+            rtb.AutoCompleteCustomSource.Add(rtb.Text);
+            fm1.readr.access_library(Command);
+            return;
         }
 
         private void message_rtb(string message)
@@ -341,23 +324,30 @@ namespace Scorpion_IDE
             return;
         }
 
+        private void add_object_viewer()
+        {
+            Scorpion.Obj_vw obj = new Scorpion.Obj_vw(fm1);
+            obj.TopLevel = false;
+            obj.WindowState = FormWindowState.Maximized;
+            splitContainer1.Panel1.Controls.Add(obj);
+            return;
+        }
+
         private void objectViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender.Equals(objectViewerToolStripMenuItem))
             {
-                Scorpion.Obj_vw obj = new Scorpion.Obj_vw(fm1);
-                obj.TopLevel = false;
-                panel1.Controls.Add(obj);
+                add_object_viewer();
             }
             else if (sender.Equals(serverManagerToolStripMenuItem))
             {
                 Amatrix_Server_1._1.Form1 srv = new Amatrix_Server_1._1.Form1(fm1);
                 srv.TopLevel = false;
-                panel1.Controls.Add(srv);
+                splitContainer1.Panel1.Controls.Add(srv);
             }
             else if (sender.Equals(analyzerToolStripMenuItem))
             {
-                execute(fm1.AL_ACC_SUP[3] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[112] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[4].ToString());
+                execute("analyzer()");
             }
 
             sender = null;
