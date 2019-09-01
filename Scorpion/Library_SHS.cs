@@ -57,6 +57,20 @@ namespace Scorpion
             return;
         }
 
+        public void session(string Scorp_Line_Exec, ArrayList objects)
+        {
+            Do_on.SHA = (string)objects[0];
+            Do_on.write_to_cui("Session set");
+            return;
+        }
+
+        public void deletesession(string Scorp_Line_Exec, ArrayList objects)
+        {
+            Do_on.SHA = null;
+            Do_on.write_to_cui("Session deleted");
+            return;
+        }
+
         public ArrayList get_arguments(string Name, string arg)
         {
             ProcessStartInfo psi = new ProcessStartInfo(Do_on.AL_SHS_APP[Do_on.AL_SHS_APP_REF.IndexOf(Name)].ToString(), arg);

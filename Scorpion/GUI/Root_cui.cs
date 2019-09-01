@@ -41,16 +41,12 @@ namespace Scorpion
             IntPtr Hicon = Properties.Resources.application_view_xp_terminal.GetHicon();
             this.Icon = Icon.FromHandle(Hicon);
             Startup_Load_Objects.RunWorkerAsync();
-
             initialize_scorpion();
             return;
         }
 
         public void initialize_scorpion()
         {
-            Orig_path = "";
-            Prog_s = "";
-
             types = new Types(this);
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);

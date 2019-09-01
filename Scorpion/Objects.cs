@@ -17,23 +17,25 @@
 
 using System;
 using OpenTK;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Collections;
-using System.Collections.Specialized;
-using System.IO;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using System.Text;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Scorpion
 {
     public partial class Form1
     {
+        private object CloneObject(object o)
+        {
+            Object p = o.GetType().InvokeMember("", System.Reflection.BindingFlags.CreateInstance, null, o, null);
+
+            foreach (PropertyInfo pi in o.GetType().GetProperties())
+            {
+                if (pi.CanWrite)
+                    pi.SetValue(p, pi.GetValue(o, null), null);
+            }
+            return p;
+        }
         public void start_Analyzer_object()
         { vdb_analyzer = new GUI.VDB_Analyzer(this); return; }
 

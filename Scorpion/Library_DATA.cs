@@ -17,91 +17,35 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Data;
 using System.IO;
-using System.Threading;
-using System.Drawing;
 
 //Static Library
 namespace Scorpion
 {
     partial class Librarian
     {
-        //PASS 30-11-14
-        public void DATA(ref string Scorp_Line)
+        public void dbopen(string Scorp_line_Exec, ArrayList objects)
         {
-            //NEW DATA SYSTEM
-            if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[94] + Do_on.AL_ACC[3].ToString()))
-            {
-                get_data_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[100] + Do_on.AL_ACC[3].ToString()))
-            {
-                //unget
-                unget_data_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[95] + Do_on.AL_ACC[3].ToString()))
-            {
-                //Create Table
-                create_data_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[96] + Do_on.AL_ACC[3].ToString()))
-            {
-                //Delete Table
-                delete_data_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[97] + Do_on.AL_ACC[3].ToString()))
-            {
-                //Save Table
-                save_data_file(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[5] + Do_on.AL_ACC[3].ToString()))
-            {
-
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[101] + Do_on.AL_ACC[3].ToString()))
-            {
-                add_linkages(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[6] + Do_on.AL_ACC[3].ToString()))
-            {
-                //Data_Cluster_Read(Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[104] + Do_on.AL_ACC[3].ToString()))
-            {
-                export_visual(ref Scorp_Line);
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[4] + "} in line {" + Scorp_Line + "}."); }
-
-            //clean
-            Scorp_Line = null;
-
-            return;
-        }
-
-        public void get_data_file(ref string File)
-        {
-            ArrayList al = cut_variables(ref File);
             //{table, pass}
             //Requested Undump
-            Do_on.vds.Verify_File_DB(var_get(al[0].ToString()).ToString());
+            Do_on.vds.Verify_File_DB(var_get(objects[0].ToString()).ToString());
 
-            if (!Do_on.AL_TBLE_REF.Contains(var_get(al[0].ToString()).ToString()))
+            if (!Do_on.AL_TBLE_REF.Contains(var_get(objects[0].ToString()).ToString()))
             {
-                Do_on.AL_TBLE_REF.Add(var_get(al[0].ToString()).ToString());
-                Do_on.AL_TBLE.Add(Do_on.vds.UnDump_DB(var_get(al[0].ToString()).ToString(), var_get(al[1].ToString()).ToString()));
-                verify_load(var_get(al[0].ToString()).ToString());
-                Do_on.write_to_cui("Added Data File: '" + var_get(al[0].ToString()).ToString() + "'");
+                Do_on.AL_TBLE_REF.Add(var_get(objects[0].ToString()).ToString());
+                Do_on.AL_TBLE.Add(Do_on.vds.UnDump_DB(var_get(objects[0].ToString()).ToString(), Do_on.SHA));
+                verify_load(var_get(objects[0].ToString()).ToString());
+                Do_on.write_to_cui("Added Data File: '" + var_get(objects[0].ToString()).ToString() + "'");
             }
-            else { Do_on.write_to_cui("Table '" + var_get(al[0].ToString()).ToString() + "' already in memory"); }
+            else { Do_on.write_to_cui("Table '" + var_get(objects[0].ToString()).ToString() + "' already in memory"); }
 
-            File = null;
+            var_arraylist_dispose(ref objects);
+            Scorp_line_Exec = null;
             return;
         }
 
-        public void unget_data_file(ref string File)
+        private void unget_data_file(ref string File)
         {
             ArrayList al = cut_variables(ref File);
 
@@ -125,22 +69,18 @@ namespace Scorpion
             }
         }
 
-        public void create_data_file(ref string Scorp_Line)
+        public void dbcreate(string Scorp_line_Exec, ArrayList objects)
         {
             //(*File_Name)
-            ArrayList al = cut_variables(ref Scorp_Line);
-
             Do_on.vds.Verify_Directory_DB();
             Do_on.AL_TBLE.Add(new ArrayList());
-            Do_on.AL_TBLE_REF.Add(var_get(al[0].ToString()).ToString());
-            verify_load(var_get(al[0].ToString()).ToString());
+            Do_on.AL_TBLE_REF.Add(var_get(objects[0].ToString()).ToString());
+            verify_load(var_get(objects[0].ToString()).ToString());
+            File.WriteAllBytes(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1], Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(objects[0].ToString()))], Do_on.SHA));
+            Do_on.write_to_cui("Created table file(to disk) : " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
 
-            File.WriteAllBytes(Do_on.AL_DIRECTORIES[0] + var_get(al[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1], Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al[0].ToString()))], "Anus"));
-
-            Do_on.write_to_cui("Created table file(to disk) : " + var_get(al[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
-            
-            var_arraylist_dispose(ref al);
-            Scorp_Line = null;
+            var_arraylist_dispose(ref objects);
+            Scorp_line_Exec = null;
             return;
         }
 
@@ -166,26 +106,22 @@ namespace Scorpion
             return;
         }
 
-        public void delete_data_file(ref string Scorp_Line)
+        public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
         {
-            ArrayList al = cut_variables(ref Scorp_Line);
-            File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(al[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
-            Do_on.write_to_cui("Deleteing data file(from disk): " + var_get(al[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
+            File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
+            Do_on.write_to_cui("Deleteing data file(from disk): " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
 
-            var_arraylist_dispose(ref al);
-            Scorp_Line = null;
-
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
             return;
         }
 
-        public void save_data_file(ref string Scorp_Line)
+        public void dbsave(string Scorp_Line_Exec, ArrayList objects)
         {
-            //(*name)
-            ArrayList al = cut_variables(ref Scorp_Line);
-            Do_on.vds.Dump_DB(var_get(al[0].ToString()).ToString());
+            Do_on.vds.Dump_DB(var_get(objects[0].ToString()).ToString());
 
-            var_arraylist_dispose(ref al);
-            Scorp_Line = null;
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
             return;
         }
 

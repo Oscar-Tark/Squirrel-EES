@@ -92,7 +92,7 @@ namespace Scorpion
         }*/
 
         //Variables-->
-        public void var(string Scorp_Line_Exec)
+        public void var(string Scorp_Line_Exec, ArrayList objects)
         {
             //(*,*,*,*,...)
             ArrayList al = cut_variables(ref Scorp_Line_Exec);

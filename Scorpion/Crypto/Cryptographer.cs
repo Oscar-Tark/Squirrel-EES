@@ -49,13 +49,12 @@ namespace Scorpion.Crypto
         public byte[] encrypt(object To_Encrypt, string pass)
         {
             byte[] to_convert = To_Byte(To_Encrypt);
-            byte[] b_pass = Convert.FromBase64String(pass);
-            b_pass = SHA256.Create().ComputeHash(b_pass);
+            //byte[] b_pass = Convert.FromBase64String(pass);
+            byte[] b_pass = To_Byte(SHA(pass)); //SHA256.Create().ComputeHash(b_pass);
 
             byte[] saltbytes = getrandombytes();
-
             byte[] To_Convert = new byte[saltbytes.Length + to_convert.Length];
-            for(int i = 0; i < saltbytes.Length; i++)
+            for (int i = 0; i < saltbytes.Length; i++)
             {
                 To_Convert[i] = saltbytes[i];
             }

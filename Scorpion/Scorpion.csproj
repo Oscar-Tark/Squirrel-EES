@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cutter\Cutter.cs" />
     <Compile Include="File Operations\Fileopr.cs" />
     <Compile Include="FTP\ftp_server.cs" />
     <Compile Include="Game Engine\Scorpion RS.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Server\Resources.Designer.cs" />
     <Compile Include="Server\Settings.Designer.cs" />
     <Compile Include="SQL\SQL.cs" />
+    <Compile Include="Threader\Threader.cs" />
     <Compile Include="Understander.cs" />
     <Compile Include="VEE.cs">
       <SubType>Form</SubType>
