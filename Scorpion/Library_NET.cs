@@ -36,7 +36,7 @@ namespace Scorpion
     partial class Librarian
     {
         //Connected to the Main Scorpion Foundation Research Center Server
-        public void NET(ref string Scorp_Line_)
+        /*public void NET(ref string Scorp_Line_)
         {
             //FTP ONLY SYSTEM
             if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[2] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[121] + Do_on.AL_ACC[3].ToString()))
@@ -78,7 +78,7 @@ namespace Scorpion
             {
                 //(*IP, *PORT)
                 stop_server(ref Scorp_Line_);
-            }
+            }*/
 
 
             //DEPRECIATED, ONLY TWO FACTOR FTP SYSTEM USED NOW
@@ -108,14 +108,14 @@ namespace Scorpion
             }*/
             //Node.js
 
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[2] + "} in line {" + Scorp_Line_ + "}"); }
+            //else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[2] + "} in line {" + Scorp_Line_ + "}"); }
 
 
 
             //Clean
-            Scorp_Line_ = null;
+            /*Scorp_Line_ = null;
             return;
-        }
+        }*/
 
         public void start_server(ref string Scorp_Line)
         {
@@ -134,8 +134,8 @@ namespace Scorpion
         }
 
 
-        /*
-        public void HTTP_post(ref string Scorp_Line_Exec)
+        
+        public void HTTPpost(ref string Scorp_Line_Exec)
         {
             //(*URL,*CODE)
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
@@ -160,7 +160,7 @@ namespace Scorpion
             return;
         }
 
-        public void HTTP_get(ref string Scorp_Line_Exec)
+        public void HTTPget(ref string Scorp_Line_Exec)
         {
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
 
@@ -180,7 +180,7 @@ namespace Scorpion
             Scorp_Line_Exec = null;
 
             return;
-        }
+        }/*
     
         public void set_term(string Scorp_Line_Exec)
         {

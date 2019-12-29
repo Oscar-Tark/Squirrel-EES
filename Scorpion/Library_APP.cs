@@ -163,6 +163,12 @@ namespace Scorpion
             return;
         }
 
+        private void write_to_console(string STR_)
+        {
+            Console.WriteLine(STR_);
+            return;
+        }
+
         //PASS
         private void write_to_cui(string Scorp_Line_Exec)
         {

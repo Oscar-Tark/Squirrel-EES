@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B34D5BC8-824D-46DB-A09A-341E977695D0}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Scorpion</RootNamespace>
     <AssemblyName>Scorpion IEE</AssemblyName>
@@ -47,7 +47,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -185,7 +185,7 @@
     <Compile Include="Save_Hib.Designer.cs">
       <DependentUpon>Save_Hib.cs</DependentUpon>
     </Compile>
-    <Compile Include="Server\Form1.cs">
+    <Compile Include="Server\Server_tool.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Server\Resources.Designer.cs" />
@@ -262,8 +262,8 @@
     <EmbeddedResource Include="Obj_vw.resx">
       <DependentUpon>Obj_vw.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Server\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Server\Server_tool.resx">
+      <DependentUpon>Server_tool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Server\Resources.resx">
       <SubType>Designer</SubType>
@@ -323,8 +323,8 @@
       <DependentUpon>Special_TextView.cs</DependentUpon>
     </Compile>
     <None Include="Server\Settings.settings" />
-    <Compile Include="Server\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Server\Server_tool.Designer.cs">
+      <DependentUpon>Server_tool.cs</DependentUpon>
     </Compile>
     <Compile Include="Amatrix Sever Client Lite.Designer.cs">
       <DependentUpon>Amatrix Sever Client Lite.cs</DependentUpon>

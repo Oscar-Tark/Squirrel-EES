@@ -40,23 +40,6 @@ namespace Scorpion
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         static extern IntPtr SendMessage(IntPtr hWnd, Int32 Msg, Int32 wParam, Int32 lParam);
 
-        public void SHS(ref string Scorp_Line)
-        {
-            if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[7] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[80] + Do_on.AL_ACC[3].ToString()))
-            {
-                execute_shs(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[7] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[87] + Do_on.AL_ACC[3].ToString()))
-            {
-                start_builder();
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[7] + "} in line {" + Scorp_Line + "}"); }
-
-            Scorp_Line = null;
-
-            return;
-        }
-
         public void session(string Scorp_Line_Exec, ArrayList objects)
         {
             Do_on.SHA = (string)objects[0];

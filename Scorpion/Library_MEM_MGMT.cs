@@ -29,68 +29,6 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        //PASS
-        /*public void MEMORY(ref string Scorp_Line)
-        {
-            if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[70] + Do_on.AL_ACC[3].ToString()))
-            {
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[71] + Do_on.AL_ACC[3].ToString()))
-            {
-                var_system_load();
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[114] + Do_on.AL_ACC[3].ToString()))
-            {
-                var_set(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[72] + Do_on.AL_ACC[3].ToString()))
-            {
-                //var_tag_delete(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[73] + Do_on.AL_ACC[3].ToString()))
-            {
-                //var_tag_add(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[74] + Do_on.AL_ACC[3].ToString()))
-            {
-                var_delete(Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[75] + Do_on.AL_ACC[3].ToString()))
-            {
-                var_delete_all();
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[76] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.vds.Dump_main_db();
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[77] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.vds.Un_Dump();
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[77] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.vds.Un_Dump();
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[119] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.mmsec.Encrypt_Block(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith(Do_on.AL_ACC_SUP[5] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[120] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.mmsec.Decrypt_Block(ref Scorp_Line);
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[5] + "} in line {" + Scorp_Line + "}"); }
-            //SECURITY ISSUE / NOT PART OF MAIN STREAM / OBJECTS NOT ACCESSIBLE
-            /*else if (Scorp_Line.ToLower().StartsWith("mem.vs("))
-            {
-                var_stream_create(ref Scorp_Line);
-            }
-            else if (Scorp_Line.ToLower().StartsWith("mem.vds("))
-            {
-                var_stream_delete(ref Scorp_Line);
-            }
-        }*/
-
         //Variables-->
         public void var(string Scorp_Line_Exec, ArrayList objects)
         {
@@ -149,6 +87,13 @@ namespace Scorpion
             var_arraylist_dispose(ref al);
             Scorp_Line_Exec = null;
 
+            return;
+        }
+
+        public void varslist()
+        {
+            foreach (string s in Do_on.AL_CURR_VAR_REF)
+                write_to_console(s);
             return;
         }
 
@@ -377,29 +322,17 @@ namespace Scorpion
                 if (!o.ToString().StartsWith("*\""))
                 {
                     if (!o.ToString().Contains(Do_on.AL_ACC[6].ToString()))
-                    {
-                        try
-                        {
-                            o = (object)((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
-                        }
-                        catch { }
-                    }
+                        o = (object)((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
                     else
                     {
                         ArrayList al_ = var_cut_domain(ref o);
                         //{db}                                      {table}                     {var}
-                        try
-                        {
                             o = ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[2];
-                        }
-                        catch { }
                     }
                 }
                 else
-                {
                     //General String
                     o = var_cut_str_symbol(var_cut_symbol(ref Block));
-                }
             }
             catch { }
 

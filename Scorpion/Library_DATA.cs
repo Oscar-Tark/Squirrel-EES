@@ -140,63 +140,6 @@ namespace Scorpion
 
             return;
         }
-
-        private void query_is(string Res, string Table)
-        {
-            Do_on.write_to_cui("Processing <is></is>");
-
-
-
-            Res = null;
-            return;
-        }
-
-        /*GUI QUERIES
-        Create a third arraylist in table for gui
-
-            from rasmus i get {{names to give back to rasmus}{commands}}
-
-        send gui arraylist to rasmus
-
-            > tabs
-            > element{*name,*type,*color{},*text,*datatext{{Row}{Columns}{Text}},backendoperation{{typeof(query,operation_no_return),typeof(query,operation_no_return)}{command,command}}}
-
-            Create new array for permessions for AL_FNC what functions they can access.
-
-            > Dynamically connected objects to GUI. MYSIDE
-            > Services to keep things updated
-
-            */
-
-            //CREATE RETURN SYSTEM TO RASMUS
-            //CREATE USERS AND PERMISSIONS
-
-        //GET ALL GUI (SAVEALL) 
-        //SET ALL GUI (SAVEALL)
-        //GET DATA
-        //SET DATA
-        //GETRESULT FROM FUNCTION sendback(STATECHANGED)
-        //GET RESOURCE from binary file on demand
-        //LOAD ON DEMAND
-
-        private void query_isnot(string Res, string Table)
-        {
-            Do_on.write_to_cui("Processing <isnot></isnot>");
-
-            Res = null;
-            return;
-        }
-
-        private void query_getall(string Res, string Table, string Result_to)
-        {
-            Do_on.write_to_cui("Processing <getall>section</getall>");
-            foreach (string s in ((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(Table)])[Do_on.AL_SECTIONS.IndexOf(cut_custom(Res, Do_on.AL_QUERY_VAR[14].ToString(), Do_on.AL_QUERY_VAR[15].ToString()))])[1]))
-            {
-                MessageBox.Show(s);
-            }
-
-            return;
-        }
         
         public void add_linkages(ref string Scorp_Line_Exec)
         {

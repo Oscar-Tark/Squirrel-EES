@@ -44,6 +44,7 @@ namespace Scorpion_IDE
             load_();
             load_shs_suggestions();
             add_object_viewer();
+            add_server_tool();
         }
 
         /*public void add_xmd(Scorpion.xmd xmd)
@@ -333,6 +334,14 @@ namespace Scorpion_IDE
             return;
         }
 
+        private void add_server_tool()
+        {
+            Amatrix_Server_1._1.Form1 srv = new Amatrix_Server_1._1.Form1(fm1);
+            srv.TopLevel = false;
+            splitContainer1.Panel1.Controls.Add(srv);
+            return;
+        }
+
         private void objectViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender.Equals(objectViewerToolStripMenuItem))
@@ -341,9 +350,8 @@ namespace Scorpion_IDE
             }
             else if (sender.Equals(serverManagerToolStripMenuItem))
             {
-                Amatrix_Server_1._1.Form1 srv = new Amatrix_Server_1._1.Form1(fm1);
-                srv.TopLevel = false;
-                splitContainer1.Panel1.Controls.Add(srv);
+                add_server_tool();
+                //execute("server()");
             }
             else if (sender.Equals(analyzerToolStripMenuItem))
             {

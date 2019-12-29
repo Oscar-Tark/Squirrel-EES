@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
 
+namespace Scorpion
+{
+    public partial class Librarian
+    {
+
+
+    }
+}
+
 namespace Scorpion.File_operations
 {
     public class Fileopr
@@ -16,6 +25,11 @@ namespace Scorpion.File_operations
         {
             Do_on = fm1;
             return;
+        }
+
+        public void filesave()
+        {
+            
         }
 
         public void from_file_tobin(ref string Scorp_Line)

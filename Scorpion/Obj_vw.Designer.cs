@@ -29,41 +29,41 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Threads");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Objects");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("References");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Memory", new System.Windows.Forms.TreeNode[] {
-            treeNode20,
-            treeNode21});
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Network Connections : 0");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Network Connections", new System.Windows.Forms.TreeNode[] {
-            treeNode23});
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Count");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Cells Pools: N.A.");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("OneDB", new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode26});
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Functions");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("References");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Functions", new System.Windows.Forms.TreeNode[] {
-            treeNode28,
-            treeNode29});
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("SHS");
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Forms");
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("References");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Winforms", new System.Windows.Forms.TreeNode[] {
-            treeNode32,
-            treeNode33});
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("IEE", new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode22,
-            treeNode24,
-            treeNode27,
-            treeNode30,
-            treeNode31,
-            treeNode34});
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Engines", new System.Windows.Forms.TreeNode[] {
-            treeNode35});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Threads");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Objects");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("References");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Memory", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Network Connections : 0");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Network Connections", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Count");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Cells Pools: N.A.");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("OneDB", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Functions");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("References");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Functions", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("SHS");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Forms");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("References");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Winforms", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("IEE", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode4,
+            treeNode6,
+            treeNode9,
+            treeNode12,
+            treeNode13,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Engines", new System.Windows.Forms.TreeNode[] {
+            treeNode17});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Obj_vw));
             this.tv = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -89,61 +89,61 @@
             this.tv.ImageList = this.imageList1;
             this.tv.Location = new System.Drawing.Point(0, 0);
             this.tv.Name = "tv";
-            treeNode19.ImageIndex = 95;
-            treeNode19.Name = "Node10";
-            treeNode19.Text = "Threads";
-            treeNode20.ImageIndex = 78;
-            treeNode20.Name = "Node16";
-            treeNode20.Text = "Objects";
-            treeNode21.ImageIndex = 389;
-            treeNode21.Name = "NodeRef";
-            treeNode21.Text = "References";
-            treeNode22.Name = "Node12";
-            treeNode22.Text = "Memory";
-            treeNode23.ImageIndex = 472;
-            treeNode23.Name = "AMCS";
-            treeNode23.Text = "Network Connections : 0";
-            treeNode24.ImageIndex = 149;
-            treeNode24.Name = "Node14";
-            treeNode24.Text = "Network Connections";
-            treeNode25.ImageIndex = 429;
-            treeNode25.Name = "Node3";
-            treeNode25.Text = "Count";
-            treeNode26.ImageIndex = 513;
-            treeNode26.Name = "odbcll";
-            treeNode26.Text = "Cells Pools: N.A.";
-            treeNode27.ImageIndex = 142;
-            treeNode27.Name = "Node15";
-            treeNode27.Text = "OneDB";
-            treeNode28.ImageIndex = 429;
-            treeNode28.Name = "fnc_cnt";
-            treeNode28.Text = "Functions";
-            treeNode29.ImageIndex = 429;
-            treeNode29.Name = "rf_fnc_cnt";
-            treeNode29.Text = "References";
-            treeNode30.ImageIndex = 470;
-            treeNode30.Name = "Node0";
-            treeNode30.Text = "Functions";
-            treeNode31.ImageIndex = 259;
-            treeNode31.Name = "shs";
-            treeNode31.Text = "SHS";
-            treeNode32.ImageIndex = 13;
-            treeNode32.Name = "wff";
-            treeNode32.Text = "Forms";
-            treeNode33.ImageIndex = 389;
-            treeNode33.Name = "wfref";
-            treeNode33.Text = "References";
-            treeNode34.ImageIndex = 1;
-            treeNode34.Name = "wf";
-            treeNode34.Text = "Winforms";
-            treeNode35.ImageIndex = 49;
-            treeNode35.Name = "Node5";
-            treeNode35.Text = "IEE";
-            treeNode36.ImageIndex = 106;
-            treeNode36.Name = "Node4";
-            treeNode36.Text = "Engines";
+            treeNode1.ImageIndex = 95;
+            treeNode1.Name = "Node10";
+            treeNode1.Text = "Threads";
+            treeNode2.ImageIndex = 78;
+            treeNode2.Name = "Node16";
+            treeNode2.Text = "Objects";
+            treeNode3.ImageIndex = 389;
+            treeNode3.Name = "NodeRef";
+            treeNode3.Text = "References";
+            treeNode4.Name = "Node12";
+            treeNode4.Text = "Memory";
+            treeNode5.ImageIndex = 472;
+            treeNode5.Name = "AMCS";
+            treeNode5.Text = "Network Connections : 0";
+            treeNode6.ImageIndex = 149;
+            treeNode6.Name = "Node14";
+            treeNode6.Text = "Network Connections";
+            treeNode7.ImageIndex = 429;
+            treeNode7.Name = "Node3";
+            treeNode7.Text = "Count";
+            treeNode8.ImageIndex = 513;
+            treeNode8.Name = "odbcll";
+            treeNode8.Text = "Cells Pools: N.A.";
+            treeNode9.ImageIndex = 142;
+            treeNode9.Name = "Node15";
+            treeNode9.Text = "OneDB";
+            treeNode10.ImageIndex = 429;
+            treeNode10.Name = "fnc_cnt";
+            treeNode10.Text = "Functions";
+            treeNode11.ImageIndex = 429;
+            treeNode11.Name = "rf_fnc_cnt";
+            treeNode11.Text = "References";
+            treeNode12.ImageIndex = 470;
+            treeNode12.Name = "Node0";
+            treeNode12.Text = "Functions";
+            treeNode13.ImageIndex = 259;
+            treeNode13.Name = "shs";
+            treeNode13.Text = "SHS";
+            treeNode14.ImageIndex = 13;
+            treeNode14.Name = "wff";
+            treeNode14.Text = "Forms";
+            treeNode15.ImageIndex = 389;
+            treeNode15.Name = "wfref";
+            treeNode15.Text = "References";
+            treeNode16.ImageIndex = 1;
+            treeNode16.Name = "wf";
+            treeNode16.Text = "Winforms";
+            treeNode17.ImageIndex = 49;
+            treeNode17.Name = "Node5";
+            treeNode17.Text = "IEE";
+            treeNode18.ImageIndex = 106;
+            treeNode18.Name = "Node4";
+            treeNode18.Text = "Engines";
             this.tv.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode36});
+            treeNode18});
             this.tv.SelectedImageIndex = 2;
             this.tv.ShowLines = false;
             this.tv.ShowNodeToolTips = true;
@@ -731,7 +731,6 @@
             // 
             // check_changes
             // 
-            this.check_changes.Enabled = true;
             this.check_changes.Interval = 1000;
             this.check_changes.Tick += new System.EventHandler(this.toolStripButton1_Click);
             // 
