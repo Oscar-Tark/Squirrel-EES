@@ -29,14 +29,12 @@ namespace Scorpion
         public void listfunctions(string Scorp_Line_Exec, ArrayList objects)
         {
             string STR_ = "";
-            Do_on.acsc.Clear();
             foreach (MethodInfo mi in this.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance))
             {
                 STR_ += mi.Name + " [Parameters:";
                 foreach (ParameterInfo pi in mi.GetParameters())
                     STR_ += " >" + pi.Name;
                 STR_ += "]\n";
-                Do_on.acsc.Add(STR_);
             }
             Do_on.write_to_cui(STR_);
 

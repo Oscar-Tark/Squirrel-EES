@@ -39,19 +39,9 @@ namespace Scorpion_IDE
             fm1 = Do_on;
             InitializeComponent();
             ch_fnt();
-            //acm.Show(rtb, false);
             load_elements();
             load_();
-            load_shs_suggestions();
-            add_object_viewer();
-            //add_server_tool();
         }
-
-        /*public void add_xmd(Scorpion.xmd xmd)
-        {
-            panel1.Controls.Add(xmd);
-            return;
-        }*/
 
         private void load_()
         {
@@ -67,46 +57,7 @@ namespace Scorpion_IDE
         private void load_elements()
         {
             foreach (FontFamily font in System.Drawing.FontFamily.Families)
-            {
                 f_type.Items.Add(font.Name);
-            }
-
-            /*foreach (string s in fm1.AL_FNC_SCRP)
-            {
-                acm.AddItem(new AutocompleteItem(s, 470));
-            }*/
-        }
-
-        Thread th_ld_shs;
-        delegate void del_ld_shs();
-        private void del_ld_shs_strt()
-        {
-            this.Invoke(new del_ld_shs(load_shs_suggestions));
-            return;
-        }
-
-        private void iterate_suggestions_shs()
-        {
-            /*foreach (string s in fm1.AL_SHS_APP_REF)
-            {
-                try
-                {
-                    acm.AddItem(new AutocompleteItem(fm1.AL_ACC_SUP[7] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[80] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[1].ToString() + s + fm1.AL_ACC[4].ToString(), 259));
-                    //tv_shs.Nodes.Find("Node4", true)[0].Nodes.Add(fm1.AL_ACC_SUP[7] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[80] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[1].ToString() + s + fm1.AL_ACC[4].ToString(), fm1.AL_ACC_SUP[7] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[80] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[1].ToString() + s + fm1.AL_ACC[4].ToString(), 259, 259);
-                }
-                catch {  }
-            }*/
-            return;
-        }
-
-        public void load_shs_suggestions()
-        {
-            th_ld_shs = new Thread(new ThreadStart(iterate_suggestions_shs));
-            th_ld_shs.Start();
-
-            th_ld_shs = null;
-
-            return;
         }
 
         public Special_TextView()
@@ -205,52 +156,6 @@ namespace Scorpion_IDE
             }
         }
 
-        public string buffer = ""; 
-        /*SqlCeConnection conn = new SqlCeConnection(Scorpion.Properties.Settings.Default.SC_suggestConnectionString);
-        SqlCeCommand cmd;
-        SqlCeDataReader dr;
-        DataTable dtp = new DataTable();*/
-
-        /*private void rtb_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyValue > 33 && e.KeyValue < 126)
-                {
-                    buffer = buffer + Convert.ToChar(e.KeyValue).ToString();
-                }
-                else if (e.KeyCode == Keys.Back)
-                {
-                    buffer = buffer.Remove(buffer.Length - 1);
-                }
-                else { buffer = ""; }
-            }
-            catch { }
-            try
-            {
-                bkk_suggest.RunWorkerAsync();
-            }
-            catch {  }
-            
-            sender = null;
-            e = null;
-            return;
-        }*/
-
-        /*private void dgv_suggest_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                rtb.Text = rtb.Text.Remove(rtb.SelectionStart - buffer.Length);
-                dtp.Clear();
-                buffer = "";
-                rtb.Select();
-                rtb.DeselectAll();
-            }
-
-            return;
-        }*/
-
         private void cms_item_Click(object sender, EventArgs e)
         {
             if (sender.Equals(copyToolStripMenuItem))
@@ -286,22 +191,16 @@ namespace Scorpion_IDE
         private void execute()
         {
             rtb.AutoCompleteCustomSource.Add(rtb.Text);
-            //string s_rd = rtb.Lines[rtb.GetLineFromCharIndex(rtb.SelectionStart)];
             fm1.readr.access_library(rtb.Text);
             rtb.Text = "";
             Scroll_To_End();
-
             return;
         }
 
         private void Scroll_To_End()
         {
-            try
-            {
-                rtb_final.SelectionStart = rtb_final.TextLength - 1;
-                rtb_final.ScrollToCaret();
-            }
-            catch { }
+            rtb_final.SelectionStart = rtb_final.TextLength - 1;
+            rtb_final.ScrollToCaret();
             return;
         }
 
@@ -309,6 +208,7 @@ namespace Scorpion_IDE
         {
             rtb.AutoCompleteCustomSource.Add(rtb.Text);
             fm1.readr.access_library(Command);
+            Scroll_To_End();
             return;
         }
 
@@ -318,22 +218,8 @@ namespace Scorpion_IDE
             return;
         }
 
-        private void add_object_viewer()
-        {
-            Scorpion.Obj_vw obj = new Scorpion.Obj_vw(fm1);
-            obj.TopLevel = false;
-            obj.WindowState = FormWindowState.Maximized;
-            splitContainer1.Panel1.Controls.Add(obj);
-            return;
-        }
-
         private void objectViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sender.Equals(objectViewerToolStripMenuItem))
-                add_object_viewer();
-            else if (sender.Equals(analyzerToolStripMenuItem))
-                execute("analyzer()");
-
             sender = null;
             e = null;
             return;
@@ -342,14 +228,11 @@ namespace Scorpion_IDE
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender.Equals(exitToolStripMenuItem))
-            {
-                execute(fm1.AL_ACC_SUP[3] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[3] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[4].ToString());
-            }
-            else { execute(fm1.AL_ACC_SUP[3] + fm1.AL_ACC[2].ToString() + fm1.AL_FNC_SCRP[2] + fm1.AL_ACC[3].ToString() + fm1.AL_ACC[4].ToString()); }
-
+                execute("exit()");
+            else
+                execute("about()");
             sender = null;
             e = null;
-
             return;
         }
 
@@ -363,7 +246,6 @@ namespace Scorpion_IDE
             rtb_final.SelectionColor = Color.Red;
             rtb_final.DeselectAll();
             num = num + TEXT.Length;
-
             return;
         }
 
@@ -374,38 +256,11 @@ namespace Scorpion_IDE
             Scorpion.Properties.Settings.Default.Save();
         }
 
-        /*delegate void del_suggest(); Thread th_suggest;
-        private void bkk_suggest_DoWork(object sender, DoWorkEventArgs e)
-        {
-            th_suggest = new Thread(new ThreadStart(del_suggest_strt));
-            th_suggest.Start();
-        }
-
-        private void del_suggest_strt()
-        {
-            this.Invoke(new del_suggest(suggest));
-            return;
-        }
-
-        private void suggest()
-        {
-            bs.ResetBindings(false);
-            sugg.SelectedIndex = sugg.FindString(buffer);
-
-            return;
-        }*/
-
         int caret = 0;
         private void sugg_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-            {
                 rtb.Focus();
-            }
-            else if (e.KeyCode == Keys.F1)
-            {
-                add_suggestion();
-            }
             e = null;
             return;
         }
@@ -413,23 +268,6 @@ namespace Scorpion_IDE
         private void rtb_final_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(e.LinkText);
-            return;
-        }
-
-        private void sugg_DoubleClick(object sender, EventArgs e)
-        {
-            add_suggestion();
-        }
-
-        private void add_suggestion()
-        {
-            /*try
-            {
-                rtb.Text = rtb.Text.Remove(caret - buffer.Length, buffer.Length);
-                rtb.Text = rtb.Text.Insert(caret - buffer.Length, "*" + sugg.SelectedValue.ToString());
-                rtb.SelectionStart = caret + (sugg.SelectedValue.ToString().Length - 2);
-            }
-            catch { }*/
             return;
         }
 
@@ -483,27 +321,6 @@ namespace Scorpion_IDE
         private void closeAllWindowsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //close_all_xmd();
-
-            sender = null;
-            e = null;
-
-            return;
-        }
-
-        private void xmd_function_call(object sender, EventArgs e)
-        {
-            /*if (sender.Equals(clearSelectedXmdToolStripMenuItem))
-            {
-                rtb_final.Text = "";
-            }
-            else if (sender.Equals(minimizeToolStripMenuItem))
-            {
-                foreach (Form f in panel1.Controls)
-                {
-                    f.WindowState = FormWindowState.Minimized;
-                    f.Refresh();
-                }
-            }*/
 
             sender = null;
             e = null;

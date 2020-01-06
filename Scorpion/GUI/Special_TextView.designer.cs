@@ -45,11 +45,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.objectViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.analyzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.serverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ww = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -59,14 +54,10 @@
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.rtb_final = new System.Windows.Forms.RichTextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.rtb = new System.Windows.Forms.TextBox();
             this.bkk_suggest = new System.ComponentModel.BackgroundWorker();
             this.cms.SuspendLayout();
             this.Main_Control_Strip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cms
@@ -136,22 +127,20 @@
             // 
             // Main_Control_Strip
             // 
-            this.Main_Control_Strip.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Main_Control_Strip.BackColor = System.Drawing.Color.White;
             this.Main_Control_Strip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Main_Control_Strip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Main_Control_Strip.GripMargin = new System.Windows.Forms.Padding(0);
             this.Main_Control_Strip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Main_Control_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton4,
-            this.toolStripSeparator8,
             this.toolStripButton1,
-            this.toolStripButton2,
+            this.toolStripSeparator8,
             this.ww,
             this.toolStripSeparator3,
             this.toolStripButton3,
             this.f_type,
             this.f_size});
-            this.Main_Control_Strip.Location = new System.Drawing.Point(0, 425);
+            this.Main_Control_Strip.Location = new System.Drawing.Point(0, 0);
             this.Main_Control_Strip.Name = "Main_Control_Strip";
             this.Main_Control_Strip.Padding = new System.Windows.Forms.Padding(0);
             this.Main_Control_Strip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -212,49 +201,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exitToolStripMenuItem.Text = "Exit Commander";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.objectViewerToolStripMenuItem,
-            this.analyzerToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.serverManagerToolStripMenuItem});
-            this.toolStripButton2.ForeColor = System.Drawing.Color.Black;
-            this.toolStripButton2.Image = global::Scorpion.Properties.Resources.hammer_screwdriver;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(64, 22);
-            this.toolStripButton2.Text = "Tools";
-            // 
-            // objectViewerToolStripMenuItem
-            // 
-            this.objectViewerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.magnifier;
-            this.objectViewerToolStripMenuItem.Name = "objectViewerToolStripMenuItem";
-            this.objectViewerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.objectViewerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.objectViewerToolStripMenuItem.Text = "Object Viewer";
-            this.objectViewerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
-            // analyzerToolStripMenuItem
-            // 
-            this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
-            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.analyzerToolStripMenuItem.Text = "DB Analyzer";
-            this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
-            // 
-            // serverManagerToolStripMenuItem
-            // 
-            this.serverManagerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.server;
-            this.serverManagerToolStripMenuItem.Name = "serverManagerToolStripMenuItem";
-            this.serverManagerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.serverManagerToolStripMenuItem.Text = "Scorpion Server";
-            this.serverManagerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
             // 
             // ww
             // 
@@ -359,15 +305,15 @@
             this.rtb_final.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtb_final.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtb_final.ContextMenuStrip = this.cms;
-            this.rtb_final.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.rtb_final.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtb_final.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtb_final.Font = new System.Drawing.Font("Courier New", 10F);
             this.rtb_final.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.rtb_final.Location = new System.Drawing.Point(0, 0);
+            this.rtb_final.Location = new System.Drawing.Point(0, 25);
             this.rtb_final.Margin = new System.Windows.Forms.Padding(0);
             this.rtb_final.Name = "rtb_final";
             this.rtb_final.ReadOnly = true;
-            this.rtb_final.Size = new System.Drawing.Size(667, 399);
+            this.rtb_final.Size = new System.Drawing.Size(920, 410);
             this.rtb_final.TabIndex = 4;
             this.rtb_final.Text = "";
             this.rtb_final.WordWrap = false;
@@ -893,38 +839,24 @@
             this.imageList1.Images.SetKeyName(513, "zones.png");
             this.imageList1.Images.SetKeyName(514, "tutorials_opengl_01.png");
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.rtb_final);
-            this.splitContainer1.Size = new System.Drawing.Size(920, 399);
-            this.splitContainer1.SplitterDistance = 249;
-            this.splitContainer1.TabIndex = 5;
-            // 
             // rtb
             // 
             this.rtb.AcceptsReturn = true;
             this.rtb.AcceptsTab = true;
             this.rtb.AllowDrop = true;
-            this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtb.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb.ForeColor = System.Drawing.Color.White;
-            this.rtb.Location = new System.Drawing.Point(3, 403);
+            this.rtb.Location = new System.Drawing.Point(0, 435);
             this.rtb.Margin = new System.Windows.Forms.Padding(0);
             this.rtb.Name = "rtb";
-            this.rtb.Size = new System.Drawing.Size(914, 15);
+            this.rtb.Size = new System.Drawing.Size(920, 15);
             this.rtb.TabIndex = 0;
+            this.rtb.Text = ">> Scorpion command";
             this.rtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtb_KeyDown);
             // 
             // bkk_suggest
@@ -935,18 +867,15 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Controls.Add(this.rtb_final);
             this.Controls.Add(this.rtb);
             this.Controls.Add(this.Main_Control_Strip);
-            this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.Name = "Special_TextView";
             this.Size = new System.Drawing.Size(920, 450);
             this.cms.ResumeLayout(false);
             this.Main_Control_Strip.ResumeLayout(false);
             this.Main_Control_Strip.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -970,21 +899,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         public System.Windows.Forms.RichTextBox rtb_final;
-        public System.Windows.Forms.TextBox rtb;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem objectViewerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton ww;
         private System.ComponentModel.BackgroundWorker bkk_suggest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem serverManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripMenuItem analyzerToolStripMenuItem;
+        protected System.Windows.Forms.TextBox rtb;
     }
 }
