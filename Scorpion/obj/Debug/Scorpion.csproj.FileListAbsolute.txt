@@ -920,61 +920,60 @@ F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Argument_Builder.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.GUI.Settings_Panel.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.GUI.VDB_Analyzer.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Obj_vw.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Amatrix_Server_1._1.Form1.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Server.Resources.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.VEE.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.About.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Main.Amatrix_Server_Lite.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Main.Amatrix_Sever_Client_Lite.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.First_Use.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Form1.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Properties.Resources.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion_IDE.Special_TextView.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Form1.en.resources
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.GenerateResource.cache
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.CoreCompileInputs.cache
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE.exe.config
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE.exe
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE.pdb
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\en\Scorpion IEE.resources.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\IPPrototyper.exe
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\itextsharp.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\itextsharp.xtra.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\ProcessInterface.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Controls.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Math.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.IPPrototyper.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Video.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Controls.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Math.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Video.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.xml
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\en\Scorpion IEE.resources.dll
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.CopyComplete
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion IEE.exe
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion IEE.pdb
-C:\Users\oscar\Source\Repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csprojAssemblyReference.cache
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.exe.config
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.exe
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.pdb
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\en\Scorpion IEE core.resources.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\IPPrototyper.exe
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\itextsharp.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\itextsharp.xtra.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\ProcessInterface.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Controls.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Math.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.IPPrototyper.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Video.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\System.Data.SQLite.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Controls.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Imaging.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Math.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.Video.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\AForge.xml
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Argument_Builder.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.GUI.Settings_Panel.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.GUI.VDB_Analyzer.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Obj_vw.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Amatrix_Server_1._1.Form1.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Server.Resources.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.VEE.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.About.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Main.Amatrix_Server_Lite.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Main.Amatrix_Sever_Client_Lite.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.First_Use.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Form1.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Properties.Resources.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion_IDE.Special_TextView.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.Form1.en.resources
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.GenerateResource.cache
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.CoreCompileInputs.cache
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\en\Scorpion IEE core.resources.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion.csproj.CopyComplete
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion IEE core.exe
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\obj\Debug\Scorpion IEE core.pdb

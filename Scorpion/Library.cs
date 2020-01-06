@@ -40,17 +40,40 @@ namespace Scorpion
 
         public void scorpioniee(object Scorp_Line)
         {
+            try
+            {
+                Thread ths = new Thread(new ParameterizedThreadStart(scorpion_del));
+                ths.IsBackground = true;
+                ths.Start(Scorp_Line);
+            }
+            catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE THREAD"); }
+            return;
+        }
+
+        public delegate void del_eg(object O);
+        private void scorpion_del(object Scorp_line)
+        {
+            try
+            {
+                this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
+            }
+            catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE THREAD"); }
+            return;
+        }
+
+        private void scorpion_exec(object Scorp_Line)
+        {
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line);
-            //Threading needed!
             try
             {
                 string[] functions = ef__.get_function(ref Scorp_Line_Exec);
-                object[] paramse = new object[2];
-                paramse[0] = Scorp_Line_Exec;
-                paramse[1] = cut_variables(ref Scorp_Line_Exec);
+                object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
                 this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+
+                functions = null;
+                paramse = null;
                 Scorp_Line = null;
             }
             catch (Exception erty)
@@ -59,31 +82,18 @@ namespace Scorpion
             }
 
             sp.Stop();
-            Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds/1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
+            Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
             sp.Reset();
 
-            get_functions();
             ef__ = null;
             pointered = false;
             Scorp_Line_Exec = null;
             GC.Collect();
-
             return;
         }
 
         //Gets all publicly binded functions within scorpion that can be used with the Engine. Private and protected functions are reserved for scorpion functionality
-        public void get_functions()
-        {
-            string s = "";
-            foreach (MethodInfo mi in this.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance))
-            {
-                s += mi.Name + " [Parameters:";
-                foreach (ParameterInfo pi in mi.GetParameters())
-                    s += " >" + pi.Name;
-                s += "]\n";
-            }
-            Console.WriteLine(s);
-        }
+        
     }
 
     public class Enginefunctions

@@ -17,92 +17,51 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.IO;
 using System.Threading;
-using System.Drawing;
+using System.Reflection;
 
 //Static Library
 namespace Scorpion
 {
     partial class Librarian
     {
-        //PASS 30-11-14
-        //all other functions are here...
-        public void Functions(ref string Scorp_Line_)
+        public void listfunctions(string Scorp_Line_Exec, ArrayList objects)
         {
-            //conditions
-            if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[7] + Do_on.AL_ACC[3].ToString()))
+            string STR_ = "";
+            foreach (MethodInfo mi in this.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance))
             {
-                Register_Function(Scorp_Line_);
+                STR_ += mi.Name + " [Parameters:";
+                foreach (ParameterInfo pi in mi.GetParameters())
+                    STR_ += " >" + pi.Name;
+                STR_ += "]\n";
             }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[8] + Do_on.AL_ACC[3].ToString()))
-            {
-                Remove_Function(Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[9] + Do_on.AL_ACC[3].ToString()))
-            {
-                call_function(var_cut_symbol(cut_variables(ref Scorp_Line_)[0].ToString()).ToString());
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[10] + Do_on.AL_ACC[3].ToString()))
-            {
-                recursive_call(Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[11] + Do_on.AL_ACC[3].ToString()))
-            {
-                start_recursive_service();
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[12] + Do_on.AL_ACC[3].ToString()))
-            {
-                start_recursive_caller(Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[13] + Do_on.AL_ACC[3].ToString()))
-            {
-                stop_recursive_service();
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[14] + Do_on.AL_ACC[3].ToString()))
-            {
-                stop_recursive_caller(Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[15] + Do_on.AL_ACC[3].ToString()))
-            {
-                recursive_call_unregister(Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[116] + Do_on.AL_ACC[3].ToString()))
-            {
-                compile_script(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[117] + Do_on.AL_ACC[3].ToString()))
-            {
-                call_compiled_function(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.StartsWith(Do_on.AL_ACC_SUP[0] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[118] + Do_on.AL_ACC[3].ToString()))
-            {
-                import_script(ref Scorp_Line_);
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[0] + "} in line {" + Scorp_Line_ + "}"); }
+            Do_on.write_to_cui(STR_);
 
             //clean
-            Scorp_Line_ = null;
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void import_script(ref string Scorp_Line)
+        public void importscript(string Scorp_Line_Exec, ArrayList objects)
         {
+            //IMPORTS A CUSTOM OR DEFAULT SCRIPT MADE IN C#
             /*(*name,*namespaceclass)*/
-            ArrayList al = cut_variables(ref Scorp_Line);
-            Do_on.hook.import_assembly(var_get(al[0].ToString()).ToString());
-            Do_on.hook.create_instance((System.Reflection.Assembly)Do_on.AL_ASSEMB[Do_on.AL_ASSEMB_REF.IndexOf(var_get(al[0].ToString()))], var_get(al[1].ToString()).ToString(), var_get(al[0].ToString()).ToString());
+            Do_on.hook.import_assembly(var_get(objects[0].ToString()).ToString());
+            Do_on.hook.create_instance((System.Reflection.Assembly)Do_on.AL_ASSEMB[Do_on.AL_ASSEMB_REF.IndexOf(var_get(objects[0].ToString()))], var_get(objects[1].ToString()).ToString(), var_get(objects[0].ToString()).ToString());
 
-            Scorp_Line = null;
-            var_arraylist_dispose(ref al);
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
 
             return;
         }
 
-        public void compile_script(ref string Scorp_Line)
+        public void compilescript(string Scorp_Line_Exec, ArrayList objects)
         {
+            //EXAMPLE:
+            //compilescript(*"c:\users\oscar\test_files\hello.cs", *"hello", *"hello.hello") 
+            
             /*(*@get,*outputname,*namespace.class,*refassembly,*refassembly)
               (hello.cs,hello,nc.nc)
               (hello.cs,hello,nc.nc,*system)
@@ -110,21 +69,17 @@ namespace Scorpion
               In order to compile put script in a seperate folder that is not OneSource as it will be copied,
               execute compile command
             */
-            ArrayList al = cut_variables(ref Scorp_Line);
             ArrayList references = new ArrayList();
+            for(int i = 3; i < objects.Count; i++)
+                references.Add(var_get(objects[i].ToString()));
 
-            for(int i = 3; i < al.Count; i++)
-            {
-                references.Add(var_get(al[i].ToString()));
-            }
+            string[] paths = Do_on.hook.compile_(var_get(objects[0].ToString()).ToString(), var_get(objects[1].ToString()).ToString(), var_get(objects[2].ToString()).ToString(), ref references);
+            Do_on.write_to_cui("Compile process completed\nOriginal file: " + var_get(objects[0].ToString()).ToString() + "\nCode file: " + paths[0] + "\nAssembly: " + paths[1]);
 
-            Do_on.hook.compile_(var_get(al[0].ToString()).ToString(), var_get(al[1].ToString()).ToString(), var_get(al[2].ToString()).ToString(), ref references);
-            Do_on.write_to_cui("Compile process completed");
-
-            Scorp_Line = null;
-            var_arraylist_dispose(ref al);
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
             var_arraylist_dispose(ref references);
-
+            paths = null;
             return;
         }
 

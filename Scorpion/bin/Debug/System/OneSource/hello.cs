@@ -6,6 +6,7 @@ namespace hello
     {
         public void say_hello()
         {
+		aaj = "hi"
         }
     }
 }

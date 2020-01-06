@@ -276,14 +276,7 @@ namespace Scorpion_IDE
         {
             //status.Text = "Sel : {" + rtb.SelectionStart.ToString() + "}   Ln : {" + rtb.GetLineFromCharIndex(rtb.SelectionStart) + "}   LST : {" + e.KeyCode.ToString() + "(" + e.KeyValue.ToString() + ")}   BUFF : {'" + buffer.ToLower() + "'}";
             if (e.KeyCode == Keys.Enter)
-            {
                 execute();
-            }
-            /*else if (e.KeyCode == Keys.PageUp || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
-            {
-                acm.Show(rtb, true);
-            }*/
-
             sender = null;
             e = null;
 

@@ -142,9 +142,7 @@ namespace Scorpion
             foreach (string s in vars)
             {
                 if (s != "" && s != " " && ndx != 0)
-                {
                     vars_.Add(s);
-                }
                 ndx++;
             }
             return vars_;

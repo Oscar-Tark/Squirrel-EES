@@ -21,55 +21,43 @@ namespace Scorpion.Hooking
             return;
         }
 
-        public void compile_(string path_, string name_, string namespace_dot_class, ref ArrayList references)
+        public string[] compile_(string path_, string name_, string namespace_dot_class, ref ArrayList references)
         {
             CompilerResults results = null;
-            //try {
-            CSharpCodeProvider provider = new CSharpCodeProvider();
-            CompilerParameters parameters = new CompilerParameters();
-
-            parameters.GenerateInMemory = true;
-            parameters.ReferencedAssemblies.Add("System.dll");
-            parameters.ReferencedAssemblies.Add("System.Drawing.dll");
-            parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-            parameters.ReferencedAssemblies.Add("System.Runtime.InteropServices.dll");
-            parameters.ReferencedAssemblies.Add("System.Threading.dll");
-            parameters.ReferencedAssemblies.Add("System.IO.dll");
-            parameters.ReferencedAssemblies.Add("System.ComponentModel.dll");
-
-            foreach (string s in references)
+            try
             {
-                parameters.ReferencedAssemblies.Add(s);
+                string cs_path = Do_on.AL_DIRECTORIES[5] + name_ + ".cs";
+                string dll_path = Do_on.AL_DIRECTORIES[6] + name_ + ".dll";
+                CSharpCodeProvider provider = new CSharpCodeProvider();
+                CompilerParameters parameters = new CompilerParameters();
+                parameters.GenerateInMemory = true;
+                parameters.ReferencedAssemblies.Add("System.dll");
+                parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+                parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+                parameters.ReferencedAssemblies.Add("System.Runtime.InteropServices.dll");
+                parameters.ReferencedAssemblies.Add("System.Threading.dll");
+                parameters.ReferencedAssemblies.Add("System.IO.dll");
+                parameters.ReferencedAssemblies.Add("System.ComponentModel.dll");
+                foreach (string s in references)
+                    parameters.ReferencedAssemblies.Add(s);
+
+                //fnc.compile(*"F:\Work\One Platform\Tests\Fuck\hello.cs", *"hello", *"hello.hello")
+                if (path_ != Do_on.types.S_NULL)
+                    System.IO.File.Copy(path_, cs_path, true);
+                parameters.OutputAssembly = dll_path;
+                results = provider.CompileAssemblyFromFile(parameters, Do_on.AL_DIRECTORIES[5] + name_ + ".cs");
+
+                Assembly assembly = results.CompiledAssembly;
+                Type program = assembly.GetType(namespace_dot_class);
+
+                string[] returnable = { cs_path, dll_path };
+                return returnable;
             }
-
-            //fnc.compile(*"F:\Work\One Platform\Tests\Fuck\hello.cs", *"hello", *"hello.hello")
-            if (path_ != Do_on.types.S_NULL)
-            {
-                System.IO.File.Copy(path_, Do_on.AL_DIRECTORIES[5] + name_ + ".cs", true);
-            }
-
-
-            parameters.OutputAssembly = Do_on.AL_DIRECTORIES[6] + name_ + ".dll";
-
-            /*if(!System.IO.File.Exists(Do_on.AL_DIRECTORIES[6] + name_ + ".dll"))
-            {
-                System.IO.FileStream fs = new System.IO.FileStream(Do_on.AL_DIRECTORIES[6] + name_ + ".dll", System.IO.FileMode.Create, System.IO.FileAccess.Write);
-                fs.Flush();
-                fs.Close();
-            }*/
-
-            results = provider.CompileAssemblyFromFile(parameters, Do_on.AL_DIRECTORIES[5] + name_ + ".cs");
-
-            Assembly assembly = results.CompiledAssembly;
-            Type program = assembly.GetType(namespace_dot_class);
-            /*}
             catch
             {
                 foreach(CompilerError ce in results.Errors)
-                {
                     Do_on.write_to_cui(">> Compile Error: " + ce.ErrorText + " AT LINE: " + ce.Line.ToString());
-                }
-            }*/
+            }
 
             /*MethodInfo[] mdinf = new MethodInfo[0];
             foreach (MethodInfo mdf in program.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
@@ -78,8 +66,7 @@ namespace Scorpion.Hooking
             }*/
 
             path_ = null;
-
-            return;
+            return null;
         }
 
         public void call_compiled_function(string Assembly_Name, Assembly assembly, string namespace_class, string function, string arguments)

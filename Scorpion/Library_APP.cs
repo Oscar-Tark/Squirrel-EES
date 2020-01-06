@@ -163,9 +163,9 @@ namespace Scorpion
             return;
         }
 
-        private void write_to_console(string STR_)
+        private void write_to_console(ref string STR_)
         {
-            Console.WriteLine(STR_);
+            Do_on.write_to_cui(STR_);
             return;
         }
 

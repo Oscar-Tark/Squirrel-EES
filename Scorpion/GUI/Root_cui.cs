@@ -16,16 +16,10 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Collections;
-using System.Collections.Specialized;
 using System.IO;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Scorpion
@@ -365,10 +359,6 @@ namespace Scorpion
         bool CUI_MODE = false; public Form f;
         public void start_CUI()
         {
-            //Orig_path = "";
-            //Prog_s = "";
-
-            //readr.read("text(~);", 0, this);
             acsc = new AutoCompleteStringCollection();
             this.WindowState = FormWindowState.Normal;
 
@@ -410,6 +400,7 @@ namespace Scorpion
             {
                 spc.rtb_final.Text = spc.rtb_final.Text + "[PRINT:]\n" + Text + "[END]\n";
                 this.richTextBox1.Text = richTextBox1.Text + "[PRINT:]\n" + Text + "[END]\n";
+                Console.WriteLine(Text + "\n");
                 spc.colorize_output(Text);
             }
             catch { }
@@ -569,6 +560,20 @@ namespace Scorpion
             //load_SHS();
             sender = null;
             e = null;
+            return;
+        }
+
+        private void Root_menu_log_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileOk += Sfd_FileOk;
+            sfd.DefaultExt = "*.txt";
+            sfd.ShowDialog();
+        }
+
+        private void Sfd_FileOk(object sender, CancelEventArgs e)
+        {
+            this.readr.access_library("createfile(*\"" + ((SaveFileDialog)sender).FileName + "\")");
             return;
         }
     }

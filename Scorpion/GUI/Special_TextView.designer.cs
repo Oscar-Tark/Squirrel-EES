@@ -47,7 +47,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.f_type = new System.Windows.Forms.ToolStripComboBox();
             this.f_size = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -146,13 +145,12 @@
             this.toolStripButton4,
             this.toolStripSeparator8,
             this.toolStripButton1,
+            this.toolStripButton2,
+            this.ww,
             this.toolStripSeparator3,
             this.toolStripButton3,
-            this.toolStripSeparator7,
             this.f_type,
-            this.f_size,
-            this.toolStripButton2,
-            this.ww});
+            this.f_size});
             this.Main_Control_Strip.Location = new System.Drawing.Point(0, 425);
             this.Main_Control_Strip.Name = "Main_Control_Strip";
             this.Main_Control_Strip.Padding = new System.Windows.Forms.Padding(0);
@@ -165,11 +163,11 @@
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton4.Image = global::Scorpion.Properties.Resources.application_delete;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(88, 22);
             this.toolStripButton4.Text = "Panic Close";
             this.toolStripButton4.ToolTipText = "Panic Close";
             this.toolStripButton4.Click += new System.EventHandler(this.Panic_Stop);
@@ -222,19 +220,14 @@
             // 
             // toolStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::Scorpion.Properties.Resources.magnet;
+            this.toolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton3.Image = global::Scorpion.Properties.Resources.application_go;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(73, 22);
             this.toolStripButton3.Text = "Run Line";
             this.toolStripButton3.ToolTipText = "Run the command specified in the edit field";
             this.toolStripButton3.Click += new System.EventHandler(this.cms_item_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // f_type
             // 
@@ -299,7 +292,6 @@
             // 
             // toolStripButton2
             // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.objectViewerToolStripMenuItem,
             this.analyzerToolStripMenuItem,
@@ -343,7 +335,6 @@
             // 
             // ww
             // 
-            this.ww.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ww.CheckOnClick = true;
             this.ww.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.ww.Image = global::Scorpion.Properties.Resources.text_padding_right;
@@ -376,7 +367,7 @@
             this.rtb_final.Margin = new System.Windows.Forms.Padding(0);
             this.rtb_final.Name = "rtb_final";
             this.rtb_final.ReadOnly = true;
-            this.rtb_final.Size = new System.Drawing.Size(233, 399);
+            this.rtb_final.Size = new System.Drawing.Size(460, 399);
             this.rtb_final.TabIndex = 4;
             this.rtb_final.Text = "";
             this.rtb_final.WordWrap = false;
@@ -914,7 +905,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rtb_final);
             this.splitContainer1.Size = new System.Drawing.Size(920, 399);
-            this.splitContainer1.SplitterDistance = 683;
+            this.splitContainer1.SplitterDistance = 456;
             this.splitContainer1.TabIndex = 5;
             // 
             // rtb
@@ -988,7 +979,6 @@
         private System.Windows.Forms.ToolStripMenuItem objectViewerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton ww;
         private System.ComponentModel.BackgroundWorker bkk_suggest;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

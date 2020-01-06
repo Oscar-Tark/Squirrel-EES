@@ -81,8 +81,8 @@ namespace Scorpion
         {
             try
             {
-                fm_1_ref.readr.lib_SCR.delete("*one_root");
-                fm_1_ref.readr.lib_SCR.delete("*secs");
+                fm_1_ref.readr.lib_SCR.delete("*one_root", new ArrayList());
+                fm_1_ref.readr.lib_SCR.delete("*secs", new ArrayList());
             }
             catch { }
 

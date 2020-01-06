@@ -680,6 +680,7 @@
             this.root_menu_log.Image = global::Scorpion.Properties.Resources.buildings;
             resources.ApplyResources(this.root_menu_log, "root_menu_log");
             this.root_menu_log.Name = "root_menu_log";
+            this.root_menu_log.Click += new System.EventHandler(this.Root_menu_log_Click);
             // 
             // toolStripSeparator2
             // 

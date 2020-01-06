@@ -30,7 +30,7 @@ namespace Scorpion
     {
         public void IO(ref string Scorp_Line_)
         {
-            if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[23] + Do_on.AL_ACC[3].ToString()))
+            /*if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[23] + Do_on.AL_ACC[3].ToString()))
             {
                 Create_File(Scorp_Line_);
             }
@@ -83,7 +83,7 @@ namespace Scorpion
             //clean
             Scorp_Line_ = null;
 
-            return;
+            return;*/
         }
 
         public void show_file_list(ref string Scorp_Line_Exec)
@@ -225,7 +225,7 @@ namespace Scorpion
             return;
         }
 
-        public void Create_File(string Scorp_Line_Exec)
+        public void createfile(string Scorp_Line_Exec, ArrayList objects)
         {
             //io.cf(path(*))
             ArrayList al = cut_variables(ref Scorp_Line_Exec);

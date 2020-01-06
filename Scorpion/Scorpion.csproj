@@ -7,8 +7,8 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Scorpion</RootNamespace>
-    <AssemblyName>Scorpion IEE</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AssemblyName>Scorpion IEE core</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>Scorpion.Program</StartupObject>
     <ApplicationIcon>application_osx_terminal.ico</ApplicationIcon>
