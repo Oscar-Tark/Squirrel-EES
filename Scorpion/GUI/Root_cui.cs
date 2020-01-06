@@ -52,7 +52,6 @@ namespace Scorpion
 
             types.load_system_vars();
             readr = new reader(this);
-            readr.lib_SCR.scorpioniee("register_applications()");
             start_CUI();
             return;
         }
@@ -75,14 +74,6 @@ namespace Scorpion
 
             //FTP server connection
             ftp_serv = new FTP.ftp_server(this);
-            return;
-        }
-
-
-        public void load_SHS()
-        {
-            //LOAD SHS
-            readr.lib_SCR.register_applications("");
             return;
         }
 

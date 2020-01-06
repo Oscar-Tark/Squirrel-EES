@@ -34,7 +34,7 @@ namespace Scorpion
         {
             if (sender.Equals(get))
             {
-                arg_to_gui(Do_on.readr.lib_SCR.get_arguments(cbx.Text, cbx_arg.Text));
+                //arg_to_gui(Do_on.readr.lib_SCR.get_arguments(cbx.Text, cbx_arg.Text));
             }
 
             e = null;

@@ -920,11 +920,11 @@ F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 F:\Work\One Platform\Scorpion\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
-C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.dll
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.exe.config
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.exe
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\Scorpion IEE core.pdb
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\en\Scorpion IEE core.resources.dll
+C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.dll
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\IPPrototyper.exe
 C:\Users\oscar\source\repos\Scorpion-.NET\Scorpion\bin\Debug\itextsharp.dll

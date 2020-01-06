@@ -170,7 +170,6 @@
     <Compile Include="Hooking\Hooker.cs" />
     <Compile Include="Internetwork File Format.cs" />
     <Compile Include="Library_objects.cs" />
-    <Compile Include="Library_SHS.cs" />
     <Compile Include="Memory Security\Secure Memory.cs" />
     <Compile Include="Objects_Messages.cs" />
     <Compile Include="Obj_vw.cs">
@@ -230,13 +229,12 @@
     <Compile Include="Library.cs" />
     <Compile Include="Library_AI.cs" />
     <Compile Include="Library_APP.cs" />
-    <Compile Include="Library_DATA.cs" />
+    <Compile Include="Library_DB.cs" />
     <Compile Include="Library_ENCODING.cs" />
     <Compile Include="Library_FNC.cs" />
     <Compile Include="Library_OBJ.cs" />
     <Compile Include="Library_GUI.cs" />
     <Compile Include="Library_IO.cs" />
-    <Compile Include="Library_MATH.cs" />
     <Compile Include="Library_MEM_MGMT.cs" />
     <Compile Include="Library_NET.cs" />
     <Compile Include="Library_TYPE_FUNCTIONS.cs" />

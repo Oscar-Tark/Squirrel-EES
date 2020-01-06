@@ -34,32 +34,6 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        private void Object_Lib(string Scorp_Line)
-        {
-            if (Scorp_Line.Contains("obj.areequal(") == true)
-            {
-                //compare_equal(Scorp_Line);
-            }
-            else if (Scorp_Line.Contains("obj.arenotequal(") == true)
-            {
-                //compare_not_equal(Scorp_Line);
-            }
-            else if (Scorp_Line.Contains("obj.isgreater(") == true)
-            {
-                //compare_greater(Scorp_Line);
-            }
-            else if (Scorp_Line.Contains("obj.isless(") == true)
-            {
-                //compare_less(Scorp_Line);
-            }
-
-            //CLEAN
-            Scorp_Line = null;
-
-            return;
-        }
-        //get end
-
         //get variables as STATIC
         public void GET_var_tag(string Scorp_Line_Get, int index)
         {

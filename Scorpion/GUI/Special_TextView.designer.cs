@@ -45,16 +45,16 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.f_type = new System.Windows.Forms.ToolStripComboBox();
-            this.f_size = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.objectViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.serverManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ww = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.f_type = new System.Windows.Forms.ToolStripComboBox();
+            this.f_size = new System.Windows.Forms.ToolStripComboBox();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.rtb_final = new System.Windows.Forms.RichTextBox();
@@ -213,6 +213,60 @@
             this.exitToolStripMenuItem.Text = "Exit Commander";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.objectViewerToolStripMenuItem,
+            this.analyzerToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.serverManagerToolStripMenuItem});
+            this.toolStripButton2.ForeColor = System.Drawing.Color.Black;
+            this.toolStripButton2.Image = global::Scorpion.Properties.Resources.hammer_screwdriver;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(64, 22);
+            this.toolStripButton2.Text = "Tools";
+            // 
+            // objectViewerToolStripMenuItem
+            // 
+            this.objectViewerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.magnifier;
+            this.objectViewerToolStripMenuItem.Name = "objectViewerToolStripMenuItem";
+            this.objectViewerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.objectViewerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.objectViewerToolStripMenuItem.Text = "Object Viewer";
+            this.objectViewerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
+            // 
+            // analyzerToolStripMenuItem
+            // 
+            this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
+            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.analyzerToolStripMenuItem.Text = "DB Analyzer";
+            this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            // 
+            // serverManagerToolStripMenuItem
+            // 
+            this.serverManagerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.server;
+            this.serverManagerToolStripMenuItem.Name = "serverManagerToolStripMenuItem";
+            this.serverManagerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.serverManagerToolStripMenuItem.Text = "Scorpion Server";
+            this.serverManagerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
+            // 
+            // ww
+            // 
+            this.ww.CheckOnClick = true;
+            this.ww.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ww.Image = global::Scorpion.Properties.Resources.text_padding_right;
+            this.ww.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ww.Name = "ww";
+            this.ww.Size = new System.Drawing.Size(23, 22);
+            this.ww.Text = "Word Wrap";
+            this.ww.Click += new System.EventHandler(this.ww_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -290,60 +344,6 @@
             this.f_size.Text = "10";
             this.f_size.TextChanged += new System.EventHandler(this.f_size_TextChanged);
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.objectViewerToolStripMenuItem,
-            this.analyzerToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.serverManagerToolStripMenuItem});
-            this.toolStripButton2.ForeColor = System.Drawing.Color.Black;
-            this.toolStripButton2.Image = global::Scorpion.Properties.Resources.hammer_screwdriver;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(64, 22);
-            this.toolStripButton2.Text = "Tools";
-            // 
-            // objectViewerToolStripMenuItem
-            // 
-            this.objectViewerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.magnifier;
-            this.objectViewerToolStripMenuItem.Name = "objectViewerToolStripMenuItem";
-            this.objectViewerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.objectViewerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.objectViewerToolStripMenuItem.Text = "Object Viewer";
-            this.objectViewerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
-            // analyzerToolStripMenuItem
-            // 
-            this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
-            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.analyzerToolStripMenuItem.Text = "DB Analyzer";
-            this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
-            // 
-            // serverManagerToolStripMenuItem
-            // 
-            this.serverManagerToolStripMenuItem.Image = global::Scorpion.Properties.Resources.server;
-            this.serverManagerToolStripMenuItem.Name = "serverManagerToolStripMenuItem";
-            this.serverManagerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.serverManagerToolStripMenuItem.Text = "Scorpion Server";
-            this.serverManagerToolStripMenuItem.Click += new System.EventHandler(this.objectViewerToolStripMenuItem_Click);
-            // 
-            // ww
-            // 
-            this.ww.CheckOnClick = true;
-            this.ww.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ww.Image = global::Scorpion.Properties.Resources.text_padding_right;
-            this.ww.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ww.Name = "ww";
-            this.ww.Size = new System.Drawing.Size(23, 22);
-            this.ww.Text = "Word Wrap";
-            this.ww.Click += new System.EventHandler(this.ww_Click);
-            // 
             // ofd
             // 
             this.ofd.Filter = "Scorpion Files|*.scorp";
@@ -367,7 +367,7 @@
             this.rtb_final.Margin = new System.Windows.Forms.Padding(0);
             this.rtb_final.Name = "rtb_final";
             this.rtb_final.ReadOnly = true;
-            this.rtb_final.Size = new System.Drawing.Size(460, 399);
+            this.rtb_final.Size = new System.Drawing.Size(667, 399);
             this.rtb_final.TabIndex = 4;
             this.rtb_final.Text = "";
             this.rtb_final.WordWrap = false;
@@ -905,7 +905,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rtb_final);
             this.splitContainer1.Size = new System.Drawing.Size(920, 399);
-            this.splitContainer1.SplitterDistance = 456;
+            this.splitContainer1.SplitterDistance = 249;
             this.splitContainer1.TabIndex = 5;
             // 
             // rtb
@@ -915,6 +915,7 @@
             this.rtb.AllowDrop = true;
             this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
