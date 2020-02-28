@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
+  <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Library_NET.cs">
+    <Files>
+      <File FileName="Scorpion/Objects.cs" Line="57" Column="55" />
+      <File FileName="Scorpion/Library_NET.cs" Line="35" Column="1" />
+      <File FileName="Scorpion/Library.cs" Line="121" Column="12" />
+      <File FileName="Scorpion/Memory Security/Secure Memory.cs" Line="15" Column="42" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Scorpion IEE" expanded="True">
+            <Node name="Scorpion" expanded="True">
+              <Node name="Memory Security" expanded="True" />
+              <Node name="Library_NET.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

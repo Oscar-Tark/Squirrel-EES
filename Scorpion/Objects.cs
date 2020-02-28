@@ -54,6 +54,7 @@ namespace Scorpion
         public Scorpion.File_operations.Fileopr fleoper;
         public Scorpion.Game_Engine.Scorpion_RS RS;
         public Amatrix_Server_1._1.Form1 serv;
+        public Scorpion.Memory_Security.Sanitizer san;
 
         public string SHA;
         public string[] cmdargs;

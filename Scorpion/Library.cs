@@ -52,12 +52,18 @@ namespace Scorpion
 
         public delegate void del_eg(object O);
         private void scorpion_del(object Scorp_line)
-        {
-            try
+        { //check line
+            Enginefunctions ef__ = new Enginefunctions();
+            string LINE = Scorp_line.ToString();
+            if ((bool)ef__.line_check(ref this.Do_on, ref LINE))
             {
-                this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
+                try
+                {
+                    this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
+                }
+                catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE THREAD"); }
             }
-            catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE THREAD"); }
+            LINE = null;
             return;
         }
 
@@ -68,12 +74,14 @@ namespace Scorpion
             string Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line);
             try
             {
-                string[] functions = ef__.get_function(ref Scorp_Line_Exec);
-                object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-                this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+               
+                    string[] functions = ef__.get_function(ref Scorp_Line_Exec);
+                    object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
+                    this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
-                functions = null;
-                paramse = null;
+                    functions = null;
+                    paramse = null;
+            
                 Scorp_Line = null;
             }
             catch (Exception erty)
@@ -107,6 +115,11 @@ namespace Scorpion
         {
             char[] delimiterChars = { '.', '(' };
             return Scorp.Split(delimiterChars);
+        }
+
+        public bool line_check(ref Scorpion.Form1 fm1, ref string Scorp)
+        {
+            return fm1.san.sanitize(ref Scorp);
         }
     }
 }

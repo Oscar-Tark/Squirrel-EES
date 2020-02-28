@@ -8,6 +8,30 @@ using System.Collections;
 
 namespace Scorpion.Memory_Security
 {
+    public class Sanitizer
+    {
+        public bool sanitize(ref string string_)
+        {
+            return check_len(ref string_);
+        }
+
+        private string sanitize_string(ref string string_)
+        { 
+            //USEREGEX
+            ArrayList san = new ArrayList { "\\x", "script" };
+            foreach (string s in san)
+                string_ = string_.Replace(s, "");
+            return string_;
+        }
+
+        private bool check_len(ref string string_)
+        {
+            if(string_.Length > 25)
+                return false;
+            return true;
+        }
+    }
+
     public class Secure_Memory
     {
         Scorpion.Form1 Do_on;

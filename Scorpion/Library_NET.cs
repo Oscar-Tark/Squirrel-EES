@@ -16,20 +16,9 @@
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using System.IO;
 using System.Threading;
-using System.Data;
-using System.Net;
 using System.Net.Sockets;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
-using System.ComponentModel;
-using System.Net.NetworkInformation;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Scorpion
 {
@@ -38,6 +27,7 @@ namespace Scorpion
         public void connect()
         {
             //NAME, SOCKET, AF, PORT, ADRRESS
+
         }
 
         public void send()
@@ -53,6 +43,11 @@ namespace Scorpion
         public void disconnect()
         {
             //NAME
+        }
+
+        private void set_server()
+        {
+
         }
     }
 }
