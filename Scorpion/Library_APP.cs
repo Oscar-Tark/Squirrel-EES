@@ -50,19 +50,6 @@ namespace Scorpion
             return;
         }
 
-        //SYSTEM
-        private void change_accessor(ref string Scorp_Line_Exec)
-        {
-            //(*actual_name,*new_name) - These can be uncreated variables
-            ArrayList al = cut_variables(ref Scorp_Line_Exec);
-
-            Do_on.AL_ACC_SUP[Do_on.AL_ACC_SUP.IndexOf(var_cut_symbol(al[0].ToString()), 0)] = var_cut_symbol(al[1].ToString());
-
-            var_arraylist_dispose(ref al);
-
-            return;
-        }
-
         private void write_to_console(ref string STR_)
         {
             Do_on.write_to_cui(STR_);

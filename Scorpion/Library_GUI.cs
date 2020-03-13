@@ -35,66 +35,7 @@ namespace Scorpion
     partial class Librarian
     {
         public void GUI(ref string Scorp_Line_)
-        {
-            //WINFORMS !INCOMPLETE NOT FOR MAIN USAGE!
-            if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[20] + Do_on.AL_ACC[3].ToString()))
-            {
-                Create_GUI_element(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[107] + Do_on.AL_ACC[3].ToString()))
-            {
-                Compile_GUI_Properties();
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[108] + Do_on.AL_ACC[3].ToString()))
-            {
-                GUI_Edit_Properties(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[109] + Do_on.AL_ACC[3].ToString()))
-            {
-                GUI_Call_Method(ref Scorp_Line_);
-            }
-
-            //OPENTK/OPENGL
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[16] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.RS.load_game(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[17] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.RS.stop_Game_engine();
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[18] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.RS.set_Game_vsync(ref Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().ToString() == Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[22] + Do_on.AL_ACC[3].ToString())
-            {
-                Do_on.RS.reset_all_resolutions();
-            }
-
-
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[19] + Do_on.AL_ACC[3].ToString()))
-            {
-                //EMPTY
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[20] + Do_on.AL_ACC[3].ToString()))
-            {
-                //EMPTY
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[106] + Do_on.AL_ACC[3].ToString()))
-            {
-                //EMPTY
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[90] + Do_on.AL_ACC[3].ToString()))
-            {
-                //EMPTY
-            }
-            else if (Scorp_Line_.ToLower().Contains(Do_on.AL_ACC_SUP[6] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[91] + Do_on.AL_ACC[3].ToString()))
-            {
-                //EMPTY
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[6] + "} in line {" + Scorp_Line_ + "}"); }
-            //clean
+        {//clean
             Scorp_Line_ = null;
 
             return;

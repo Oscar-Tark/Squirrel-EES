@@ -51,73 +51,12 @@ namespace Scorpion.GUI
             return;
         }
 
-        private void Actions(object sender, EventArgs e)
-        {
-            if (((ToolStripItem)sender).Tag.ToString() == "open")
-            { show_file_open(); }
-            else if (((ToolStripItem)sender).Tag.ToString() == "about")
-            {
-                Do_on.readr.access_library(Do_on.AL_ACC_SUP[3] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[2] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[4].ToString());
-            }
-            else if (((ToolStripItem)sender).Tag.ToString() == "refreshdb")
-            { load_list(0); }
-            else if (((ToolStripItem)sender).Tag.ToString() == "save")
-            {
-                if (DialogResult.Yes == MessageBox.Show("Save the Database '" + tv_db.SelectedNode.Text + "' to disk?, this will overwrite any previous versions.", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[97] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[5].ToString() + tv_db.SelectedNode.Text + Do_on.AL_ACC[5].ToString() + Do_on.AL_ACC[4].ToString());
-                }
-            }
-            else if (((ToolStripItem)sender).Tag.ToString() == "unmount")
-            {
-                Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[100] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[5].ToString() + tv_db.SelectedNode.Text + Do_on.AL_ACC[5].ToString() + Do_on.AL_ACC[4].ToString());
-                load_list(0);
-            }
-            else if (((ToolStripItem)sender).Tag.ToString() == "cui")
-            {
-                Do_on.readr.access_library(Do_on.AL_ACC_SUP[3] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[113] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[4].ToString());
-                load_list(0);
-            }
-            else if (((ToolStripItem)sender).Tag.ToString() == "create")
-            {
-                sfd.ShowDialog();
-                load_list(0);
-            }
-            return;
-        }
-
         private void show_file_open()
         {
             ofd.ShowDialog();
             return;
         }
 
-        private void ofd_FileOk(object sender, CancelEventArgs e)
-        {
-            if (new System.IO.FileInfo(ofd.FileName).Directory.ToString() != Do_on.AL_DIRECTORIES[4].ToString())
-            {
-                MessageBox.Show(Do_on.AL_MESSAGE[4].ToString(), Do_on.AL_MESSAGE[5].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            foreach (string s in ofd.SafeFileNames)
-            {
-                Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[94] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[5].ToString() + s.Replace(".vdb", "") + Do_on.AL_ACC[5].ToString() + Do_on.AL_ACC[4].ToString());
-            }
-            load_list(0);
-
-            return;
-        }
-
-        private void sfd_FileOk(object sender, CancelEventArgs e)
-        {
-            System.IO.FileInfo fnf = new System.IO.FileInfo(sfd.FileName);
-            Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[95] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[5].ToString() + fnf.Name.Replace(".vdb", "") + Do_on.AL_ACC[5].ToString() + ",*true" + Do_on.AL_ACC[4].ToString());
-
-            Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[94] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1].ToString() + Do_on.AL_ACC[5].ToString() + fnf.Name.Replace(".vdb", "") + Do_on.AL_ACC[5].ToString() + Do_on.AL_ACC[4].ToString());
-            load_list(0);
-            fnf = null;
-            return;
-        }
 
         private void tv_select(object sender, TreeViewEventArgs e)
         {

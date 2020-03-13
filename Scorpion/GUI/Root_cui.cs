@@ -110,16 +110,6 @@ namespace Scorpion
         private void Form1_Load(object sender, EventArgs e)
         {
             cmdargs = Environment.GetCommandLineArgs();
-            try
-            {
-                //Load Any App that loaded on Startup
-                //Load
-                Access_Work(AL_ACC_SUP[4] + AL_ACC[2].ToString() + AL_FNC_SCRP[94] + AL_ACC[3].ToString() + AL_ACC[1].ToString() + AL_ACC[5].ToString() + new FileInfo(cmdargs[1]).Name.Replace(AL_EXTENSNS[1].ToString(), "") + AL_ACC[5].ToString() + AL_ACC[4].ToString());
-                //
-                Access_Work(AL_ACC_SUP[6] + AL_ACC[2].ToString() + AL_FNC_SCRP[19] + AL_ACC[3].ToString() + AL_ACC[1].ToString() + AL_ACC[4].ToString());
-                //Access_Work(AL_ACC_SUP[6] + AL_ACC[2].ToString() + AL_FNC_SCRP[19] + AL_ACC[3].ToString() + AL_ACC[1].ToString() + AL_ACC[5].ToString() + new FileInfo(cmdargs[1]).Name.Replace(AL_EXTENSNS[1].ToString(), "") + AL_ACC[5].ToString() + AL_ACC[4].ToString());
-            }
-            catch { }
 
             sender = null;
             e = null;

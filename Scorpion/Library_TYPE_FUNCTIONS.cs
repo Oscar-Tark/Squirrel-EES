@@ -48,41 +48,6 @@ namespace Scorpion
             return;
         }
 
-        //DEFUNCT
-        public void Type_(ref string Scorp_Line)
-        {
-            //TYPE INDEPENDANT FUNCTIONS
-            if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[81] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_add(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[82] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_add_at(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[83] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_remove(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[84] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_remove_at(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[85] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_get_index(ref Scorp_Line);
-            }
-            else if (Scorp_Line.Contains(Do_on.AL_ACC_SUP[8] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[86] + Do_on.AL_ACC[3].ToString()))
-            {
-                type_get_length(ref Scorp_Line);
-            }
-
-            //clean
-            Scorp_Line = null;
-
-            return;
-        }
-
         //PASSED
         private void type_add(ref string Line_of_Code)
         {

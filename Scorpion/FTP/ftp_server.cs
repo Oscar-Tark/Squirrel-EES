@@ -21,7 +21,7 @@ namespace Scorpion.FTP
         {
             //Contained in auth_db
             //(*name,*uname,*pwd,*ftpip,*port)""
-            Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[94] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1] + "\"auth_tbl\"" + Do_on.AL_ACC[4].ToString());
+            //Do_on.readr.access_library(Do_on.AL_ACC_SUP[4] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[94] + Do_on.AL_ACC[3].ToString() + Do_on.AL_ACC[1] + "\"auth_tbl\"" + Do_on.AL_ACC[4].ToString());
 
             return;
         }

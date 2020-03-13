@@ -15,19 +15,52 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.IO;
-using System.Threading;
+using System.Collections;
+using System.Net;
 using System.Net.Sockets;
+using System.IO;
 
 namespace Scorpion
 {
     partial class Librarian
     {
-        public void connect()
+        public void createserver(string Scorp_line_Exec, ArrayList objects)
         {
-            //NAME, SOCKET, AF, PORT, ADRRESS
+            /*
+             * 
+             * Packets must be sent in the following format:
+             * |UNAME|PWD|DATA|
+             * 
+             */          
+            //Default on 84078
+            IPHostEntry ipe = Dns.GetHostEntry((string)var_get((string)objects[0]));
+            IPEndPoint ipep = new IPEndPoint(ipe.AddressList[0], 84078);
 
+
+            Socket sc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sc.Bind(ipep);
+            sc.Listen(500);
+
+            //Accept client connection
+            Socket sc_cl = sc.Accept();
+
+            while(true)
+            {
+                byte[] by_recv = new byte[512];
+                int bytes_rec = sc.Receive(by_recv);
+
+                if (bytes_rec > 512)
+                {
+                    Do_on.write_to_cui("Recieved length larger than 512 bytes @ " + ipe.AddressList[0].ToString());
+                    return;
+                }
+
+                //Decrypt
+                Do_on.crypto.decrypt(by_recv, Do_on.SHA);
+                scorpioniee("");
+            }
+
+            //sc.Connect()
         }
 
         public void send()

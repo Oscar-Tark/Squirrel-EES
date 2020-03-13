@@ -108,7 +108,6 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Tag = "open";
             this.toolStripButton1.Text = "Open/Mount";
-            this.toolStripButton1.Click += new System.EventHandler(this.Actions);
             // 
             // toolStripSeparator2
             // 
@@ -124,7 +123,6 @@
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Tag = "unmount";
             this.toolStripButton4.Text = "Close/Unmount";
-            this.toolStripButton4.Click += new System.EventHandler(this.Actions);
             // 
             // toolStrip5
             // 
@@ -235,7 +233,6 @@
             this.toolStripButton6.Size = new System.Drawing.Size(106, 22);
             this.toolStripButton6.Tag = "cui";
             this.toolStripButton6.Text = "Go Back to CUI";
-            this.toolStripButton6.Click += new System.EventHandler(this.Actions);
             // 
             // toolStripButton2
             // 
@@ -247,7 +244,6 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Tag = "refreshdb";
             this.toolStripButton2.Text = "Refresh";
-            this.toolStripButton2.Click += new System.EventHandler(this.Actions);
             // 
             // toolStrip1
             // 
@@ -288,7 +284,6 @@
             this.sfd.Filter = "Virtual DB|*.vdb";
             this.sfd.RestoreDirectory = true;
             this.sfd.Title = "Create Virtual Database";
-            this.sfd.FileOk += new System.ComponentModel.CancelEventHandler(this.sfd_FileOk);
             // 
             // toolStripButton3
             // 
@@ -299,7 +294,6 @@
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Tag = "save";
             this.toolStripButton3.Text = "Save";
-            this.toolStripButton3.Click += new System.EventHandler(this.Actions);
             // 
             // splitContainer1
             // 
@@ -396,7 +390,6 @@
             this.toolStripButton5.Tag = "create";
             this.toolStripButton5.Text = "Create";
             this.toolStripButton5.ToolTipText = "Create a new VDB database";
-            this.toolStripButton5.Click += new System.EventHandler(this.Actions);
             // 
             // menuStrip1
             // 
@@ -427,7 +420,6 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.closeToolStripMenuItem.Text = "Exit";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.Actions);
             // 
             // toolStripMenuItem1
             // 
@@ -457,7 +449,6 @@
             this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.newToolStripMenuItem.Tag = "create";
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.Actions);
             // 
             // toolStripSeparator3
             // 
@@ -471,7 +462,6 @@
             this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Tag = "open";
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.Actions);
             // 
             // saveToolStripMenuItem
             // 
@@ -480,7 +470,6 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Tag = "save";
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.Actions);
             // 
             // toolStripSeparator4
             // 
@@ -493,7 +482,6 @@
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
             this.closeToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem1.Text = "Close";
-            this.closeToolStripMenuItem1.Click += new System.EventHandler(this.Actions);
             // 
             // helpToolStripMenuItem
             // 
@@ -517,7 +505,6 @@
             this.ofd.Multiselect = true;
             this.ofd.RestoreDirectory = true;
             this.ofd.Title = "Open Virtual DataBase";
-            this.ofd.FileOk += new System.ComponentModel.CancelEventHandler(this.ofd_FileOk);
             // 
             // splitContainer4
             // 
