@@ -49,6 +49,7 @@ namespace Scorpion
             hook = new Hooking.Hooker(this);
             mmsec = new Memory_Security.Secure_Memory(this);
             fleoper = new File_operations.Fileopr(this);
+            san = new Memory_Security.Sanitizer(this);
 
             types.load_system_vars();
             readr = new reader(this);
@@ -379,6 +380,8 @@ namespace Scorpion
         {
             try
             {
+                if (!Text.EndsWith(".", StringComparison.CurrentCultureIgnoreCase))
+                    Text = Text + ".";
                 spc.rtb_final.Text = spc.rtb_final.Text + "[PRINT:]\n" + Text + "[END]\n";
                 this.richTextBox1.Text = richTextBox1.Text + "[PRINT:]\n" + Text + "[END]\n";
                 Console.WriteLine(Text + "\n");

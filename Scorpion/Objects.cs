@@ -43,18 +43,18 @@ namespace Scorpion
 
         public Scorpion_IDE.Special_TextView spc;
         public reader readr;
-        public Scorpion.GUI.VDB_Analyzer vdb_analyzer;
+        public GUI.VDB_Analyzer vdb_analyzer;
         public GameWindow game;
         public Dumper.Virtual_Dumper_System vds;
-        public Scorpion.Crypto.Cryptographer crypto;
+        public Crypto.Cryptographer crypto;
         public Hooking.Hooker hook;
         public Internetwork_File_Format.Internetwork_Video_File_Format iff;
         public Memory_Security.Secure_Memory mmsec;
         public FTP.ftp_server ftp_serv;
-        public Scorpion.File_operations.Fileopr fleoper;
-        public Scorpion.Game_Engine.Scorpion_RS RS;
+        public File_operations.Fileopr fleoper;
+        public Game_Engine.Scorpion_RS RS;
         public Amatrix_Server_1._1.Form1 serv;
-        public Scorpion.Memory_Security.Sanitizer san;
+        public Memory_Security.Sanitizer san;
 
         public string SHA;
         public string[] cmdargs;
@@ -187,6 +187,7 @@ namespace Scorpion
             //ALL KEYS CORRESPOND TO INDEX OF CALLERS
         };*/
 
+            //DELETE DEPRECIATED
         //D  D     D      D      D       D         D    D             D       D       D       D       D       D       D       D       D                   D       D       D           D       D   D       D               D       D   D       D       D   D   D       D       D   D       D               D       D           D           D           D               D                   D       D       D       D       D   D       D       D       D       D       D       D       D       D       D       D       D               D           D               D           D           D       D       D       D           D           D           D           D                       D               
         public ArrayList AL_FNC_SCRP = new ArrayList() { /*APP:*/
             "write",

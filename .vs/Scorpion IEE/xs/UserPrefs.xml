@@ -1,22 +1,30 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Library_GUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Secure Memory.cs">
     <Files>
-      <File FileName="Scorpion/Objects.cs" Line="67" Column="39" />
-      <File FileName="Scorpion/Library_NET.cs" Line="56" Column="26" />
-      <File FileName="Scorpion/Library.cs" Line="88" Column="14" />
-      <File FileName="Scorpion/Library_DB.cs" Line="44" Column="28" />
-      <File FileName="Scorpion/Crypto/Cryptographer.cs" Line="48" Column="1" />
-      <File FileName="Scorpion/FTP/ftp_server.cs" Line="24" Column="15" />
-      <File FileName="Scorpion/GUI/Root_cui.cs" Line="113" Column="1" />
-      <File FileName="Scorpion/Library_APP.cs" Line="51" Column="10" />
-      <File FileName="Scorpion/GUI/VDB Analyzer.cs" Line="59" Column="1" />
-      <File FileName="Scorpion/GUI/First_Use.cs" Line="22" Column="10" />
-      <File FileName="Scorpion/GUI/First_Use.Designer.cs" Line="103" Column="51" />
-      <File FileName="Scorpion/GUI/VDB Analyzer.Designer.cs" Line="235" Column="59" />
-      <File FileName="Scorpion/Library_TYPE_FUNCTIONS.cs" Line="50" Column="1" />
-      <File FileName="Scorpion/Library_GUI.cs" Line="51" Column="13" />
+      <File FileName="Scorpion/Library.cs" Line="49" Column="16" />
+      <File FileName="Scorpion/Memory Security/Secure Memory.cs" Line="21" Column="21" />
+      <File FileName="Scorpion/GUI/Root_cui.cs" Line="384" Column="39" />
+      <File FileName="Scorpion/Library_SYSTEM_OBJ.cs" Line="28" Column="26" />
+      <File FileName="Scorpion/Library_SYSTEM_OBJ_FNC.cs" Line="13" Column="9" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Scorpion IEE" expanded="True">
+            <Node name="Scorpion" expanded="True">
+              <Node name="GUI" expanded="True" />
+              <Node name="Memory Security" expanded="True">
+                <Node name="Secure Memory.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

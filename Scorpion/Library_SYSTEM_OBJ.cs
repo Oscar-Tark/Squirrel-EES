@@ -1,13 +1,5 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Windows.Forms;
-using System.Reflection;
-using System.IO;
-using System.Threading;
-using System.Drawing;
-using System.ComponentModel;
 
 //Static Library
 namespace Scorpion
@@ -19,14 +11,12 @@ namespace Scorpion
         private delegate void del_do_rf_obj(object Scorp_Line);
 
         public bool pointered = false;
-        string Temp_str = "";
         public TreeNode tn_tmp;
         public string Item_type;
         public bool cuimode = false;
         Scorpion_IDE.Special_TextView cui_stview = new Scorpion_IDE.Special_TextView();
-        bool Continue_SCR = true;
         public Form1 Do_on;
-        reader rdd;
+        int limit = 25;
 
         public NotifyIcon nfy_tmp;
         public bool resend = false;

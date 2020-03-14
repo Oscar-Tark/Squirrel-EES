@@ -16,15 +16,8 @@
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Reflection;
-using System.IO;
 using System.Threading;
-using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
 
 //Static Library
 namespace Scorpion
@@ -52,18 +45,12 @@ namespace Scorpion
 
         public delegate void del_eg(object O);
         private void scorpion_del(object Scorp_line)
-        { //check line
-            Enginefunctions ef__ = new Enginefunctions();
-            string LINE = Scorp_line.ToString();
-            if ((bool)ef__.line_check(ref this.Do_on, ref LINE))
+        {
+            try
             {
-                try
-                {
-                    this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
-                }
-                catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE THREAD"); }
+                this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
             }
-            LINE = null;
+            catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE DELEGATE"); }
             return;
         }
 
@@ -71,44 +58,47 @@ namespace Scorpion
         {
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
-            string Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line);
-            try
+            string Scorp_Line_Exec = (string)Scorp_Line;
+            Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
+
+            if (Scorp_Line_Exec != "\0")
             {
-               
+                Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line_Exec);
+                try
+                {
+
                     string[] functions = ef__.get_function(ref Scorp_Line_Exec);
                     object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
                     this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
                     functions = null;
                     paramse = null;
-            
+                }
+                catch (Exception erty)
+                {
+                    Do_on.write_to_cui("There was an error while processing your function call [Line of Code that Caused the Error : >> " + Scorp_Line_Exec + "] " + erty.StackTrace + " : Message >> " + erty.Message);
+                }
+
+                sp.Stop();
+                Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
+                sp.Reset();
+
                 Scorp_Line = null;
+                ef__ = null;
+                pointered = false;
+                Scorp_Line_Exec = null;
+                GC.Collect();
+                return;
             }
-            catch (Exception erty)
-            {
-                Do_on.write_to_cui("There was an error while processing your function call [Line of Code that Caused the Error : >> " + Scorp_Line_Exec + "] " + erty.StackTrace + " : Message >> " + erty.Message);
-            }
-
-            sp.Stop();
-            Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
-            sp.Reset();
-
-            ef__ = null;
-            pointered = false;
-            Scorp_Line_Exec = null;
-            GC.Collect();
-            return;
+            else { Do_on.write_to_cui("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
         }
-
-        //Gets all publicly binded functions within scorpion that can be used with the Engine. Private and protected functions are reserved for scorpion functionality
-        
     }
 
     public class Enginefunctions
     {
-        public string prepare_Scorp_line(ref object Scorp_Line)
+        public string prepare_Scorp_line(ref string Scorp_Line)
         {
-            return Scorp_Line.ToString().ToLower();
+            return Scorp_Line.ToLower();
         }
 
         public string[] get_function(ref string Scorp)
@@ -117,7 +107,7 @@ namespace Scorpion
             return Scorp.Split(delimiterChars);
         }
 
-        public bool line_check(ref Scorpion.Form1 fm1, ref string Scorp)
+        public string line_check(ref Form1 fm1, ref string Scorp)
         {
             return fm1.san.sanitize(ref Scorp);
         }

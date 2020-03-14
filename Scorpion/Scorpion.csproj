@@ -168,7 +168,7 @@
     </Compile>
     <Compile Include="Hooking\Hooker.cs" />
     <Compile Include="Internetwork File Format.cs" />
-    <Compile Include="Library_objects.cs" />
+    <Compile Include="Library_SYSTEM_OBJ.cs" />
     <Compile Include="Memory Security\Secure Memory.cs" />
     <Compile Include="Objects_Messages.cs" />
     <Compile Include="Obj_vw.cs">
@@ -326,6 +326,7 @@
     <Compile Include="Amatrix Sever Client Lite.Designer.cs">
       <DependentUpon>Amatrix Sever Client Lite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library_SYSTEM_OBJ_FNC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />

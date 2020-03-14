@@ -1,32 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using System.Collections;
+﻿using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Scorpion.Memory_Security
 {
+    public class REGEX
+    {
+        public bool regex_match(ref string string_)
+        {
+            bool res = false;
+            MatchCollection mc;
+            string[] s_chars =
+            {
+                //STARTING SCRIPT
+                "[<]{1}[s]{1}[c]{1}[r]{1}[i]{1}[p]{1}[t]{1}[>]{1}",
+                "(<|>)[s]{1}[c]{1}[r]{1}[i]{1}[p]{1}[t]{1}(<|>)",
+                //ENDING SCRIPT
+                "[<]{1}[/]{1}[s]{1}[c]{1}[r]{1}[i]{1}[p]{1}[t]{1}[>]{1}",
+                "(<|/>)[s]{1}[c]{1}[r]{1}[i]{1}[p]{1}[t]{1}(<|/>)",
+                //AVOID HEX PAYLOADS
+                @"[\]{1}[x]{1}[a-fA-F0-9]{1,2}"
+            };
+
+            foreach (string s in s_chars)
+            {
+                Regex r = new Regex(@"^"+s+"$", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace);
+                mc = r.Matches(string_.Replace(" ", ""));
+                if (mc.Count > 0)
+                    res = true;
+                r = null;
+            }
+
+            mc = null;
+
+            return res;
+        }
+    }
+
     public class Sanitizer
     {
-        public bool sanitize(ref string string_)
+        Form1 Do_on;
+        public Sanitizer(Form1 fm1)
         {
-            return check_len(ref string_);
+            Do_on = fm1;
+            return;
+        }
+
+        public string sanitize(ref string string_)
+        {
+            if (check_len(ref string_))
+                return sanitize_string(ref string_);
+            else
+                return "\0";
         }
 
         private string sanitize_string(ref string string_)
-        { 
-            //USEREGEX
-            ArrayList san = new ArrayList { "\\x", "script" };
+        {
+            //MATCHES UNSAFE PATTERNS, IF FOUND RETURNS A NULL TERMINATION CHARACTER
+            REGEX rg = new REGEX();
+            if (rg.regex_match(ref string_))
+            {
+                rg = null;
+                return "\0";
+            }
+            else
+            {
+                rg = null;
+                return string_;
+            }
+
+
+            //DEPRECIATED
+            /*ArrayList san = new ArrayList { "\\x", "<script>", "script", "s c r i p t" };
             foreach (string s in san)
-                string_ = string_.Replace(s, "");
-            return string_;
+            {
+                if (string_.Contains(s))
+                {
+                    string_ = string_.Replace(s, "");
+                    Do_on.write_to_cui("UNSAFE INPUT FOUND AND REMOVED: " + s);
+                }
+            }*/
         }
 
         private bool check_len(ref string string_)
         {
-            if(string_.Length > 25)
+            if(string_.Length > Do_on.readr.lib_SCR.get_limit())
                 return false;
             return true;
         }
