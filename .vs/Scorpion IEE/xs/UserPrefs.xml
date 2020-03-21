@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Secure Memory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Library.cs" Line="49" Column="16" />
-      <File FileName="Scorpion/Memory Security/Secure Memory.cs" Line="21" Column="21" />
-      <File FileName="Scorpion/GUI/Root_cui.cs" Line="384" Column="39" />
-      <File FileName="Scorpion/Library_SYSTEM_OBJ.cs" Line="28" Column="26" />
-      <File FileName="Scorpion/Library_SYSTEM_OBJ_FNC.cs" Line="13" Column="9" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="124" Column="14" />
+      <File FileName="Scorpion/GUI/Root_cui.cs" Line="51" Column="55" />
+      <File FileName="Scorpion/Objects.cs" Line="113" Column="34" />
+      <File FileName="Scorpion/GUI/Amatrix Server Lite.cs" Line="122" Column="55" />
+      <File FileName="Scorpion/Library.cs" Line="73" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,15 +14,12 @@
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
               <Node name="GUI" expanded="True" />
-              <Node name="Memory Security" expanded="True">
-                <Node name="Secure Memory.cs" selected="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Scorpion_NETWORK.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

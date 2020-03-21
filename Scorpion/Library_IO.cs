@@ -27,65 +27,7 @@ using System.Drawing;
 namespace Scorpion
 {
     partial class Librarian
-    {
-        public void IO(ref string Scorp_Line_)
-        {
-            /*if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[23] + Do_on.AL_ACC[3].ToString()))
-            {
-                Create_File(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[24] + Do_on.AL_ACC[3].ToString()))
-            {
-                Delete_File(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[25] + Do_on.AL_ACC[3].ToString()))
-            {
-                Write_File_Text(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[26] + Do_on.AL_ACC[3].ToString()))
-            {
-                Write_File_Binary(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[27] + Do_on.AL_ACC[3].ToString()))
-            {
-                Create_Directory(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[28] + Do_on.AL_ACC[3].ToString()))
-            {
-                Delete_Directory(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[29] + Do_on.AL_ACC[3].ToString()))
-            {
-                Clear_File(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[30] + Do_on.AL_ACC[3].ToString()))
-            {
-                Copy_File(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[31] + Do_on.AL_ACC[3].ToString()))
-            {
-                Move_File(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[32] + Do_on.AL_ACC[3].ToString()))
-            {
-                Copy_Directory(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[33] + Do_on.AL_ACC[3].ToString()))
-            {
-                Move_Directory(Scorp_Line_);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith(Do_on.AL_ACC_SUP[1] + Do_on.AL_ACC[2].ToString() + Do_on.AL_FNC_SCRP[124] + Do_on.AL_ACC[3].ToString()))
-            {
-                Do_on.fleoper.from_file_tobin(ref Scorp_Line_);
-            }
-            else { Do_on.write_to_cui("NO FUNCTION FOUND FOR DIRECTIVE {" + Do_on.AL_ACC_SUP[1] + "} in line {" + Scorp_Line_ + "}"); }
-
-            //clean
-            Scorp_Line_ = null;
-
-            return;*/
-        }
-
+    { 
         public void show_file_list(ref string Scorp_Line_Exec)
         {
             //(*directory) or *"&token"

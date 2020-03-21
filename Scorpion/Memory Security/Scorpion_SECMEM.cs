@@ -67,18 +67,6 @@ namespace Scorpion.Memory_Security
                 rg = null;
                 return string_;
             }
-
-
-            //DEPRECIATED
-            /*ArrayList san = new ArrayList { "\\x", "<script>", "script", "s c r i p t" };
-            foreach (string s in san)
-            {
-                if (string_.Contains(s))
-                {
-                    string_ = string_.Replace(s, "");
-                    Do_on.write_to_cui("UNSAFE INPUT FOUND AND REMOVED: " + s);
-                }
-            }*/
         }
 
         private bool check_len(ref string string_)

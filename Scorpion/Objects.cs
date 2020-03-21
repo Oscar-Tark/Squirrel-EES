@@ -50,10 +50,7 @@ namespace Scorpion
         public Hooking.Hooker hook;
         public Internetwork_File_Format.Internetwork_Video_File_Format iff;
         public Memory_Security.Secure_Memory mmsec;
-        public FTP.ftp_server ftp_serv;
         public File_operations.Fileopr fleoper;
-        public Game_Engine.Scorpion_RS RS;
-        public Amatrix_Server_1._1.Form1 serv;
         public Memory_Security.Sanitizer san;
 
         public string SHA;
@@ -113,7 +110,7 @@ namespace Scorpion
         //Sockets
         public ArrayList AL_SOCK = new ArrayList();
         public ArrayList AL_SOCK_REF = new ArrayList();
-        public ArrayList AL_SESSION = new ArrayList();
+        public ArrayList AL_SOCK_SESSION = new ArrayList();
 
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();
@@ -187,26 +184,7 @@ namespace Scorpion
             //ALL KEYS CORRESPOND TO INDEX OF CALLERS
         };*/
 
-            //DELETE DEPRECIATED
-        //D  D     D      D      D       D         D    D             D       D       D       D       D       D       D       D       D                   D       D       D           D       D   D       D               D       D   D       D       D   D   D       D       D   D       D               D       D           D           D           D               D                   D       D       D       D       D   D       D       D       D       D       D       D       D       D       D       D       D               D           D               D           D           D       D       D       D           D           D           D           D                       D               
-        public ArrayList AL_FNC_SCRP = new ArrayList() { /*APP:*/
-            "write",
-            "ca",
-            "about",
-            "exit",
-            "restart"
-            /*DATA:*/,
-            "query",
-            "rel"
-            /*FNC:*/,
-            "register",
-            "unregister",
-            "call",
-            "recall", "rcsa", "rcsr", "rcsta", "rcsp", "ucll" /*GUI:*/ , "startgame", "endgame", "gmvsnc", "startvee", "winform", "cadr", "radr" /*IO:*/, "newfile", "deletefile", "savefiletext", "savefilebinary", "newfolder", "deletefolder", "clf", "cp", "mp", "cpd", "md" /*MATH:*/, "add", "subtract", "multiply", "divide", "percentagevalue", "percentageratio", "sin", "sinh", "sign", "asin", "cos", "cosh", "acos", "tan", "tanh", "atan", "atan2", "nlog", "log", "log10", "pow", "bigmul", "divrem32", "divrem64", "ieeeremainder", "larger", "smaller", "cieling", "floor", "exp", "absolute", "squareroot", "truncate", "round", "roundtodecimalpoint", "roundtodecimalmidpoint" /*MEM:*/, "new", "reloadsystem", "deletetag", "tag", "delete", "deletesystem", "hibernate", "unhibernate" /*NET:*/, "sendtcp", "st" /*SHS (80):*/, "run" /*TYP:*/, "add", "addat", "remove", "removeat", "index", "length" /*SHS (87):*/, "ab" /*NET 88*/, "start", "stop" /*GUI 90*/, "addpoint", "removepoint" /*NET 92*/, "startpipe", "stoppipe" /*DATA 94*/, "load", "create", "delete", "save" /*NET (HTTP) 99*/, "httpset", "httpget" /*DATA 101*/, "unload", "link" /*GUI*/, "gwen", "stopvee", /*DATA 105*/ "visualize", /*APP*/ "load" /*GUI 106*/ ,"update", "compileproperties", "editproperties", "callmethod" /*ONE 111*/, "windows", "wiki", "analyzer", "cui" /*MEM 115*/, "set" /*DATA*/, "encrypt" /*FNC HOOK*/, "compile", "importedcall", "import" /*MEM*/, "encrypt", "decrypt" /*FTP* 121*/, "authtable", "sendftp", "recieve" /*IO*/, "upload" /*SQLite 125*/, "sqlconnection", "sqlcreate", "sqlopen", "sqlclose", "sqlverify", "sqlset", "sqlget" /*NET AS SERVER 132*/, "startserver", "stopserver"};
-                                                      //D       D       D   D       D       D       D       D   D
-        //public ArrayList AL_ACC_SUP = new ArrayList() { "fnc", "io", "net", "one", "db", "mem", "gui", "cmd", /*Defunct*/"typ", "sec" };
-
-        //TRANSFER TO TABLES
+      //TRANSFER TO TABLES
         public ArrayList AL_MESSAGE = new ArrayList() { "[IP REFUSED]", "[PORT REFUSED]", "[FATAL EXIT]", "The specified GUI element could not run a method, make sure it is not disposed, if so delete it and create it again.", "Databases may only be opened from the \\OneDB folder, please make sure that the database you would like to open is copied to that folder or use the import tool in the menu VDB->Import Database.", "[WARNING]", "A System function has raised an error, this might be the cause of a faulty configuration or an unfound bug, Press 'Ignore' to continue on using the system.", "Main database not found. The system will create it on shutdown.\n\nIF you are seeing this message over and over again, your system database might be corrupt. Run the command 'mem.deleteall()', current running system variables will be saved to a fresh database on shutdown, so that you do not loose your work.", "File loaded successfully to variable." };
 
         //Assemblies
@@ -222,7 +200,6 @@ namespace Scorpion
 
         //TCP
         public long session = 0;
-        public Main.Amatrix_Sever_Client_Lite amcl;
         public static string IP = "127.0.0.1";
     }
 }

@@ -45,7 +45,6 @@ namespace Scorpion
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);
             iff = new Internetwork_File_Format.Internetwork_Video_File_Format(this);
-            RS = new Game_Engine.Scorpion_RS(this);
             hook = new Hooking.Hooker(this);
             mmsec = new Memory_Security.Secure_Memory(this);
             fleoper = new File_operations.Fileopr(this);
@@ -64,17 +63,6 @@ namespace Scorpion
                 vds.Un_Dump();
             }
             catch { write_to_cui(AL_MESSAGE[7].ToString()); }
-            return;
-        }
-
-        public void start_after_services()
-        {
-            //Main Scorpion Foundation Server Connection
-            amcl = new Main.Amatrix_Sever_Client_Lite(this);
-            serv = new Amatrix_Server_1._1.Form1(this);
-
-            //FTP server connection
-            ftp_serv = new FTP.ftp_server(this);
             return;
         }
 
@@ -99,7 +87,6 @@ namespace Scorpion
             try
             {
                 scnti.Dispose();
-                amcl = null;
                 Application.Exit();
             }
             catch { Application.ExitThread(); }
@@ -323,7 +310,6 @@ namespace Scorpion
             AL_PRC_REF.TrimToSize();
 
             AL_ACC.TrimToSize();
-            AL_FNC_SCRP.TrimToSize();
 
             GC.Collect();
 

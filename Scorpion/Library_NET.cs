@@ -17,8 +17,10 @@
 
 using System.Collections;
 using System.Net;
+using System;
 using System.Net.Sockets;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Scorpion
 {
@@ -31,37 +33,33 @@ namespace Scorpion
              * Packets must be sent in the following format:
              * |UNAME|PWD|DATA|
              * 
-             */          
-            //Default on 84078
-            IPHostEntry ipe = Dns.GetHostEntry((string)var_get((string)objects[0]));
-            IPEndPoint ipep = new IPEndPoint(ipe.AddressList[0], 84078);
-
-
-            Socket sc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sc.Bind(ipep);
-            sc.Listen(500);
-
-            //Accept client connection
-            Socket sc_cl = sc.Accept();
-
-            while(true)
+             */
+            try
             {
-                byte[] by_recv = new byte[512];
-                int bytes_rec = sc.Receive(by_recv);
+                IPHostEntry ipe = Dns.GetHostEntry((string)var_get((string)objects[0]));
+                IPEndPoint ipep = new IPEndPoint(ipe.AddressList[0], Convert.ToInt16(var_get((string)objects[1])));
 
-                if (bytes_rec > 512)
-                {
+
+                Socket sc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                sc.Bind(ipep);
+                sc.Listen(500);
+
+                //Accept client connection
+                byte[] by_recv = new byte[512];
+                int bytes_rec = sc.BeginReceive(by_recv, SocketFlags.None, )
+
+                if (bytes_rec > 512){
                     Do_on.write_to_cui("Recieved length larger than 512 bytes @ " + ipe.AddressList[0].ToString());
                     return;
-                }
+                    }
 
-                //Decrypt
-                Do_on.crypto.decrypt(by_recv, Do_on.SHA);
-                scorpioniee("");
+                Do_on.write_to_cui(bytes_rec.ToString());
+                sc.Close();
             }
-
-            //sc.Connect()
+            catch(Exception erty) { Do_on.write_to_cui(erty.Message); }
         }
+
+        public
 
         public void send()
         {

@@ -28,7 +28,6 @@ namespace Scorpion
             {
                 fm1.SHA = pwd.Text;
                 fm1.Load_init_db();
-                fm1.start_after_services();
 
                 fm1.start_CUI();
                 fm1.readr.access_library("");

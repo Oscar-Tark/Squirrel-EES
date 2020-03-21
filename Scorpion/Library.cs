@@ -69,7 +69,7 @@ namespace Scorpion
 
                     string[] functions = ef__.get_function(ref Scorp_Line_Exec);
                     object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-                    this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+                    object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
                     functions = null;
                     paramse = null;
