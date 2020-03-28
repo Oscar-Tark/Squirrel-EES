@@ -33,11 +33,10 @@ namespace Scorpion
 
         public void initialize_scorpion()
         {
-            Console.WriteLine("Welcome to Scorpion V1.0 ^^");
+            Console.WriteLine("Welcome to Scorpion V1.0 :)))\n\n{0}", AL_WIKI[0]);
             types = new Types(this);
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);
-            iff = new Internetwork_File_Format.Internetwork_Video_File_Format(this);
             hook = new Hooking.Hooker(this);
             mmsec = new Memory_Security.Secure_Memory(this);
             fleoper = new File_operations.Fileopr(this);
@@ -84,8 +83,6 @@ namespace Scorpion
 
         private void clean()
         {
-            AL_GUI_TEMPLATES.TrimToSize();
-            AL_GUI_TEMPLATES_REF.TrimToSize();
             AL_UNBEARABLE_CHARS.TrimToSize();
 
             //General Memory
@@ -111,10 +108,6 @@ namespace Scorpion
 
             AL_AMCS.TrimToSize();
             AL_AMCS_REF.TrimToSize();
-
-            AL_DISP_DEVICES.TrimToSize();
-            AL_OBJ_3D.TrimToSize();
-            AL_OBJ_3D_REF.TrimToSize();
 
             AL_SHS.TrimToSize();
             AL_SHS_APP.TrimToSize();

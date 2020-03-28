@@ -159,16 +159,9 @@
       <DependentUpon>Settings_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="Hooking\Scorpion_HOOKS.cs" />
-    <Compile Include="Internetwork File Format.cs" />
     <Compile Include="Library_SYSTEM_OBJ.cs" />
     <Compile Include="Memory Security\Scorpion_SECMEM.cs" />
     <Compile Include="Objects_Messages.cs" />
-    <Compile Include="Obj_vw.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Obj_vw.Designer.cs">
-      <DependentUpon>Obj_vw.cs</DependentUpon>
-    </Compile>
     <Compile Include="Threading\Scorpion_THREADING.cs" />
     <Compile Include="GUI\About.cs">
       <SubType>Form</SubType>
@@ -200,7 +193,6 @@
     <Compile Include="Library_ENCODING.cs" />
     <Compile Include="Library_FNC.cs" />
     <Compile Include="Library_OBJ.cs" />
-    <Compile Include="Library_GUI.cs" />
     <Compile Include="Library_IO.cs" />
     <Compile Include="Library_MEM_MGMT.cs" />
     <Compile Include="Library_TYPE_FUNCTIONS.cs" />
@@ -215,9 +207,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Settings_Panel.resx">
       <DependentUpon>Settings_Panel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Obj_vw.resx">
-      <DependentUpon>Obj_vw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\About.resx">
       <DependentUpon>About.cs</DependentUpon>

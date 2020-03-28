@@ -43,17 +43,6 @@ namespace Scorpion
             return;
         }
 
-        /*public delegate void del_eg(object O);
-        private void scorpion_del(object Scorp_line)
-        {
-            try
-            {
-                this.Do_on.Invoke(new del_eg(scorpion_exec), Scorp_line);
-            }
-            catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE DELEGATE"); }
-            return;
-        }*/
-
         private void scorpion_exec(object Scorp_Line)
         {
             sp.Start();
@@ -103,8 +92,8 @@ namespace Scorpion
 
         public string[] get_function(ref string Scorp)
         {
-            char[] delimiterChars = { '.', '(' };
-            return Scorp.Split(delimiterChars);
+            string[] delimiterChars = { ".", "<<" };
+            return Scorp.Replace(" ", "").Split(delimiterChars, StringSplitOptions.None);
         }
 
         public string line_check(ref Form1 fm1, ref string Scorp)

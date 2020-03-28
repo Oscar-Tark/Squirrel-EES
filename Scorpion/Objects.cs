@@ -44,7 +44,6 @@ namespace Scorpion
         public Dumper.Virtual_Dumper_System vds;
         public Crypto.Cryptographer crypto;
         public Hooking.Hooker hook;
-        public Internetwork_File_Format.Internetwork_Video_File_Format iff;
         public Memory_Security.Secure_Memory mmsec;
         public File_operations.Fileopr fleoper;
         public Memory_Security.Sanitizer san;
@@ -75,7 +74,7 @@ namespace Scorpion
         public ArrayList AL_TERMS_WIKI_REF = new ArrayList() { "license", "windows", "commands" };
         public ArrayList AL_TERMS_WIKI = new ArrayList() { "[LICENSE]", "[WIKI:]", "[COMMANDS:]" };
         public ArrayList AL_WIKI = new ArrayList() {
-            "Licensed Under the GNU GPL Version 3\n<One Platform. Noded Command Framework>\nCopyright (C) <2013-2016>  <Oscar Arjun Singh Tark>\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see<http://www.gnu.org/licenses/>.\n\n____________________________________________________________\n\nProgrammers:\n\nOscar Arjun Singh Tark\n\n------------------------------------------------------------------------\n\nIncludes the Following Software:\n\nNONE.\n\n------------------------------------------------------------------------\n\nIncludes the Following Artwork:\n\nLed24.de\n\nhttp://led24.de/iconset/\n\n",
+            "Licensed Under the GNU GPL Version 3\n<One Platform. Noded Command Framework>\nCopyright (C) <2013-2016>  <Oscar Arjun Singh Tark>\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see<http://www.gnu.org/licenses/>.\n\n",
             "If you are trying to start a cmd process and want it to hold. Set the process name as cmd and in the beginning of the first argument put /K as: '/K ping.exe 127.0.0.1'",
             "One Platform internal commands:\nAll commands start with a specific syntax directive.function(*variable,*variable,...)\n\n>System Commands(Start with one.):\none.write(*variable,*variable,...)\none.about()"
         };
@@ -84,24 +83,15 @@ namespace Scorpion
         public ArrayList AL_UNBEARABLE_CHARS = new ArrayList() { ",", "]"/*, " "*/, ")" };
         public ArrayList AL_WILDCARDS = new ArrayList() { "-", " " };
 
-        //Events
+        //Events used for DB
         public ArrayList AL_Ref_EVT = new ArrayList();
         public ArrayList AL_EVT = new ArrayList();
 
-        //WINFORMS GUI
-
-        //holds properties for development use
-        public ArrayList AL_GUI_PROPERTIES = new ArrayList();
-        
-        //public ArrayList AL_GUI_PROPERTIES_CONTAINED = new ArrayList() { null, null, null, null, new ArrayList { AnchorStyles.Bottom, AnchorStyles.Left, AnchorStyles.None, AnchorStyles.Right, AnchorStyles.Top }, new ArrayList() { DockStyle.Bottom, DockStyle.Fill, DockStyle.Left, DockStyle.None, DockStyle.Right, DockStyle.Top }, null };
-        public ArrayList AL_GUI_TEMPLATES = new ArrayList() { new Form(), new Button(), new CheckBox(), new CheckedListBox(), new ColorDialog(), new ComboBox(), new ContextMenuStrip(), new DataGridView(), new DateTimePicker(), new DomainUpDown(), new FlowLayoutPanel(), new FolderBrowserDialog(), new FontDialog(), new GroupBox(), new ImageList(), new Label(), new LinkLabel(), new ListBox(), new ListView(), new MaskedTextBox(), new MenuStrip(), new MonthCalendar(), new NotifyIcon(), new NumericUpDown(), new OpenFileDialog(), new PageSetupDialog(), new Panel(), new PictureBox(), new PrintDialog(), new PrintPreviewControl(), new PrintPreviewDialog(), new ProgressBar(), new PropertyGrid(), new RadioButton(), new RichTextBox(), new SaveFileDialog(), new SplitContainer(), new Splitter(), new StatusStrip(), new TabControl(), new TableLayoutPanel(), new TextBox(), new ToolStrip(), new TrackBar(), new TreeView(), new WebBrowser() };
-        public ArrayList AL_GUI_TEMPLATES_REF = new ArrayList() { "form", "button", "checkbox", "checkedlistbox", "colordialog", "combobox", "contextmenustrip", "datagridview", "datetimepicker", "domainupdown", "flowlayoutpanel", "folderbrowsingdialog", "fontdialog", "groupbox", "imagelist", "label", "linklabel", "listbox", "listview", "maskedtextbox", "menustrip" ,"monthcalendar", "notifyicon", "numericupdown", "openfiledialog", "pagesetupdialog", "panel", "picturebox", "printdialog", "printpreviewcontrol", "printpreviewdialog", "progressbar", "propertygrid", "radiobutton", "richtextbox", "savefiledialog", "splitcontainer", "splitter", "statusstrip", "tabcontrol", "tablelayoutpanel", "textbox", "toolstrip", "trackbar", "treeview", "webbrowser" };
-        
         //OPENTK
-        public ArrayList AL_DISP_DEVICES = new ArrayList();
+        /*public ArrayList AL_DISP_DEVICES = new ArrayList();
         public ArrayList AL_OBJ_3D = new ArrayList();
         public ArrayList AL_OBJ_3D_REF = new ArrayList();
-        public ArrayList AL_UPDATED_OTK_GUI = new ArrayList();
+        public ArrayList AL_UPDATED_OTK_GUI = new ArrayList();*/
 
         //Sockets
         public ArrayList AL_SOCK = new ArrayList();

@@ -59,9 +59,6 @@ namespace Scorpion
         public Types(Form1 fm_1)
         {
             fm_1_ref = fm_1;
-            //Load_GUI_TEMPLATES();
-            Load_3D_vars();
-
             return;
         }
 
@@ -89,154 +86,13 @@ namespace Scorpion
             return;
         }
 
-        public void load_primary_vars()
-        {
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "null", "", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("null");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            //revise functions
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "true", "true", "", "", "" });
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "false", "false", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("true");
-            fm_1_ref.AL_CURR_VAR_REF.Add("false");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "in", "in", "", "", "" });
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "out", "out", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("in");
-            fm_1_ref.AL_CURR_VAR_REF.Add("out");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "ip", "127.0.0.1", "", "", "" });
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "port", "5632", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("ip");
-            fm_1_ref.AL_CURR_VAR_REF.Add("port");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "append", "append", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("append");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "equal", "=", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("equal");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "disequal", "!", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("disequal");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "vsync", VSyncMode.Adaptive, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("vsync");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "v_on", VSyncMode.On, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("v_on");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "v_off", VSyncMode.Off, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("v_off");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-
-            /*ArrayList ColorList = new ArrayList();
-            Type colorType = typeof(System.Drawing.Color);
-            PropertyInfo[] propInfoList = colorType.GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public);
-            foreach (PropertyInfo c in propInfoList)
-            {
-                fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", c.Name, c, "", "", "" });
-                fm_1_ref.AL_CURR_VAR_REF.Add(c.Name);
-            }
-
-            foreach (FontFamily font in System.Drawing.FontFamily.Families)
-            {
-                fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", font.Name, font, "", "", "" });
-                fm_1_ref.AL_CURR_VAR_REF.Add(font.Name);
-            }*/
-
-            //clean
-            //propInfoList = null;
-            //colorType = null;
-            //fm_1_ref.readr.lib_SCR.var_arraylist_dispose(ref ColorList);
-
-            return;
-        }
-
-        public void Load_3D_vars()
-        {
-            foreach (DisplayIndex index in Enum.GetValues(typeof(DisplayIndex)))
-            {
-                fm_1_ref.AL_DISP_DEVICES.Add(DisplayDevice.GetDisplay(index));
-            }
-            return;
-        }
-
-        public void Load_GUI_TEMPLATES()
-        {
-            //GUI TEMPLATES
-
-            /*
-             * Forms in scorpion are limited to the following:
-             * > Forms
-             * > Button
-             * > Check and Radio Buttons
-             * > Textboxes
-             * > Comboboxes
-             * > TBD.
-             */
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new Form());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("Form");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new Button());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("Button");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new CheckBox());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("CheckBox");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new RadioButton());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("RadioButton");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new TextBox());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("TextBox");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new ComboBox());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("ComboBox");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new DataGridView());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("DataGridView");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new Label());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("Label");
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new LinkLabel());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("LinkLabel");
-
-            //Containers
-            fm_1_ref.AL_GUI_TEMPLATES.Add(new Panel());
-            fm_1_ref.AL_GUI_TEMPLATES_REF.Add("Panel");
-
-            fm_1_ref.GUI_TEMPLATE_COUNT = fm_1_ref.AL_GUI_TEMPLATES.Count;
-
-            return;
-        }
-
         //Conversions
         public bool Convert_String_To_Bool(string YN)
         {
-            if (YN.ToLower() == "yes")
-            {
+            if (YN.ToLower() == "yes" || YN.ToLower() == "true")
                 return true;
-            }
-            else if (YN.ToLower() == "no") 
-            {
-                return false;
-            }
-            else if (YN.ToLower() == "true")
-            {
-                return true;
-            }
-            else if (YN.ToLower() == "false")
-            {
-                return false;
-            }
-
             //CLEAN
             YN = null;
-
             return false;
         }
     }

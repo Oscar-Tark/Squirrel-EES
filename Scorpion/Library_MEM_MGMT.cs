@@ -15,14 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using System.Drawing;
-using System.Reflection;
 
 //Static Library
 namespace Scorpion
@@ -267,7 +261,6 @@ namespace Scorpion
             Do_on.AL_CURR_VAR_TAG.TrimToSize();
 
             Do_on.types.load_system_vars();
-            Do_on.types.load_primary_vars();
             return;
         }
 
