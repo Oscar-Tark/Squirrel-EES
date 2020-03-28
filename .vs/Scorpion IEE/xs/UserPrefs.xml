@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/File Operations/Scorpion_FILES.cs">
     <Files>
-      <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="9" Column="9" />
+      <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="25" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +12,6 @@
               <Node name="File Operations" expanded="True">
                 <Node name="Scorpion_FILES.cs" selected="True" />
               </Node>
-              <Node name="Main" expanded="True" />
             </Node>
           </Node>
         </State>
