@@ -14,7 +14,6 @@ namespace Scorpion
         public TreeNode tn_tmp;
         public string Item_type;
         public bool cuimode = false;
-        Scorpion_IDE.Special_TextView cui_stview = new Scorpion_IDE.Special_TextView();
         public Form1 Do_on;
         int limit = 256;
 

@@ -36,14 +36,10 @@ namespace Scorpion
             }
             return p;
         }
-        public void start_Analyzer_object()
-        { vdb_analyzer = new GUI.VDB_Analyzer(this); return; }
 
         public int GUI_TEMPLATE_COUNT = 0;
 
-        public Scorpion_IDE.Special_TextView spc;
         public reader readr;
-        public GUI.VDB_Analyzer vdb_analyzer;
         public GameWindow game;
         public Dumper.Virtual_Dumper_System vds;
         public Crypto.Cryptographer crypto;

@@ -1035,7 +1035,6 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/en/Scorpion IEE core.resources.dll
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
@@ -1068,17 +1067,12 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Argument_Builder.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.GUI.Settings_Panel.resources
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.GUI.VDB_Analyzer.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Obj_vw.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.About.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Main.Amatrix_Server_Lite.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.First_Use.resources
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Form1.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion_IDE.Special_TextView.resources
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Form1.en.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/en/Scorpion IEE core.resources.dll
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb

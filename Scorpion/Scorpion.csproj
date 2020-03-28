@@ -158,12 +158,6 @@
     <Compile Include="GUI\Settings_Panel.Designer.cs">
       <DependentUpon>Settings_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\VDB Analyzer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\VDB Analyzer.Designer.cs">
-      <DependentUpon>VDB Analyzer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hooking\Scorpion_HOOKS.cs" />
     <Compile Include="Internetwork File Format.cs" />
     <Compile Include="Library_SYSTEM_OBJ.cs" />
@@ -200,9 +194,6 @@
     <Compile Include="GUI\Root_cui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Root_cui.Designer.cs">
-      <DependentUpon>Root_cui.cs</DependentUpon>
-    </Compile>
     <Compile Include="Library.cs" />
     <Compile Include="Library_APP.cs" />
     <Compile Include="Library_DB.cs" />
@@ -222,14 +213,8 @@
     <EmbeddedResource Include="GUI\Argument Builder.resx">
       <DependentUpon>Argument Builder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Root_cui.en.resx">
-      <DependentUpon>Root_cui.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Settings_Panel.resx">
       <DependentUpon>Settings_Panel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\VDB Analyzer.resx">
-      <DependentUpon>VDB Analyzer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Obj_vw.resx">
       <DependentUpon>Obj_vw.cs</DependentUpon>
@@ -244,17 +229,9 @@
     <EmbeddedResource Include="GUI\First_Use.resx">
       <DependentUpon>First_Use.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Root_cui.resx">
-      <DependentUpon>Root_cui.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Special_TextView.resx">
-      <DependentUpon>Special_TextView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -274,12 +251,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Reader.cs">
-    </Compile>
-    <Compile Include="GUI\Special_TextView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\Special_TextView.designer.cs">
-      <DependentUpon>Special_TextView.cs</DependentUpon>
     </Compile>
     <Compile Include="Library_SYSTEM_OBJ_FNC.cs" />
     <Compile Include="Network\Scorpion_NETWORK.cs" />

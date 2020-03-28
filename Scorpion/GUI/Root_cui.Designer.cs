@@ -53,10 +53,6 @@
             this.toolStrip1.SuspendLayout();
             //this.SuspendLayout();
             // 
-            // bkk_cleaner
-            // 
-            this.bkk_cleaner.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkk_cleaner_DoWork);
-            // 
             // OFD
             // 
             this.OFD.FileName = "Scorpion File";
@@ -68,12 +64,6 @@
             this.Cleaner.Enabled = true;
             this.Cleaner.Interval = 2000;
             this.Cleaner.Tick += new System.EventHandler(this.Cleaner_Tick);
-            // 
-            // scnti
-            // 
-            this.scnti.ContextMenuStrip = this.cms;
-            resources.ApplyResources(this.scnti, "scnti");
-            this.scnti.DoubleClick += new System.EventHandler(this.scnti_DoubleClick);
             // 
             // cms
             // 

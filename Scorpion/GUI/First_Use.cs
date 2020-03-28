@@ -28,12 +28,9 @@ namespace Scorpion
             {
                 fm1.SHA = pwd.Text;
                 fm1.Load_init_db();
-
-                fm1.start_CUI();
                 fm1.readr.access_library("");
                 this.Close();
             }
-
             return;
         }
 

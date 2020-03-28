@@ -32,24 +32,6 @@ namespace Scorpion
            return;
         }
 
-        private void Access_strt()
-        {
-                th_cross = new Thread(new ThreadStart(crss_));
-                th_cross.IsBackground = true;
-                th_cross.Start();
-        }
-
-        private void crss_()
-        {
-            if (Re_do == true)
-            {
-                fmm.read_again(true);
-                fmm.re_read(ndx);
-            }
-            else
-                fmm.read_again(false);
-        }
-
         //ACCESS ANY LIB
         public void access_library(string Scorp_Line)
         {

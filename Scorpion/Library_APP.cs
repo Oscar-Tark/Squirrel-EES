@@ -34,13 +34,6 @@ namespace Scorpion
             Application.Restart();
         }
 
-        public void load_cui()
-        {
-            Do_on.f.Controls.Add(Do_on.spc);
-            Do_on.vdb_analyzer.Dispose();
-            return;
-        }
-
         public void wiki(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             for (int i = 0; i < Objects.Count; i++)
