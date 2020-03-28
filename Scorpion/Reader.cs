@@ -15,10 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Threading;
 
 namespace Scorpion
@@ -38,22 +34,9 @@ namespace Scorpion
 
         private void Access_strt()
         {
-            try
-            {
-                th_cross = new Thread(new ThreadStart(Accessing));
+                th_cross = new Thread(new ThreadStart(crss_));
                 th_cross.IsBackground = true;
                 th_cross.Start();
-            }
-            catch { }
-        }
-
-        private void Accessing()
-        {
-            try
-            {
-                this.fmm.Invoke(new dl_cross(crss_));
-            }
-            catch { }
         }
 
         private void crss_()
@@ -64,9 +47,7 @@ namespace Scorpion
                 fmm.re_read(ndx);
             }
             else
-            {
                 fmm.read_again(false);
-            }
         }
 
         //ACCESS ANY LIB

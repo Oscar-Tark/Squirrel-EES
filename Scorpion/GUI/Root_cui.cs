@@ -24,23 +24,19 @@ using System.Windows.Forms;
 
 namespace Scorpion
 {
-    public partial class Form1 : Form
+    //CHANGE CLASS NAME
+    public partial class Form1
     {
         public Form1()
         {
-            InitializeComponent();
-            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            bkk_load_apps.RunWorkerAsync();
-            IntPtr Hicon = Properties.Resources.application_view_xp_terminal.GetHicon();
-            this.Icon = Icon.FromHandle(Hicon);
-            Startup_Load_Objects.RunWorkerAsync();
             initialize_scorpion();
             return;
         }
 
         public void initialize_scorpion()
         {
+            Console.WriteLine("Welcome to Scorpion V1.0 ^^");
             types = new Types(this);
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);
@@ -52,7 +48,10 @@ namespace Scorpion
 
             types.load_system_vars();
             readr = new reader(this);
-            start_CUI();
+
+            while (1 > 0)
+                readr.access_library(Console.ReadLine());
+            //start_CUI();
             return;
         }
 
@@ -75,8 +74,7 @@ namespace Scorpion
 
         public void panic_stop()
         {
-            this.FormClosing -= Form1_FormClosing;
-
+            //this.FormClosing -= Form1_FormClosing;
             Application.ApplicationExit -= Application_ApplicationExit;
             Application.Exit();
             return;
@@ -249,7 +247,7 @@ namespace Scorpion
         {
             try
             {
-                th_clean = new Thread(new ThreadStart(del_clean_strt));
+                th_clean = new Thread(new ThreadStart(clean));
                 th_clean.IsBackground = true;
                 th_clean.Start();
             }
@@ -257,7 +255,7 @@ namespace Scorpion
             return;
         }
 
-        private void del_clean_strt()
+        /*private void del_clean_strt()
         {
             try
             {
@@ -265,7 +263,7 @@ namespace Scorpion
             }
             catch { }
             return;
-        }
+        }*/
 
         private void clean()
         {
@@ -328,7 +326,7 @@ namespace Scorpion
         public void start_CUI()
         {
             acsc = new AutoCompleteStringCollection();
-            this.WindowState = FormWindowState.Normal;
+            //this.WindowState = FormWindowState.Normal;
 
             f = new Form();
             f.AutoScaleMode = AutoScaleMode.Dpi;
@@ -364,7 +362,8 @@ namespace Scorpion
 
         public void write_to_cui(string Text)
         {
-            try
+            Console.WriteLine(Text + "\n");
+            /*try
             {
                 if (!Text.EndsWith(".", StringComparison.CurrentCultureIgnoreCase))
                     Text = Text + ".";
@@ -373,7 +372,7 @@ namespace Scorpion
                 Console.WriteLine(Text + "\n");
                 spc.colorize_output(Text);
             }
-            catch { }
+            catch { }*/
             Text = null;
 
             return;
@@ -458,34 +457,6 @@ namespace Scorpion
             return;
         }
 
-        private void th_execute_sample(string Sample_Line)
-        {
-            th_sample = new Thread(new ParameterizedThreadStart(del_execute_sample));
-            th_sample.IsBackground = true;
-            th_sample.Start(Sample_Line);
-
-            return;
-        }
-
-        private void del_execute_sample(object Sample_Line)
-        {
-            del_sample dd = new del_sample(execute_sample);
-            dd.Invoke(Sample_Line);
-
-            return;
-        }
-
-        private void execute_sample(object Sample_Line)
-        {
-            /*MessageBox.Show(Sample_Line.ToString());
-            Access_Work(Sample_Line.ToString());
-            AL_Sample_Lines.Add(Sample_Line.ToString());
-
-            Sample_Line = null;*/
-
-            return;
-        }
-
         private void scnti_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -504,7 +475,7 @@ namespace Scorpion
             }
             catch { }
 
-            this.FormClosing -= Form1_FormClosing;
+            //this.FormClosing -= Form1_FormClosing;
             Application.ApplicationExit -= Application_ApplicationExit;
             try
             {
@@ -512,22 +483,6 @@ namespace Scorpion
             }
             catch { Application.ExitThread(); }
 
-            sender = null;
-            e = null;
-            return;
-        }
-
-        private void Startup_Load_Objects_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            sender = null;
-            e = null;
-            return;
-        }
-
-
-        private void bkk_load_apps_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //load_SHS();
             sender = null;
             e = null;
             return;

@@ -547,7 +547,7 @@ namespace Scorpion
         private void del_re_read(object event_)
         {
             d d1 = new d(do_event);
-            Do_on.Invoke(d1, event_);
+            //Do_on.Invoke(d1, event_);
         }
     }
 }

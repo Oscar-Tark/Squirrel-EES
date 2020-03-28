@@ -35,7 +35,7 @@ namespace Scorpion
         {
             try
             {
-                Thread ths = new Thread(new ParameterizedThreadStart(scorpion_del));
+                Thread ths = new Thread(new ParameterizedThreadStart(scorpion_exec));
                 ths.IsBackground = true;
                 ths.Start(Scorp_Line);
             }
@@ -43,7 +43,7 @@ namespace Scorpion
             return;
         }
 
-        public delegate void del_eg(object O);
+        /*public delegate void del_eg(object O);
         private void scorpion_del(object Scorp_line)
         {
             try
@@ -52,7 +52,7 @@ namespace Scorpion
             }
             catch { Do_on.write_to_cui("FATAL: COULD NOT START ENGINE DELEGATE"); }
             return;
-        }
+        }*/
 
         private void scorpion_exec(object Scorp_Line)
         {
