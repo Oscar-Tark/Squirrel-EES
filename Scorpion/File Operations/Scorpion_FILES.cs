@@ -1,20 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using iTextSharp;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using System.Collections;
-
-namespace Scorpion
-{
-    public partial class Librarian
-    {
-
-
-    }
-}
 
 namespace Scorpion.File_operations
 {
