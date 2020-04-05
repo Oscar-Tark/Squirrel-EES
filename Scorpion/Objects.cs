@@ -25,6 +25,21 @@ namespace Scorpion
 {
     public partial class Form1
     {
+        public void start_classes()
+        {
+            types = new Types(this);
+            vds = new Dumper.Virtual_Dumper_System(this);
+            crypto = new Crypto.Cryptographer(this);
+            hook = new Hooking.Hooker(this);
+            mmsec = new Memory_Security.Secure_Memory(this);
+            fleoper = new File_operations.Fileopr(this);
+            san = new Memory_Security.Sanitizer(this);
+
+            types.load_system_vars();
+            readr = new reader(this);
+            return;
+        }
+
         private object CloneObject(object o)
         {
             Object p = o.GetType().InvokeMember("", System.Reflection.BindingFlags.CreateInstance, null, o, null);

@@ -321,8 +321,6 @@
     <None Include="Resources\bt2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="application_osx_terminal.ico" />
-    <Content Include="bt3.ico" />
     <None Include="Resources\windw.bmp" />
     <None Include="Resources\doc_stand.png" />
     <None Include="Resources\table.png" />

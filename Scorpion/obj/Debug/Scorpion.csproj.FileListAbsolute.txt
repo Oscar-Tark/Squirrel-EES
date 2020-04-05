@@ -977,61 +977,6 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/en/Scorpion IEE cor
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.exe
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/en/Scorpion IEE core.resources.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/itextsharp.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/itextsharp.xtra.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.Unity.Configuration.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.Unity.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.Unity.RegistrationByConvention.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.Unity.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Argument_Builder.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.GUI.Settings_Panel.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.GUI.VDB_Analyzer.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Obj_vw.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Amatrix_Server_1._1.Form1.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Server.Resources.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.VEE.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.About.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Main.Amatrix_Server_Lite.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Main.Amatrix_Sever_Client_Lite.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.First_Use.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Form1.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion_IDE.Special_TextView.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Form1.en.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/en/Scorpion IEE core.resources.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
@@ -1066,3 +1011,37 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll.config
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Main.Amatrix_Server_Lite.resources
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb

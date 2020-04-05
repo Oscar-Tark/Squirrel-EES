@@ -18,7 +18,6 @@
 using System;
 using System.IO;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace Scorpion
 {
@@ -27,25 +26,9 @@ namespace Scorpion
     {
         public Form1()
         {
-            initialize_scorpion();
-            return;
-        }
-
-        public void initialize_scorpion()
-        {
-            Console.WriteLine("Welcome to Scorpion V1.0 :)))\n\n{0}", AL_WIKI[0]);
-            types = new Types(this);
-            vds = new Dumper.Virtual_Dumper_System(this);
-            crypto = new Crypto.Cryptographer(this);
-            hook = new Hooking.Hooker(this);
-            mmsec = new Memory_Security.Secure_Memory(this);
-            fleoper = new File_operations.Fileopr(this);
-            san = new Memory_Security.Sanitizer(this);
-
-            types.load_system_vars();
-            readr = new reader(this);
-
-            while (1 > 0)
+            start_classes();
+            Console.WriteLine("Welcome to Scorpion V1.0 :) Sting STING sTiNG\n\n{0}", AL_WIKI[0]);
+            while (true)
             {
                 readr.access_library(Console.ReadLine());
                 th_clean_strt();
@@ -118,9 +101,7 @@ namespace Scorpion
             AL_PRC_REF.TrimToSize();
 
             AL_ACC.TrimToSize();
-
             GC.Collect();
-
             return;
         }
 

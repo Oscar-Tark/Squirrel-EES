@@ -60,7 +60,7 @@ namespace Scorpion
         {
             string STR_ = "";
             foreach (string s in Do_on.AL_CURR_VAR_REF)
-                STR_ += s + " [" + ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(s)])[1] + "]"+ "\n";
+                STR_ += s + " [" + ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(s)])[2] + "]"+ "\n";
             Do_on.write_to_cui(STR_);
 
             //clean
@@ -76,10 +76,9 @@ namespace Scorpion
         {
             /*(*@var,*object_value)*/
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
-            if (!var_cut_symbol(al[0].ToString()).ToString().Contains(Do_on.AL_ACC[6].ToString()))
-            {
-                ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(al[0].ToString()))])[2] = o;
-            }
+            string s = o.ToString();
+            if (!var_cut_symbol(al[0].ToString()).Contains(Do_on.AL_ACC[6].ToString()))
+                ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(al[0].ToString()))])[2] = var_get(ref s);
             else
             {
                 ArrayList al_ = var_cut_domain(al[0].ToString());
@@ -148,7 +147,7 @@ namespace Scorpion
 
             Scorp_Line_Exec = Scorp_Line_Exec.Replace("*", "");
 
-            delete(Scorp_Line_Exec, new ArrayList());
+            vardelete(Scorp_Line_Exec, new ArrayList());
         }
 
         public void var_new(object Variable, string Reference, string Type_)
@@ -190,7 +189,7 @@ namespace Scorpion
             return;
         }
 
-        public void delete(string Scorp_Line_Exec, ArrayList objects)
+        public void vardelete(string Scorp_Line_Exec, ArrayList objects)
         {
             //(*,*,*,*,*,...)
             ArrayList al = cut_variables(ref Scorp_Line_Exec);

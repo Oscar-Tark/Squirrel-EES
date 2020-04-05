@@ -65,7 +65,7 @@ namespace Scorpion
                 }
                 catch (Exception erty)
                 {
-                    Do_on.write_to_cui("There was an error while processing your function call [Line of Code that Caused the Error : >> " + Scorp_Line_Exec + "] " + erty.StackTrace + " : Message >> " + erty.Message);
+                    Do_on.write_to_cui("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
                 }
 
                 sp.Stop();
