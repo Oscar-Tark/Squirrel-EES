@@ -23,7 +23,7 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        //Variables-->
+        //Variables-->o
         //NEW
         public void var(string Scorp_Line_Exec, ArrayList objects)
         {

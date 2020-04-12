@@ -49,6 +49,7 @@ namespace Scorpion
             */
             try
             {
+                ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0]))]).Shutdown(SocketShutdown.Both);
                 ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0]))]).Close();
 
                 Do_on.AL_SOCK.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0])));
@@ -80,6 +81,7 @@ namespace Scorpion
 
         public void Accept(IAsyncResult result)
         {
+            fm1.write_to_cui("ACCEPTED A REMOTE CONNECTION");
             Socket SOCK = (Socket)result.AsyncState;
             Socket END_SOCK = SOCK.EndAccept(result);
 
@@ -92,7 +94,8 @@ namespace Scorpion
 
         public void Read(IAsyncResult result)
         {
-            String content = String.Empty;
+            String scorpion = String.Empty;
+            String HTTP = String.Empty;
 
             // Retrieve the state object and the handler socket  
             // from the asynchronous state object.  
@@ -104,22 +107,21 @@ namespace Scorpion
 
             if (bytesRead > 0)
             {
-                // There  might be more data, so store the data received so far.  
-                state.sb.Append(Encoding.ASCII.GetString(
-                    state.buffer, 0, bytesRead));
+                HTTP = Encoding.ASCII.GetString(state.buffer, 0, bytesRead);
 
-                // Check for end-of-file tag. If it is not there, read
-                // more data.
-                fm1.write_to_cui("Recieved remote data: " + content);
-                content = state.sb.ToString();
-                if (content.IndexOf("<EOF>") > -1)
+                if (HTTP.IndexOf("<EOF>") > -1)
                 {
-                    Send(handler, content);
+                    fm1.write_to_cui("REMOTE DATA RECIEVED: \n" + HTTP);
+                    //scorpion = HTTP.Remove(0, HTTP.IndexOf("scorpion",StringComparison.CurrentCulture));
+                    //fm1.write_to_cui("COMMAND: " + scorpion);
+                    Send(handler, "HTTP 1.0 OK::SCORPION OK\r\n");
                 }
                 else
                 {
+                    // Not all data received. Get more.  
                     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(Read), state);
+                    Send(handler, "HTTP 1.0 OK::SCORPION OK\r\n");
                 }
             }
             return;
@@ -148,7 +150,6 @@ namespace Scorpion
 
                 handler.Shutdown(SocketShutdown.Both);
                 handler.Close();
-
             }
             catch (Exception e)
             {
