@@ -2,14 +2,23 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Library.cs" Line="1" Column="1" />
-      <File FileName="Scorpion/Main/Root_cui.cs" Line="1" Column="1" />
-      <File FileName="Scorpion/Objects.cs" Line="1" Column="1" />
-      <File FileName="Scorpion/Library_FNC.cs" Line="1" Column="1" />
       <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="26" Column="24" />
-      <File FileName="Scorpion/Object Types.cs" Line="1" Column="1" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="83" Column="37" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="101" Column="19" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Scorpion IEE" expanded="True">
+            <Node name="Scorpion" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Scorpion_NETWORK.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

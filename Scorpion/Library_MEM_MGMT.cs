@@ -40,7 +40,7 @@ namespace Scorpion
         public void varset(string Scorp_Line_Exec, ArrayList objects)
         {
             /*(*where,*value)*/
-            if (!var_cut_symbol(objects[0].ToString()).ToString().Contains(Do_on.AL_ACC[6].ToString()))
+            if (!var_cut_symbol(objects[0].ToString()).Contains(Do_on.AL_ACC[6].ToString()))
                 ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get(objects[1].ToString());
             else
             {
