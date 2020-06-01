@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
 using System.Windows.Forms;
 
@@ -41,6 +40,15 @@ namespace Scorpion
             var_arraylist_dispose(ref Objects);
             Scorp_Line_Exec = null;
             return;
+        }
+
+        public object test_return(ref string Scorp_Line_Exec, ArrayList Objects)
+        {
+            bool elem = true;
+            if ((string)var_get(Objects[0].ToString()) == "false")
+                elem = false;
+            string return__ = "one_root";
+            return (object)var_create_return(ref return__, elem);
         }
 
         private void write_to_console(ref string STR_)

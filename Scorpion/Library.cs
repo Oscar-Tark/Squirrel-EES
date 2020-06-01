@@ -1,4 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
+﻿
+/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
     Copyright (C) <2014>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
@@ -55,13 +56,21 @@ namespace Scorpion
                 Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line_Exec);
                 try
                 {
+                    //Gets and removes the return variable
+                    string[] final = ef__.get_return(ref Scorp_Line_Exec);
+                    if(final.Length > 1)
+                        Scorp_Line_Exec = final[1];
 
                     string[] functions = ef__.get_function(ref Scorp_Line_Exec);
                     object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
                     object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
+                    if (retfun != null)
+                        ef__.process_return(ref retfun, ref final[0], this);
+
                     functions = null;
                     paramse = null;
+                    retfun = null;
                 }
                 catch (Exception erty)
                 {
@@ -92,13 +101,25 @@ namespace Scorpion
 
         public string[] get_function(ref string Scorp)
         {
-            string[] delimiterChars = { ".", "<<" };
+            string[] delimiterChars = { "::" };
             return Scorp.Replace(" ", "").Split(delimiterChars, StringSplitOptions.None);
+        }
+
+        public string[] get_return(ref string Scorp)
+        {
+            string[] delimiterChars = { "<<" };
+            return Scorp.Split(delimiterChars, StringSplitOptions.None);
         }
 
         public string line_check(ref Form1 fm1, ref string Scorp)
         {
             return fm1.san.sanitize(ref Scorp);
+        }
+
+        public bool process_return(ref object o, ref string var, Librarian lib)
+        {
+            lib.varset("", new System.Collections.ArrayList() { var.Replace("*", "") , o });
+            return true;
         }
     }
 }

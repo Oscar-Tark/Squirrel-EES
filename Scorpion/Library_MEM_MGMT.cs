@@ -37,6 +37,7 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             return;
         }
+
         public void varset(string Scorp_Line_Exec, ArrayList objects)
         {
             /*(*where,*value)*/
@@ -70,8 +71,7 @@ namespace Scorpion
         }
 
 
-        //OLD
-
+        //OLD LEGACY
         public void var_set(string Scorp_Line_Exec, object o)
         {
             /*(*@var,*object_value)*/
@@ -477,6 +477,14 @@ namespace Scorpion
             catch { write_to_cui("Memory Segment Dispose Fail: Segment"); }
 
             return;
+        }
+
+        //Creates return value for function according to value or copy value of another variable
+        private string var_create_return(ref string val, bool is_val)
+        {
+            if (is_val)
+                return "\"" + val + "\"";
+            return val;
         }
     }
 }

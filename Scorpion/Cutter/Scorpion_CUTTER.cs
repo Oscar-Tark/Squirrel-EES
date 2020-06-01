@@ -141,7 +141,7 @@ namespace Scorpion
             int ndx = 0;
             foreach (string s in vars)
             {
-                if (s != "" && s != " " && ndx != 0)
+                if (s != "" && s != " " && ndx != 0 && s.EndsWith(">>", StringComparison.CurrentCulture) != true)
                     vars_.Add(s);
                 ndx++;
             }

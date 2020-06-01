@@ -2,15 +2,19 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="26" Column="24" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="101" Column="19" />
+      <File FileName="Scorpion/Library.cs" Line="104" Column="44" />
+      <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="73" Column="9" />
+      <File FileName="Scorpion/Library_APP.cs" Line="48" Column="42" />
+      <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="25" Column="33" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="29" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="References" expanded="True" />
+              <Node name="Cutter" expanded="True" />
+              <Node name="File Operations" expanded="True" />
               <Node name="Network" expanded="True">
                 <Node name="Scorpion_NETWORK.cs" selected="True" />
               </Node>
