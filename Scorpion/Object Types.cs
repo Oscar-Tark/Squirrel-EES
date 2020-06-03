@@ -15,20 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Reflection;
-using OpenTK;
 using System.Collections;
-using System.Collections.Specialized;
-using System.IO;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Scorpion
 {

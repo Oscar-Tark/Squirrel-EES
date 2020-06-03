@@ -18,9 +18,51 @@
 using System.Collections;
 using System.IO;
 
-//Static Library
 namespace Scorpion
 {
+    partial class Librarian
+    {
+        private void var_dispose_internal(ref object __object)
+        {
+            __object = null;
+            return;
+        }
+
+        private void var_dispose_internal(ref string __object)
+        {
+            __object = null;
+            return;
+        }
+
+        //Make private
+        public void var_arraylist_dispose(ref ArrayList al)
+        {
+            try
+            {
+                for (int i = 0; i < al.Count; i++)
+                {
+                    try
+                    {
+                        al[i] = null;
+                    }
+                    catch { write_to_cui("Memory Segment Dispose Fail: One Element"); }
+                }
+                al = null;
+            }
+            catch { write_to_cui("Memory Segment Dispose Fail: Segment"); }
+
+            return;
+        }
+
+        //Creates return value for function according to value or copy value of another variable
+        private string var_create_return(ref string val, bool is_val)
+        {
+            if (is_val)
+                return "\"" + val + "\"";
+            return val;
+        }
+    }
+
     partial class Librarian
     {
         //Variables-->o
@@ -458,33 +500,6 @@ namespace Scorpion
             if (Var.Contains("\"") == true)
                 return Var.Replace("\"", "");
             return Var;
-        }
-
-        public void var_arraylist_dispose(ref ArrayList al)
-        {
-            try
-            {
-                for (int i = 0; i < al.Count; i++)
-                {
-                    try
-                    {
-                        al[i] = null;
-                    }
-                    catch { write_to_cui("Memory Segment Dispose Fail: One Element"); }
-                }
-                al = null;
-            }
-            catch { write_to_cui("Memory Segment Dispose Fail: Segment"); }
-
-            return;
-        }
-
-        //Creates return value for function according to value or copy value of another variable
-        private string var_create_return(ref string val, bool is_val)
-        {
-            if (is_val)
-                return "\"" + val + "\"";
-            return val;
         }
     }
 }

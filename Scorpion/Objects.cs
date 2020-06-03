@@ -16,7 +16,6 @@
 */
 
 using System;
-using OpenTK;
 using System.Collections;
 using System.Windows.Forms;
 using System.Reflection;
@@ -32,7 +31,6 @@ namespace Scorpion
             crypto = new Crypto.Cryptographer(this);
             hook = new Hooking.Hooker(this);
             mmsec = new Memory_Security.Secure_Memory(this);
-            fleoper = new File_operations.Fileopr(this);
             san = new Memory_Security.Sanitizer(this);
 
             types.load_system_vars();
@@ -55,12 +53,10 @@ namespace Scorpion
         public int GUI_TEMPLATE_COUNT = 0;
 
         public reader readr;
-        public GameWindow game;
         public Dumper.Virtual_Dumper_System vds;
         public Crypto.Cryptographer crypto;
         public Hooking.Hooker hook;
         public Memory_Security.Secure_Memory mmsec;
-        public File_operations.Fileopr fleoper;
         public Memory_Security.Sanitizer san;
 
         public string SHA;
