@@ -1,3 +1,5 @@
+![IMG](/Art/Cropped.png)
+
 [Scorpion IEE [Intelligent Execution Environment]]
 ------------------------------------------------
 
