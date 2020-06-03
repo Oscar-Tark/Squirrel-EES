@@ -15,6 +15,7 @@ Variables:
 example:
 
 var::*store
+
 jsonget::*"http://ip.jsontest.com/", *store
 
 Function calls:
@@ -30,6 +31,7 @@ examples:
 
 listvars
 var::*var1
+
 varset::*var1, *"Scorpions are SO misunderstood.."
 
 Running scripts:
