@@ -16,7 +16,6 @@
 */
 
 using System;
-using System.IO;
 using System.Threading;
 
 namespace Scorpion
@@ -27,7 +26,7 @@ namespace Scorpion
         public Form1()
         {
             start_classes();
-            Console.WriteLine("Welcome to Scorpion V1.0 :) Sting STING sTiNG\n\n{0}", AL_WIKI[0]);
+            Console.WriteLine("Welcome to Scorpion V1.0 :) Sting STING sTiNG\n\n{0}", "Licensed Under the GNU GPL Version 3\n < One Platform.Noded Command Framework >\nCopyright(C) < 2020 >  < Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
             while (true)
             {
                 readr.access_library(Console.ReadLine());
@@ -78,14 +77,6 @@ namespace Scorpion
             AL_Ref_EVT.TrimToSize();
             AL_EVT.TrimToSize();
 
-            AL_PIPES.TrimToSize();
-            AL_PIPES_REF.TrimToSize();
-
-            //Recursive Calls
-            AL_REC.TrimToSize();
-            AL_REC_REF.TrimToSize();
-            AL_REC_TME.TrimToSize();
-
             //System
             AL_HIB_FILES.TrimToSize();
 
@@ -119,7 +110,5 @@ namespace Scorpion
 
             return;
         }
-        FileStream fs_sample; StreamReader sr_sample; Thread th_sample;
-        delegate void del_sample(object Sample_Line); string sampled = ""; string temp = "";
     }
 }

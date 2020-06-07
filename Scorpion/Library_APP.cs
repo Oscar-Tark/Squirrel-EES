@@ -35,20 +35,30 @@ namespace Scorpion
 
         public void wiki(ref string Scorp_Line_Exec, ArrayList Objects)
         {
-            for (int i = 0; i < Objects.Count; i++)
-                Do_on.write_to_cui(Do_on.AL_WIKI[Do_on.AL_TERMS_WIKI_REF.IndexOf(var_get(Objects[i].ToString()))].ToString());
+            //RUN DOCUMENTATION SCRIPT: !!IMPLEMENT!!
             var_arraylist_dispose(ref Objects);
             Scorp_Line_Exec = null;
             return;
         }
 
-        public object test_return(ref string Scorp_Line_Exec, ArrayList Objects)
+        public string writeto(ref string Scorp_Line_Exec, ArrayList Objects)
         {
-            bool elem = true;
-            if ((string)var_get(Objects[0].ToString()) == "false")
-                elem = false;
-            string return__ = "one_root";
-            return (object)var_create_return(ref return__, elem);
+            //::*arg..
+            string writable = "";
+            foreach (string o in Objects)
+                writable += var_get(o);
+            write_to_console(ref writable);
+            return var_create_return(ref writable, true);
+        }
+
+        public void writescreen(ref string Scorp_Line_Exec, ArrayList Objects)
+        {
+            //::*arg..
+            string writable = "";
+            foreach (string o in Objects)
+                writable += var_get(o);
+            write_to_console(ref writable);
+            return;
         }
 
         private void write_to_console(ref string STR_)

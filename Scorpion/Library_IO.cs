@@ -42,37 +42,6 @@ namespace Scorpion
             return;
         }
 
-        public bool IO_get(string Scorp_Line_, int index)
-        {
-            bool is_func = true;
-
-            if (Scorp_Line_.ToLower().StartsWith("io.rft("))
-            {
-                Read_File_Text(Scorp_Line_, index);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith("io.rfb("))
-            {
-                Read_File_Binary(Scorp_Line_, index);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith("io.rfi("))
-            {
-                Read_File_Image(Scorp_Line_, index);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith("io.gf("))
-            {
-                Get_Files(Scorp_Line_, index);
-            }
-            else if (Scorp_Line_.ToLower().StartsWith("io.gd("))
-            {
-                Get_Directories(Scorp_Line_, index);
-            }
-            else { is_func = false; }
-
-            //clean
-            Scorp_Line_ = null;
-            return is_func;
-        }
-
         public void Read_File_Text(string Scorp_Line_Exec, int index)
         {
             //io.rft(path(*))

@@ -158,10 +158,10 @@ namespace Dumper
             {
                 System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
                 t.Interval = i;
-                Do_on.AL_REC.Add(t);
+                //Do_on.AL_REC.Add(t);
             }
 
-            Do_on.AL_REC_REF = (ArrayList)al_tmp[5];
+            //Do_on.AL_REC_REF = (ArrayList)al_tmp[5];
             Do_on.AL_SHS = (ArrayList)al_tmp[6];
             Do_on.AL_SHS_REF = (ArrayList)al_tmp[7];
             Do_on.AL_AUTH = (ArrayList)al_tmp[8];

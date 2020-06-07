@@ -51,11 +51,14 @@ namespace Scorpion
 
         public void load_system_vars()
         {
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "one_root", fm_1_ref, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("one_root");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "false", S_No, "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("false");
             fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "secs", S_Yes, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("secs");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "true", S_Yes, "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("true");
+            fm_1_ref.AL_CURR_VAR_TAG.Add("");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "temp", "You can use this variable for temporary operations", "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("temp");
             fm_1_ref.AL_CURR_VAR_TAG.Add("");
 
             return;

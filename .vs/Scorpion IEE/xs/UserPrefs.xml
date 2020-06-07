@@ -1,26 +1,18 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scripts/Scorpion_SCRIPTS.cs">
     <Files>
-      <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="26" Column="10" />
-      <File FileName="Scorpion/Library.cs" Line="35" Column="32" />
-      <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="37" Column="23" />
-      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="89" Column="29" />
-      <File FileName="Scorpion/Objects.cs" Line="54" Column="9" />
-      <File FileName="Scorpion/Dumper.cs" Line="172" Column="67" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="12" Column="2" />
+      <File FileName="Scorpion/Scripts/Scorpion_SCRIPTS.cs" Line="18" Column="18" />
+      <File FileName="Scorpion/Main/Root_cui.cs" Line="29" Column="184" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Cutter" expanded="True" />
-              <Node name="File Operations" expanded="True" />
-              <Node name="Memory Security" expanded="True" />
-              <Node name="Network" expanded="True">
-                <Node name="Scorpion_NETWORK.cs" selected="True" />
+              <Node name="Main" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="Scorpion_SCRIPTS.cs" selected="True" />
               </Node>
             </Node>
           </Node>
