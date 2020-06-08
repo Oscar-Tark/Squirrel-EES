@@ -6,7 +6,7 @@
       <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="73" Column="9" />
       <File FileName="Scorpion/Library_APP.cs" Line="48" Column="42" />
       <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="25" Column="33" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="29" Column="35" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="29" Column="59" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
