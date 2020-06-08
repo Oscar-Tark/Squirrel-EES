@@ -15,10 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
-using System.Windows.Forms;
-using System.Threading;
 using System.Reflection;
 
 //Static Library
@@ -44,10 +41,17 @@ namespace Scorpion
             return;
         }
 
-        public void importscript(string Scorp_Line_Exec, ArrayList objects)
+        public void recursive(string Scorp_Line_Exec, ArrayList objects)
+        {
+            //::*name, *arg
+            Do_on.tms.add(var_get(objects[0]), var_get(objects[1]));
+            return;
+        }
+
+        /*public void importscript(string Scorp_Line_Exec, ArrayList objects)
         {
             //IMPORTS A CUSTOM OR DEFAULT SCRIPT MADE IN C#
-            /*(*name,*namespaceclass)*/
+            /*(*name,*namespaceclass)*//*
             Do_on.hook.import_assembly(var_get(objects[0].ToString()).ToString());
             Do_on.hook.create_instance((System.Reflection.Assembly)Do_on.AL_ASSEMB[Do_on.AL_ASSEMB_REF.IndexOf(var_get(objects[0].ToString()))], var_get(objects[1].ToString()).ToString(), var_get(objects[0].ToString()).ToString());
 
@@ -68,7 +72,7 @@ namespace Scorpion
 
               In order to compile put script in a seperate folder that is not OneSource as it will be copied,
               execute compile command
-            */
+            *//*
             ArrayList references = new ArrayList();
             for(int i = 3; i < objects.Count; i++)
                 references.Add(var_get(objects[i].ToString()));
@@ -85,7 +89,7 @@ namespace Scorpion
 
         public void compiled_instance(ref string Scorp_Line)
         {
-            /*(*name,*namespace.class)*/
+            /*(*name,*namespace.class)*//*
             ArrayList al = cut_variables(ref Scorp_Line);
             Do_on.hook.create_instance((System.Reflection.Assembly)Do_on.AL_ASSEMB[Do_on.AL_ASSEMB_REF.IndexOf(var_get(al[0].ToString()).ToString())], var_get(al[1].ToString()).ToString(), var_get(al[0].ToString()).ToString());
 
@@ -96,7 +100,7 @@ namespace Scorpion
 
         public void call_compiled_function(ref string Scorp_Line)
         {
-            /*(*name,*namespace.class,*function,*arg,*arg,...)*/
+            /*(*name,*namespace.class,*function,*arg,*arg,...)*//*
             ArrayList al = cut_variables(ref Scorp_Line);
             Do_on.hook.call_compiled_function(var_get(al[0].ToString()).ToString() ,(System.Reflection.Assembly)Do_on.AL_ASSEMB[Do_on.AL_ASSEMB_REF.IndexOf(var_get(al[0].ToString()).ToString())], var_get(al[1].ToString()).ToString(), var_get(al[2].ToString()).ToString(), "");
 
@@ -156,58 +160,6 @@ namespace Scorpion
             Scorp_Line = null;
 
             return is_func;
-        }
-
-        public void recursive_call(string Scorp_Line)
-        {
-            //([name]functions(*),timeout(*))
-            //{timer,*function_refs...}
-
-            ArrayList al = cut_variables(ref Scorp_Line);
-
-            System.Windows.Forms.Timer tms = new System.Windows.Forms.Timer();
-            tms.Interval = Convert.ToInt32(var_get(al[al.Count - 1].ToString()));
-            tms.Tag = Scorp_Line.Remove(Scorp_Line.IndexOf("]")).Remove(0, Scorp_Line.IndexOf("[") + 1);
-            tms.Tick += new EventHandler(tms_Tick);
-
-            al.RemoveAt(al.Count - 1);
-            Do_on.AL_REC_REF.Add(Scorp_Line.Remove(Scorp_Line.IndexOf("]")).Remove(0, Scorp_Line.IndexOf("[") + 1));
-            al.Insert(0, tms);
-            Do_on.AL_REC.Add(al);
-            tms.Start();
-
-            //clean
-            Scorp_Line = null;
-            //var_arraylist_dispose(ref al);
-
-            return;
-        }
-
-        public void recursive_call_unregister(string Scorp_Line)
-        {
-            ArrayList al = cut_variables(ref Scorp_Line);
-            //(*name)
-
-            foreach (string s in al)
-            {
-                ((System.Windows.Forms.Timer)((ArrayList)Do_on.AL_REC[Do_on.AL_REC_REF.IndexOf(var_cut_symbol(s))])[0]).Dispose();
-                Do_on.AL_REC.RemoveAt(Do_on.AL_REC_REF.IndexOf(var_cut_symbol(s)));
-                Do_on.AL_REC_REF.RemoveAt(Do_on.AL_REC_REF.IndexOf(var_cut_symbol(s)));
-            }
-
-            //CLEAN
-            var_arraylist_dispose(ref al);
-            
-            return;
-        }
-
-        void tms_Tick(object sender, EventArgs e)
-        {
-            for (int i = 1; i < ((ArrayList)Do_on.AL_REC[Do_on.AL_REC_REF.IndexOf(((System.Windows.Forms.Timer)sender).Tag.ToString())]).Count; i++)
-            {
-                call_function(var_cut_symbol(((ArrayList)Do_on.AL_REC[Do_on.AL_REC_REF.IndexOf(((System.Windows.Forms.Timer)sender).Tag.ToString())])[i].ToString()));
-            }
-            return;
         }
 
         //TESTING POSTPONED - PROCEDURES NOT DEFINED
@@ -325,109 +277,10 @@ namespace Scorpion
 
             return;
         }*/
-
-        private void show_line(string Line)
-        {
-            MessageBox.Show(Line);
-        }
-
-        //DEFUNCT-->
-        private string Get_Math(string Scorp_Line_Exec)
-        {
-            //gui.text(Hello the result is: sin(1+2/(3+7))+9)~;
-            //Find the outercore
-
-            //shellperpriority func.math(sin(n/(n))+n)
-            //                   3  2  1   4
-
-            ArrayList obj_ = new ArrayList();
-            
-            int ndx = 0;
-            for (int i = 0; i < Scorp_Line_Exec.Length; i++)
-            {
-                ndx = Scorp_Line_Exec.IndexOf("get.math(", ndx + 1);
-                for (int i2 = ndx + 10; i2 < (Scorp_Line_Exec.Length - 1) - (ndx + 10); i2++)
-                {
-
-                }
-            }
-
-            return Scorp_Line_Exec;
-        }
-
         //General Core
-        private void compare_equal(string Line_of_Code, int index)
-        {
-            ArrayList al = cut_variables(ref Line_of_Code);
+     
 
-            if (var_get(al[0].ToString()) == var_get(al[1].ToString()))
-            {
-                Do_on.AL_CURR_VAR[index] = "true";
-            }
-            else
-            { Do_on.AL_CURR_VAR[index] = "false"; }
-
-            //clean
-            Line_of_Code = null;
-            var_arraylist_dispose(ref al);
-
-            return;
-        }
-
-        private void compare_not_equal(string Line_of_Code, int index)
-        {
-            ArrayList al = cut_variables(ref Line_of_Code);
-
-            if (var_get(al[0].ToString()) != var_get(al[1].ToString()))
-            {
-                Do_on.AL_CURR_VAR[index] = "true";
-            }
-            else
-            { Do_on.AL_CURR_VAR[index] = "false"; }
-
-            //clean
-            Line_of_Code = null;
-            var_arraylist_dispose(ref al);
-
-            return;
-        }
-
-        private void compare_greater(string Line_of_Code, int index)
-        {
-            ArrayList al = cut_variables(ref Line_of_Code);
-
-            if (Convert.ToDouble(var_get(al[0].ToString())) > Convert.ToDouble(var_get(al[1].ToString())))
-            {
-                Do_on.AL_CURR_VAR[index] = "true";
-            }
-            else
-            { Do_on.AL_CURR_VAR[index] = "false"; }
-
-            //clean
-            Line_of_Code = null;
-            var_arraylist_dispose(ref al);
-
-            return;
-        }
-
-        private void compare_less(string Line_of_Code, int index)
-        {
-            ArrayList al = cut_variables(ref Line_of_Code);
-            if (Convert.ToDouble(var_get(al[0].ToString())) < Convert.ToDouble(var_get(al[0].ToString())))
-            {
-                Do_on.AL_CURR_VAR[index] = "true";
-            }
-            else
-            { Do_on.AL_CURR_VAR[index] = "false"; }
-
-            //clean
-            Line_of_Code = null;
-            var_arraylist_dispose(ref al);
-
-            return;
-        }
-
-        public void call_function(string Line_of_Code)
+        /*public void call_function(string Line_of_Code)
         {
             bool first = true; int index = 0; int index2 = 0;
 
@@ -461,10 +314,10 @@ namespace Scorpion
             Line_of_Code = null;
 
             return;
-        }
+        }*/
 
         //START THE RCALL TIMERS
-        public void start_recursive_service()
+        /*public void start_recursive_service()
         {
             foreach(ArrayList al in Do_on.AL_REC)
             {
@@ -512,9 +365,9 @@ namespace Scorpion
                 ((System.Windows.Forms.Timer)al[0]).Stop();
             }
             return;
-        }
+        }*/
 
-        private void do_event(object event_)
+        /*private void do_event(object event_)
         {
             string Scorpion_String = event_.ToString();
             string hold = "";
@@ -530,7 +383,7 @@ namespace Scorpion
                     scorpioniee(hold);
                     Cursor_Index = n2 + 2;
                 }
-                catch (Exception erty) { break; }
+                catch { break; }
             }
             //work_(event_);
         }
@@ -548,6 +401,6 @@ namespace Scorpion
         {
             d d1 = new d(do_event);
             //Do_on.Invoke(d1, event_);
-        }
+        }*/
     }
 }

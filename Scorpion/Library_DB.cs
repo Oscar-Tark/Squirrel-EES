@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections;
-using System.Windows.Forms;
 using System.IO;
 
 //Static Library
@@ -27,7 +26,7 @@ namespace Scorpion
     {
         //BASIC DB FUNCTIONS FOR INTERNAL DB
         //NEW
-        public void dbcreate(string Scorp_line_Exec, ArrayList objects)
+        /*public void dbcreate(string Scorp_line_Exec, ArrayList objects)
         {
             //(*File_Name)
             Do_on.vds.Verify_Directory_DB();
@@ -77,10 +76,10 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
-        }
+        }*/
 
         //SYSTEM
-        private void verifyload(string Name)
+        /*private void verifyload(string Name)
         {
             //Verify all three arraylists exist in file
             //{Cells},{Ref},{GUI FUNCTIONS(Element based updating)},{USERS{Name}}}
@@ -93,7 +92,7 @@ namespace Scorpion
             }
             Name = null;
             return;
-        }
+        }*/
 
         //OLD
         /*private void unget_data_file(ref string File)

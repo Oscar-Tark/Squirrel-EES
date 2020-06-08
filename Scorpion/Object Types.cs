@@ -15,20 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Reflection;
-using OpenTK;
 using System.Collections;
-using System.Collections.Specialized;
-using System.IO;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Scorpion
 {
@@ -64,11 +51,14 @@ namespace Scorpion
 
         public void load_system_vars()
         {
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "one_root", fm_1_ref, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("one_root");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "false", S_No, "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("false");
             fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "secs", S_Yes, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("secs");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "true", S_Yes, "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("true");
+            fm_1_ref.AL_CURR_VAR_TAG.Add("");
+            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "temp", "You can use this variable for temporary operations", "", "", "" });
+            fm_1_ref.AL_CURR_VAR_REF.Add("temp");
             fm_1_ref.AL_CURR_VAR_TAG.Add("");
 
             return;

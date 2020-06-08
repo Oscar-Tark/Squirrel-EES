@@ -26,6 +26,10 @@ namespace Scorpion
     public partial class Librarian
     {
         System.Diagnostics.Stopwatch sp = new System.Diagnostics.Stopwatch();
+    }
+
+    public partial class Librarian
+    {
         public Librarian(Form1 Form_Handle)
         {
             Do_on = Form_Handle;
@@ -94,6 +98,11 @@ namespace Scorpion
 
     public class Enginefunctions
     {
+        public string replace_fakes(ref string Scorp_Line)
+        {
+            return Scorp_Line.Replace("@", "*");
+        }
+
         public string prepare_Scorp_line(ref string Scorp_Line)
         {
             return Scorp_Line.ToLower();
