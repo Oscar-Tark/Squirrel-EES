@@ -1,26 +1,21 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scripts/Scorpion_SCRIPTS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Trading API/Scorpion_TRADER.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Scorpion/Library.cs" Line="104" Column="44" />
-      <File FileName="Scorpion/Library_MEM_MGMT.cs" Line="73" Column="9" />
-      <File FileName="Scorpion/Library_APP.cs" Line="48" Column="42" />
-      <File FileName="Scorpion/File Operations/Scorpion_FILES.cs" Line="25" Column="33" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="29" Column="59" />
-=======
-      <File FileName="Scorpion/Scripts/Scorpion_SCRIPTS.cs" Line="18" Column="18" />
-      <File FileName="Scorpion/Main/Root_cui.cs" Line="29" Column="184" />
->>>>>>> 168aa2dc00a1762d95f0965bb4b662cadbac7bcc
+      <File FileName="Scorpion/Network/Scorpion_JSON.cs" Line="23" Column="35" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="10" Column="6" />
+      <File FileName="Scorpion/Trading API/bitpanda/Scorpion_BP.cs" Line="1" Column="1" />
+      <File FileName="Scorpion/Trading API/Scorpion_TRADER.cs" Line="11" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Main" expanded="True" />
-              <Node name="Scripts" expanded="True">
-                <Node name="Scorpion_SCRIPTS.cs" selected="True" />
+              <Node name="Network" expanded="True" />
+              <Node name="Trading API" expanded="True">
+                <Node name="bitpanda" expanded="True" />
+                <Node name="Scorpion_TRADER.cs" selected="True" />
               </Node>
             </Node>
           </Node>

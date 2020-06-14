@@ -105,6 +105,13 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.112.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Json" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <Package>monodevelop</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -117,20 +124,12 @@
     <Compile Include="Library_SYSTEM_OBJ.cs" />
     <Compile Include="Memory Security\Scorpion_SECMEM.cs" />
     <Compile Include="Objects_Messages.cs" />
-    <Compile Include="Threading\Scorpion_THREADING.cs" />
-    <Compile Include="Main\Amatrix Server Lite.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main\Amatrix Server Lite.Designer.cs">
-      <DependentUpon>Amatrix Server Lite.cs</DependentUpon>
-    </Compile>
     <Compile Include="Diff.cs" />
     <Compile Include="External_Lib.cs" />
     <Compile Include="Main\Root_cui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Library.cs" />
-    <Compile Include="Library_APP.cs" />
+    <Compile Include="Scorpion.cs" />
     <Compile Include="Library_DB.cs" />
     <Compile Include="Library_ENCODING.cs" />
     <Compile Include="Library_FNC.cs" />
@@ -144,9 +143,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Main\Amatrix Server Lite.resx">
-      <DependentUpon>Amatrix Server Lite.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -174,6 +170,10 @@
     <Compile Include="Network\Scorpion_NETWORK.cs" />
     <None Include="App.config" />
     <Compile Include="Libraries\Library_COND.cs" />
+    <Compile Include="Libraries\Library_APP.cs" />
+    <Compile Include="Network\Scorpion_JSON.cs" />
+    <Compile Include="Trading API\bitpanda\Scorpion_BP.cs" />
+    <Compile Include="Trading API\Scorpion_TRADER.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />
@@ -399,6 +399,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Libraries\" />
+    <Folder Include="Trading API\" />
+    <Folder Include="Trading API\bitpanda\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
