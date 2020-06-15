@@ -1,19 +1,15 @@
 ﻿using System;
 using Scorpion;
+using System.Collections;
 
-namespace ScorpionTrader
+namespace Scorpion
 {
-    class ScorpionTrader
+    public partial class Librarian
     {
-        Scorpion.Librarian lb__;
-        public ScorpionTrader(ref Scorpion.Librarian lib)
+        public void sell(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            lb__ = lib;
-        }
-
-        public void sell()
-        { 
-        
+            var_arraylist_dispose(ref objects);
+            return;
         }
 
         public void buy()

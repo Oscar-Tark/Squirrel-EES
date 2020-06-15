@@ -27,7 +27,34 @@ using System.Drawing;
 namespace Scorpion
 {
     partial class Librarian
-    { 
+    {
+        private string read_file(string path)
+        {
+            FileStream fd = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
+
+            string s_read = sr.ReadToEnd();
+
+            sr.Close();
+            fd.Close();
+
+            path = null;
+
+            return s_read;
+        }
+
+        //Possible memory leak
+        private StreamReader get_sr(string path)
+        {
+            FileStream fd = new FileStream(path, FileMode.Open);
+            path = null;
+            return new StreamReader(fd, System.Text.Encoding.UTF8);
+        }
+
+
+
+        //OLD-->
+
         public void show_file_list(ref string Scorp_Line_Exec)
         {
             //(*directory) or *"&token"

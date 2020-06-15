@@ -53,7 +53,7 @@ namespace Scorpion
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
-            Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
+            //Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
 
             if (Scorp_Line_Exec != "\0")
             {
@@ -105,13 +105,14 @@ namespace Scorpion
 
         public string prepare_Scorp_line(ref string Scorp_Line)
         {
-            return Scorp_Line.ToLower();
+            return Scorp_Line;
+            //return Scorp_Line.ToLower();
         }
 
         public string[] get_function(ref string Scorp)
         {
             string[] delimiterChars = { "::" };
-            return Scorp.Replace(" ", "").Split(delimiterChars, StringSplitOptions.None);
+            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.None);
         }
 
         public string[] get_return(ref string Scorp)
