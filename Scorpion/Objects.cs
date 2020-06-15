@@ -128,6 +128,10 @@ namespace Scorpion
 
         //Main Collections
 
+        //COMMAND LOG
+        public int commands_point = 0;
+        public string[] commands = new string[64];
+
         //Ubearables
         public ArrayList AL_UNBEARABLE_CHARS = new ArrayList() { ",", "]"/*, " "*/, ")" };
         public ArrayList AL_WILDCARDS = new ArrayList() { "-", " " };

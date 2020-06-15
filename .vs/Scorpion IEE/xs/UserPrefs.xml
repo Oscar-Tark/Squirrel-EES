@@ -1,22 +1,19 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scripts/Scorpion_SCRIPTS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_JSON.cs" Line="64" Column="13" />
-      <File FileName="Scorpion/Trading API/bitpanda/Scorpion_BP.cs" Line="25" Column="18" />
-      <File FileName="Scorpion/Scorpion.cs" Line="108" Column="31" />
-      <File FileName="Scorpion/Scripts/Scorpion_SCRIPTS.cs" Line="66" Column="34" />
-      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="24" Column="10" />
-      <File FileName="Scorpion/Library_IO.cs" Line="46" Column="31" />
+      <File FileName="Scorpion/Scorpion.cs" Line="58" Column="49" />
+      <File FileName="Scorpion/Main/Root_cui.cs" Line="37" Column="49" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Scorpion_SCRIPTS.cs" selected="True" />
-              </Node>
+              <Node name="Crypto" expanded="True" />
+              <Node name="Main" expanded="True" />
+              <Node name="Scripts" expanded="True" />
+              <Node name="Scorpion.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -26,9 +23,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="/home/hamster/GIT/Scorpion-IEE/Scorpion/Trading API/bitpanda/Scorpion_BP.cs" relfile="Scorpion/Trading API/bitpanda/Scorpion_BP.cs" line="22" column="17" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

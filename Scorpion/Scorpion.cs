@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Threading;
 
 //Static Library
+using System.Linq;
 namespace Scorpion
 {
     public partial class Librarian
@@ -53,6 +54,9 @@ namespace Scorpion
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
+
+            //Add to log for updown funtionality
+            Do_on.commands[0] = Scorp_Line_Exec;
             //Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
 
             if (Scorp_Line_Exec != "\0")
@@ -93,6 +97,14 @@ namespace Scorpion
                 return;
             }
             else { Do_on.write_to_cui("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
+        }
+    }
+
+    public partial class Librarian
+    {
+        private void addlog(ref string Scorp_Line_Exec)
+        { 
+            
         }
     }
 

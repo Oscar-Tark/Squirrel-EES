@@ -27,9 +27,20 @@ namespace Scorpion
         {
             start_classes();
             Console.WriteLine("Welcome to Scorpion V1.0 :) Sting STING sTiNG\n\n{0}", "Licensed Under the GNU GPL Version 3\n < One Platform.Noded Command Framework >\nCopyright(C) < 2020 >  < Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
+            string command = null;
             while (true)
             {
-                readr.access_library(Console.ReadLine());
+                command = Console.ReadLine();
+                if (command != "~")
+                {
+                    commands_point = 0;
+                    readr.access_library(command);
+                }
+                else
+                {
+                    Console.WriteLine(commands[0]);
+                    commands_point += 1;
+                }
                 th_clean_strt();
             }
         }

@@ -1042,7 +1042,6 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
