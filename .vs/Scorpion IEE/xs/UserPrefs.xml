@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Main/Root_cui.cs">
     <Files>
-      <File FileName="Scorpion/Scorpion.cs" Line="58" Column="49" />
-      <File FileName="Scorpion/Main/Root_cui.cs" Line="37" Column="49" />
+      <File FileName="Scorpion/Scorpion.cs" Line="59" Column="49" />
+      <File FileName="Scorpion/Main/Root_cui.cs" Line="40" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,9 +11,10 @@
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
               <Node name="Crypto" expanded="True" />
-              <Node name="Main" expanded="True" />
+              <Node name="Main" expanded="True">
+                <Node name="Root_cui.cs" selected="True" />
+              </Node>
               <Node name="Scripts" expanded="True" />
-              <Node name="Scorpion.cs" selected="True" />
             </Node>
           </Node>
         </State>
