@@ -34,10 +34,10 @@ namespace Dumper
         }
 
         //Requested Dump
-        public void Dump_DB(String Scorp_Line)
+        public void Dump_DB(String Scorp_Line, string path, string pwd)
         {
-            byte[] b = Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(Scorp_Line)], Do_on.SHA);
-            File.WriteAllBytes(Do_on.AL_DIRECTORIES[0].ToString() + Scorp_Line + Do_on.AL_EXTENSNS[1], b);
+            byte[] b = Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(Scorp_Line)], pwd);
+            File.WriteAllBytes(Do_on.AL_DIRECTORIES[0] + Scorp_Line + Do_on.AL_EXTENSNS[1], b);
 
             Scorp_Line = null;
 
@@ -127,13 +127,13 @@ namespace Dumper
             return;
         }
 
-        public void Un_Dump()
+        public void Un_Dump(string pwd)
         {
             ArrayList al_tmp = new ArrayList();
             /*if (Do_on.readr.lib_SCR.var_get("*secs").ToString() == Do_on.types.S_Yes)
             {*/
                 byte[] b = File.ReadAllBytes(Do_on.AL_HIB_FILES[0].ToString());
-                byte[] read_bytes = Do_on.crypto.decrypt(b, Do_on.SHA);
+                byte[] read_bytes = Do_on.crypto.decrypt(b, pwd);
 
                 al_tmp = (ArrayList)Do_on.crypto.To_Object(new MemoryStream(read_bytes));
             /*}

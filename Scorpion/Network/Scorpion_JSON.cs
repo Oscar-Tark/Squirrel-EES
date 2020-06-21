@@ -34,24 +34,6 @@ namespace Scorpion
             return;
         }
 
-        /*private static async Task curlpostAsync(string Scorp_Line_Exec, ArrayList objects)
-        {
-            using var client = new HttpClient();
-
-            client.BaseAddress = new Uri("https://api.github.com");
-            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
-            client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var url = "repos/symfony/symfony/contributors";
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            var resp = await response.Content.ReadAsStringAsync();
-
-            List<Contributor> contributors = JsonConvert.DeserializeObject<List<Contributor>>(resp);
-            contributors.ForEach(Console.WriteLine);
-        }*/
-
         private async Task curlauthAsync(string Scorp_Line_Exec, ArrayList objects)
         {
             //::*URL, *ret, *auth_nme, *auth_key
@@ -60,7 +42,6 @@ namespace Scorpion
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add((string)objects[2], (string)objects[3]);
-
 
             //for (int i = 0; i < objects.Count - 2; i += 2)
             //    client.DefaultRequestHeaders.Add((string)var_get(objects[i]), (string)var_get(objects[i + 1]));
@@ -87,7 +68,16 @@ namespace Scorpion
             using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
             {
                 // Write the output.
-                Console.WriteLine(await reader.ReadToEndAsync());
+                string ret__ = await reader.ReadToEndAsync();
+
+
+                Console.WriteLine("YEP: {0:G}", objects[1]);
+                Console.WriteLine("YEP: {0:G}", objects[0]);
+                Console.WriteLine("YEP: {0:G}", objects[2]);
+                Console.WriteLine("YEP: {0:G}", objects[3]);
+
+                ret__ = var_create_return(ref ret__, true);
+                varset("", new ArrayList() { objects[1], ret__ });
             }
             return;
         }

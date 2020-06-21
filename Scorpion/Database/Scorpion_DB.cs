@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
 using System.IO;
 
@@ -26,20 +25,23 @@ namespace Scorpion
     {
         //BASIC DB FUNCTIONS FOR INTERNAL DB
         //NEW
-        /*public void dbcreate(string Scorp_line_Exec, ArrayList objects)
+        public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
         {
-            //(*File_Name)
-            Do_on.vds.Verify_Directory_DB();
-            Do_on.AL_TBLE.Add(new ArrayList());
-            Do_on.AL_TBLE_REF.Add(var_get(objects[0].ToString()).ToString());
-            verifyload(var_get(objects[0].ToString()).ToString());
-            File.WriteAllBytes(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1], Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(objects[0].ToString()))], Do_on.SHA));
-            Do_on.write_to_cui("Created table file(to disk) : " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
+            //::*File_Name, *pwd
+            //MAX TABLE LEN IS 256
+            string name = (string)var_get(objects[0]);
+            Do_on.AL_TBLE.Add(new string[256]);
+            Do_on.AL_TBLE_REF.Add(name);
 
+            File.WriteAllBytes(name, Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(name)], (string)var_get(objects[1])));
+            Do_on.write_to_cui("Created table file(to disk) : " + name);
+
+            name = null;
             var_arraylist_dispose(ref objects);
             Scorp_line_Exec = null;
             return;
         }
+        /*
         public void dbopen(string Scorp_line_Exec, ArrayList objects)
         {
             //{table, pass}
@@ -78,7 +80,7 @@ namespace Scorpion
             return;
         }*/
 
-        //SYSTEM
+        //OLD REMOVE
         /*private void verifyload(string Name)
         {
             //Verify all three arraylists exist in file

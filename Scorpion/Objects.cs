@@ -110,8 +110,6 @@ namespace Scorpion
 
         public int GUI_TEMPLATE_COUNT = 0;
 
-
-        public string SHA;
         public string[] cmdargs;
 
         public string Mess;
@@ -190,18 +188,6 @@ namespace Scorpion
         //Operators Definitions
         public ArrayList AL_OPRTRS = new ArrayList() { "+", "-", "/", "*", "%", "&&", "||", "<", ">", "=", "<=", ">=", "!", /*contains*/ "?", /*Union*/"<->", "<-", "->", /*Intersection*/ "<~>" };
 
-        public string[] AL_KEYS = new string[9]
-        {
-            "fnc",
-            "io",
-            "net",
-            "eng",
-            "db",
-            "mem",
-            "exe",
-            "typ",
-            "sec"
-        };
 
         /*public string[][] AL_CALLERS = new string[1][]
         {

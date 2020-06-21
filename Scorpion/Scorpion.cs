@@ -118,7 +118,6 @@ namespace Scorpion
         public string prepare_Scorp_line(ref string Scorp_Line)
         {
             return Scorp_Line;
-            //return Scorp_Line.ToLower();
         }
 
         public string[] get_function(ref string Scorp)

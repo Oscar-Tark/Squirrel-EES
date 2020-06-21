@@ -24,6 +24,8 @@ namespace Scorpion
             al_trade.Add("Authorization");
             al_trade.Add("Bearer " + bp.API_KY);
 
+            //Do_on.write_to_cui((string)al_trade[1]);
+
             jsongetauth(Scorp_Line_Exec, al_trade);
 
             Scorp_Line_Exec = null;
@@ -33,12 +35,7 @@ namespace Scorpion
         }
     }
 
-    class ScorpionBP_OBJ
-    { 
-    
-    }
-
-    class ScorpionBP:ScorpionBP_OBJ
+    class ScorpionBP
     {
         public string base_URL = "";
         public string trades = null;
