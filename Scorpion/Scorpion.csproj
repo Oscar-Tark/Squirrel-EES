@@ -173,6 +173,7 @@
     <Compile Include="Network\Scorpion_JSON.cs" />
     <Compile Include="Trading API\bitpanda\Scorpion_BP.cs" />
     <Compile Include="Database\Scorpion_DB.cs" />
+    <Compile Include="Trading API\Scorpion_Trading_Generic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />

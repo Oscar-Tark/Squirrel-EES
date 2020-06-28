@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 //Static Library
 namespace Scorpion
@@ -36,12 +37,15 @@ namespace Scorpion
 
         private async Task curlauthAsync(string Scorp_Line_Exec, ArrayList objects)
         {
-            //::*URL, *ret, *auth_nme, *auth_key
+            //::*URL, *ret, *auth_nme, *auth_key, *content
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add((string)objects[2], (string)objects[3]);
+
+            //Workaround objects[1] gets cancelled after hhtp response message
+            string ret = (string)objects[1];
 
             //for (int i = 0; i < objects.Count - 2; i += 2)
             //    client.DefaultRequestHeaders.Add((string)var_get(objects[i]), (string)var_get(objects[i + 1]));
@@ -53,10 +57,13 @@ namespace Scorpion
             //client.DefaultRequestHeaders.Add("Upgrade-Insecure-Requests", "1");
 
             // Create the HttpContent for the form to be posted.
-            //var requestContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("HTTP/1.1", "GET"),});
-            StringContent requestContent = new StringContent("");
+            StringContent requestContent;
+            if (objects.Count > 4)
+                requestContent = new StringContent((string)var_get(objects[4]));
+            //requestContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("HTTP/1.1", "GET"),});
+            else
+                requestContent = new StringContent("");
             requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
 
             // Get the response.
             HttpResponseMessage response = await client.GetAsync((string)var_get(objects[0]));
@@ -69,15 +76,8 @@ namespace Scorpion
             {
                 // Write the output.
                 string ret__ = await reader.ReadToEndAsync();
-
-
-                Console.WriteLine("YEP: {0:G}", objects[1]);
-                Console.WriteLine("YEP: {0:G}", objects[0]);
-                Console.WriteLine("YEP: {0:G}", objects[2]);
-                Console.WriteLine("YEP: {0:G}", objects[3]);
-
                 ret__ = var_create_return(ref ret__, true);
-                varset("", new ArrayList() { objects[1], ret__ });
+                varset("", new ArrayList() { ret, ret__ });
             }
             return;
         }

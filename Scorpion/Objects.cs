@@ -56,7 +56,7 @@ namespace Scorpion
             return;
         }
 
-        public void tms_call(Object obj)
+        public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
                 Do_on.readr.lib_SCR.scorpioniee((object)(command.Replace('@', '*')));
@@ -131,8 +131,8 @@ namespace Scorpion
         public string[] commands = new string[64];
 
         //Ubearables
-        public ArrayList AL_UNBEARABLE_CHARS = new ArrayList() { ",", "]"/*, " "*/, ")" };
-        public ArrayList AL_WILDCARDS = new ArrayList() { "-", " " };
+        public string[] AL_UNBEARABLE_CHARS = new string[3] { ",", "]", ")" };
+        public string[] AL_WILDCARDS = new string[2] { "-", " " };
 
         //Events used for DB
         public ArrayList AL_Ref_EVT = new ArrayList();
@@ -153,9 +153,6 @@ namespace Scorpion
         public ArrayList AL_TBLE = new ArrayList();
         public ArrayList AL_TBLE_REF = new ArrayList();
 
-        //Variables for Queries
-        public ArrayList AL_QUERY_VAR = new ArrayList() { "<cell>", "</cell>", "<operator>", "</operator>", "<create>", "</create>", "<delete>", "</delete>", "<search>", "</search>", "<is>", "</is>", "<isnot>", "</isnot>", "<getall>", "</getall>" };
-
         //AuthTable
         public ArrayList AL_AUTH_REF = new ArrayList();
         public ArrayList AL_AUTH = new ArrayList();
@@ -170,10 +167,6 @@ namespace Scorpion
         public ArrayList AL_SHS_APP = new ArrayList();
         public ArrayList AL_SHS_APP_REF = new ArrayList();
 
-        //Controllable Running Processes
-        public ArrayList AL_PRC_REF = new ArrayList();
-        public ArrayList AL_PRC = new ArrayList();
-
         //HIB SETTINGS
         public ArrayList AL_HIB_FILES = new ArrayList() { Application.StartupPath + "\\System\\Data\\one.vds" };
 
@@ -181,32 +174,11 @@ namespace Scorpion
         public ArrayList AL_DIRECTORIES = new ArrayList() { Application.StartupPath + "\\System\\OneDB\\", Application.StartupPath + "\\", Application.StartupPath + "\\System\\Data\\", Application.StartupPath + "\\System\\OneBack\\", Application.StartupPath + "\\System\\OneDB", Application.StartupPath + "\\System\\OneSource\\", Application.StartupPath + "\\System\\OneAssemblies\\", Application.StartupPath + "\\System\\SQLite\\" };
         public ArrayList AL_EXTENSNS = new ArrayList() { ".vds", ".vdb", ".vdsqlite" };
 
-        //Accessors Definitions
-        public ArrayList AL_ACC = new ArrayList() { ">>", "*", ".", "(", ")", "\\", "@", "#" };
-        //public ArrayList AL_SECTIONS = new ArrayList() { "data", "gui", "commands", "variables", "assemblies", "scripts" };
-
-        //Operators Definitions
-        public ArrayList AL_OPRTRS = new ArrayList() { "+", "-", "/", "*", "%", "&&", "||", "<", ">", "=", "<=", ">=", "!", /*contains*/ "?", /*Union*/"<->", "<-", "->", /*Intersection*/ "<~>" };
-
-
-        /*public string[][] AL_CALLERS = new string[1][]
-        {
-            //ALL KEYS CORRESPOND TO INDEX OF CALLERS
-        };*/
-
-        //TRANSFER TO TABLES
-        public ArrayList AL_MESSAGE = new ArrayList() { "[IP REFUSED]", "[PORT REFUSED]", "[FATAL EXIT]", "The specified GUI element could not run a method, make sure it is not disposed, if so delete it and create it again.", "Databases may only be opened from the \\OneDB folder, please make sure that the database you would like to open is copied to that folder or use the import tool in the menu VDB->Import Database.", "[WARNING]", "A System function has raised an error, this might be the cause of a faulty configuration or an unfound bug, Press 'Ignore' to continue on using the system.", "Main database not found. The system will create it on shutdown.\n\nIF you are seeing this message over and over again, your system database might be corrupt. Run the command 'mem.deleteall()', current running system variables will be saved to a fresh database on shutdown, so that you do not loose your work.", "File loaded successfully to variable." };
-
         //Assemblies
         public ArrayList AL_ASSEMB = new ArrayList();
         public ArrayList AL_ASSEMB_REF = new ArrayList();
         public ArrayList AL_ASSEMB_INST = new ArrayList();
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
-
-        //SQL/NOSQL
-        public ArrayList AL_SQL_REF = new ArrayList();
-        public ArrayList AL_SQL = new ArrayList();
-
 
         //TCP
         public long session = 0;

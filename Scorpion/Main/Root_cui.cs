@@ -44,7 +44,8 @@ namespace Scorpion
                         command = commands[commands_point];
                         break;
                     case 0x00:
-                        command = command.Remove(command.Length - 1);
+                        if(command.Length >= 1)
+                            command = command.Remove(command.Length - 1);
                         break;
                     default:
                         command += Convert.ToChar(ky);
@@ -75,8 +76,6 @@ namespace Scorpion
         private void clean()
         {
             //Implement in a better way
-            AL_UNBEARABLE_CHARS.TrimToSize();
-
             //General Memory
             AL_CURR_VAR.TrimToSize();
             AL_CURR_VAR_REF.TrimToSize();
@@ -98,10 +97,6 @@ namespace Scorpion
             AL_SHS_APP_REF.TrimToSize();
             AL_SHS_REF.TrimToSize();
 
-            AL_PRC.TrimToSize();
-            AL_PRC_REF.TrimToSize();
-
-            AL_ACC.TrimToSize();
             GC.Collect();
             return;
         }
