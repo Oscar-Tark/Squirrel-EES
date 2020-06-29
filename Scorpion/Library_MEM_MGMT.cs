@@ -46,11 +46,11 @@ namespace Scorpion
                     {
                         al[i] = null;
                     }
-                    catch { write_to_cui("Memory Segment Dispose Fail: One Element"); }
+                    catch { write_to_cui("Memory Slot Dispose Fail: One Element"); }
                 }
                 al = null;
             }
-            catch { write_to_cui("Memory Segment Dispose Fail: Segment"); }
+            catch { write_to_cui("Memory Slot Dispose Fail: Segment"); }
 
             return;
         }
@@ -59,7 +59,7 @@ namespace Scorpion
         private string var_create_return(ref string val, bool is_val)
         {
             if (is_val)
-                return "\"" + val + "\"";
+                return "\'" + val + "\'";
             return val;
         }
     }
@@ -144,9 +144,6 @@ namespace Scorpion
             return;
         }
 
-
-
-
         public void var_set_decrypted(string where, object value)
         {
             /*(*where,*value)*/
@@ -201,6 +198,12 @@ namespace Scorpion
             Scorp_Line_Exec = Scorp_Line_Exec.Replace("*", "");
 
             vardelete(Scorp_Line_Exec, new ArrayList());
+        }
+
+        private void var_set(string Reference, string Variable)
+        {
+            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = var_get(Variable);
+            return;
         }
 
         private void var_new(object Variable, string Reference, string Type_)
@@ -330,7 +333,7 @@ namespace Scorpion
             object o = (object)Block;
             try
             {
-                if (!o.ToString().StartsWith("\"", System.StringComparison.CurrentCulture))
+                if (!o.ToString().StartsWith("\'", System.StringComparison.CurrentCulture))
                 {
                         try
                         {
@@ -423,9 +426,9 @@ namespace Scorpion
         }
         public string var_cut_str_symbol(ref string Var)
         {
-            if (Var.Contains("\"") == true)
+            if (Var.Contains("'") == true)
             {
-                Var = Var.Replace("\"", "");
+                Var = Var.Replace("'", "");
             }
 
             return Var;
@@ -433,8 +436,8 @@ namespace Scorpion
 
         public string var_cut_str_symbol(string Var)
         {
-            if (Var.Contains("\"") == true)
-                return Var.Replace("\"", "");
+            if (Var.Contains("'") == true)
+                return Var.Replace("'", "");
             return Var;
         }
 

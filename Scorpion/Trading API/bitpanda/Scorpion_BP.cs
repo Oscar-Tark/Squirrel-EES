@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 
 namespace Scorpion
 { 
@@ -55,14 +56,22 @@ namespace Scorpion
             return;
         }
 
-        public void bp_getcurrencies(ref string Scorp_Line_Exec, ref ArrayList objects)
-        { 
-            
+        public void bpcurrencies(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*return
+            objects.Insert(0, bp.public_URL + bp.currencies);
+            jsonget(Scorp_Line_Exec, objects);
+
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
         }
     }
 
     class ScorpionBP
     {
+        public string public_URL;
+        public string currencies = null;
         public string base_URL = "";
         public string trades = null;
         public string balances = null;
@@ -73,8 +82,10 @@ namespace Scorpion
 
         public ScorpionBP()
         {
+            public_URL = "https://api.exchange.bitpanda.com/public/v1/";
             base_URL = "https://api.exchange.bitpanda.com/public/v1/account/";
             trades = "trades";
+            currencies = "currencies";
             balances = "balances";
             deposit = "deposit";
             depositcrypto = "deposit/crypto";

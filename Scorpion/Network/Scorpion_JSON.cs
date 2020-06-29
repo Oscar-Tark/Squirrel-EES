@@ -1,21 +1,42 @@
-﻿using System.Net.Http;
+﻿using System;
 using System.Collections;
 using System.IO;
-using System.Threading.Tasks;
+using System.Json;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using System;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
-//Static Library
 namespace Scorpion
 {
     partial class Librarian
     {
-        public object jsonparse(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void jsonvars(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            return JsonConvert.DeserializeObject((string)var_get(objects[0]));
+            //Creates variables out of JSON arguments
+            //::*jsonvar, *prefix, *key
+            try
+            {
+                JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
+                string key = (string)var_get(objects[2]);
+                string prefix = (string)var_get(objects[1]);
+                /*foreach(JsonValue js in jv)
+                {
+                    //Console.WriteLine((string)js[key]);
+                }*/
+                for (int i = 0; i < jv.Count-1; i++)
+                {
+                    if(jv[i].ContainsKey(key))
+                    {
+                        var_new("", prefix + jv[i][key], "");
+                    }
+                }
+            }
+            catch(Exception erty) { Console.WriteLine(erty); }
+            var_arraylist_dispose(ref objects);
+            return;
         }
+
+        //public void jsonvarfill()
 
         public void jsonget(string Scorp_Line_Exec, ArrayList objects)
         {
@@ -46,15 +67,6 @@ namespace Scorpion
 
             //Workaround objects[1] gets cancelled after hhtp response message
             string ret = (string)objects[1];
-
-            //for (int i = 0; i < objects.Count - 2; i += 2)
-            //    client.DefaultRequestHeaders.Add((string)var_get(objects[i]), (string)var_get(objects[i + 1]));
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html,application/xhtml+xml,application/xml,application/json;q=0.9,image/webp,/*;q=0.8"));
-            //client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
-            //client.DefaultRequestHeaders.Add("Accept-Language", "keep-alive");
-            //client.DefaultRequestHeaders.Add("DNT", "1");
-            //client.DefaultRequestHeaders.Add("Host", "api.exchange.bitpanda.com");
-            //client.DefaultRequestHeaders.Add("Upgrade-Insecure-Requests", "1");
 
             // Create the HttpContent for the form to be posted.
             StringContent requestContent;
@@ -90,6 +102,9 @@ namespace Scorpion
             requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
+            //Workaround objects[1] gets cancelled after hhtp response message
+            string ret = (string)objects[1];
+
             // Get the response.
             HttpResponseMessage response = await client.GetAsync((string)var_get(objects[0]));
 
@@ -102,7 +117,7 @@ namespace Scorpion
                 // Write the output.
                 string ret__ = await reader.ReadToEndAsync();
                 ret__ = var_create_return(ref ret__, true);
-                varset("", new ArrayList() { objects[1], ret__ });
+                varset("", new ArrayList() { ret, ret__ });
             }
             return;
         }
