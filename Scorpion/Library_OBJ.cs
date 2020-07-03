@@ -16,19 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Drawing;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Net.Configuration;
-using System.Net;
 
 namespace Scorpion
 {

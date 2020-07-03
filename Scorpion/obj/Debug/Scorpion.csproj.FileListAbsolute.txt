@@ -977,42 +977,6 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/en/Scorpion IEE cor
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.exe
 C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.pdb
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll.config
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
@@ -1049,3 +1013,39 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.pdb
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll.config
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb

@@ -12,13 +12,13 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 `\*`   = Asterisk denotes a variable this refers to a defined variable that exists in the scorpion memory pool.
 
-`*""` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
+`*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
 
 (Example):
 
 `var::*store`
 
-`jsonget::*"http://ip.jsontest.com/", *store`
+`jsonget::*'http://ip.jsontest.com/', *store`
 
 **Function calls:**
 
@@ -34,13 +34,13 @@ The first variable is a return variable. Any variable that the function returns 
 
 `var::*var1`
 
-`varset::*var1, *"Scorpions are SO misunderstood.."`
+`varset::*var1, *'Scorpions are SO misunderstood..'`
 
 **Running scripts:**
 
 You may run external files as scripts which contain various scorpion function calls delimited by newlines. You may call a script by sending a path argument to the function 'runscript', it is reccomended to not use an extension for filenames:
 
-`runscript::*"/home/user/myscript"`
+`runscript::*'/home/user/myscript'`
 
 You can also put other runscript calls inside of a script.
 
