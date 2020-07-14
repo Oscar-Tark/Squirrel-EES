@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Collections;
 using System.Security.Cryptography;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -33,16 +29,10 @@ namespace Scorpion.Crypto
             return new BinaryFormatter().Deserialize(To_Convert);
         }
 
-        /*private byte[] Set_Salt(ref string Scorp_Line_Exec)
-        {
-            /*(*var*var*var*var*var*var*var*var)
-        }*/
-
         public string SHA(string pass)
         {
             byte[] to_convert = Encoding.UTF8.GetBytes(pass);
             to_convert = SHA256.Create().ComputeHash(to_convert);
-
             return Convert.ToBase64String(to_convert);
         }
 
@@ -55,15 +45,9 @@ namespace Scorpion.Crypto
             byte[] saltbytes = getrandombytes();
             byte[] To_Convert = new byte[saltbytes.Length + to_convert.Length];
             for (int i = 0; i < saltbytes.Length; i++)
-            {
                 To_Convert[i] = saltbytes[i];
-            }
-
             for(int i = 0; i<to_convert.Length; i++)
-            {
                 To_Convert[i + saltbytes.Length] = to_convert[i];
-            }
-
             return encrypt_object(b_pass, To_Convert);
         }
 

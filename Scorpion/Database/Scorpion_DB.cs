@@ -23,44 +23,85 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        //BASIC DB FUNCTIONS FOR INTERNAL DB
-        //NEW
+        /*BASIC DB FUNCTIONS FOR INTERNAL DB
+         * DB's in scorpion store by name&value
+         * 
+         * SYNTAX:
+         * -------
+         * @table@name
+         *         
+         * STRUCTURE:
+         * ----------
+         * {name, value}        
+        */
         public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
         {
-            //::*File_Name, *pwd
-            //MAX TABLE LEN IS 256
+            //::*File_Name_w_path, *pwd
+            //MAX TABLE LEN IS 0x3a
+            //{val}
             string name = (string)var_get(objects[0]);
-            Do_on.AL_TBLE.Add(new string[256]);
-            Do_on.AL_TBLE_REF.Add(name);
+            //Could directly do a new Arraylist(), but want to dispose of it after the operation is done.
+            ArrayList al_db = new ArrayList();
+                Do_on.AL_TBLE.Add(new string[0x3a]);
+                Do_on.AL_TBLE_REF.Add(name);
 
-            File.WriteAllBytes(name, Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(name)], (string)var_get(objects[1])));
-            Do_on.write_to_cui("Created table file(to disk) : " + name);
+                File.WriteAllBytes(name, Do_on.crypto.encrypt(al_db, (string)var_get(objects[1])));
+                Do_on.write_to_cui("Created table file(to disk) : " + name);
 
             name = null;
+            var_arraylist_dispose(ref al_db);
             var_arraylist_dispose(ref objects);
             Scorp_line_Exec = null;
             return;
         }
-        /*
+
         public void dbopen(string Scorp_line_Exec, ArrayList objects)
         {
-            //{table, pass}
-            //Requested Undump
-            Do_on.vds.Verify_File_DB(var_get(objects[0].ToString()).ToString());
+            //::*path, *pwd
+            //MAX TABLE LEN IS 0x3a
+            string name = (string)var_get(objects[0]);
 
-            if (!Do_on.AL_TBLE_REF.Contains(var_get(objects[0].ToString()).ToString()))
+            if (!Do_on.AL_TBLE_REF.Contains((string)var_get(objects[0])))
             {
-                Do_on.AL_TBLE_REF.Add(var_get(objects[0].ToString()).ToString());
-                Do_on.AL_TBLE.Add(Do_on.vds.UnDump_DB(var_get(objects[0].ToString()).ToString(), Do_on.SHA));
-                verifyload(var_get(objects[0].ToString()).ToString());
-                Do_on.write_to_cui("Added Data File: '" + var_get(objects[0].ToString()).ToString() + "'");
+                Do_on.AL_TBLE_REF.Add(var_get(objects[0]));
+
+                byte[] b = File.ReadAllBytes(name);
+                b = Do_on.crypto.decrypt(b, (string)var_get(objects[1]));
+
+                if (!verifydb(ref b))
+                    return;
+
+                Do_on.AL_TBLE.Add(Do_on.crypto.To_Object(new MemoryStream(b)));
+                Do_on.AL_TBLE_REF.Add(name);
+                //Do_on.AL_TBLE.Add(Do_on.vds.UnDump_DB(var_get(objects[0].ToString()).ToString(), Do_on.SHA));
+                //verifyload(var_get(objects[0].ToString()).ToString());
+                Do_on.write_to_cui("Added Data File: '" + var_get(objects[0]) + "'");
             }
-            else { Do_on.write_to_cui("Table '" + var_get(objects[0].ToString()).ToString() + "' already in memory"); }
+            else { Do_on.write_to_cui("Table '" + var_get(objects[0]) + "' already in memory"); }
 
             var_arraylist_dispose(ref objects);
             Scorp_line_Exec = null;
             return;
         }
+
+        public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            foreach (string s_name in Do_on.AL_TBLE_REF)
+                Do_on.write_to_cui(s_name);
+
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        private bool verifydb(ref byte[] b)
+        {
+            if(b.Length == 0x3a)
+                return true;
+            return false;
+        }
+
+        /*
         public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
         {
             File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);

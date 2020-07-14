@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.IO;
 using System.Json;
 using System.Net.Http;
@@ -10,28 +9,21 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        public void jsonvars(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void jsontovar(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //Creates variables out of JSON arguments
-            //::*jsonvar, *prefix, *key
-            try
+            //Creates variables partaining to the JSON object. a special tag is used in order to chain variables
+            //::*jsonvar, *prefix, *key, *contains_key, tag
+
+            JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
+            string key = (string)var_get(objects[2]);
+            string contains_key = (string)var_get(objects[3]);
+            string prefix = (string)var_get(objects[1]);
+
+            for (int i = 0; i < jv.Count-1; i++)
             {
-                JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
-                string key = (string)var_get(objects[2]);
-                string prefix = (string)var_get(objects[1]);
-                /*foreach(JsonValue js in jv)
-                {
-                    //Console.WriteLine((string)js[key]);
-                }*/
-                for (int i = 0; i < jv.Count-1; i++)
-                {
-                    if(jv[i].ContainsKey(key))
-                    {
-                        var_new("", prefix + jv[i][key], "");
-                    }
-                }
+                if(jv[i].ContainsKey(key) && jv[i].ContainsKey(contains_key))
+                    var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]));
             }
-            catch(Exception erty) { Console.WriteLine(erty); }
             var_arraylist_dispose(ref objects);
             return;
         }

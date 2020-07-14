@@ -16,8 +16,6 @@
 */
 
 using System.Collections;
-using System.IO;
-using System.Linq.Expressions;
 
 namespace Scorpion
 {
@@ -66,6 +64,19 @@ namespace Scorpion
 
     partial class Librarian
     {
+        //TAG FUNCTIONS FOR CHAINING
+        public void vartag(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*var, *tag
+
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+    }
+
+    partial class Librarian
+    {
         //Variables-->o
         //NEW
         public void var(string Scorp_Line_Exec, ArrayList objects)
@@ -73,7 +84,7 @@ namespace Scorpion
             //(*,*,*,*,...)
             //ArrayList al = cut_variables(ref Scorp_Line_Exec);
             foreach (string s in objects)
-                var_new((object)"", s, "");
+                var_new((object)"", s, "", "");
 
             //clean
             var_arraylist_dispose(ref objects);
@@ -84,15 +95,7 @@ namespace Scorpion
         public void varset(string Scorp_Line_Exec, ArrayList objects)
         {
             /*(*where,*value)*/
-            //if (!var_cut_symbol(objects[0].ToString()).Contains(Do_on.AL_ACC[6].ToString()))
             ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get(objects[1].ToString());
-            /*else
-            {
-                ArrayList al_ = var_cut_domain(objects[0].ToString());
-                //{db}                                      {table}                     {var}
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[2] = var_get(objects[1].ToString());
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[3] = 1;
-            }*/
 
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -112,7 +115,7 @@ namespace Scorpion
         {
             string STR_ = "";
             foreach (string s in Do_on.AL_CURR_VAR_REF)
-                STR_ += s + " [" + ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(s)])[2] + "]"+ "\n";
+                STR_ += s + " [" + ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(s)])[2] + "] TAG: [" + ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(s)])[3] + "]\n";
             Do_on.write_to_cui(STR_);
 
             //clean
@@ -121,44 +124,13 @@ namespace Scorpion
             return;
         }
 
-
-        //OLD LEGACY
-        public void var_set(string Scorp_Line_Exec, object o)
-        {
-            /*(*@var,*object_value)*/
-            ArrayList al = cut_variables(ref Scorp_Line_Exec);
-            string s = o.ToString();
-            //if (!var_cut_symbol(al[0].ToString()).Contains(Do_on.AL_ACC[6].ToString()))
-            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(al[0].ToString()))])[2] = var_get(ref s);
-            /*else
-            {
-                ArrayList al_ = var_cut_domain(al[0].ToString());
-                //{db}                                      {table}                     {var}
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[2] = o;
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[3] = 1;
-            }*/
-
-            var_arraylist_dispose(ref al);
-            Scorp_Line_Exec = null;
-
-            return;
-        }
-
         public void var_set_decrypted(string where, object value)
         {
             /*(*where,*value)*/
-            //if (!where.Contains(Do_on.AL_ACC[6].ToString())/* && (int)((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(where))])[3] == 1*/)
-            //{
+
                 ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(where))])[2] = value;
                 ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(where))])[3] = 0;
-            /*}
-            else
-            {
-                ArrayList al_ = var_cut_domain(where);
-                //{db}                                      {table}                     {var}
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[2] = value;
-                ((ArrayList)((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[0])[((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(al_[0])])[Do_on.AL_SECTIONS.IndexOf(al_[1])])[1]).IndexOf(al_[2])])[3] = 0;
-            }*/
+
 
             where = null;
             value = null;
@@ -194,7 +166,6 @@ namespace Scorpion
 
             Scorp_Line_Exec = Scorp_Line_Exec.Remove(nnx2);
             Scorp_Line_Exec = Scorp_Line_Exec.Remove(0, ndx + 1);
-
             Scorp_Line_Exec = Scorp_Line_Exec.Replace("*", "");
 
             vardelete(Scorp_Line_Exec, new ArrayList());
@@ -206,7 +177,7 @@ namespace Scorpion
             return;
         }
 
-        private void var_new(object Variable, string Reference, string Type_)
+        private void var_new(object Variable, string Reference, string Type_, string Tag)
         {
             //(*,*,*,*,...)
             try
@@ -214,25 +185,24 @@ namespace Scorpion
                 if (Do_on.AL_CURR_VAR_REF.Contains(Reference) == false)
                 {
                     //Variable = var_get(Variable.ToString());
-
                     //{key, ref, val, encry, tag}
 
                     //Normal Var
-                    //if (!Reference.Contains(Do_on.AL_ACC[6].ToString()))
-                    //{
+                    if (!Reference.Trim().StartsWith("@", System.StringComparison.CurrentCulture))
+                    {
                         var_cut_symbol(ref Reference);
-                        //OBJ REF            INDX ???                                                   INFOBLOCKS:       INFO             META             RESOURCES(images...)
-                        Do_on.AL_CURR_VAR.Add(new ArrayList { "", Reference, "", "0", new ArrayList() { new ArrayList(), new ArrayList() }, new ArrayList() { new ArrayList(), new ArrayList(), new ArrayList() } });
+                        Do_on.AL_CURR_VAR.Add(new ArrayList { "", Reference, Variable, Tag});
                         Do_on.AL_CURR_VAR_REF.Add(Reference);
-                        Do_on.AL_CURR_VAR_TAG.Add("");
-                    /*}
+                        Do_on.AL_CURR_VAR_TAG.Add(Tag);
+                    }
                     else
                     {
+                        /*::*@table@value
+                         *{name, value}                       
+                        */
                         ArrayList al_variables = var_cut_domain(Reference);
-                        ((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al_variables[0].ToString()))])[Do_on.AL_SECTIONS.IndexOf(var_get(al_variables[1].ToString()))])[0]).Add(new ArrayList() { "", al_variables[2], "", "0", new ArrayList() { new ArrayList(), new ArrayList() } });
-                        ((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al_variables[0].ToString()))])[Do_on.AL_SECTIONS.IndexOf(var_get(al_variables[1].ToString()))])[1]).Add(al_variables[2]);
-                        ((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al_variables[0].ToString()))])[Do_on.AL_SECTIONS.IndexOf(var_get(al_variables[1].ToString()))])[2]).Add(al_variables[2]);
-                    }*/
+                        ((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE.IndexOf(Reference)]).Add(new string[2]);
+                    }
                 }
             }
             catch { Do_on.write_to_cui("Scorpion IEE Error : Unable to Allocate Memory (Variable : '" + Variable.ToString() + "', Reference : '" + Reference + "')"); }

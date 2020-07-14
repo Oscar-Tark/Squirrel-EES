@@ -15,9 +15,7 @@ namespace Scorpion
                 FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
                 StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                 while ((line = sr.ReadLine()) != null)
-                {
                     scorpion_exec((object)line);
-                }
                 sr.Close();
                 fd.Close();
 

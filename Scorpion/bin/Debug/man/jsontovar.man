@@ -1,0 +1,11 @@
+Description
+Creates variables partaining to the JSON object. A special tag is used in order to chain variables
+
+General Syntax
+::*jsonvar, *prefix, *key, *valuekey, *variabletag
+
+*jsonvar     = Your JSON response variable
+*prefix      = A prefix you would like variables created by the conversion to have
+*key         = The JSON key from the value-key pair of who's value you would like to extract and store as the target variables name
+*valuekey    = The JSON key from the value-key pair of who's value you would like to extract and store as the target variables value
+*variabletag = The tag to assign to the created variable in order to chain it to other variables giving them context

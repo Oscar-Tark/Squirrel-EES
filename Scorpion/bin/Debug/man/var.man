@@ -1,0 +1,13 @@
+Description
+Creates a new empty variable or multiple empty variables
+
+General Syntax
+::*var, *var, *var...
+
+*var     = var may be replaced with the name of the variable you would like to create. Scorpion creates the variable in question
+
+Example:
+var::*car, *truck, *bus
+
+See Also
+varset, vardelete, vartag

@@ -20,8 +20,6 @@ using System;
 using System.Reflection;
 using System.Threading;
 
-//Static Library
-using System.Linq;
 namespace Scorpion
 {
     public partial class Librarian
@@ -59,17 +57,17 @@ namespace Scorpion
             Do_on.commands[0] = Scorp_Line_Exec;
             //Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
 
-            if (Scorp_Line_Exec != "\0")
+            if (Scorp_Line_Exec[0] != 0x00)
             {
                 Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line_Exec);
+                string[] functions = null;
                 try
                 {
                     //Gets and removes the return variable
                     string[] final = ef__.get_return(ref Scorp_Line_Exec);
                     if(final.Length > 1)
                         Scorp_Line_Exec = final[1];
-
-                    string[] functions = ef__.get_function(ref Scorp_Line_Exec);
+                    functions = ef__.get_function(ref Scorp_Line_Exec);
                     object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
                     object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
@@ -83,10 +81,12 @@ namespace Scorpion
                 catch (Exception erty)
                 {
                     Do_on.write_to_cui("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
+                    showman(functions[0]);
                 }
 
                 sp.Stop();
-                Do_on.write_to_cui("Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms" + "");
+                Do_on.engine_ndx++;
+                Do_on.write_to_cui("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
                 sp.Reset();
 
                 Scorp_Line = null;

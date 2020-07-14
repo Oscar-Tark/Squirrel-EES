@@ -6,6 +6,8 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 
+
+//DEPRECIATED
 namespace Dumper
 {
     public class Virtual_Dumper_System
@@ -16,11 +18,11 @@ namespace Dumper
         {
             Do_on = fm1;
             //Load_HIBS(); SECURITY ISSUE
-            Verify_File();
+            //Verify_File();
             return;
         }
 
-        public void Load_HIBS()
+        /*public void Load_HIBS()
         {
             foreach (FileInfo fnf in new DirectoryInfo(Environment.CurrentDirectory + "\\System\\Data\\").GetFiles())
             {
@@ -70,10 +72,10 @@ namespace Dumper
             
             Serializer = null;*/
 
-            return;
+          /*  return;
         }
 
-        public void Verify_File()
+        /*public void Verify_File()
         {
             if (!Directory.Exists(Do_on.AL_DIRECTORIES[2].ToString()))
             {
@@ -97,8 +99,8 @@ namespace Dumper
             }
 
             return;
-        }
-
+        }*/
+        /*
         public void Verify_Directory_DB()
         {
             if (!Directory.Exists(Do_on.AL_DIRECTORIES[0].ToString()))
@@ -132,7 +134,7 @@ namespace Dumper
             ArrayList al_tmp = new ArrayList();
             /*if (Do_on.readr.lib_SCR.var_get("*secs").ToString() == Do_on.types.S_Yes)
             {*/
-                byte[] b = File.ReadAllBytes(Do_on.AL_HIB_FILES[0].ToString());
+               /* byte[] b = File.ReadAllBytes(Do_on.AL_HIB_FILES[0].ToString());
                 byte[] read_bytes = Do_on.crypto.decrypt(b, pwd);
 
                 al_tmp = (ArrayList)Do_on.crypto.To_Object(new MemoryStream(read_bytes));
@@ -149,10 +151,10 @@ namespace Dumper
             }*/
                         
 
-            Do_on.AL_CURR_VAR = (ArrayList)al_tmp[0];
+           /* Do_on.AL_CURR_VAR = (ArrayList)al_tmp[0];
             Do_on.AL_CURR_VAR_REF = (ArrayList)al_tmp[1];
-            Do_on.AL_EVT = (ArrayList)al_tmp[2];
-            Do_on.AL_Ref_EVT = (ArrayList)al_tmp[3];
+            //Do_on.AL_EVT = (ArrayList)al_tmp[2];
+            //Do_on.AL_Ref_EVT = (ArrayList)al_tmp[3];
 
             foreach (int i in (ArrayList)al_tmp[4])
             {
@@ -162,10 +164,10 @@ namespace Dumper
             }
 
             //Do_on.AL_REC_REF = (ArrayList)al_tmp[5];
-            Do_on.AL_SHS = (ArrayList)al_tmp[6];
-            Do_on.AL_SHS_REF = (ArrayList)al_tmp[7];
-            Do_on.AL_AUTH = (ArrayList)al_tmp[8];
-            Do_on.AL_AUTH_REF = (ArrayList)al_tmp[9];
+            //Do_on.AL_SHS = (ArrayList)al_tmp[6];
+            //Do_on.AL_SHS_REF = (ArrayList)al_tmp[7];
+            //Do_on.AL_AUTH = (ArrayList)al_tmp[8];
+            //Do_on.AL_AUTH_REF = (ArrayList)al_tmp[9];
             //Do_on.AL_OBJ_3D = (ArrayList)al_tmp[8];
             //Do_on.AL_OBJ_3D_REF = (ArrayList)al_tmp[9];
 
@@ -203,8 +205,8 @@ namespace Dumper
             }*/
 
             //Serializer = null;
-            return;
-        }
+           /* return;
+        }*/
         
     }
 }

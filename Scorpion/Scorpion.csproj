@@ -120,20 +120,19 @@
     <Compile Include="Crypto\Scorpion_CRYPTO.cs" />
     <Compile Include="Dumper.cs" />
     <Compile Include="FormSerialisor.cs" />
-    <Compile Include="Hooking\Scorpion_HOOKS.cs" />
+    <Compile Include="Compiler\Scorpion_COMPILER.cs" />
     <Compile Include="Library_SYSTEM_OBJ.cs" />
     <Compile Include="Memory Security\Scorpion_SECMEM.cs" />
     <Compile Include="Objects_Messages.cs" />
     <Compile Include="Diff.cs" />
     <Compile Include="External_Lib.cs" />
-    <Compile Include="Main\Root_cui.cs">
+    <Compile Include="Main\Scorpion_root.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Scorpion.cs" />
     <Compile Include="Library_ENCODING.cs" />
     <Compile Include="Library_FNC.cs" />
     <Compile Include="Library_OBJ.cs" />
-    <Compile Include="Library_IO.cs" />
     <Compile Include="Library_MEM_MGMT.cs" />
     <Compile Include="Library_TYPE_FUNCTIONS.cs" />
     <Compile Include="Object Types.cs" />
@@ -168,12 +167,14 @@
     <Compile Include="Library_SYSTEM_OBJ_FNC.cs" />
     <Compile Include="Network\Scorpion_NETWORK.cs" />
     <None Include="App.config" />
-    <Compile Include="Libraries\Library_COND.cs" />
-    <Compile Include="Libraries\Library_APP.cs" />
+    <Compile Include="Generic\Library_COND.cs" />
+    <Compile Include="Generic\Library_APP.cs" />
     <Compile Include="Network\Scorpion_JSON.cs" />
     <Compile Include="Trading API\bitpanda\Scorpion_BP.cs" />
     <Compile Include="Database\Scorpion_DB.cs" />
     <Compile Include="Trading API\Scorpion_Trading_Generic.cs" />
+    <Compile Include="Io\Library_IO.cs" />
+    <Compile Include="MAN\Scorpion_MAN.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />
@@ -398,11 +399,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Libraries\" />
+    <Folder Include="Generic\" />
     <Folder Include="Trading API\" />
     <Folder Include="Trading API\bitpanda\" />
     <Folder Include="Database\" />
     <Folder Include="Trading API\alphavantage\" />
+    <Folder Include="Io\" />
+    <Folder Include="MAN\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />

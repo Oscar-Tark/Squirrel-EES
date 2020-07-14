@@ -15,12 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
 using System.Drawing;
 
 //Static Library
@@ -32,14 +29,11 @@ namespace Scorpion
         {
             FileStream fd = new FileStream(path, FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-
             string s_read = sr.ReadToEnd();
-
             sr.Close();
             fd.Close();
 
             path = null;
-
             return s_read;
         }
 
@@ -49,24 +43,6 @@ namespace Scorpion
             FileStream fd = new FileStream(path, FileMode.Open);
             path = null;
             return new StreamReader(fd, System.Text.Encoding.UTF8);
-        }
-
-
-
-        //OLD-->
-
-        public void show_file_list(ref string Scorp_Line_Exec)
-        {
-            //(*directory) or *"&token"
-
-
-            DirectoryInfo di = new DirectoryInfo(Do_on.AL_DIRECTORIES[0].ToString());
-
-            ArrayList al = new ArrayList();
-            foreach (FileInfo fnf in di.GetFiles())
-            { Do_on.write_to_cui(fnf.Name); }
-
-            return;
         }
 
         public void Read_File_Text(string Scorp_Line_Exec, int index)

@@ -26,7 +26,7 @@ namespace Scorpion
         public Form1()
         {
             start_classes();
-            Console.WriteLine("Welcome to Scorpion V1.0 :) Sting STING sTiNG\n\n{0}", "Licensed Under the GNU GPL Version 3\n < One Platform.Noded Command Framework >\nCopyright(C) < 2020 >  < Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
+            Console.WriteLine("Welcome to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
             string command = null;
             int ky = 0x00;
 
@@ -82,20 +82,8 @@ namespace Scorpion
             AL_CURR_VAR_TAG.TrimToSize();
             AL_CURR_VAR_EVT.TrimToSize();
 
-            //Functions
-            AL_Ref_EVT.TrimToSize();
-            AL_EVT.TrimToSize();
-
-            //System
-            AL_HIB_FILES.TrimToSize();
-
             AL_AMCS.TrimToSize();
             AL_AMCS_REF.TrimToSize();
-
-            AL_SHS.TrimToSize();
-            AL_SHS_APP.TrimToSize();
-            AL_SHS_APP_REF.TrimToSize();
-            AL_SHS_REF.TrimToSize();
 
             GC.Collect();
             return;

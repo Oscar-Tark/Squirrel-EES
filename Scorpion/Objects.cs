@@ -73,7 +73,6 @@ namespace Scorpion
         public reader readr;
         public Dumper.Virtual_Dumper_System vds;
         public Crypto.Cryptographer crypto;
-        public Hooking.Hooker hook;
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
         public Timer_ tms;
@@ -86,7 +85,6 @@ namespace Scorpion
             types = new Types(this);
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);
-            hook = new Hooking.Hooker(this);
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
             tms = new Timer_(this);
@@ -108,24 +106,10 @@ namespace Scorpion
             return p;
         }
 
-        public int GUI_TEMPLATE_COUNT = 0;
-
         public string[] cmdargs;
-
-        public string Mess;
-        public int Index = 0; //Reader Index
-        public string Prog_s; //Application String
-        public string Orig_path; //Path
-        public string func_tmp = ""; public string path_tmp = "";
-        public bool real_time = false;
-        public int current_thread_count = 0;
-
+        public long engine_ndx = 0;
         public Types types;
-
         public enum list_type { db_list };
-
-        //Main Collections
-
         //COMMAND LOG
         public int commands_point = 0;
         public string[] commands = new string[64];
@@ -133,10 +117,6 @@ namespace Scorpion
         //Ubearables
         public string[] AL_UNBEARABLE_CHARS = new string[3] { ",", "]", ")" };
         public string[] AL_WILDCARDS = new string[2] { "-", " " };
-
-        //Events used for DB
-        public ArrayList AL_Ref_EVT = new ArrayList();
-        public ArrayList AL_EVT = new ArrayList();
 
         //Sockets
         public ArrayList AL_SOCK = new ArrayList();
@@ -153,35 +133,16 @@ namespace Scorpion
         public ArrayList AL_TBLE = new ArrayList();
         public ArrayList AL_TBLE_REF = new ArrayList();
 
-        //AuthTable
-        public ArrayList AL_AUTH_REF = new ArrayList();
-        public ArrayList AL_AUTH = new ArrayList();
-
         //TCPIP Networking
         public ArrayList AL_AMCS = new ArrayList();
         public ArrayList AL_AMCS_REF = new ArrayList();
 
-        //SHS REDEFINED TO EXECUTE SYSTEM COMMAND
-        public ArrayList AL_SHS_REF = new ArrayList();
-        public ArrayList AL_SHS = new ArrayList();
-        public ArrayList AL_SHS_APP = new ArrayList();
-        public ArrayList AL_SHS_APP_REF = new ArrayList();
-
-        //HIB SETTINGS
-        public ArrayList AL_HIB_FILES = new ArrayList() { Application.StartupPath + "\\System\\Data\\one.vds" };
-
-        //OneDB Dir                                                                                                                                                                 Alternative OneDB Path without \
-        public ArrayList AL_DIRECTORIES = new ArrayList() { Application.StartupPath + "\\System\\OneDB\\", Application.StartupPath + "\\", Application.StartupPath + "\\System\\Data\\", Application.StartupPath + "\\System\\OneBack\\", Application.StartupPath + "\\System\\OneDB", Application.StartupPath + "\\System\\OneSource\\", Application.StartupPath + "\\System\\OneAssemblies\\", Application.StartupPath + "\\System\\SQLite\\" };
-        public ArrayList AL_EXTENSNS = new ArrayList() { ".vds", ".vdb", ".vdsqlite" };
-
         //Assemblies
         public ArrayList AL_ASSEMB = new ArrayList();
         public ArrayList AL_ASSEMB_REF = new ArrayList();
+
+        //Inatantiated Assemblies
         public ArrayList AL_ASSEMB_INST = new ArrayList();
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
-
-        //TCP
-        public long session = 0;
-        public static string IP = "127.0.0.1";
     }
 }
