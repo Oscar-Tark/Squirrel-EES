@@ -58,7 +58,7 @@ Syntax:
 
 Example:
 
-`asmcompile::*'/home/myhome/test.cs', *'test.Test, *'System.IO', *'System.Threading'`
+`asmcompile::*'/home/myhome/test.cs', *'test.Test', *'System.IO', *'System.Threading'`
 
 **Loading C# scripts:**
 
