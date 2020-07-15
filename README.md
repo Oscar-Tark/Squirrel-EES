@@ -1,6 +1,6 @@
 ![IMG](/Art/Cropped.png)
 
-**Please note that Scorpion has only been tested on Mono in Linux using .NET 4.7.2
+**Please note that Scorpion has only been tested on Mono in Linux using .NET 4.7.2**
 
 [Scorpion IEE [Intelligent Execution Environment]]
 ------------------------------------------------
