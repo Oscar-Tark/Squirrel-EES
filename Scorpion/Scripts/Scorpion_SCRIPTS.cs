@@ -9,7 +9,7 @@ namespace Scorpion
         {
             //All fules must be UTF8
             //::*if, *is, *Path
-            if ((string)(var_get(objects[0])) == (string)(var_get(objects[1])))
+            if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
             {
                 string line;
                 FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
@@ -53,7 +53,7 @@ namespace Scorpion
 
             byte[] b = Do_on.crypto.decrypt(Do_on.crypto.To_Byte(encry_), (string)var_get(objects[1]));
 
-            object decry_ = Do_on.crypto.To_Object(new MemoryStream(b));
+            //object decry_ = Do_on.crypto.To_Object(new MemoryStream(b));
 
             /*while ((line = sr.ReadLine()) != null)
             {

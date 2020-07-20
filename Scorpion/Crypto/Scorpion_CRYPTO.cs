@@ -17,16 +17,17 @@ namespace Scorpion.Crypto
             Do_on = fm1;
         }
 
-        public byte[] To_Byte(object To_Encrypt)
+        public byte[] To_Byte(object obj)
         {
             MemoryStream ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, To_Encrypt);
+            new BinaryFormatter().Serialize(ms, obj);
             return ms.ToArray();
         }
 
-        public object To_Object(MemoryStream To_Convert)
+        public object To_Object(byte[] byt)
         {
-            return new BinaryFormatter().Deserialize(To_Convert);
+            MemoryStream ms = new MemoryStream(byt);
+            return new BinaryFormatter().Deserialize(ms);
         }
 
         public string SHA(string pass)
@@ -41,7 +42,6 @@ namespace Scorpion.Crypto
             byte[] to_convert = To_Byte(To_Encrypt);
             //byte[] b_pass = Convert.FromBase64String(pass);
             byte[] b_pass = To_Byte(SHA(pass)); //SHA256.Create().ComputeHash(b_pass);
-
             byte[] saltbytes = getrandombytes();
             byte[] To_Convert = new byte[saltbytes.Length + to_convert.Length];
             for (int i = 0; i < saltbytes.Length; i++)
@@ -55,16 +55,11 @@ namespace Scorpion.Crypto
         {
             byte[] b_pass = Convert.FromBase64String(pass);
             b_pass = SHA256.Create().ComputeHash(b_pass);
-
             byte[] decrypted = decrypt_object(b_pass, To_Decrypt);
-
             int salt_size = 4;
-
             byte[] orig = new byte[decrypted.Length - salt_size];
             for(int i = salt_size; i< decrypted.Length; i++)
-            {
                 decrypted[i - salt_size] = decrypted[i];
-            }
 
             return decrypted;
         }
@@ -73,9 +68,7 @@ namespace Scorpion.Crypto
         {
             byte[] encrypted_bytes = null;
             byte[] to_convert = To_Encrypt;
-            byte[] saltbytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            //byte[] b_pass = Convert.FromBase64String(pass);
-
+            byte[] saltbytes = { 1, 2, 3, 4, 5, 6, 7, 8 };
             using (MemoryStream ms = new MemoryStream())
             {
                 using (RijndaelManaged rj = new RijndaelManaged())
@@ -87,7 +80,6 @@ namespace Scorpion.Crypto
                     var key = new Rfc2898DeriveBytes(pass, saltbytes, 1000);
                     rj.Key = key.GetBytes(rj.KeySize / 8);
                     rj.IV = key.GetBytes(rj.BlockSize / 8);
-
                     rj.Mode = CipherMode.CBC;
 
                     using (var cs = new CryptoStream(ms, rj.CreateEncryptor(), CryptoStreamMode.Write))
@@ -105,8 +97,7 @@ namespace Scorpion.Crypto
         {
             byte[] decrypted_bytes = null;
             byte[] to_convert = To_Decrypt;
-            byte[] saltbytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            //byte[] b_pass = Convert.FromBase64String(pass);
+            byte[] saltbytes = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -136,10 +127,9 @@ namespace Scorpion.Crypto
         private byte[] getrandombytes()
         {
             int salt_size = 4;
-            byte[] boo = new byte[salt_size];
-            RNGCryptoServiceProvider.Create().GetBytes(boo);
-
-            return boo;
+            byte[] rand_b = new byte[salt_size];
+            RandomNumberGenerator.Create().GetBytes(rand_b);
+            return rand_b;
         }
     }
 }

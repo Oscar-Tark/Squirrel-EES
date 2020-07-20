@@ -85,5 +85,18 @@ namespace Scorpion
             YN = null;
             return false;
         }
+
+        public string Convert_booltostring(bool bool_)
+        {
+            switch(bool_)
+            {
+                case true:
+                    return S_Yes;
+                    break;
+                default:
+                    return S_No;
+                    break;
+            }
+        }
     }
 }

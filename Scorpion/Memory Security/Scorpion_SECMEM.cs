@@ -112,7 +112,7 @@ namespace Scorpion.Memory_Security
             {
                 Do_on.write_to_cui("Decrypting Variable: '" + s + "'");
                 tmpbyte = Do_on.crypto.decrypt((byte[])Do_on.readr.lib_SCR.var_get(s), "anus");
-                Do_on.readr.lib_SCR.var_set_decrypted(s, Do_on.crypto.To_Object(new System.IO.MemoryStream(tmpbyte)));
+                //Do_on.readr.lib_SCR.var_set_decrypted(s, Do_on.crypto.To_Object(new System.IO.MemoryStream(tmpbyte)));
             }
 
             tmpbyte = null;

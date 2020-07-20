@@ -18,7 +18,6 @@
 using System.Collections;
 using System.Windows.Forms;
 using System.IO;
-using System.Drawing;
 
 //Static Library
 namespace Scorpion
@@ -79,19 +78,6 @@ namespace Scorpion
             //claen
             var_arraylist_dispose(ref al);
             Scorp_Line_Get = null;
-
-            return;
-        }
-
-        public void Read_File_Image(string Scorp_Line_Exec, int index)
-        {
-            //io.rfi(path(*))
-            ArrayList al = cut_variables(ref Scorp_Line_Exec);
-            Do_on.AL_CURR_VAR[index] = (object)Image.FromFile(var_get(al[0].ToString()).ToString());
-
-            //clean
-            var_arraylist_dispose(ref al);
-            Scorp_Line_Exec = null;
 
             return;
         }

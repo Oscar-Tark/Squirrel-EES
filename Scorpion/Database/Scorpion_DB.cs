@@ -16,142 +16,98 @@
 */
 
 using System.Collections;
-using System.Data.SQLite;
 
-//Static Library
 namespace Scorpion
 {
-    class SQLfunctions
-    { 
-        public string clean_sql_single_word(ref string sql)
-        {
-            sql = sql.Replace("'", "");
-            sql = sql.Replace("\"", "");
-            sql = sql.Replace(" ", "");
-            return sql;
-        }
-
-    }
-
     partial class Librarian
     {
         /*BASIC DB FUNCTIONS FOR INTERNAL DB
-         * DB's in scorpion store by name&value
-         * 
-         * SYNTAX:
-         * -------
-         * @table@name
-         *         
-         * STRUCTURE:
-         * ----------
-         * {name, value}        
+         * DB's in scorpion store by name&value      
         */
-
-        public void dbcreate(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
         {
-            //::*path
-            SQLiteConnection.CreateFile((string)var_get(objects[0]));
+            //::*File_Name_w_path, *pwd
+            //MAX TABLE LEN IS 0x3a
+            //{val}
+            string name = (string)var_get(objects[0]);
+            Do_on.vds.Create_DB(name, "");
+            Do_on.write_to_cui("Created Data File(to disk) : " + name);
 
+            name = null;
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
+            Scorp_line_Exec = null;
             return;
         }
 
-        public void dbtablecreate(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void dbopen(string Scorp_line_Exec, ArrayList objects)
         {
-            //::*path, *table name, *column, *column...
+            //::*path, *pwd
+            //MAX TABLE LEN IS 0x3a
+            string name = (string)var_get(objects[0]);
+            if (!Do_on.AL_TBLE_REF.Contains(name))
+            {
+                Do_on.AL_TBLE.Add(Do_on.vds.Load_DB(name, ""));
+                Do_on.AL_TBLE_REF.Add(name);
+                Do_on.write_to_cui("Added Data File: '" + name + "'");
+            }
+            else { Do_on.write_to_cui("Data File '" + name + "' already in memory"); }
 
-            SQLfunctions s_fun = new SQLfunctions();
-            string Database = (string)var_get(objects[0]);
-            SQLiteConnection db_conn = new SQLiteConnection("Data Source=" + Database + "; Version=3");
-            db_conn.Open();
-
-            string Table = (string)var_get(objects[0]);
-            Table = s_fun.clean_sql_single_word(ref Table);
-
-            SQLiteCommand cmd = new SQLiteCommand("CREATE TABLE ", db_conn);
-            cmd.ExecuteNonQuery();
-
-            db_conn.Close();
-
-            s_fun = null;
-            db_conn = null;
-            cmd = null;
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
+            name = null;
+            Scorp_line_Exec = null;
             return;
         }
 
-        /*
-
-        //OLD
-    public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
-    {
-        //::*File_Name_w_path, *pwd
-        //MAX TABLE LEN IS 0x3a
-        //{val}
-        string name = (string)var_get(objects[0]);
-        //Could directly do a new Arraylist(), but want to dispose of it after the operation is done.
-        ArrayList al_db = new ArrayList();
-            Do_on.AL_TBLE.Add(new string[0x3a]);
-            Do_on.AL_TBLE_REF.Add(name);
-
-            File.WriteAllBytes(name, Do_on.crypto.encrypt(al_db, (string)var_get(objects[1])));
-            Do_on.write_to_cui("Created table file(to disk) : " + name);
-
-        name = null;
-        var_arraylist_dispose(ref al_db);
-        var_arraylist_dispose(ref objects);
-        Scorp_line_Exec = null;
-        return;
-    }
-
-    public void dbopen(string Scorp_line_Exec, ArrayList objects)
-    {
-        //::*path, *pwd
-        //MAX TABLE LEN IS 0x3a
-        string name = (string)var_get(objects[0]);
-
-        if (!Do_on.AL_TBLE_REF.Contains((string)var_get(objects[0])))
+        public void dbsave(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            Do_on.AL_TBLE_REF.Add(var_get(objects[0]));
+            //::*path/name, *pwd
+            string name = (string)var_get(objects[0]);
 
-            byte[] b = File.ReadAllBytes(name);
-            b = Do_on.crypto.decrypt(b, (string)var_get(objects[1]));
+            Do_on.vds.Save_DB(name, "");
+            Do_on.write_to_cui("Data File '" + name + "' saved");
 
-            if (!verifydb(ref b))
-                return;
-
-            Do_on.AL_TBLE.Add(Do_on.crypto.To_Object(new MemoryStream(b)));
-            Do_on.AL_TBLE_REF.Add(name);
-            //Do_on.AL_TBLE.Add(Do_on.vds.UnDump_DB(var_get(objects[0].ToString()).ToString(), Do_on.SHA));
-            //verifyload(var_get(objects[0].ToString()).ToString());
-            Do_on.write_to_cui("Added Data File: '" + var_get(objects[0]) + "'");
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            name = null;
+            return;
         }
-        else { Do_on.write_to_cui("Table '" + var_get(objects[0]) + "' already in memory"); }
 
-        var_arraylist_dispose(ref objects);
-        Scorp_line_Exec = null;
-        return;
-    }
+        public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path, *reference, *value
+            Do_on.vds.Data_setDB((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+            return;
+        }
 
-    public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
-    {
-        foreach (string s_name in Do_on.AL_TBLE_REF)
-            Do_on.write_to_cui(s_name);
+        public string dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*
+            string elem = Do_on.vds.Data_getDB((string)var_get(objects[0]), (string)var_get(objects[1]));
+            return var_create_return(ref elem, false);
+        }
 
-        Scorp_Line_Exec = null;
-        var_arraylist_dispose(ref objects);
-        return;
-    }
+        public void listdb(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*db
+            ArrayList al = ((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(objects[0]))]);
+            for (int i = 0x00; i < 0x3a; i++)
+                Do_on.write_to_cui((string)al[i]);
 
-    private bool verifydb(ref byte[] b)
-    {
-        if(b.Length == 0x3a)
-            return true;
-        return false;
-    }
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref al);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
 
+        public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            foreach (string s_name in Do_on.AL_TBLE_REF)
+                Do_on.write_to_cui(s_name);
+
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
+            return;
+        }
     /*
     public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
     {
