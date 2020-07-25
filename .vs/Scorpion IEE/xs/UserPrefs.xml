@@ -1,16 +1,24 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion_DB_SYS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Scorpion_SECMEM.cs">
     <Files>
-      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="145" Column="13" />
-      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="46" Column="20" />
-      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="30" Column="32" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="96" Column="31" />
+      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="2" Column="17" />
+      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="22" Column="54" />
+      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="127" Column="10" />
+      <File FileName="Scorpion/Main/Scorpion_root.cs" Line="40" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
-            <Node name="Scorpion" expanded="True" />
+            <Node name="Scorpion" expanded="True">
+              <Node name="Crypto" expanded="True" />
+              <Node name="Main" expanded="True" />
+              <Node name="Memory Security" expanded="True">
+                <Node name="Scorpion_SECMEM.cs" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

@@ -9,7 +9,6 @@ namespace Scorpion.Crypto
     public class Cryptographer
     {
         Scorpion.Form1 Do_on;
-
         /*Objects: These objects must be contained only in this file, any replications in other files can give away any encryption data*/
 
         public Cryptographer(Scorpion.Form1 fm1)
@@ -60,7 +59,6 @@ namespace Scorpion.Crypto
             byte[] orig = new byte[decrypted.Length - salt_size];
             for(int i = salt_size; i< decrypted.Length; i++)
                 decrypted[i - salt_size] = decrypted[i];
-
             return decrypted;
         }
 

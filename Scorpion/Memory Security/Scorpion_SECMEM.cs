@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Text.RegularExpressions;
 
 namespace Scorpion.Memory_Security
@@ -79,14 +79,14 @@ namespace Scorpion.Memory_Security
 
     public class Secure_Memory
     {
-        Scorpion.Form1 Do_on;
-        public Secure_Memory(Scorpion.Form1 fm1)
+        Form1 Do_on;
+        public Secure_Memory(Form1 fm1)
         {
             Do_on = fm1;
             return;
         }
 
-        public void Encrypt_Block(ref string Scorp_Line)
+        /*public void Encrypt_Block(ref string Scorp_Line)
         {
             ArrayList al = Do_on.readr.lib_SCR.cut_variables(Scorp_Line);
             byte[] tmpbyte;
@@ -118,8 +118,38 @@ namespace Scorpion.Memory_Security
             tmpbyte = null;
             Do_on.readr.lib_SCR.var_arraylist_dispose(ref al);
             return;
+        }*/
+        private string password = null;
+        private byte[] pin_cde_hx = new byte[4];
+        private byte pin_cde = 0x00;
+
+        public void set_pass(ref string pass, ref string pin)
+        {
+            password = pass;
+            for (int i = 0; i <= 3; i++)
+            {
+                pin_cde_hx[i] = (byte)pin[i];
+                pin_cde += pin_cde_hx[i];
+            }
+            Console.WriteLine("{0:X}", pin_cde);
+            return;
         }
 
+        public void secure(ref string block)
+        {
+            byte[] b_raw = Do_on.crypto.To_Byte(block);
 
+            //REVERSE
+            for (int i = 0; i < 3; i++)
+                b_raw[i] = b_raw[3 - i];
+
+
+            return;
+        }
+
+        public void revsecure(ref string block)
+        {
+
+        }
     }
 }

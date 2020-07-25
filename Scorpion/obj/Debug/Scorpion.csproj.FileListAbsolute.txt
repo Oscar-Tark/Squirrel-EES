@@ -983,23 +983,16 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.EF6.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.Linq.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Practices.ServiceLocation.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Data.SQLite.dll.config
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
@@ -1064,3 +1057,12 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GtkSharp.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.xml
