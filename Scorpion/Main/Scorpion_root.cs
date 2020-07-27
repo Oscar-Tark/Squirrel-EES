@@ -28,21 +28,30 @@ namespace Scorpion
             start_classes();
             string command = null;
             string passcode = null;
-            int[] pin = new int[4];
+            ConsoleKeyInfo key_rd;
+            byte[] pin = new byte[4];
+            int pin_up = 0;
 
             while (true)
             {
                 Console.WriteLine("Scorpion Passcode: ");
                 passcode = Console.ReadLine();
-                Console.WriteLine("4 digit pin [Extra characters will be truncated]: ");
+                Console.WriteLine("4 character pin [Only numbers]: ");
 
-                for(int i = 0; i )
-                pin = Console.Read();
-                if (pin.Length > 3)
+                while (pin_up <= 3)
                 {
-                    mmsec.set_pass(ref passcode, ref pin);
-                    break;
+                    key_rd= Console.ReadKey();
+                    if (char.IsDigit(key_rd.KeyChar))
+                    {
+                        pin[pin_up] = (byte)key_rd.KeyChar;
+                        pin_up++;
+                    }
+                    else
+                        Console.WriteLine("\nEntered key '" + key_rd.KeyChar  + "' is not a number and will be ignored");
                 }
+
+                mmsec.set_pass(ref passcode, ref pin);
+                break;
             }
             Console.WriteLine("Welcome to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
 

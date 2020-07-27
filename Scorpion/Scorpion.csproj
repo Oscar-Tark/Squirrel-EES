@@ -150,7 +150,6 @@
     <Compile Include="Scorpion.cs" />
     <Compile Include="Library_ENCODING.cs" />
     <Compile Include="Library_OBJ.cs" />
-    <Compile Include="Library_MEM_MGMT.cs" />
     <Compile Include="Library_TYPE_FUNCTIONS.cs" />
     <Compile Include="Object Types.cs" />
     <Compile Include="Objects.cs">
@@ -189,6 +188,7 @@
     <Compile Include="MAN\Scorpion_MAN.cs" />
     <Compile Include="Functions\Scorpion_FNC.cs" />
     <Compile Include="Scorpion_DB_SYS.cs" />
+    <Compile Include="Memory\Scorpion_MEMORY.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />
@@ -421,6 +421,7 @@
     <Folder Include="Io\" />
     <Folder Include="MAN\" />
     <Folder Include="Functions\" />
+    <Folder Include="Memory\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />

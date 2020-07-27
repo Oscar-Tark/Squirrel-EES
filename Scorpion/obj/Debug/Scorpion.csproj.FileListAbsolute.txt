@@ -1013,6 +1013,15 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GioSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GLibSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/PangoSharp.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GtkSharp.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.xml
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.pdb
@@ -1057,12 +1066,4 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GtkSharp.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Numerics.Vectors.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.xml
+/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache

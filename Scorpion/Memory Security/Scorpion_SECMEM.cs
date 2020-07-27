@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Linq;
+using System.Collections;
 
 namespace Scorpion.Memory_Security
 {
@@ -123,27 +125,31 @@ namespace Scorpion.Memory_Security
         private byte[] pin_cde_hx = new byte[4];
         private byte pin_cde = 0x00;
 
-        public void set_pass(ref string pass, ref string pin)
+        public void set_pass(ref string pass, ref byte[] pin)
         {
             password = pass;
             for (int i = 0; i <= 3; i++)
             {
-                pin_cde_hx[i] = (byte)pin[i];
+                pin_cde_hx[i] = pin[i];
                 pin_cde += pin_cde_hx[i];
             }
-            Console.WriteLine("{0:X}", pin_cde);
             return;
         }
 
-        public void secure(ref string block)
+        public void secure(ref string reference)
         {
+            //GETVAR
+            string block = (string)Do_on.readr.lib_SCR.var_get(ref reference);
+
+            //DO_CRYPT
             byte[] b_raw = Do_on.crypto.To_Byte(block);
-
             //REVERSE
-            for (int i = 0; i < 3; i++)
-                b_raw[i] = b_raw[3 - i];
+            byte[] b_raw_rev = b_raw.Reverse().ToArray();
 
+            for (int i = 0; i < b_raw_rev.Length; i++)
+                b_raw_rev[i] = (byte)(b_raw_rev[i] + pin_cde);
 
+            Do_on.readr.lib_SCR.varset("", new ArrayList() { "temp", b_raw_rev });
             return;
         }
 
