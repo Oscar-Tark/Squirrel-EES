@@ -141,21 +141,41 @@ namespace Scorpion.Memory_Security
             //GETVAR
             string block = (string)Do_on.readr.lib_SCR.var_get(ref reference);
 
-            //DO_CRYPT
+            //TO_BYTE
             byte[] b_raw = Do_on.crypto.To_Byte(block);
             //REVERSE
             byte[] b_raw_rev = b_raw.Reverse().ToArray();
+            //AES
+            Do_on.crypto.encrypt(block, password);
+            //SET
+            Do_on.readr.lib_SCR.varset("", new ArrayList() { reference, b_raw_rev });
 
-            for (int i = 0; i < b_raw_rev.Length; i++)
-                b_raw_rev[i] = (byte)(b_raw_rev[i] + pin_cde);
-
-            Do_on.readr.lib_SCR.varset("", new ArrayList() { "temp", b_raw_rev });
+            reference = null;
             return;
         }
 
-        public void revsecure(ref string block)
+        public void revsecure(ref string reference)
         {
-
+            //GETVAR
+            try
+            {
+                //GET BLOCK
+                object block = Do_on.readr.lib_SCR.var_get(ref reference);
+                //TO BYTE
+                byte[] block_ = Do_on.crypto.To_Byte(block);
+                //DECRYPT AES
+                byte[] rev = Do_on.crypto.decrypt(block_, password);
+                //REVERSE
+                block_ = block_.Reverse().ToArray();
+                Console.WriteLine("{0:X}", block_);
+                //TO OBJ
+                object b_obj = Do_on.crypto.To_Object(rev);
+                //SET
+                Do_on.readr.lib_SCR.varset("", new ArrayList() { reference, b_obj });
+            }
+            catch(Exception ery) { Console.WriteLine(ery.Message + " | " + ery.StackTrace); }
+            reference = null;
+            return;
         }
     }
 }

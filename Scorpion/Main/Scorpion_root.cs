@@ -122,11 +122,15 @@ namespace Scorpion
             return;
         }
 
-        public void write_to_cui(string Text)
+        //WRITE STRING
+        public void write_to_cui(object To_out)
         {
-            Console.WriteLine(Text + "\n");
-            Text = null;
-
+            if (To_out.GetType() == Type.GetType("byte[]"))
+                foreach (byte b_ in (byte[])To_out)
+                    Console.WriteLine("{0:X}", b_);
+            else
+                Console.WriteLine(To_out + "\n");
+            To_out = null;
             return;
         }
     }

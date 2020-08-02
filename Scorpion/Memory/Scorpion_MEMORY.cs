@@ -79,7 +79,7 @@ namespace Scorpion
     //MEMORY SECURITY
     partial class Librarian
     { 
-        public void test_var_secure(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void tvs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*var, *var..
             string ref_ = (string)objects[0];
@@ -88,6 +88,14 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
+        }
+
+        public void tvr(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            string ref_ = (string)objects[0];
+            Do_on.mmsec.revsecure(ref ref_);
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
         }
     }
 
