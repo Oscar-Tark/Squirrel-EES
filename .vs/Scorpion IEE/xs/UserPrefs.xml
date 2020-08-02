@@ -1,24 +1,28 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Scorpion_SECMEM.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Generic/Library_APP.cs">
     <Files>
-      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="42" Column="61" />
-      <File FileName="Scorpion/Main/Scorpion_root.cs" Line="135" Column="10" />
-      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="170" Column="52" />
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="82" Column="24" />
+      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="43" Column="10" />
+      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="83" Column="23" />
+      <File FileName="Scorpion/Generic/Library_APP.cs" Line="70" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
+              <Node name="References" expanded="True">
+                <Node name="From Packages" expanded="True" />
+              </Node>
               <Node name="Crypto" expanded="True" />
               <Node name="Database" expanded="True" />
+              <Node name="Generic" expanded="True">
+                <Node name="Library_APP.cs" selected="True" />
+              </Node>
               <Node name="Main" expanded="True" />
               <Node name="Memory" expanded="True" />
-              <Node name="Memory Security" expanded="True">
-                <Node name="Scorpion_SECMEM.cs" selected="True" />
-              </Node>
+              <Node name="Memory Security" expanded="True" />
+              <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -1066,4 +1066,3 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache

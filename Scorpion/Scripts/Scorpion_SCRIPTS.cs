@@ -51,7 +51,7 @@ namespace Scorpion
             string line = "";
             string encry_ = read_file((string)var_get(objects[0]));
 
-            byte[] b = Do_on.crypto.decrypt(Do_on.crypto.To_Byte(encry_), (string)var_get(objects[1]));
+            //byte[] b = Do_on.crypto.decrypt(Do_on.crypto.To_Byte(encry_), (string)var_get(objects[1]));
 
             //object decry_ = Do_on.crypto.To_Object(new MemoryStream(b));
 
@@ -72,9 +72,9 @@ namespace Scorpion
             FileStream fd = new FileStream((string)var_get(objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
 
-            byte[] b = Do_on.crypto.encrypt(sr.ReadToEnd(), (string)var_get(objects[1]));
+           // byte[] b = Do_on.crypto.encrypt(sr.ReadToEnd(), (string)var_get(objects[1]));
 
-            File.WriteAllBytes((string)var_get(objects[0]), b);
+            //File.WriteAllBytes((string)var_get(objects[0]), b);
 
             sr.Close();
             fd.Close();

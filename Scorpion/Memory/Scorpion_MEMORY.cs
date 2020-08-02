@@ -37,7 +37,6 @@ namespace Scorpion
                 al = null;
             }
             catch { write_to_cui("Memory Slot Dispose Fail: Segment"); }
-
             return;
         }
 
@@ -79,21 +78,23 @@ namespace Scorpion
     //MEMORY SECURITY
     partial class Librarian
     { 
-        public void tvs(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void encrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*var, *var..
             string ref_ = (string)objects[0];
-            Do_on.mmsec.secure(ref ref_);
+            //Allows us to get pin by going through mmsec
+            Do_on.mmsec.encrypt(ref ref_);
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void tvr(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void decrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             string ref_ = (string)objects[0];
-            Do_on.mmsec.revsecure(ref ref_);
+            Do_on.mmsec.decrypt(ref ref_);
+
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
         }
@@ -231,6 +232,8 @@ namespace Scorpion
 
     public partial class Librarian
     {
+        //VAR_SET_ENCRYPTED are in Scorpion_SECMEM
+
         private object var_get(string Block)
         {
             return var_get(ref Block);

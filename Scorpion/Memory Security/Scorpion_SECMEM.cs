@@ -122,21 +122,59 @@ namespace Scorpion.Memory_Security
             return;
         }*/
         private string password = null;
-        private byte[] pin_cde_hx = new byte[4];
+        private byte[] pin_cde_hx = new byte[32];
+        private byte[] pin_iv = new byte[16];
         private byte pin_cde = 0x00;
 
+        //make private
         public void set_pass(ref string pass, ref byte[] pin)
         {
             password = pass;
+            //CREATE MAXED OUT PIN CODE OD ONE BYTE TO USE AS A SEED
             for (int i = 0; i <= 3; i++)
             {
                 pin_cde_hx[i] = pin[i];
                 pin_cde += pin_cde_hx[i];
             }
+
+            //SCRAMBLE
+            Random rnd = new Random();
+            int seed = rnd.Next(1, pin_cde);
+            for (short i = 0; i <= 31; i++)
+            {
+                if (i > 0)
+                    pin_cde_hx[i] = (byte)((pin_cde_hx[i - 1] / Convert.ToByte(password[rnd.Next(0, 4)]) + Convert.ToByte(rnd.Next(0, 12))) * (seed / 10));
+                else
+                    pin_cde_hx[i] = (byte)(pin_cde + Convert.ToByte(rnd.Next(0, 4)));
+
+                if (i < 16)
+                    pin_iv[i] = (byte)(((pin_cde_hx[i] + Convert.ToByte(i)) / Convert.ToByte(password[0])) + rnd.Next(0, 12));
+            }
+
+            Do_on.crypto.AES_KEY(pin_cde_hx, pin_iv);
             return;
         }
 
-        public void secure(ref string reference)
+        public void encrypt(ref string Reference)
+        {
+            //::*ref, var
+            byte[] b_e = Do_on.crypto.AES_ENCRYPT((string)Reference, (string)Do_on.readr.lib_SCR.var_get(ref Reference), pin_cde_hx, pin_iv);
+            var_set_encrypted(Reference, b_e);
+            return;
+        }
+
+        public void decrypt(ref string Reference)
+        {
+            //try
+            //{
+            string s_d = Do_on.crypto.AES_DECRYPT(Reference, var_get_encrypted(ref Reference), pin_cde_hx, pin_iv);
+            Do_on.readr.lib_SCR.varset("", new ArrayList() { Reference, s_d});
+            //}
+            //catch(Exception e) { Console.WriteLine(e.Message); }
+            return;
+        }
+
+        /*public void secure(ref string reference)
         {
             //GETVAR
             string block = (string)Do_on.readr.lib_SCR.var_get(ref reference);
@@ -146,10 +184,12 @@ namespace Scorpion.Memory_Security
             //REVERSE
             byte[] b_raw_rev = b_raw.Reverse().ToArray();
             //AES
-            Do_on.crypto.encrypt(block, password);
+            byte[] b_raw_AES = Do_on.crypto.encrypt_noconvert(b_raw_rev, password);
+            //DEBUG
+            Console.WriteLine("{0:X}", b_raw_AES[0]);
             //SET
-            Do_on.readr.lib_SCR.varset("", new ArrayList() { reference, b_raw_rev });
-
+            var_set_encrypted(reference, b_raw_AES);
+            //CLEAN
             reference = null;
             return;
         }
@@ -160,22 +200,33 @@ namespace Scorpion.Memory_Security
             try
             {
                 //GET BLOCK
-                object block = Do_on.readr.lib_SCR.var_get(ref reference);
-                //TO BYTE
-                byte[] block_ = Do_on.crypto.To_Byte(block);
+                byte[] block_ = var_get_encrypted(reference);
+                Console.WriteLine("{0:X}", block_[0]);
                 //DECRYPT AES
-                byte[] rev = Do_on.crypto.decrypt(block_, password);
+                byte[] AES = Do_on.crypto.decrypt(block_, password);
                 //REVERSE
-                block_ = block_.Reverse().ToArray();
+                byte[] b_raw_corrected = AES.Reverse().ToArray();
+                //DEBUG
                 Console.WriteLine("{0:X}", block_);
                 //TO OBJ
-                object b_obj = Do_on.crypto.To_Object(rev);
+                object b_obj = Do_on.crypto.To_Object(b_raw_corrected);
                 //SET
                 Do_on.readr.lib_SCR.varset("", new ArrayList() { reference, b_obj });
             }
             catch(Exception ery) { Console.WriteLine(ery.Message + " | " + ery.StackTrace); }
             reference = null;
             return;
+        }*/
+
+        private void var_set_encrypted(string Reference, byte[] block_)
+        {
+            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;
+            return;
+        }
+
+        private byte[] var_get_encrypted(ref string Reference)
+        {
+            return (byte[])((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
         }
     }
 }

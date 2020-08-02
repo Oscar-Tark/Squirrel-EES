@@ -19,6 +19,7 @@ using System.Collections;
 using System.Windows.Forms;
 
 //Static Library
+using System;
 namespace Scorpion
 {
     partial class Librarian
@@ -53,11 +54,29 @@ namespace Scorpion
 
         public void writescreen(ref string Scorp_Line_Exec, ArrayList Objects)
         {
-            //::*arg..
+            //::*var, *var..
             string writable = "";
             foreach (string o in Objects)
                 writable += var_get(o);
             write_to_console(ref writable);
+
+            var_arraylist_dispose(ref Objects);
+            Scorp_Line_Exec = null;
+            return;
+        }
+
+        public void writebytes(ref string Scorp_Line_Exec, ArrayList Objects)
+        {
+            //::*var
+            object obj = var_get(Objects[0]);
+            byte[] bytes = Do_on.crypto.To_Byte(obj);
+
+            Console.WriteLine("Byte sequence for [" + Objects[0] + "]:\n");
+            foreach (byte __byte in bytes)
+                Console.Write("{0:X} ", __byte);
+
+            var_arraylist_dispose(ref Objects);
+            Scorp_Line_Exec = null;
             return;
         }
 
