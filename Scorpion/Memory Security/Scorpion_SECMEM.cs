@@ -88,39 +88,6 @@ namespace Scorpion.Memory_Security
             return;
         }
 
-        /*public void Encrypt_Block(ref string Scorp_Line)
-        {
-            ArrayList al = Do_on.readr.lib_SCR.cut_variables(Scorp_Line);
-            byte[] tmpbyte;
-
-            foreach (string s in al)
-            {
-                Do_on.write_to_cui("Encrypting Variable: '" + s + "'");
-                tmpbyte = Do_on.crypto.encrypt(Do_on.readr.lib_SCR.var_get(s), "anus");
-                Do_on.readr.lib_SCR.var_set_encrypted(s, tmpbyte);
-            }
-
-            tmpbyte = null;
-            Do_on.readr.lib_SCR.var_arraylist_dispose(ref al);
-            return;
-        }
-
-        public void Decrypt_Block(ref string Scorp_Line)
-        {
-            ArrayList al = Do_on.readr.lib_SCR.cut_variables(Scorp_Line);
-            byte[] tmpbyte;
-
-            foreach (string s in al)
-            {
-                Do_on.write_to_cui("Decrypting Variable: '" + s + "'");
-                tmpbyte = Do_on.crypto.decrypt((byte[])Do_on.readr.lib_SCR.var_get(s), "anus");
-                //Do_on.readr.lib_SCR.var_set_decrypted(s, Do_on.crypto.To_Object(new System.IO.MemoryStream(tmpbyte)));
-            }
-
-            tmpbyte = null;
-            Do_on.readr.lib_SCR.var_arraylist_dispose(ref al);
-            return;
-        }*/
         private string password = null;
         private byte[] pin_cde_hx = new byte[32];
         private byte[] pin_iv = new byte[16];
@@ -129,29 +96,40 @@ namespace Scorpion.Memory_Security
         //make private
         public void set_pass(ref string pass, ref byte[] pin)
         {
+            bool success = true;
             password = pass;
             //CREATE MAXED OUT PIN CODE OD ONE BYTE TO USE AS A SEED
-            for (int i = 0; i <= 3; i++)
+            do
             {
-                pin_cde_hx[i] = pin[i];
-                pin_cde += pin_cde_hx[i];
+                try
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        pin_cde_hx[i] = pin[i];
+                        pin_cde += pin_cde_hx[i];
+                    }
+
+                    //SCRAMBLE
+                    Random rnd = new Random();
+                    int seed = rnd.Next(1, pin_cde);
+                    for (short i = 0; i <= 31; i++)
+                    {
+                        if (i > 0)
+                            pin_cde_hx[i] = (byte)((pin_cde_hx[i - 1] / Convert.ToByte(password[rnd.Next(0, 4)]) + Convert.ToByte(rnd.Next(0, 12))) * (seed / 10));
+                        else
+                            pin_cde_hx[i] = (byte)(pin_cde + Convert.ToByte(rnd.Next(0, 4)));
+
+                        if (i < 16)
+                            pin_iv[i] = (byte)(((pin_cde_hx[i] + Convert.ToByte(i)) / Convert.ToByte(password[0])) + rnd.Next(0, 12));
+                    }
+
+                    Do_on.crypto.AES_KEY(pin_cde_hx, pin_iv);
+                    Do_on.write_to_cui("\n\n*************************************************************************************************************************\n[Notice] Cryptographic key generated: You may use the 'encrypt' and 'decrypt' functions in order to safeguard variables.\nSaving variables to a database will require you to use the same Passcode and pin in order to decrypt them\n*************************************************************************************************************************");
+                    success = true;
+                }
+                catch { Do_on.write_to_cui("\n\n***********************************************Arithmetic error: regenerating crypto key\n***********************************************"); }
             }
-
-            //SCRAMBLE
-            Random rnd = new Random();
-            int seed = rnd.Next(1, pin_cde);
-            for (short i = 0; i <= 31; i++)
-            {
-                if (i > 0)
-                    pin_cde_hx[i] = (byte)((pin_cde_hx[i - 1] / Convert.ToByte(password[rnd.Next(0, 4)]) + Convert.ToByte(rnd.Next(0, 12))) * (seed / 10));
-                else
-                    pin_cde_hx[i] = (byte)(pin_cde + Convert.ToByte(rnd.Next(0, 4)));
-
-                if (i < 16)
-                    pin_iv[i] = (byte)(((pin_cde_hx[i] + Convert.ToByte(i)) / Convert.ToByte(password[0])) + rnd.Next(0, 12));
-            }
-
-            Do_on.crypto.AES_KEY(pin_cde_hx, pin_iv);
+            while (success == false);
             return;
         }
 
@@ -165,12 +143,9 @@ namespace Scorpion.Memory_Security
 
         public void decrypt(ref string Reference)
         {
-            //try
-            //{
+            //::*ref
             string s_d = Do_on.crypto.AES_DECRYPT(Reference, var_get_encrypted(ref Reference), pin_cde_hx, pin_iv);
             Do_on.readr.lib_SCR.varset("", new ArrayList() { Reference, s_d});
-            //}
-            //catch(Exception e) { Console.WriteLine(e.Message); }
             return;
         }
 

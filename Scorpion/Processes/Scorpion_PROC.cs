@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Collections;
 
 namespace Scorpion
@@ -46,22 +45,38 @@ namespace Scorpion
         public void processio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            Console.WriteLine(scp.get_std((string)var_get(objects[0])));
+            Do_on.write_to_cui(scp.get_std((string)var_get(objects[0])));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void processtop(ref string Scorp_Line_Exec, ref ArrayList objects)
+        //ALWAYS CALL PROCESSDELETE ELSE PROCESS WILL STAY IN MEMORY
+        public void processdelete(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            scp.remove_process((string)var_get(objects[0]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
+        }
+
+        public void listprocesses(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            Do_on.write_to_cui(scp.list_processes());
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
         }
     }
 
     class Scorpion_Process
     {
-        int processes = 0;
+        int processes = -1;
         private Process[] pr_list = new Process[4];
         private string[] pr_list_ref = new string[4];
+        private string[] pr_list_name = new string[4];
         private string[] pr_output = new string[4];
 
         public Scorpion_Process()
@@ -74,6 +89,7 @@ namespace Scorpion
             processes+=1;
             pr_list[processes] = pri;
             pr_list_ref[processes] = name;
+            pr_list_name[processes] = pri.StartInfo.FileName + " " + pri.StartInfo.Arguments;
 
             return;
         }
@@ -81,11 +97,12 @@ namespace Scorpion
         public void remove_process(string name)
         {
             int i = get_process(name);
-            pr_list[i].Kill();
+            if(!pr_list[i].HasExited)
+                pr_list[i].Kill();
             pr_list_ref[i] = null;
+            pr_list_name[i] = null;
             pr_list[i] = null;
             processes -= 1;
-
             return;
         }
 
@@ -103,6 +120,14 @@ namespace Scorpion
                     return i;
             }
             return -1;
+        }
+
+        public string list_processes()
+        {
+            string list = "Processes:\n";
+            for (int i = 0; i <= processes; i++)
+                list = list + "\n" + pr_list_ref[i] + " (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Affinity: " + pr_list[i].ProcessorAffinity + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]" + "\n";
+            return list;
         }
     }
 }
