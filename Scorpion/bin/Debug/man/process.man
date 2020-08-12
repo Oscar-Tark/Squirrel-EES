@@ -1,0 +1,21 @@
+MAN/READERS MANUAL Entry for 'process':
+******************************************************
+FUNCTION: [process]
+
+
+Description
+Starts an external process
+
+General Syntax
+::*processpath, *arguments, *name, *foregroundoutput
+
+*processpath             = The path including the filename of the executable
+*arguments               = The arguments sent to the process
+*name                    = A name used to identify the process within scorpion
+*foregoundoutput         = *true for visible output *false to hide process output and display it only on 'processio::*name' function call
+
+Example:
+process::*'ifconfig', *'eth0', *'myprocess', *true
+
+See Also
+processio, processdelete, listprocesses
