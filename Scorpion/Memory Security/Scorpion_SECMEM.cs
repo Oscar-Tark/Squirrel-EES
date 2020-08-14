@@ -149,50 +149,6 @@ namespace Scorpion.Memory_Security
             return;
         }
 
-        /*public void secure(ref string reference)
-        {
-            //GETVAR
-            string block = (string)Do_on.readr.lib_SCR.var_get(ref reference);
-
-            //TO_BYTE
-            byte[] b_raw = Do_on.crypto.To_Byte(block);
-            //REVERSE
-            byte[] b_raw_rev = b_raw.Reverse().ToArray();
-            //AES
-            byte[] b_raw_AES = Do_on.crypto.encrypt_noconvert(b_raw_rev, password);
-            //DEBUG
-            Console.WriteLine("{0:X}", b_raw_AES[0]);
-            //SET
-            var_set_encrypted(reference, b_raw_AES);
-            //CLEAN
-            reference = null;
-            return;
-        }
-
-        public void revsecure(ref string reference)
-        {
-            //GETVAR
-            try
-            {
-                //GET BLOCK
-                byte[] block_ = var_get_encrypted(reference);
-                Console.WriteLine("{0:X}", block_[0]);
-                //DECRYPT AES
-                byte[] AES = Do_on.crypto.decrypt(block_, password);
-                //REVERSE
-                byte[] b_raw_corrected = AES.Reverse().ToArray();
-                //DEBUG
-                Console.WriteLine("{0:X}", block_);
-                //TO OBJ
-                object b_obj = Do_on.crypto.To_Object(b_raw_corrected);
-                //SET
-                Do_on.readr.lib_SCR.varset("", new ArrayList() { reference, b_obj });
-            }
-            catch(Exception ery) { Console.WriteLine(ery.Message + " | " + ery.StackTrace); }
-            reference = null;
-            return;
-        }*/
-
         private void var_set_encrypted(string Reference, byte[] block_)
         {
             ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;

@@ -30,8 +30,8 @@ namespace Dumper
 
         public ArrayList Load_DB(string path, string pwd)
         {
+            File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
-            //b = Do_on.crypto.decrypt(b, pwd);
 
             pwd = null;
             object o = Do_on.crypto.To_Object(b);
@@ -40,7 +40,8 @@ namespace Dumper
 
         public void Save_DB(string path, string pwd)
         {
-            byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);//Do_on.crypto.encrypt(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)], pwd);
+            File.Encrypt(path);
+            byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
             File.WriteAllBytes(path, b);
 
             path = null;

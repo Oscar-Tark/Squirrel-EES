@@ -1,15 +1,10 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Scorpion_SECMEM.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion_DB_SYS.cs">
     <Files>
-      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="43" Column="10" />
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="83" Column="23" />
-      <File FileName="Scorpion/Generic/Library_APP.cs" Line="72" Column="22" />
-      <File FileName="Scorpion/Scorpion.cs" Line="1" Column="1" />
-      <File FileName="Scorpion/Processes/Scorpion_PROC.cs" Line="131" Column="10" />
-      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="130" Column="186" />
-      <File FileName="Scorpion/Main/Scorpion_root.cs" Line="56" Column="34" />
-      <File FileName="Scorpion/Scripts/Scorpion_SCRIPTS.cs" Line="1" Column="1" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="63" Column="33" />
+      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="124" Column="1" />
+      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="22" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,13 +12,10 @@
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
               <Node name="Crypto" expanded="True" />
-              <Node name="Main" expanded="True" />
+              <Node name="Database" expanded="True" />
               <Node name="Memory" expanded="True" />
-              <Node name="Memory Security" expanded="True">
-                <Node name="Scorpion_SECMEM.cs" selected="True" />
-              </Node>
-              <Node name="Processes" expanded="True" />
-              <Node name="Scripts" expanded="True" />
+              <Node name="Memory Security" expanded="True" />
+              <Node name="Scorpion_DB_SYS.cs" selected="True" />
             </Node>
           </Node>
         </State>
