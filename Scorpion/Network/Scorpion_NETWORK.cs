@@ -11,6 +11,7 @@ namespace Scorpion
         //SOCKETS
         public void socket(string Scorp_Line_Exec, ArrayList objects)
         {
+            //::*name, *ip, *port
             /*
              * NAME,           
              * IP,
@@ -43,21 +44,20 @@ namespace Scorpion
 
         public void socketclose(string Scorp_Line_Exec, ArrayList objects)
         {
-            /*
-             * NAME           
-            */
+            //::*name
             try
             {
-                ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0]))]).Shutdown(SocketShutdown.Both);
-                ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0]))]).Close();
+                ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0]))]).Shutdown(SocketShutdown.Receive);
+                //((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0]))]).Disconnect(false);
+                ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0]))]).Close();
 
-                Do_on.AL_SOCK.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0])));
-                Do_on.AL_SOCK_SESSION.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0])));
-                Do_on.AL_SOCK_REF.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get((string)objects[0])));
+                Do_on.AL_SOCK.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0])));
+                Do_on.AL_SOCK_SESSION.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0])));
+                Do_on.AL_SOCK_REF.RemoveAt(Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0])));
 
                 Do_on.write_to_cui("Socket " + (string)var_get((string)objects[0]) + " closed");
             }
-            catch(Exception erty) { Do_on.write_to_cui(erty.Message); }
+            catch (Exception erty) { Do_on.write_to_cui(erty.Message); }
             return;
         }
 
@@ -74,15 +74,14 @@ namespace Scorpion
     class ConnectionFunctions
     {
         Form1 fm1;
-         
         public ConnectionFunctions(Form1 fm1_)
         { fm1 = fm1_; return; }
 
         public void Accept(IAsyncResult result)
         {
-            fm1.write_to_cui("ACCEPTED A REMOTE CONNECTION");
             Socket SOCK = (Socket)result.AsyncState;
             Socket END_SOCK = SOCK.EndAccept(result);
+            fm1.write_to_cui("Connection accepted provenent from " + ((IPEndPoint)END_SOCK.RemoteEndPoint).Address + ":" + ((IPEndPoint)END_SOCK.RemoteEndPoint).Port);
 
             StateObject _so = new StateObject();
             _so.workSocket = END_SOCK;
@@ -93,7 +92,6 @@ namespace Scorpion
 
         public void Read(IAsyncResult result)
         {
-            String scorpion = String.Empty;
             String HTTP = String.Empty;
 
             // Retrieve the state object and the handler socket  
@@ -103,25 +101,16 @@ namespace Scorpion
 
             // Read data from the client socket.
             int bytesRead = handler.EndReceive(result);
-
             if (bytesRead > 0)
             {
                 HTTP = Encoding.ASCII.GetString(state.buffer, 0, bytesRead);
+                Send(handler, "HTTP 1.0 OK::SCORPION OK\r\n");
+                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(Read), state);
 
-                if (HTTP.IndexOf("<EOF>") > -1)
-                {
-                    fm1.write_to_cui("REMOTE DATA RECIEVED: \n" + HTTP);
-                    //scorpion = HTTP.Remove(0, HTTP.IndexOf("scorpion",StringComparison.CurrentCulture));
-                    //fm1.write_to_cui("COMMAND: " + scorpion);
-                    Send(handler, "HTTP 1.0 OK::SCORPION OK\r\n");
-                }
-                else
-                {
-                    // Not all data received. Get more.  
-                    handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                    new AsyncCallback(Read), state);
-                    Send(handler, "HTTP 1.0 OK::SCORPION OK\r\n");
-                }
+                HTTP = HTTP.Replace("\r", "");
+                HTTP = HTTP.Replace("\n", "");
+                fm1.readr.lib_SCR.scorpioniee(HTTP);
+                fm1.write_to_cui("Remote execute from " + ((IPEndPoint)handler.RemoteEndPoint).Address + ":" + ((IPEndPoint)handler.RemoteEndPoint).Port + ": \n" + HTTP);
             }
             return;
         }
@@ -132,8 +121,7 @@ namespace Scorpion
             byte[] byteData = Encoding.ASCII.GetBytes(data);
 
             // Begin sending the data to the remote device.  
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
-                new AsyncCallback(SendCallback), handler);
+            handler.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), handler);
         }
 
         private static void SendCallback(IAsyncResult ar)
@@ -147,8 +135,8 @@ namespace Scorpion
                 int bytesSent = handler.EndSend(ar);
                 Console.WriteLine("Sent {0} bytes to client.", bytesSent);
 
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
+                //handler.Shutdown(SocketShutdown.Both);
+                //handler.Close();
             }
             catch (Exception e)
             {

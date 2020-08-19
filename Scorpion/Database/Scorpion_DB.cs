@@ -108,25 +108,34 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             return;
         }
-    /*
-    public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
-    {
-        File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
-        Do_on.write_to_cui("Deleteing data file(from disk): " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
 
-        var_arraylist_dispose(ref objects);
-        Scorp_Line_Exec = null;
-        return;
-    }
+        public void dbseg(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path
+            string path = (string)var_get(objects[0]);
+            byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
+            //Do_on.vds.Segment_DB(ref path, ref b);
+            return;
+        }
+        /*
+        public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
+        {
+            File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
+            Do_on.write_to_cui("Deleteing data file(from disk): " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
 
-    public void dbsave(string Scorp_Line_Exec, ArrayList objects)
-    {
-        Do_on.vds.Dump_DB(var_get(objects[0].ToString()).ToString());
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
+        }
 
-        var_arraylist_dispose(ref objects);
-        Scorp_Line_Exec = null;
-        return;
-    }*/
+        public void dbsave(string Scorp_Line_Exec, ArrayList objects)
+        {
+            Do_on.vds.Dump_DB(var_get(objects[0].ToString()).ToString());
+
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
+        }*/
 
         //OLD REMOVE
         /*private void verifyload(string Name)

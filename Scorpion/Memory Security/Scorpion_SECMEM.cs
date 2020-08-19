@@ -93,6 +93,11 @@ namespace Scorpion.Memory_Security
         private byte[] pin_iv = new byte[16];
         private byte pin_cde = 0x00;
 
+        public byte get_pin()
+        {
+            return pin_cde;
+        }
+
         //make private
         public void set_pass(ref string pass, ref byte[] pin)
         {
@@ -127,7 +132,7 @@ namespace Scorpion.Memory_Security
                     Do_on.write_to_cui("\n\n*************************************************************************************************************************\n[Notice] Cryptographic key generated: You may use the 'encrypt' and 'decrypt' functions in order to safeguard variables.\nSaving variables to a database will require you to use the same Passcode and pin in order to decrypt them\n*************************************************************************************************************************");
                     success = true;
                 }
-                catch { Do_on.write_to_cui("\n\n***********************************************Arithmetic error: regenerating crypto key\n***********************************************"); }
+                catch { Do_on.write_to_cui("\n\n***********************************************\nArithmetic error: regenerating crypto key\n***********************************************"); }
             }
             while (success == false);
             return;

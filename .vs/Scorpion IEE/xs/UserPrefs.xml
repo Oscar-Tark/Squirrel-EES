@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion_DB_SYS.cs">
     <Files>
-      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="63" Column="33" />
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="124" Column="1" />
-      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="22" Column="13" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="117" Column="15" />
+      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="116" Column="39" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="97" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,8 +13,10 @@
             <Node name="Scorpion" expanded="True">
               <Node name="Crypto" expanded="True" />
               <Node name="Database" expanded="True" />
+              <Node name="Main" expanded="True" />
               <Node name="Memory" expanded="True" />
               <Node name="Memory Security" expanded="True" />
+              <Node name="Network" expanded="True" />
               <Node name="Scorpion_DB_SYS.cs" selected="True" />
             </Node>
           </Node>

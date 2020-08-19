@@ -1,22 +1,73 @@
 ﻿using System;
-using System.IO;
 using System.Collections;
+using System.IO;
 
 namespace Dumper
 {
     public class Virtual_Dumper_System
     {
         Scorpion.Form1 Do_on;
+        private string node_file = ".stg.nde";
+        /*private string db_file = ".stg";
+        private string current_path = "";
+        private string db_folder = "vds";
+        private string db_folder_full_path = null;
+        private string db_config_path = null;
+        private string db_config_file = "scorpion.config";
+        private string db_config = null;*/
 
         public Virtual_Dumper_System(Scorpion.Form1 fm1)
         {
             Do_on = fm1;
+            /*get_paths();
+            create_FileDir();
+            get_config();*/
+            return;
+        }
+
+        /*private void get_config()
+        {
+            db_config = File.ReadAllText(db_config_path);
+        }
+
+        private void get_paths()
+        {
+            current_path = Environment.CurrentDirectory;
+            db_folder_full_path = current_path + db_folder;
+            db_config_path = current_path + db_config_file;
+            return;
+        }
+
+        private void create_FileDir()
+        {
+            if (!Directory.Exists(db_folder_full_path))
+                Directory.CreateDirectory(db_folder_full_path);
+
+            if (!File.Exists(db_config_path))
+                File.Create(db_config_path);
+            return;
+        }*/
+
+        private void NULLIFY(ref string[] reference_, ref string[] data)
+        {
+            for(int i = 0; i < reference_.Length; i++)
+            {
+                reference_[i] = null;
+                data[i] = null;
+            }
             return;
         }
 
         public void Create_DB(string path, string pwd)
         {
-            ArrayList al = new ArrayList { new string[0x3a], new string[0x3a] };
+            //MAX SIZE 0x3a
+            string[] s_ref = new string[0x3a];
+            string[] s_dat = new string[0x3a];
+
+            NULLIFY(ref s_ref, ref s_dat);
+
+            //Reference, data
+            ArrayList al = new ArrayList { s_ref, s_dat };
             byte[] b = Do_on.crypto.To_Byte(al);
             //b = Do_on.crypto.encrypt(b, pwd);
 
@@ -30,7 +81,7 @@ namespace Dumper
 
         public ArrayList Load_DB(string path, string pwd)
         {
-            File.Decrypt(path);
+            //File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
 
             pwd = null;
@@ -40,14 +91,44 @@ namespace Dumper
 
         public void Save_DB(string path, string pwd)
         {
-            File.Encrypt(path);
+            //Save in segments of 0x3a each
+            //File.Encrypt(path);
             byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
+            //ArrayList al_bytes = Segment_DB(ref path, ref b);
             File.WriteAllBytes(path, b);
 
             path = null;
             pwd = null;
 
             return;
+        }
+
+        public string Segment_DB(ref string path)
+        {
+            //Create new segment and modify or create segment file
+            Do_on.write_to_cui("Calling segmentation for file: " + path);
+            string node_path = path + node_file;
+            //Create node file
+            Do_on.write_to_cui("Creating node file");
+            if (!File.Exists(node_path))
+                File.Create(node_path);
+
+            //Create segmentation file
+            Random r = new Random(Do_on.mmsec.get_pin());
+            string seg_file = path + r.Next() + DateTime.Now.Ticks;
+            
+            StreamWriter sr = File.AppendText(node_path);
+            sr.WriteLine(seg_file);
+            sr.Flush();
+            sr.Close();
+
+            Do_on.write_to_cui("Creating segmentation file: " + seg_file);
+            Create_DB(seg_file, "");
+            Do_on.write_to_cui("Loading segmentation file: " + seg_file);
+            Load_DB(seg_file, "");
+            Do_on.write_to_cui("Segmentation successful");
+            
+            return seg_file;
         }
 
         public void Close_DB(string path)
@@ -71,25 +152,40 @@ namespace Dumper
         public void Data_setDB(string db, string name, string data)
         {
             int ndx = Do_on.AL_TBLE_REF.IndexOf(db);
-            int position = -1;
-
+            int position = 0;
             string[] tbl = (string[])((ArrayList)Do_on.AL_TBLE[ndx])[0];
+            position = get_position(ref tbl);
+            string seg_ = null;
 
-            for (int i = 0; i < tbl.Length; i++)
+            Console.WriteLine(position + ", " + tbl.Length);
+            if (position == -1)
             {
-                if (tbl[i] == null || tbl[i] == Do_on.types.S_NULL)
-                    position = i;
-                break;
+                seg_ = Segment_DB(ref db);
+                ndx = Do_on.AL_TBLE_REF.IndexOf(seg_);
+                tbl = (string[])((ArrayList)Do_on.AL_TBLE[ndx])[0];
+                position = get_position(ref tbl);
             }
 
             //Add reference
             ((string[])((ArrayList)Do_on.AL_TBLE[ndx])[0])[position] = name;
-
             //Add data
             ((string[])((ArrayList)Do_on.AL_TBLE[ndx])[1])[position] = data;
 
-            tbl = null;
+            //tbl = null;
             return;
+        }
+
+        private int get_position(ref string[] tbl)
+        {
+            for (int i_pos = 0; i_pos < tbl.Length; i_pos++)
+            {
+                if (tbl[i_pos] == null)
+                    return i_pos;
+
+                //if (i_pos == tbl.Length - 1 && position == 0)
+                //    Segment_DB(ref db);
+            }
+            return -1;
         }
         /*
         //DUMP SYSTEM DB's
