@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 namespace Scorpion
-{ 
+{
     public partial class Librarian
     {
         private ScorpionBP bp = new ScorpionBP();
@@ -10,6 +10,36 @@ namespace Scorpion
             //::*key
             bp.API_KY = (string)var_get(objects[0]);
             Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void bpprefferedfiat(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*fiat
+            string fiat = ((string)var_get(objects[0])).ToUpper();
+            if (bp.check_FIAT(ref fiat))
+            {
+                bp.PREFFERED_FIAT = fiat;
+                write_to_cui("Prefferred currency set to: " + fiat);
+            }
+            else
+            {
+                write_to_cui("Unable to set prefferred currencies. Available prefferred currencies are:\n");
+                bp.show_FIAT();
+            }
+
+            var_dispose_internal(ref fiat);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void bpshowfiat(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            bp.show_FIAT();
+
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
@@ -64,6 +94,28 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             return;
         }
+
+        public void bpcandles(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*return, *currency, *unit, *period, *from_date, *from_time, *to_date, *to_time
+            objects.Insert(0, bp.public_URL + bp.candles + "/" + var_get(objects[1]) + "_" + bp.PREFFERED_FIAT + "?unit=" + var_get(objects[2]) + "&period=" + var_get(objects[3]) + "&from=" + var_get(objects[4]) + "T" + var_get(objects[5]) + "Z" + "&to=" + var_get(objects[6]) + "T" + var_get(objects[7]) + "Z");
+            jsonget(Scorp_Line_Exec, objects);
+
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return;
+        }
+
+        public void bpcalculate(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Takes in a candles variable and calculates support and resistance levels
+            //*return<<::*candles
+            jsontovar(ref Scorp_Line_Exec, ref objects);
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
     }
 
     class ScorpionBP
@@ -76,17 +128,38 @@ namespace Scorpion
         public string deposit = null;
         public string depositcrypto = null;
         public string API_KY = null;
-        public ScorpionTrading Scorpion_Trading_ = new ScorpionTrading();
+        public string candles = null;
+        public string PREFFERED_FIAT = null;
+        private string[] FIAT = { "EUR", "USD" };
 
+        public ScorpionTrading Scorpion_Trading_ = new ScorpionTrading();
         public ScorpionBP()
         {
             public_URL = "https://api.exchange.bitpanda.com/public/v1/";
             base_URL = "https://api.exchange.bitpanda.com/public/v1/account/";
             trades = "trades";
             currencies = "currencies";
+            candles = "candlesticks";
             balances = "balances";
             deposit = "deposit";
             depositcrypto = "deposit/crypto";
+        }
+
+        public bool check_FIAT(ref string fiat)
+        {
+            foreach(string currency in FIAT)
+            {
+                if (fiat == currency)
+                    return true;
+            }
+            return false;
+        }
+
+        public void show_FIAT()
+        {
+            foreach (string currency in FIAT)
+                System.Console.WriteLine(currency);
+            return;
         }
     }
 }

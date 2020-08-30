@@ -106,12 +106,49 @@ namespace Scorpion
         //WRITE STRING
         public void write_to_cui(object To_out)
         {
+            change_console_color(ConsoleColor.Yellow);
             if (To_out.GetType() == Type.GetType("byte[]"))
                 foreach (byte b_ in (byte[])To_out)
                     Console.WriteLine("{0:X}", b_);
             else
                 Console.WriteLine(To_out + "\n");
+
+            change_console_color(ConsoleColor.White);
             To_out = null;
+            return;
+        }
+
+        public void write_error(object To_out)
+        {
+            change_console_color(ConsoleColor.Red);
+            Console.WriteLine("[ERROR]: {0}", To_out);
+            change_console_color(ConsoleColor.White);
+            return;
+        }
+
+
+        public void write_success(object To_out)
+        {
+            change_console_color(ConsoleColor.Green);
+            Console.WriteLine("{0}", To_out);
+            change_console_color(ConsoleColor.White);
+            return;
+        }
+
+        public void write_debug(object To_out)
+        {
+            if (To_out.GetType() == Type.GetType("byte[]"))
+                foreach (byte b_ in (byte[])To_out)
+                    Console.WriteLine("{0:X}", b_);
+            else
+                Console.WriteLine("[DEBUG]:\n" + To_out + "\n");
+            To_out = null;
+            return;
+        }
+
+        public void change_console_color(ConsoleColor cc)
+        {
+            Console.ForegroundColor = cc;
             return;
         }
     }

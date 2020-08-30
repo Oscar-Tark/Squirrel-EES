@@ -16,14 +16,44 @@
 */
 
 using System.Collections;
+using MongoDB;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Libmongocrypt;
 
 namespace Scorpion
 {
     partial class Librarian
     {
+        //MONGO DB
+        public void mongodbfind(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*database, *criteria
+            var client = new MongoDB.Driver.MongoClient();
+            var db = client.GetDatabase("test");
+            var collection = db.GetCollection<MongoDB.Bson.BsonDocument>("cars");
+
+            System.Console.WriteLine(collection.Indexes);
+
+            var document = collection.Find(new BsonDocument()).FirstOrDefault();
+            System.Console.WriteLine(document.ToString());
+
+            return;
+        }
+    }
+
+    partial class Librarian
+    {
+        //Legacy DB
         /*BASIC DB FUNCTIONS FOR INTERNAL DB
-         * DB's in scorpion store by name&value      
+         * DB's in scorpion store by name&value  
+         * Basic structure
+         * {ref}
+         * {data}
+         * {tags}
+         * {meta}
         */
+
         public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
         {
             //::*File_Name_w_path, *pwd
@@ -74,14 +104,15 @@ namespace Scorpion
 
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *reference, *value
-            Do_on.vds.Data_setDB((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+            //::*path, *value, *tag, *meta
+            Do_on.vds.Data_setDB((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)objects[0]);
             return;
         }
 
         public string dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*
+            //::*path, *search
+            //*search='value@Joe Donson'
             string elem = Do_on.vds.Data_getDB((string)var_get(objects[0]), (string)var_get(objects[1]));
             return var_create_return(ref elem, false);
         }
@@ -115,8 +146,25 @@ namespace Scorpion
             string path = (string)var_get(objects[0]);
             byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
             //Do_on.vds.Segment_DB(ref path, ref b);
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
+
+        //DEBUG
+        public void tss(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path, *var
+            string path = (string)var_get(objects[0]);
+            string var_ = (string)var_get(objects[1]);
+            Do_on.write_debug(Do_on.vds.Segment_search(ref path, ref var_));
+
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return;
+        }
+
+
         /*
         public void dbdelete(String Scorp_Line_Exec, ArrayList objects)
         {

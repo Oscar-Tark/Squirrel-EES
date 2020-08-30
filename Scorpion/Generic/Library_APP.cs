@@ -86,6 +86,12 @@ namespace Scorpion
             return;
         }
 
+        private void write_to_console(string STR_)
+        {
+            Do_on.write_to_cui(STR_);
+            return;
+        }
+
         private void write_to_cui(string Scorp_Line_Exec)
         {
             ArrayList al = cut_variables(ref Scorp_Line_Exec);

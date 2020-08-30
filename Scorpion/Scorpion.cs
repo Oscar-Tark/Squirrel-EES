@@ -80,13 +80,13 @@ namespace Scorpion
                 }
                 catch (Exception erty)
                 {
-                    Do_on.write_to_cui("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
+                    Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
                     showman(functions[0]);
                 }
 
                 sp.Stop();
                 Do_on.engine_ndx++;
-                Do_on.write_to_cui("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+                Do_on.write_success("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
                 sp.Reset();
 
                 Scorp_Line = null;
@@ -96,7 +96,7 @@ namespace Scorpion
                 GC.Collect();
                 return;
             }
-            else { Do_on.write_to_cui("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
+            else { Do_on.write_error("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
         }
     }
 

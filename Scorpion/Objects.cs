@@ -123,6 +123,10 @@ namespace Scorpion
         public ArrayList AL_SOCK_REF = new ArrayList();
         public ArrayList AL_SOCK_SESSION = new ArrayList();
 
+        //Tcp
+        public ArrayList AL_TCP = new ArrayList();
+        public ArrayList AL_TCP_REF = new ArrayList();
+
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();
         public ArrayList AL_CURR_VAR_REF = new ArrayList();

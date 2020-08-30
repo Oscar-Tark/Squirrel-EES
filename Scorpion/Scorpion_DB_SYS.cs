@@ -61,13 +61,14 @@ namespace Dumper
         public void Create_DB(string path, string pwd)
         {
             //MAX SIZE 0x3a
-            string[] s_ref = new string[0x3a];
             string[] s_dat = new string[0x3a];
+            string[] s_tag = new string[0x3a];
+            string[] s_meta = new string[0x3a];
 
-            NULLIFY(ref s_ref, ref s_dat);
+            //NULLIFY(ref s_ref, ref s_dat);
 
             //Reference, data
-            ArrayList al = new ArrayList { s_ref, s_dat };
+            ArrayList al = new ArrayList { s_dat, s_tag, s_meta };
             byte[] b = Do_on.crypto.To_Byte(al);
             //b = Do_on.crypto.encrypt(b, pwd);
 
@@ -111,7 +112,7 @@ namespace Dumper
             //Create node file
             Do_on.write_to_cui("Creating node file");
             if (!File.Exists(node_path))
-                File.Create(node_path);
+               File.Create(node_path);
 
             //Create segmentation file
             Random r = new Random(Do_on.mmsec.get_pin());
@@ -125,10 +126,34 @@ namespace Dumper
             Do_on.write_to_cui("Creating segmentation file: " + seg_file);
             Create_DB(seg_file, "");
             Do_on.write_to_cui("Loading segmentation file: " + seg_file);
-            Load_DB(seg_file, "");
+            Do_on.readr.lib_SCR.dbopen("", new ArrayList() { seg_file });
             Do_on.write_to_cui("Segmentation successful");
             
             return seg_file;
+        }
+
+        public string Segment_search(ref string db, ref string var_ref)
+        {
+            if (!File.Exists(db + node_file))
+                return db;
+
+            foreach (string s_seg in File.ReadLines(db + node_file))
+            {
+                //CHECK IF SEGMENT ALOREADY LOADED
+                if (Do_on.AL_TBLE_REF.IndexOf(s_seg) == -1)
+                    Do_on.readr.lib_SCR.dbopen("", new ArrayList() { s_seg, "" });
+
+                foreach(string s_elem in ((string[])((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(s_seg)])[0]))
+                    return s_seg;
+            }
+
+            return "CUNT";
+        }
+
+        public void Get_index(ref string segment)
+        { 
+            
+        
         }
 
         public void Close_DB(string path)
@@ -141,6 +166,7 @@ namespace Dumper
 
         public string Data_getDB(string db, string reference)
         {
+            //
             ArrayList al_tmp = (ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(db)];
             int ndx = Array.IndexOf((string[])al_tmp[0], reference);
 
@@ -149,7 +175,7 @@ namespace Dumper
             return ((string[])al_tmp[1])[ndx];
         }
 
-        public void Data_setDB(string db, string name, string data)
+        public void Data_setDB(string db, string name, string data, string meta, string tag, string variable_path)
         {
             int ndx = Do_on.AL_TBLE_REF.IndexOf(db);
             int position = 0;
@@ -162,8 +188,10 @@ namespace Dumper
             {
                 seg_ = Segment_DB(ref db);
                 ndx = Do_on.AL_TBLE_REF.IndexOf(seg_);
+                Console.WriteLine("Segmented {0}", seg_);
                 tbl = (string[])((ArrayList)Do_on.AL_TBLE[ndx])[0];
                 position = get_position(ref tbl);
+                Do_on.readr.lib_SCR.varset("", new ArrayList() { variable_path, seg_ });
             }
 
             //Add reference
@@ -185,8 +213,22 @@ namespace Dumper
                 //if (i_pos == tbl.Length - 1 && position == 0)
                 //    Segment_DB(ref db);
             }
+
+
             return -1;
         }
+
+        private string[] get_query()
+        {
+            //'value@joe dawson'
+            //'ref@12342'
+            //'meta@city=DENVER'
+            //'tag@TEACHERS'
+
+            return new string[0];
+        }
+
+
         /*
         //DUMP SYSTEM DB's
         public void Dump_main_db()

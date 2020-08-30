@@ -8,7 +8,62 @@ namespace Scorpion
 {
     public partial class Librarian
     {
-        //SOCKETS
+        public void tcpserverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name, *port
+            try
+            {
+                SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
+                sctl.ClientConnected += Sctl_ClientConnected;
+                sctl.ClientDisconnected += Sctl_ClientDisconnected;
+                sctl.DataReceived += Sctl_DataReceived;
+                sctl.Start(Convert.ToInt32(var_get(objects[1])), true);
+                Do_on.AL_TCP.Add(sctl);
+                Do_on.AL_TCP.Add(var_get(objects[0]));
+                write_to_console("TCP server started");
+            }
+            catch(Exception erty) { write_to_console(erty.Message); }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void tcpserverstop(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name
+            ((SimpleTCP.SimpleTcpServer)Do_on.AL_TBLE[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Stop();
+            write_to_console("TCP server stopped");
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        void Sctl_DataReceived(object sender, SimpleTCP.Message e)
+        {
+            scorpioniee(e.MessageString);
+            return;
+        }
+
+
+        void Sctl_ClientDisconnected(object sender, TcpClient e)
+        {
+        }
+
+
+        void Sctl_ClientConnected(object sender, TcpClient e)
+        {
+        }
+
+        public void tcp_client(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name, *ip, *port
+            SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
+            sctl.Connect((string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])));
+        }
+
+        //LEGACY SOCKETS
         public void socket(string Scorp_Line_Exec, ArrayList objects)
         {
             //::*name, *ip, *port
@@ -58,6 +113,16 @@ namespace Scorpion
                 Do_on.write_to_cui("Socket " + (string)var_get((string)objects[0]) + " closed");
             }
             catch (Exception erty) { Do_on.write_to_cui(erty.Message); }
+            return;
+        }
+
+        public void socketsend(ref string Scorp_Line_Exec, ArrayList objects)
+        {
+            ((Socket)Do_on.AL_SOCK[Do_on.AL_SOCK_REF.IndexOf((string)var_get(objects[0]))]).Send(new byte[] { 0x64, 0x64, 0x00 });
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+
             return;
         }
 
