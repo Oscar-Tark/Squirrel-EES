@@ -55,7 +55,7 @@ namespace Scorpion
 
             //Do_on.write_to_cui((string)al_trade[1]);
 
-            jsongetauth(Scorp_Line_Exec, al_trade);
+            jsongetauth(Scorp_Line_Exec, al_trade, false, null);
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref al_trade);
@@ -63,25 +63,39 @@ namespace Scorpion
             return;
         }
 
-        public void bp_depositcrypto(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void bpdepositcrypto(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*return_variable, *currency
-            ArrayList al_trade = new ArrayList { bp.base_URL + bp.depositcrypto, objects[0] };
-            //for (int i = 1; i < objects.Count; i++)
-            //    al_trade.Add(objects[i]);
+            ArrayList al_trade = new ArrayList { bp.base_URL + bp.depositcrypto + "/BTC", objects[0] };
             al_trade.Add("Authorization");
             al_trade.Add("Bearer " + bp.API_KY);
-            al_trade.Add("currency");
-            al_trade.Add(bp.Scorpion_Trading_.stc.get_currency_byname((string)var_get(objects[1])));
+            //al_trade.Add("Content-Type");
+            //al_trade.Add("application/json");
 
-            //Do_on.write_to_cui((string)al_trade[1]);
-
-            jsongetauth(Scorp_Line_Exec, al_trade);
+            jsongetauth(Scorp_Line_Exec, al_trade, false, null);
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref al_trade);
             var_arraylist_dispose(ref objects);
             return;
+        }
+
+        public void bpdepositfiat(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*return_variable
+            if (bp.PREFFERED_FIAT == null)
+            {
+                Do_on.write_error("Unable to execute as a Preffered FIAT currency is not set\n Use bpprefferedfiat::*'CURRENCY' in order to set a preffered currency such\n as EUR");
+                return;
+            }
+            ArrayList al_trade = new ArrayList() { bp.base_URL + bp.deposit_fiat + bp.PREFFERED_FIAT, objects[0] };
+            al_trade.Add("Authorization");
+            al_trade.Add("Bearer " + bp.API_KY);
+
+            jsongetauth(Scorp_Line_Exec, al_trade, false, null);
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
         }
 
         public void bpcurrencies(ref string Scorp_Line_Exec, ref ArrayList objects)
@@ -126,6 +140,7 @@ namespace Scorpion
         public string trades = null;
         public string balances = null;
         public string deposit = null;
+        public string deposit_fiat = null;
         public string depositcrypto = null;
         public string API_KY = null;
         public string candles = null;
@@ -143,6 +158,7 @@ namespace Scorpion
             balances = "balances";
             deposit = "deposit";
             depositcrypto = "deposit/crypto";
+            deposit_fiat = "deposit/fiat/";
         }
 
         public bool check_FIAT(ref string fiat)
