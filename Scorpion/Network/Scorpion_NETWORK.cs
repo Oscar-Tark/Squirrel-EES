@@ -11,18 +11,14 @@ namespace Scorpion
         public void tcpserverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *port
-            try
-            {
-                SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
-                sctl.ClientConnected += Sctl_ClientConnected;
-                sctl.ClientDisconnected += Sctl_ClientDisconnected;
-                sctl.DataReceived += Sctl_DataReceived;
-                sctl.Start(Convert.ToInt32(var_get(objects[1])), true);
-                Do_on.AL_TCP.Add(sctl);
-                Do_on.AL_TCP.Add(var_get(objects[0]));
-                write_to_console("TCP server started");
-            }
-            catch(Exception erty) { write_to_console(erty.Message); }
+            SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
+            sctl.ClientConnected += Sctl_ClientConnected;
+            sctl.ClientDisconnected += Sctl_ClientDisconnected;
+            sctl.DataReceived += Sctl_DataReceived;
+            sctl.Start(Convert.ToInt32(var_get(objects[1])), true);
+            Do_on.AL_TCP.Add(sctl);
+            Do_on.AL_TCP.Add(var_get(objects[0]));
+            write_to_console("TCP server started");
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -42,21 +38,27 @@ namespace Scorpion
 
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
-            scorpioniee(e.MessageString);
+            Enginefunctions ef__ = new Enginefunctions();
+            scorpioniee(ef__.replace_telnet(e.MessageString));
+            ef__ = null;
             return;
         }
 
 
         void Sctl_ClientDisconnected(object sender, TcpClient e)
         {
+            write_to_console("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
+            return;
         }
 
 
         void Sctl_ClientConnected(object sender, TcpClient e)
         {
+            write_to_console("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
+            return;
         }
 
-        public void tcp_client(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void tcpclient(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *ip, *port
             SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
@@ -64,14 +66,14 @@ namespace Scorpion
         }
 
         //LEGACY SOCKETS
-        public void socket(string Scorp_Line_Exec, ArrayList objects)
+        /*public void socket(string Scorp_Line_Exec, ArrayList objects)
         {
             //::*name, *ip, *port
             /*
              * NAME,           
              * IP,
              * PORT           
-            */
+            
             ConnectionFunctions _cf = new ConnectionFunctions(Do_on);
             string name = (string)Do_on.readr.lib_SCR.var_get((string)objects[0]);
             string ip_address = (string)Do_on.readr.lib_SCR.var_get((string)objects[1]);
@@ -133,7 +135,7 @@ namespace Scorpion
                 Do_on.write_to_cui(s);
             }
             return;
-        }
+        }*/
     }
 
     class ConnectionFunctions

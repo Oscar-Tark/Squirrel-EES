@@ -51,28 +51,9 @@ namespace Scorpion
 
         public void load_system_vars()
         {
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "false", S_No, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("false");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "true", S_Yes, "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("true");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-            fm_1_ref.AL_CURR_VAR.Add(new ArrayList { "", "temp", "You can use this variable for temporary operations", "", "", "" });
-            fm_1_ref.AL_CURR_VAR_REF.Add("temp");
-            fm_1_ref.AL_CURR_VAR_TAG.Add("");
-
-            return;
-        }
-
-        public void unload_system_vars()
-        {
-            try
-            {
-                fm_1_ref.readr.lib_SCR.vardelete("*one_root", new ArrayList());
-                fm_1_ref.readr.lib_SCR.vardelete("*secs", new ArrayList());
-            }
-            catch { }
-
+            fm_1_ref.readr.lib_SCR.var("", new ArrayList() { "true", "false", "temp" });
+            fm_1_ref.readr.lib_SCR.varset("", new ArrayList() { "true", "'true'" });
+            fm_1_ref.readr.lib_SCR.varset("", new ArrayList() { "false", "'false'" });
             return;
         }
 

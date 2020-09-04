@@ -64,8 +64,6 @@ namespace Scorpion
 
         public void Application_ApplicationExit(object sender, EventArgs e)
         {
-            //DUMP
-            types.unload_system_vars();
             sender = null;
             e = null;
             return;

@@ -1,0 +1,13 @@
+Description
+Shuts down an active TCP server
+
+General Syntax
+::*name
+
+*name     = contains the name of this specific TCP server to shut down
+
+Example:
+tcpserverstart::*'myserver', *'8552'
+
+See Also
+tcpserverstart, tcpclient

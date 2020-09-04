@@ -1,0 +1,13 @@
+Description
+Deletes a variable from memory and it's corresponding value and tags
+
+General Syntax
+::*var, *var...
+
+*var     = The variable to delete
+
+Example:
+vardelete::*password, *username, *session
+
+See Also
+var, varset, vardelete, vartag

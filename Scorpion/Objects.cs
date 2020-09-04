@@ -82,15 +82,15 @@ namespace Scorpion
     {
         public void start_classes()
         {
-            types = new Types(this);
             vds = new Dumper.Virtual_Dumper_System(this);
             crypto = new Crypto.Cryptographer(this);
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
             tms = new Timer_(this);
 
-            types.load_system_vars();
             readr = new reader(this);
+            types = new Types(this);
+            types.load_system_vars();
             return;
         }
 

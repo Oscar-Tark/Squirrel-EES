@@ -145,21 +145,20 @@ namespace Scorpion
 
             //clean
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
-        public void vardelete(string Scorp_Line_Exec, ArrayList objects)
+        public void vardelete(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //(*,*,*,*,*,...)
-            ArrayList al = cut_variables(ref Scorp_Line_Exec);
-
-            foreach (string s in al)
+            int ndx = -1;
+            foreach (string s_var in objects)
             {
-                Scorp_Line_Exec = s;
-                Do_on.AL_CURR_VAR.RemoveAt(Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(ref Scorp_Line_Exec)));
-                Do_on.AL_CURR_VAR_REF.RemoveAt(Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(ref Scorp_Line_Exec)));
-                Do_on.AL_CURR_VAR_TAG.RemoveAt(Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(ref Scorp_Line_Exec)));
+                ndx = Do_on.AL_CURR_VAR_REF.IndexOf(s_var);
+                Do_on.AL_CURR_VAR.RemoveAt(ndx);
+                Do_on.AL_CURR_VAR_REF.RemoveAt(ndx);
+                Do_on.AL_CURR_VAR_TAG.RemoveAt(ndx);
 
                 //TRIM
                 Do_on.AL_CURR_VAR.TrimToSize();
@@ -168,9 +167,8 @@ namespace Scorpion
             }
 
             //clean
-            Scorp_Line_Exec = null;
-            var_arraylist_dispose(ref al);
-
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
             return;
         }
 
@@ -182,9 +180,8 @@ namespace Scorpion
             Do_on.AL_CURR_VAR.TrimToSize();
             Do_on.AL_CURR_VAR_REF.TrimToSize();
 
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            //File.Delete(Do_on.AL_HIB_FILES[0].ToString());
             return;
         }
 
@@ -201,8 +198,8 @@ namespace Scorpion
 
             Do_on.types.load_system_vars();
 
-            Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
@@ -304,18 +301,6 @@ namespace Scorpion
             if (Var.Contains("'") == true)
                 return Var.Replace("'", "");
             return Var;
-        }
-
-        private void delete_variable_transition(string Scorp_Line_Exec)
-        {
-            int ndx = Scorp_Line_Exec.IndexOf("(", 0);
-            int nnx2 = Scorp_Line_Exec.IndexOf(")", ndx);
-
-            Scorp_Line_Exec = Scorp_Line_Exec.Remove(nnx2);
-            Scorp_Line_Exec = Scorp_Line_Exec.Remove(0, ndx + 1);
-            Scorp_Line_Exec = Scorp_Line_Exec.Replace("*", "");
-
-            vardelete(Scorp_Line_Exec, new ArrayList());
         }
 
         private void var_set(string Reference, string Variable)

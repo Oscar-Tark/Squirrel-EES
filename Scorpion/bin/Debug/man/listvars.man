@@ -1,0 +1,8 @@
+Description
+Lists all variables present in memory including their values
+
+Example:
+listvars
+
+See Also
+var, varset, varconcatenate

@@ -1,0 +1,13 @@
+Description
+Starts a new TCP server. This server can be connected to using a TCP client such as Telnet or another Scorpion instance using the tcpclient function. The TCP server will automatically assign this machines active device's IP address. Multiple TCP servers can be created
+
+General Syntax
+::*name, *port
+
+*name     = contains the name of this specific TCP server allowing referencing. This variable may be used to modify this specific TCP server instance
+
+Example:
+tcpserverstart::*'myserver', *'8552'
+
+See Also
+tcpserverstop, tcpclient

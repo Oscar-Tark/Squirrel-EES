@@ -120,6 +120,11 @@ namespace Scorpion
             return Scorp_Line;
         }
 
+        public string replace_telnet(string Scorp_Line)
+        {
+            return Scorp_Line.Replace("\n", "").Replace("\r", "");
+        }
+
         public string[] get_function(ref string Scorp)
         {
             string[] delimiterChars = { "::" };

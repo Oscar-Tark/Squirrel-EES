@@ -1,25 +1,19 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Trading API/bitpanda/Scorpion_BP.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
     <Files>
-      <File FileName="Scorpion/Trading API/bitpanda/Scorpion_BP.cs" Line="69" Column="88" />
-      <File FileName="Scorpion/Network/Scorpion_JSON.cs" Line="65" Column="21" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="41" Column="23" />
+      <File FileName="Scorpion/Scorpion.cs" Line="144" Column="10" />
+      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="50" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Database" expanded="True" />
-              <Node name="Generic" expanded="True" />
-              <Node name="Main" expanded="True" />
+              <Node name="Memory Security" expanded="True" />
               <Node name="Network" expanded="True" />
-              <Node name="Trading API" expanded="True">
-                <Node name="bitpanda" expanded="True">
-                  <Node name="Scorpion_BP.cs" selected="True" />
-                </Node>
-              </Node>
+              <Node name="Scorpion.cs" selected="True" />
             </Node>
           </Node>
         </State>
