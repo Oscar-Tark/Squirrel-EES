@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="41" Column="23" />
-      <File FileName="Scorpion/Scorpion.cs" Line="144" Column="10" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="46" Column="46" />
+      <File FileName="Scorpion/Scorpion.cs" Line="123" Column="38" />
       <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="50" Column="23" />
     </Files>
     <Pads>
@@ -12,8 +12,9 @@
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
               <Node name="Memory Security" expanded="True" />
-              <Node name="Network" expanded="True" />
-              <Node name="Scorpion.cs" selected="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Scorpion_NETWORK.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

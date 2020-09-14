@@ -8,7 +8,7 @@ namespace Scorpion
 {
     public partial class Librarian
     {
-        public void tcpserverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void serverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *port
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
@@ -17,7 +17,7 @@ namespace Scorpion
             sctl.DataReceived += Sctl_DataReceived;
             sctl.Start(Convert.ToInt32(var_get(objects[1])), true);
             Do_on.AL_TCP.Add(sctl);
-            Do_on.AL_TCP.Add(var_get(objects[0]));
+            Do_on.AL_TCP_REF.Add(var_get(objects[0]));
             write_to_console("TCP server started");
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -25,14 +25,38 @@ namespace Scorpion
             return;
         }
 
-        public void tcpserverstop(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void serverstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            ((SimpleTCP.SimpleTcpServer)Do_on.AL_TBLE[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Stop();
+            ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Stop();
+            Do_on.AL_TCP_REF.RemoveAt(Do_on.AL_TCP_REF.IndexOf(var_get(objects[0])));
             write_to_console("TCP server stopped");
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void serversend(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name, *data
+            try
+            {
+                ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).BroadcastLine((string)var_get(objects[1]));
+                write_to_console("Data sent");
+            }
+            catch (Exception e) { Do_on.write_error(e.Message); };
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void listservers(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::
+            foreach (string server in Do_on.AL_TCP_REF)
+                Do_on.write_to_cui(server);
             return;
         }
 
