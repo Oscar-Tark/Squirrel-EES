@@ -48,7 +48,7 @@ namespace Scorpion
 
                 if (pin_up != 4)
                 {
-                    Console.WriteLine("4 character pin [Only numbers] (NOTE: This pin is saved only for this session. Saving encrypted variables to files may render them not recoverable): ");
+                    write_to_cui("\n4 character pin [Only numbers] (NOTE: This pin is saved only for this session. Saving encrypted variables to files may render them not recoverable): ");
                     Console.Write("Pin >> ");
                     while (pin_up <= 3)
                     {
@@ -83,10 +83,12 @@ namespace Scorpion
                 tries++;
             }
 
-            Console.WriteLine("\nWelcome {1} to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n", uname);
-
+            Console.WriteLine("\nWelcome {1} to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n", uname);
+            Console.WriteLine("-------------------------\nCores {0}\nMachine name: {1}\nOperating system: {4}\n64bit OS: {2}\n64bit process: {3}\nProcess ID: {5}\n-------------------------\n", Environment.ProcessorCount, Environment.MachineName, Environment.Is64BitProcess, Environment.Is64BitOperatingSystem, Environment.OSVersion, Environment.CurrentManagedThreadId);
             while (true)
             {
+                //Console.WriteLine("");
+                //Console.Write("Execute>>");
                 readr.access_library(Console.ReadLine());
                 th_clean_strt();
             }

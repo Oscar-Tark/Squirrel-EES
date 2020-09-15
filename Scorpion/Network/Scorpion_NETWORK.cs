@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+using System;
 using System.Text;
 using System.Collections;
 using System.Net;
@@ -8,6 +25,19 @@ namespace Scorpion
 {
     public partial class Librarian
     {
+        public string getselfip(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*returnable<<::
+            string hostName = Dns.GetHostName(); // Retrive the Name of HOST
+            // Get the IP  
+            string IP = Dns.GetHostEntry(hostName).AddressList[0].ToString();
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+
+            return var_create_return(ref IP, true);
+        }
+
         public void serverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *port
@@ -68,13 +98,11 @@ namespace Scorpion
             return;
         }
 
-
         void Sctl_ClientDisconnected(object sender, TcpClient e)
         {
             write_to_console("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
             return;
         }
-
 
         void Sctl_ClientConnected(object sender, TcpClient e)
         {
@@ -87,6 +115,21 @@ namespace Scorpion
             //::*name, *ip, *port
             SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
             sctl.Connect((string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])));
+            sctl.DataReceived += Sctl_DataReceived;
+            Do_on.write_success("Client " + var_get(objects[0]) + " connected to " + var_get(objects[1]) + ":" + var_get(objects[2]));
+                           
+            Do_on.AL_TCP_CLIENTS.Add(sctl);
+            Do_on.AL_TCP_CLIENTS_REF.Add(var_get(objects[0]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+
+        public void tcpclientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name
         }
 
         //LEGACY SOCKETS
@@ -160,6 +203,7 @@ namespace Scorpion
             }
             return;
         }*/
+
     }
 
     class ConnectionFunctions

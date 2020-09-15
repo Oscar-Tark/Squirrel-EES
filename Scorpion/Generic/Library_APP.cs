@@ -1,4 +1,4 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
     Copyright (C) <2020>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
@@ -26,22 +26,11 @@ namespace Scorpion
     {
         public void exit(string Scorp_Line_Exec, ArrayList Objects)
         {
-            Application.Exit();
-        }
-
-        public void restart(string Scorp_Line_Exec, ArrayList Objects)
-        {
-            Application.Restart();
-        }
-
-        public void wiki(ref string Scorp_Line_Exec, ArrayList Objects)
-        {
-            //RUN DOCUMENTATION SCRIPT: !!IMPLEMENT!!
-            var_arraylist_dispose(ref Objects);
-            Scorp_Line_Exec = null;
+            Environment.Exit(0);
             return;
         }
 
+        //??
         public string writeto(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*arg..
@@ -52,7 +41,18 @@ namespace Scorpion
             return var_create_return(ref writable, true);
         }
 
-        public void writescreen(ref string Scorp_Line_Exec, ArrayList Objects)
+        public string input(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*returnable<<::*message, *allowed_length
+            Do_on.write_to_cui(var_get(objects[0]));
+            Console.WriteLine("Input a value:");
+
+            //Due to main engine and input() having a simultaneous Console.Readline() Input is not read properly. Create a dialog or fix
+            string __ret = Console.ReadLine();
+            return var_create_return(ref __ret, true);
+        }
+
+        public void output(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*var, *var..
             string writable = "";
@@ -65,7 +65,7 @@ namespace Scorpion
             return;
         }
 
-        public void writebytes(ref string Scorp_Line_Exec, ArrayList Objects)
+        public void outputbytes(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*var
             object obj = var_get(Objects[0]);

@@ -1,6 +1,5 @@
-﻿
-/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -49,7 +48,7 @@ namespace Scorpion
 
         private void scorpion_exec(object Scorp_Line)
         {
-            //{{{META}}}owner:cactor, pcode, ip:192.168.178.0{{{META}}}*return<<function::*vars
+            //*return<<function::*vars
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
@@ -98,8 +97,6 @@ namespace Scorpion
                 return;
             }
             else { Do_on.write_error("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
-            Console.WriteLine("");
-            Console.Write("Execute>>");
         }
     }
 

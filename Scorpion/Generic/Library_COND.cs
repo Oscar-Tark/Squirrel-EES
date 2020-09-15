@@ -6,7 +6,7 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        public string isequal(string Scorp_Line_Exec, ArrayList objects)
+        public string isequal(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*arg1, *arg2
             string returnable = "";
@@ -16,7 +16,7 @@ namespace Scorpion
                 returnable = "false";
 
             //clean
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref returnable, true);
         }

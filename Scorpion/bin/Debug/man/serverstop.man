@@ -7,7 +7,7 @@ General Syntax
 *name     = contains the name of this specific TCP server to shut down
 
 Example:
-tcpserverstart::*'myserver', *'8552'
+::*'myserver'
 
 See Also
-tcpserverstart, tcpclient
+serverstart, tcpclient

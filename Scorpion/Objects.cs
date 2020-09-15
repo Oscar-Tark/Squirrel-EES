@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -76,7 +76,6 @@ namespace Scorpion
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
         public Timer_ tms;
-        public MongoInterface mdb;
     }
 
     public partial class Form1
@@ -88,7 +87,6 @@ namespace Scorpion
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
             tms = new Timer_(this);
-            mdb = new MongoInterface();
 
             readr = new reader(this);
             types = new Types(this);
@@ -98,7 +96,7 @@ namespace Scorpion
 
         private object CloneObject(object o)
         {
-            Object p = o.GetType().InvokeMember("", System.Reflection.BindingFlags.CreateInstance, null, o, null);
+            Object p = o.GetType().InvokeMember("", BindingFlags.CreateInstance, null, o, null);
 
             foreach (PropertyInfo pi in o.GetType().GetProperties())
             {
@@ -128,6 +126,10 @@ namespace Scorpion
         //Tcp
         public ArrayList AL_TCP = new ArrayList();
         public ArrayList AL_TCP_REF = new ArrayList();
+
+        //Tcpclients
+        public ArrayList AL_TCP_CLIENTS = new ArrayList();
+        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList();
 
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();

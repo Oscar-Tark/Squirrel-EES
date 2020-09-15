@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -48,6 +48,20 @@ namespace Scorpion
             return val;
         }
 
+        private string var_create_return(string val, bool is_val)
+        {
+            if (is_val)
+                return "\'" + val + "\'";
+            return val;
+        }
+
+        private object var_create_return(ref byte[] val, bool is_val)
+        {
+            if (is_val)
+                return "\'" + Do_on.crypto.To_Object(val) + "\'";
+            return val;
+        }
+
         private void var_dispose_internal(ref object __object)
         {
             __object = null;
@@ -57,6 +71,14 @@ namespace Scorpion
         private void var_dispose_internal(ref string __object)
         {
             __object = null;
+            return;
+        }
+
+        private void var_dispose_internal(ref byte[] __bytes)
+        {
+            for(int i = 0; i < __bytes.Length; i++)
+                __bytes[i] = 0x00;
+            __bytes = null;
             return;
         }
     }

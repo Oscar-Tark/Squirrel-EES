@@ -7,7 +7,7 @@ General Syntax
 *name     = contains the name of this specific TCP server allowing referencing. This variable may be used to modify this specific TCP server instance
 
 Example:
-tcpserverstart::*'myserver', *'8552'
+serverstart::*'myserver', *'8552'
 
 See Also
-tcpserverstop, tcpclient
+serverstop, tcpclient

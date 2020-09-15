@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -19,22 +19,6 @@ using System.Collections;
 
 namespace Scorpion
 {
-    partial class Librarian
-    {
-        //MONGO DB
-        public void mongodbfind(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //*filter, *collection
-            string filter = (string)var_get(objects[0]);
-            Do_on.mdb.get(ref filter, (string)var_get(objects[1]));
-
-            var_dispose_internal(ref filter);
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            return;
-        }
-    }
-
     partial class Librarian
     {
         //Legacy DB
