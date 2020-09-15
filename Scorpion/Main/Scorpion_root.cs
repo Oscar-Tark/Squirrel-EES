@@ -27,33 +27,63 @@ namespace Scorpion
         {
             start_classes();
             string passcode = null;
+            string uname = null;
             ConsoleKeyInfo key_rd;
             byte[] pin = new byte[4];
             int pin_up = 0;
+            int tries = 1;
+            const int max_tries = 2;
 
             //Read passcode and pin
             while (true)
             {
-                Console.WriteLine("Scorpion Passcode: ");
-                passcode = Console.ReadLine();
-                Console.WriteLine("4 character pin [Only numbers]: ");
+                write_special("\nScorpion V1.0b - Login - [0_0]__/ 'Robo scorpio says: Hi! Who are you?'\n-----------------------------------------------------------------------\n");
+                write_to_cui("Please enter your username [Try " + tries + "/" + max_tries + "]");
+                Console.Write("Username >> ");
+                uname = Console.ReadLine();
 
-                while (pin_up <= 3)
+                write_to_cui("Scorpion Passcode: ");
+                Console.Write("Passcode >> ");
+                passcode = Console.ReadLine();
+
+                if (pin_up != 4)
                 {
-                    key_rd= Console.ReadKey();
-                    if (char.IsDigit(key_rd.KeyChar))
+                    Console.WriteLine("4 character pin [Only numbers] (NOTE: This pin is saved only for this session. Saving encrypted variables to files may render them not recoverable): ");
+                    Console.Write("Pin >> ");
+                    while (pin_up <= 3)
                     {
-                        pin[pin_up] = (byte)key_rd.KeyChar;
-                        pin_up++;
+                        key_rd = Console.ReadKey();
+                        if (char.IsDigit(key_rd.KeyChar))
+                        {
+                            pin[pin_up] = (byte)key_rd.KeyChar;
+                            pin_up++;
+                        }
+                        else
+                            Console.WriteLine("\nEntered key '" + key_rd.KeyChar + "' is not a number and will be ignored");
                     }
-                    else
-                        Console.WriteLine("\nEntered key '" + key_rd.KeyChar  + "' is not a number and will be ignored");
                 }
 
-                mmsec.set_pass(ref passcode, ref pin);
-                break;
+                Scorpion_Authenticator.Authenticator auth = new Scorpion_Authenticator.Authenticator();
+                if (auth.authenticate(ref uname, ref passcode))
+                {
+                    mmsec.set_uname(ref uname);
+                    mmsec.set_pass(ref passcode, ref pin);
+                    break;
+                }
+                else
+                {
+                    write_error("Wrong username password combination");
+                    if (max_tries == tries)
+                    {
+                        auth.create_user();
+                        tries = 0;
+                    }
+                }
+
+                tries++;
             }
-            Console.WriteLine("\nWelcome to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n");
+
+            Console.WriteLine("\nWelcome {1} to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n\n", uname);
 
             while (true)
             {
@@ -124,6 +154,13 @@ namespace Scorpion
             return;
         }
 
+        public void write_special(object To_out)
+        {
+            change_console_color(ConsoleColor.Blue);
+            Console.WriteLine("{0}", To_out);
+            change_console_color(ConsoleColor.White);
+            return;
+        }
 
         public void write_success(object To_out)
         {

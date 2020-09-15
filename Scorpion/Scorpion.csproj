@@ -188,6 +188,9 @@
     <Reference Include="Flurl.Http">
       <HintPath>..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
     </Reference>
+    <Reference Include="Scorpion_Authenticator">
+      <HintPath>bin\Debug\Scorpion_Authenticator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -251,6 +254,8 @@
     <None Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
     <Compile Include="Main\Scorpion_MODE.cs" />
+    <None Include="System\db_functions_bak.txt" />
+    <Compile Include="Database\MongoInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />
@@ -485,6 +490,7 @@
     <Folder Include="Functions\" />
     <Folder Include="Memory\" />
     <Folder Include="Processes\" />
+    <Folder Include="System\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />

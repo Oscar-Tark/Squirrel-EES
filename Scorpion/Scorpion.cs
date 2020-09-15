@@ -49,6 +49,7 @@ namespace Scorpion
 
         private void scorpion_exec(object Scorp_Line)
         {
+            //{{{META}}}owner:cactor, pcode, ip:192.168.178.0{{{META}}}*return<<function::*vars
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
@@ -97,6 +98,8 @@ namespace Scorpion
                 return;
             }
             else { Do_on.write_error("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
+            Console.WriteLine("");
+            Console.Write("Execute>>");
         }
     }
 

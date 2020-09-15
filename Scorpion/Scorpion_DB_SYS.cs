@@ -107,7 +107,7 @@ namespace Dumper
         public string Segment_DB(ref string path)
         {
             //Create new segment and modify or create segment file
-            Do_on.write_to_cui("Calling segmentation for file: " + path);
+            /*Do_on.write_to_cui("Calling segmentation for file: " + path);
             string node_path = path + node_file;
             //Create node file
             Do_on.write_to_cui("Creating node file");
@@ -126,28 +126,30 @@ namespace Dumper
             Do_on.write_to_cui("Creating segmentation file: " + seg_file);
             Create_DB(seg_file, "");
             Do_on.write_to_cui("Loading segmentation file: " + seg_file);
-            Do_on.readr.lib_SCR.dbopen("", new ArrayList() { seg_file });
-            Do_on.write_to_cui("Segmentation successful");
-            
-            return seg_file;
+            Do_on.readr.lib_SCR.dbopen(seg_file);
+            Do_on.write_to_cui("Segmentation successful");*/
+
+            //return seg_file;
+
+            return "";
         }
 
         public string Segment_search(ref string db, ref string var_ref)
         {
-            if (!File.Exists(db + node_file))
+            /*if (!File.Exists(db + node_file))
                 return db;
 
             foreach (string s_seg in File.ReadLines(db + node_file))
             {
                 //CHECK IF SEGMENT ALOREADY LOADED
                 if (Do_on.AL_TBLE_REF.IndexOf(s_seg) == -1)
-                    Do_on.readr.lib_SCR.dbopen("", new ArrayList() { s_seg, "" });
+                    Do_on.readr.lib_SCR.dbopen(s_seg);
 
                 foreach(string s_elem in ((string[])((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(s_seg)])[0]))
                     return s_seg;
             }
-
-            return "CUNT";
+            */
+            return "ELEM";
         }
 
         public void Get_index(ref string segment)

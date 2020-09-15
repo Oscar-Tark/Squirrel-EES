@@ -17,8 +17,8 @@
 
 using System;
 using System.Collections;
-using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 namespace Scorpion
 {
@@ -27,12 +27,12 @@ namespace Scorpion
         Form1 Do_on;
         public ArrayList AL_REC = new ArrayList() { };
         public ArrayList AL_REC_REF = new ArrayList();
-        System.Threading.Timer tms;
+        Timer tms;
 
         public Timer_(Form1 fm1)
         {
             Do_on = fm1;
-            tms = new System.Threading.Timer(tms_call, null, 0, 10000);
+            tms = new Timer(tms_call, null, 0, 10000);
             return;
         }
 
@@ -76,6 +76,7 @@ namespace Scorpion
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
         public Timer_ tms;
+        public MongoInterface mdb;
     }
 
     public partial class Form1
@@ -87,6 +88,7 @@ namespace Scorpion
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
             tms = new Timer_(this);
+            mdb = new MongoInterface();
 
             readr = new reader(this);
             types = new Types(this);

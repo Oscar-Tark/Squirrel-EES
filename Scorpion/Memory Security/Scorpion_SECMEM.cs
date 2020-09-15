@@ -88,6 +88,7 @@ namespace Scorpion.Memory_Security
             return;
         }
 
+        private string uname = null;
         private string password = null;
         private byte[] pin_cde_hx = new byte[32];
         private byte[] pin_iv = new byte[16];
@@ -96,6 +97,12 @@ namespace Scorpion.Memory_Security
         public byte get_pin()
         {
             return pin_cde;
+        }
+
+        public void set_uname(ref string username)
+        {
+            uname = username;
+            return;
         }
 
         //make private

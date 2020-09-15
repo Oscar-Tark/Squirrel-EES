@@ -16,10 +16,6 @@
 */
 
 using System.Collections;
-using MongoDB;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Libmongocrypt;
 
 namespace Scorpion
 {
@@ -28,16 +24,13 @@ namespace Scorpion
         //MONGO DB
         public void mongodbfind(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //*database, *criteria
-            var client = new MongoDB.Driver.MongoClient();
-            var db = client.GetDatabase("test");
-            var collection = db.GetCollection<MongoDB.Bson.BsonDocument>("cars");
+            //*filter, *collection
+            string filter = (string)var_get(objects[0]);
+            Do_on.mdb.get(ref filter, (string)var_get(objects[1]));
 
-            System.Console.WriteLine(collection.Indexes);
-
-            var document = collection.Find(new BsonDocument()).FirstOrDefault();
-            System.Console.WriteLine(document.ToString());
-
+            var_dispose_internal(ref filter);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
             return;
         }
     }
@@ -170,16 +163,13 @@ namespace Scorpion
         {
             File.Delete(Do_on.AL_DIRECTORIES[0] + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
             Do_on.write_to_cui("Deleteing data file(from disk): " + var_get(objects[0].ToString()).ToString() + Do_on.AL_EXTENSNS[1]);
-
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
         }
-
         public void dbsave(string Scorp_Line_Exec, ArrayList objects)
         {
             Do_on.vds.Dump_DB(var_get(objects[0].ToString()).ToString());
-
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
@@ -205,16 +195,12 @@ namespace Scorpion
         /*private void unget_data_file(ref string File)
         {
             ArrayList al = cut_variables(ref File);
-
             Do_on.AL_TBLE.RemoveAt(Do_on.AL_TBLE_REF.IndexOf(var_get(al[0].ToString())));
             Do_on.AL_TBLE_REF.Remove(var_get(al[0].ToString()));
-
             Do_on.write_to_cui("Removed Data File(From Memory Only): " + var_get(al[0].ToString()));
-
             var_arraylist_dispose(ref al);
             return;
         }
-
         public void list_internals(ref string Scorp_Line)
         {
             /*(*name)*/
@@ -222,36 +208,26 @@ namespace Scorpion
         ArrayList al_ = cut_variables(Scorp_Line);
         foreach(ArrayList al in ((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al_[0].ToString()))]))
         {
-
         }
     }
-
-
-
-
     private void export_visual(ref string Scorp_Line_Exec)
     {
         //(*table,*viewtype)
         ArrayList al = cut_variables(ref Scorp_Line_Exec);
-
         string accum = "";
         foreach(string s in ((ArrayList)((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al[0].ToString()))])[0])[0]))
         {
             accum += s + "\n";
         }
-
         Do_on.write_to_cui(accum);
-
         return;
     }
-
     public void add_linkages(ref string Scorp_Line_Exec)
     {
         ArrayList al = cut_variables(ref Scorp_Line_Exec);
         //(*Table_name,*value_of_cell,*link,*link,*link)
         /*          {Linkage Name}
             {ref cell,ref cell,ref cell,ref cell,ref cell,ref cell}
-
         */
         //([Name],*cell,*cell,*cell)
         /*
@@ -259,7 +235,6 @@ namespace Scorpion
         {
            ((ArrayList)((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(var_get(al[0].ToString()))])[1]).Add(var_get(al[i].ToString()));
         }
-
         var_arraylist_dispose(ref al);
         return;
     }*/
