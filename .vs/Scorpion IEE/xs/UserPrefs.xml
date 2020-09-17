@@ -2,13 +2,19 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="16" Column="3" />
+      <File FileName="Scorpion/Scorpion.cs" Line="104" Column="37" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="96" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
-            <Node name="Scorpion" expanded="True" />
+            <Node name="Scorpion" expanded="True">
+              <Node name="Cutter" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Scorpion_NETWORK.cs" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

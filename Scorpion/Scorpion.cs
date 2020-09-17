@@ -59,7 +59,6 @@ namespace Scorpion
 
             if (Scorp_Line_Exec[0] != 0x00)
             {
-                Scorp_Line_Exec = ef__.prepare_Scorp_line(ref Scorp_Line_Exec);
                 string[] functions = null;
                 try
                 {
@@ -100,29 +99,16 @@ namespace Scorpion
         }
     }
 
-    public partial class Librarian
-    {
-        private void addlog(ref string Scorp_Line_Exec)
-        { 
-            
-        }
-    }
-
     public class Enginefunctions
     {
-        public string replace_fakes(ref string Scorp_Line)
+        public string replace_fakes(string Scorp_Line)
         {
-            return Scorp_Line.Replace("@", "*");
-        }
-
-        public string prepare_Scorp_line(ref string Scorp_Line)
-        {
-            return Scorp_Line;
+            return Scorp_Line.Replace("{&var}", "*").Replace("{&quot}", "'");
         }
 
         public string replace_telnet(string Scorp_Line)
         {
-            return Scorp_Line.Replace("\n", "").Replace("\r", "");
+            return Scorp_Line.Replace("\n", "").Replace("\r", "").Replace("959;1R", "");
         }
 
         public string[] get_function(ref string Scorp)

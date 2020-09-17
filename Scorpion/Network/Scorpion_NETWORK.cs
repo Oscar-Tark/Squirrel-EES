@@ -72,6 +72,8 @@ namespace Scorpion
             //::*name, *data
             try
             {
+                ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).StringEncoder = Encoding.UTF8;
+                ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Delimiter = 0x00;
                 ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).BroadcastLine((string)var_get(objects[1]));
                 write_to_console("Data sent");
             }
@@ -93,7 +95,7 @@ namespace Scorpion
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
             Enginefunctions ef__ = new Enginefunctions();
-            scorpioniee(ef__.replace_telnet(e.MessageString));
+            scorpioniee(ef__.replace_fakes(ef__.replace_telnet(e.MessageString)));
             ef__ = null;
             return;
         }
