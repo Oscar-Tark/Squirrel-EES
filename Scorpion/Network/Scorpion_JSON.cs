@@ -27,6 +27,7 @@ namespace Scorpion
                     var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]));
             }
             var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
@@ -48,6 +49,7 @@ namespace Scorpion
                     //var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]));
             }
             var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 

@@ -89,6 +89,9 @@ namespace Scorpion
             //::
             foreach (string server in Do_on.AL_TCP_REF)
                 Do_on.write_to_cui(server);
+
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 

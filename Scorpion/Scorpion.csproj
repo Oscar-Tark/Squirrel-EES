@@ -248,7 +248,6 @@
     <None Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
-    <Compile Include="Main\Scorpion_MODE.cs" />
     <None Include="System\db_functions_bak.txt" />
   </ItemGroup>
   <ItemGroup>

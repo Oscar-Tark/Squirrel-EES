@@ -87,8 +87,6 @@ namespace Scorpion
             Console.WriteLine("-------------------------\nCores {0}\nMachine name: {1}\nOperating system: {4}\n64bit OS: {2}\n64bit process: {3}\nProcess ID: {5}\n-------------------------\n", Environment.ProcessorCount, Environment.MachineName, Environment.Is64BitProcess, Environment.Is64BitOperatingSystem, Environment.OSVersion, Environment.CurrentManagedThreadId);
             while (true)
             {
-                //Console.WriteLine("");
-                //Console.Write("Execute>>");
                 readr.access_library(Console.ReadLine());
                 th_clean_strt();
             }

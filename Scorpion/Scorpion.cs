@@ -53,49 +53,42 @@ namespace Scorpion
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
 
-            //Add to log for updown funtionality
-            Do_on.commands[0] = Scorp_Line_Exec;
-            //Scorp_Line_Exec = ef__.line_check(ref this.Do_on, ref Scorp_Line_Exec);
-
-            if (Scorp_Line_Exec[0] != 0x00)
+            string[] functions = null;
+            try
             {
-                string[] functions = null;
-                try
-                {
-                    //Gets and removes the return variable
-                    string[] final = ef__.get_return(ref Scorp_Line_Exec);
-                    if(final.Length > 1)
-                        Scorp_Line_Exec = final[1];
-                    functions = ef__.get_function(ref Scorp_Line_Exec);
-                    object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-                    object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+                //Gets and removes the return variable
+                string[] final = ef__.get_return(ref Scorp_Line_Exec);
+                if (final.Length > 1)
+                    Scorp_Line_Exec = final[1];
+                functions = ef__.get_function(ref Scorp_Line_Exec);
+                object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
+                object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
-                    if (retfun != null)
-                        ef__.process_return(ref retfun, ref final[0], this);
+                if (retfun != null)
+                    ef__.process_return(ref retfun, ref final[0], this);
 
-                    functions = null;
-                    paramse = null;
-                    retfun = null;
-                }
-                catch (Exception erty)
-                {
-                    Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
-                    showman(functions[0]);
-                }
-
-                sp.Stop();
-                Do_on.engine_ndx++;
-                Do_on.write_success("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
-                sp.Reset();
-
-                Scorp_Line = null;
-                ef__ = null;
-                pointered = false;
-                Scorp_Line_Exec = null;
-                GC.Collect();
-                return;
+                functions = null;
+                paramse = null;
+                retfun = null;
             }
-            else { Do_on.write_error("Execution halted due to: Security concerns an unwanted set of characters was found or the line exceeded the maximum allowed limit of " + get_limit()+ " characters."); }
+            catch (Exception erty)
+            {
+                Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
+                showman(functions[0]);
+            }
+
+            sp.Stop();
+            Do_on.engine_ndx++;
+            Do_on.write_success("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            sp.Reset();
+
+            //Make sure objects are set to null and disposed
+            ef__ = null;
+            pointered = false;
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_dispose_internal(ref Scorp_Line);
+            GC.Collect();
+            return;
         }
     }
 

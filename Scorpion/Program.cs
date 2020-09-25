@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark> <Rasmus Høeberg> <Benjamin Johnson>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -16,9 +16,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace Scorpion
 {
@@ -34,6 +31,7 @@ namespace Scorpion
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             Form1 f1 = new Form1();
+            return;
         }
     }
 }

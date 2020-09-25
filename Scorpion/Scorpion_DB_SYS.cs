@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 
+//DEPRECIATED
 namespace Dumper
 {
     public class Virtual_Dumper_System
