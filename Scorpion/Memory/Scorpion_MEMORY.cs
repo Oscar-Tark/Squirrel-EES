@@ -130,8 +130,9 @@ namespace Scorpion
         {
             //(*,*,*,*,...)
             //ArrayList al = cut_variables(ref Scorp_Line_Exec);
+            //Variables by default are created as booleans bearing the 'false' value
             foreach (string s in objects)
-                var_new((object)"", s, "", "");
+                var_new((object)Do_on.types.S_No, s, "", "");
 
             //clean
             var_arraylist_dispose(ref objects);
@@ -251,8 +252,6 @@ namespace Scorpion
 
     public partial class Librarian
     {
-        //VAR_SET_ENCRYPTED are in Scorpion_SECMEM
-
         private object var_get(string Block)
         {
             return var_get(ref Block);
@@ -268,21 +267,6 @@ namespace Scorpion
             return var_get((string)Block);
         }
 
-        private ArrayList var_cut_domain(ref object o)
-        {
-            return cut_custom_domain(o.ToString());
-        }
-
-        private ArrayList var_cut_domain(object o)
-        {
-            return cut_custom_domain(o.ToString());
-        }
-
-        private ArrayList var_cut_subvar(object o)
-        {
-            return cut_custom_subvar(o.ToString());
-        }
-
         //Actions
         private string var_cut_spaces(string Var)
         {
@@ -292,9 +276,7 @@ namespace Scorpion
         private string var_cut_symbol(ref string Var)
         {
             if (Var.StartsWith("*", System.StringComparison.CurrentCulture) == true)
-            {
                 Var = Var.Replace("*", "");
-            }
 
             return Var;
         }
@@ -302,18 +284,14 @@ namespace Scorpion
         private string var_cut_symbol(string Var)
         {
             if (Var.StartsWith("*", System.StringComparison.CurrentCulture) == true)
-            {
                 Var = Var.Replace("*", "");
-            }
 
             return Var;
         }
         private string var_cut_str_symbol(ref string Var)
         {
             if (Var.Contains("'") == true)
-            {
                 Var = Var.Replace("'", "");
-            }
 
             return Var;
         }
@@ -333,6 +311,7 @@ namespace Scorpion
 
         private void var_new(object Variable, string Reference, string Type_, string Tag)
         {
+            //By default all variables are created as bools with a default value of 'false'
             //(*,*,*,*,...)
             try
             {

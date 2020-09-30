@@ -24,7 +24,7 @@ namespace Scorpion
     {
         public void runscriptcondition(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //All fules must be UTF8
+            //All files must be UTF8
             //::*if, *is, *Path
             if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
             {
@@ -45,7 +45,7 @@ namespace Scorpion
 
         public void runscript(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //All fules must be UTF8
+            //All files must be UTF8
             //(*Path)
             string line;
             FileStream fd = new FileStream((string)var_get((string)objects[0]), FileMode.Open);
@@ -61,7 +61,7 @@ namespace Scorpion
             return;
         }
 
-        public void runscriptencrypted(ref string Scorp_Line_Exec, ref ArrayList objects)
+        /*public void runscriptencrypted(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All fules must be UTF8
             //::*path, *key
@@ -75,7 +75,7 @@ namespace Scorpion
             /*while ((line = sr.ReadLine()) != null)
             {
                 scorpion_exec((object)line);
-            }*/
+            }
 
             Scorp_Line_Exec = null;
             var_dispose_internal(ref line);
@@ -99,6 +99,6 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
-        }
+        }*/
     }
 }

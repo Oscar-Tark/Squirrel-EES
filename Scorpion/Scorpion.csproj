@@ -206,8 +206,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Scorpion.cs" />
-    <Compile Include="Library_OBJ.cs" />
-    <Compile Include="Library_TYPE_FUNCTIONS.cs" />
     <Compile Include="Object Types.cs" />
     <Compile Include="Objects.cs">
       <SubType>Form</SubType>

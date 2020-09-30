@@ -59,6 +59,7 @@ namespace Scorpion
         {
             //::*name
             ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Stop();
+            ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).DataReceived -= Sctl_DataReceived;
             Do_on.AL_TCP_REF.RemoveAt(Do_on.AL_TCP_REF.IndexOf(var_get(objects[0])));
             write_to_console("TCP server stopped");
 

@@ -84,7 +84,6 @@ namespace Scorpion
 
             //Make sure objects are set to null and disposed
             ef__ = null;
-            pointered = false;
             var_dispose_internal(ref Scorp_Line_Exec);
             var_dispose_internal(ref Scorp_Line);
             GC.Collect();

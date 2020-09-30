@@ -1,29 +1,26 @@
-﻿using System.Collections;
-using System.Windows.Forms;
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 //Static Library
 namespace Scorpion
 {
     public partial class Librarian
     {
-        private delegate void del_do(object Scorp_Line);
-        private delegate void del_do_rf_str(ref string Scorp_Line, ref ArrayList al);
-        private delegate void del_do_rf_obj(object Scorp_Line);
-
-        public bool pointered = false;
-        public TreeNode tn_tmp;
-        public string Item_type;
-        public bool cuimode = false;
-        public Form1 Do_on;
-        int limit = 256;
-
-        public NotifyIcon nfy_tmp;
-        public bool resend = false;
-
-        public string strng_tmp;
-        public ArrayList AL_Ref_EVT = new ArrayList();
-
-
-        public object FC;
+        public static Form1 Do_on;
+        static int limit = 256;
     }
 }
