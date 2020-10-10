@@ -9,5 +9,7 @@ General Syntax
 Example:
 serverstart::*'myserver', *'8552'
 
+ATTENTION! Broadcasts are done using the 0x13 delimiter. End any command you would like to send from an external program with 0x13
+
 See Also
 serverstop, tcpclient
