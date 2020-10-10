@@ -74,7 +74,7 @@ namespace Scorpion
             try
             {
                 ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).StringEncoder = Encoding.UTF8;
-                ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Delimiter = 0x00;
+                ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).Delimiter = 0x13;
                 ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[Do_on.AL_TCP_REF.IndexOf(var_get(objects[0]))]).BroadcastLine((string)var_get(objects[1]));
                 write_to_console("Data sent");
             }
@@ -98,8 +98,12 @@ namespace Scorpion
 
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
+            //Removes delimiter 0x13 and executes
             Enginefunctions ef__ = new Enginefunctions();
-            scorpioniee(ef__.replace_fakes(ef__.replace_telnet(e.MessageString)));
+            string command = ef__.replace_fakes(ef__.replace_telnet(e.MessageString));
+            /*IPEndPoint ipep = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
+            IPAddress ipa = ipep.Address;*/
+            scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
             ef__ = null;
             return;
         }

@@ -25,24 +25,34 @@ namespace Scorpion
     public class Timer_
     {
         Form1 Do_on;
-        public ArrayList AL_REC = new ArrayList() { };
+        public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
+        Enginefunctions ef__ = new Enginefunctions();
+        int interval = 100000;
 
         public Timer_(Form1 fm1)
         {
             Do_on = fm1;
-            tms = new Timer(tms_call, null, 0, 10000);
+            tms = new Timer(tms_call, null, 0, interval);
+            return;
+        }
+
+        public void change_interval(int time)
+        {
+            interval = time;
+            tms.Change(0, interval);
             return;
         }
 
         public void add(object Name, object Object)
         {
-            /*VARIABLES MUST BE @ not * */
+            /*VARIABLES MUST BE {&quot}, {&var} not * or *'' */
             if (AL_REC_REF.IndexOf(Name) < 0)
             {
                 AL_REC.Add(Object);
                 AL_REC_REF.Add(Name);
+                Do_on.write_to_cui("Recursive functions by default will run every " + interval + "s. To run functions everyday use the recursivetime::*time function to store 86400000s");
             }
             else
                 Do_on.write_to_cui("Name for recursive function already exists");
@@ -59,7 +69,7 @@ namespace Scorpion
         public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
-                Do_on.readr.lib_SCR.scorpioniee((object)(command.Replace('@', '*')));
+                Do_on.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command));
 
             obj = null;
             GC.Collect();
@@ -76,6 +86,7 @@ namespace Scorpion
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
         public Timer_ tms;
+        public Workspaces.Workspaces wkp;
     }
 
     public partial class Form1
@@ -91,6 +102,7 @@ namespace Scorpion
             readr = new reader(this);
             types = new Types(this);
             types.load_system_vars();
+            wkp = new Workspaces.Workspaces(this);
             return;
         }
 

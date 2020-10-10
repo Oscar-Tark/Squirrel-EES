@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark> <Rasmus Høeberg>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections;
 using System.Reflection;
 
@@ -23,7 +24,7 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        public void listfunctions(string Scorp_Line_Exec, ArrayList objects)
+        public void listfunctions(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             string STR_ = "";
             foreach (MethodInfo mi in this.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance))
@@ -36,15 +37,38 @@ namespace Scorpion
             Do_on.write_to_cui(STR_);
 
             //clean
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void recursive(string Scorp_Line_Exec, ArrayList objects)
+        public void recursive(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *arg
+            /*VARIABLES MUST BE {&quot}, {&var} not * or *'' */
             Do_on.tms.add(var_get(objects[0]), var_get(objects[1]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void recursivedelete(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name
+            Do_on.tms.delete(var_get(objects[0]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void recursivetime(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*time_in_ms
+            Do_on.tms.change_interval(Convert.ToInt32(var_get(objects[0])));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
             return;
         }
 
@@ -278,7 +302,7 @@ namespace Scorpion
             return;
         }*/
         //General Core
-     
+
 
         /*public void call_function(string Line_of_Code)
         {

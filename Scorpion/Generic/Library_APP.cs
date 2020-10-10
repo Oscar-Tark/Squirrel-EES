@@ -96,9 +96,7 @@ namespace Scorpion
         {
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
             foreach (object o in al)
-            {
-                Do_on.write_to_cui(var_get(o.ToString()).ToString() + "\n");
-            }
+                Do_on.write_to_cui(var_get(o.ToString()) + "\n");
 
             var_arraylist_dispose(ref al);
             Scorp_Line_Exec = null;

@@ -140,7 +140,7 @@ namespace Scorpion
                     Console.WriteLine("{0:X}", b_);
             else
                 Console.WriteLine(To_out + "\n");
-
+            
             change_console_color(ConsoleColor.White);
             To_out = null;
             return;

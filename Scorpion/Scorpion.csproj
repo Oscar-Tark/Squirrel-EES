@@ -247,6 +247,8 @@
     <None Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
     <None Include="System\db_functions_bak.txt" />
+    <Compile Include="Io\Library_WORKSPACES.cs" />
+    <Compile Include="Generic\Scorpion_DATETIME.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />
