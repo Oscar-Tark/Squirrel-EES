@@ -191,6 +191,9 @@
     <Reference Include="Scorpion_Authenticator">
       <HintPath>bin\Debug\Scorpion_Authenticator.dll</HintPath>
     </Reference>
+    <Reference Include="Scorpion_Hasher_Library">
+      <HintPath>bin\Debug\Scorpion_Hasher_Library.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -249,6 +252,7 @@
     <None Include="System\db_functions_bak.txt" />
     <Compile Include="Io\Library_WORKSPACES.cs" />
     <Compile Include="Generic\Scorpion_DATETIME.cs" />
+    <Compile Include="Memory\Scorpion_HASHING.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />

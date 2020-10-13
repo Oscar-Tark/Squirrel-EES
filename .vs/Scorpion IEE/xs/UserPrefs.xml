@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Objects.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Crypto/Scorpion_CRYPTO.cs">
     <Files>
-      <File FileName="Scorpion/Functions/Scorpion_FNC.cs" Line="60" Column="55" />
-      <File FileName="Scorpion/Objects.cs" Line="56" Column="14" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="216" Column="6" />
+      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Functions" expanded="True" />
-              <Node name="Generic" expanded="True" />
-              <Node name="Objects.cs" selected="True" />
+              <Node name="Crypto" expanded="True">
+                <Node name="Scorpion_CRYPTO.cs" selected="True" />
+              </Node>
+              <Node name="System" expanded="True" />
             </Node>
           </Node>
         </State>

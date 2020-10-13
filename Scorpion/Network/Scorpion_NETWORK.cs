@@ -213,7 +213,6 @@ namespace Scorpion
             }
             return;
         }*/
-
     }
 
     class ConnectionFunctions
