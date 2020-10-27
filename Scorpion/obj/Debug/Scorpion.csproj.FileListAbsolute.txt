@@ -1093,3 +1093,9 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Cryptography.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Randomizer.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_RSA.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Cryptography.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Randomizer.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_RSA.pdb

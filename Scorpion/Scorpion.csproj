@@ -194,6 +194,15 @@
     <Reference Include="Scorpion_Hasher_Library">
       <HintPath>bin\Debug\Scorpion_Hasher_Library.dll</HintPath>
     </Reference>
+    <Reference Include="Cauldron.Cryptography">
+      <HintPath>..\..\Scorpion_RSA\Scorpion_RSA\bin\Debug\Cauldron.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Cauldron.Randomizer">
+      <HintPath>..\..\Scorpion_RSA\Scorpion_RSA\bin\Debug\Cauldron.Randomizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Scorpion_RSA">
+      <HintPath>..\..\Scorpion_RSA\Scorpion_RSA\bin\Debug\Scorpion_RSA.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -253,6 +262,7 @@
     <Compile Include="Io\Library_WORKSPACES.cs" />
     <Compile Include="Generic\Scorpion_DATETIME.cs" />
     <Compile Include="Memory\Scorpion_HASHING.cs" />
+    <Compile Include="Memory\Scorpion_RSA_ENCRYPT.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no on.png" />

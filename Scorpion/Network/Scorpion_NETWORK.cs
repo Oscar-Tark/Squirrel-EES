@@ -98,6 +98,9 @@ namespace Scorpion
 
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
+            //get private key and decrypt
+            //Scorpion_RSA.Scorpion_RSA.get_private_key_file("/home/ferret/");
+
             //Removes delimiter 0x13 and executes
             Enginefunctions ef__ = new Enginefunctions();
             string command = ef__.replace_fakes(ef__.replace_telnet(e.MessageString));

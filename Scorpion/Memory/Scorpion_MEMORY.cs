@@ -16,6 +16,7 @@
 */
 
 using System.Collections;
+using System.Security;
 
 namespace Scorpion
 {
@@ -59,6 +60,14 @@ namespace Scorpion
         {
             if (is_val)
                 return "\'" + Do_on.crypto.To_Object(val) + "\'";
+            return val;
+        }
+
+        private object var_create_return(ref SecureString val, bool is_val)
+        {
+            Do_on.write_warning("A secure string is being returned to a normal scorpion memory variable, this may compromise security");
+            if (is_val)
+                return "\'" + val + "\'";
             return val;
         }
 

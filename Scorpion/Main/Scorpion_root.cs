@@ -154,6 +154,14 @@ namespace Scorpion
             return;
         }
 
+        public void write_warning(object To_out)
+        {
+            change_console_color(ConsoleColor.DarkYellow);
+            Console.WriteLine("[WARNING]: {0}", To_out);
+            change_console_color(ConsoleColor.White);
+            return;
+        }
+
         public void write_special(object To_out)
         {
             change_console_color(ConsoleColor.Blue);
@@ -177,6 +185,19 @@ namespace Scorpion
                     Console.WriteLine("{0:X}", b_);
             else
                 Console.WriteLine("[DEBUG]:\n" + To_out + "\n");
+            To_out = null;
+            return;
+        }
+
+        public void write_experimental(object To_out)
+        {
+            change_console_color(ConsoleColor.Cyan);
+            if (To_out.GetType() == Type.GetType("byte[]"))
+                foreach (byte b_ in (byte[])To_out)
+                    Console.WriteLine("{0:X}", b_);
+            else
+                Console.WriteLine("[EXPERIMENTAL]:\n" + To_out + "\n");
+            change_console_color(ConsoleColor.Cyan);
             To_out = null;
             return;
         }

@@ -45,7 +45,8 @@ namespace Scorpion.Crypto
             MemoryStream ms = new MemoryStream();
             CryptoStream cs = new CryptoStream(ms, ics, CryptoStreamMode.Write);
             StreamWriter sw = new StreamWriter(cs);
-            sw.Write(block_);
+            
+            sw.Write(Encoder.encodebase64string(block_));
             sw.Flush();
             sw.Close();
             encrypted = ms.ToArray();
@@ -68,7 +69,7 @@ namespace Scorpion.Crypto
             cs.Close();
             ms.Flush();
             ms.Close();
-            return decrypted;
+            return Encoder.decodebase64string(decrypted);
         }
     }
 
@@ -80,6 +81,10 @@ namespace Scorpion.Crypto
         public Cryptographer(Scorpion.Form1 fm1)
         {
             Do_on = fm1;
+        }
+
+        public Cryptographer()
+        {
         }
 
         public byte[] To_Byte(object obj)
@@ -95,11 +100,24 @@ namespace Scorpion.Crypto
             return new BinaryFormatter().Deserialize(ms);
         }
 
-        public string SHA(string pass)
+        public static string SHA(string pass)
         {
             byte[] to_convert = Encoding.UTF8.GetBytes(pass);
             to_convert = SHA256.Create().ComputeHash(to_convert);
             return Convert.ToBase64String(to_convert);
+        }
+    }
+
+    public static class Encoder
+    {
+        public static string encodebase64string(string to_encode)
+        {
+            return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(to_encode));
+        }
+
+        public static string decodebase64string(string to_decode)
+        {
+            return System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(to_decode));
         }
     }
 }
