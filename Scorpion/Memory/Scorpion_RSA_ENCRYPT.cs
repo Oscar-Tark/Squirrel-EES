@@ -14,18 +14,19 @@ namespace Scorpion
             return;
         }
 
-        public string rsapublickey(ref string Scorp_Line_Exec, ref ArrayList objects)
+        //Unavailable due to security concerns, use file path instead
+        /*public string rsapublickey(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*returnable::*key_file
             return var_create_return(Scorpion_RSA.Scorpion_RSA.get_public_key_file((string)var_get(objects[0])), true);
-        }
+        }*/
 
-        //Unavailable due to security concerns
-        public object rsaprivatekey(ref string Scorp_Line_Exec, ref ArrayList objects)
+        //Unavailable due to security concerns, use file path instead
+        /*public object rsaprivatekey(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*returnable::*key_file
             SecureString s_ = Scorpion_RSA.Scorpion_RSA.get_private_key_file((string)var_get(objects[0]));
             return var_create_return(ref s_, true);
-        }
+        }*/
     }
 }

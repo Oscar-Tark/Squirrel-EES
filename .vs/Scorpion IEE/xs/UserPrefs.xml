@@ -2,25 +2,10 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Functions/Scorpion_FNC.cs" Line="48" Column="21" />
-      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="107" Column="32" />
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="66" Column="24" />
-      <File FileName="Scorpion/Memory/Scorpion_RSA_ENCRYPT.cs" Line="29" Column="10" />
-      <File FileName="Scorpion/Memory/Scorpion_HASHING.cs" Line="2" Column="31" />
-      <File FileName="Scorpion/Main/Scorpion_root.cs" Line="160" Column="40" />
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="102" Column="15" />
+      <File FileName="Scorpion/Memory/Scorpion_RSA_ENCRYPT.cs" Line="19" Column="10" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="170" Column="52" />
+      <File FileName="Scorpion/Objects.cs" Line="160" Column="29" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Scorpion IEE" expanded="True">
-            <Node name="Scorpion" expanded="True">
-              <Node name="Network" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
