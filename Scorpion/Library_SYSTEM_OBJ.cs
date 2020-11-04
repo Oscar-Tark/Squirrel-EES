@@ -20,7 +20,7 @@ namespace Scorpion
 {
     public partial class Librarian
     {
-        public static Form1 Do_on;
-        static int limit = 256;
+        public static Scorp Do_on;
+        static readonly int limit = 256;
     }
 }

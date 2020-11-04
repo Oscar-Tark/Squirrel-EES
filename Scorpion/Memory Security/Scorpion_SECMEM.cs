@@ -40,8 +40,8 @@ namespace Scorpion.Memory_Security
 
     public class Sanitizer
     {
-        Form1 Do_on;
-        public Sanitizer(Form1 fm1)
+        Scorp Do_on;
+        public Sanitizer(Scorp fm1)
         {
             Do_on = fm1;
             return;
@@ -81,8 +81,8 @@ namespace Scorpion.Memory_Security
 
     public class Secure_Memory
     {
-        Form1 Do_on;
-        public Secure_Memory(Form1 fm1)
+        Scorp Do_on;
+        public Secure_Memory(Scorp fm1)
         {
             Do_on = fm1;
             return;

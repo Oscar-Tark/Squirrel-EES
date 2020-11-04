@@ -42,8 +42,8 @@ namespace Scorpion
         public string in_ = "in";
         public string out_ = "out";
 
-        Form1 fm_1_ref;
-        public Types(Form1 fm_1)
+        Scorp fm_1_ref;
+        public Types(Scorp fm_1)
         {
             fm_1_ref = fm_1;
             return;

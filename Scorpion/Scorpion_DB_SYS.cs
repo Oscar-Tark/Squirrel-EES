@@ -7,7 +7,7 @@ namespace Dumper
 {
     public class Virtual_Dumper_System
     {
-        Scorpion.Form1 Do_on;
+        Scorpion.Scorp Do_on;
         private string node_file = ".stg.nde";
         /*private string db_file = ".stg";
         private string current_path = "";
@@ -17,7 +17,7 @@ namespace Dumper
         private string db_config_file = "scorpion.config";
         private string db_config = null;*/
 
-        public Virtual_Dumper_System(Scorpion.Form1 fm1)
+        public Virtual_Dumper_System(Scorpion.Scorp fm1)
         {
             Do_on = fm1;
             /*get_paths();

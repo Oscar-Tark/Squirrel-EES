@@ -21,9 +21,9 @@ using System.Threading;
 namespace Scorpion
 {
     //CHANGE CLASS NAME
-    public partial class Form1
+    public partial class Scorp
     {
-        public Form1()
+        public Scorp()
         {
             start_classes();
             string passcode = null;

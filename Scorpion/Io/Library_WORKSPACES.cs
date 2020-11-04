@@ -52,7 +52,7 @@ namespace Workspaces
     public class Workspaces
     {
         //Only two workspaces are available at the moment
-        Scorpion.Form1 Do_on;
+        readonly Scorpion.Scorp Do_on;
 
         //private int current = 0;
         const int workspaces = 2;
@@ -60,7 +60,7 @@ namespace Workspaces
         private MemoryStream[] ms_workspaces = new MemoryStream[2];
         private TextWriter[] ts_workspaces = new TextWriter[2];
 
-        public Workspaces(Scorpion.Form1 fm1)
+        public Workspaces(Scorpion.Scorp fm1)
         {
             Do_on = fm1;
             Console.WriteLine("[DEBUG] Generating workspaces...");

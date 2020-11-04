@@ -24,14 +24,14 @@ namespace Scorpion
 {
     public class Timer_
     {
-        Form1 Do_on;
+        Scorp Do_on;
         public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
         Enginefunctions ef__ = new Enginefunctions();
         int interval = 100000;
 
-        public Timer_(Form1 fm1)
+        public Timer_(Scorp fm1)
         {
             Do_on = fm1;
             tms = new Timer(tms_call, null, 0, interval);
@@ -78,7 +78,7 @@ namespace Scorpion
     }
 
     //CLASSES HERE
-    public partial class Form1
+    public partial class Scorp
     {
         public reader readr;
         public Dumper.Virtual_Dumper_System vds;
@@ -89,7 +89,7 @@ namespace Scorpion
         public Workspaces.Workspaces wkp;
     }
 
-    public partial class Form1
+    public partial class Scorp
     {
         public void start_classes()
         {

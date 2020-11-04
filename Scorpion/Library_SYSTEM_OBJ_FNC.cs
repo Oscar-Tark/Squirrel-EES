@@ -25,10 +25,10 @@ namespace Scorpion
             return limit;
         }
 
-        public void set_limit(int limit_)
+        /*public void set_limit(int limit_)
         {
             if (limit_ < 256)
                 limit = limit_;
-        }
+        }*/
     }
 }

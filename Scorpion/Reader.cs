@@ -21,11 +21,11 @@ namespace Scorpion
 {
     public class reader
     {
-        Form1 fmm;
+        Scorp fmm;
         public Librarian lib_SCR;
         private Thread th_cross; public bool Re_do = true; public int ndx = 0;
         private delegate void dl_cross();
-        public reader(Form1 Form_Handle)
+        public reader(Scorp Form_Handle)
         {
            fmm = Form_Handle;
            lib_SCR = new Librarian(Form_Handle);

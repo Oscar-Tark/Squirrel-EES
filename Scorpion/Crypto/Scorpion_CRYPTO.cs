@@ -75,10 +75,10 @@ namespace Scorpion.Crypto
 
     public partial class Cryptographer
     {
-        Scorpion.Form1 Do_on;
+        Scorpion.Scorp Do_on;
         /*Objects: These objects must be contained only in this file, any replications in other files can give away any encryption data*/
 
-        public Cryptographer(Scorpion.Form1 fm1)
+        public Cryptographer(Scorpion.Scorp fm1)
         {
             Do_on = fm1;
         }

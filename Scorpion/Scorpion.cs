@@ -28,7 +28,7 @@ namespace Scorpion
 
     public partial class Librarian
     {
-        public Librarian(Form1 Form_Handle)
+        public Librarian(Scorp Form_Handle)
         {
             Do_on = Form_Handle;
             return;
@@ -115,7 +115,7 @@ namespace Scorpion
             return Scorp.Split(delimiterChars, StringSplitOptions.None);
         }
 
-        public string line_check(ref Form1 fm1, ref string Scorp)
+        public string line_check(ref Scorp fm1, ref string Scorp)
         {
             return fm1.san.sanitize(ref Scorp);
         }

@@ -260,8 +260,8 @@ namespace Scorpion
 
     class ConnectionFunctions
     {
-        Form1 fm1;
-        public ConnectionFunctions(Form1 fm1_)
+        Scorp fm1;
+        public ConnectionFunctions(Scorp fm1_)
         { fm1 = fm1_; return; }
 
         public void Accept(IAsyncResult result)
