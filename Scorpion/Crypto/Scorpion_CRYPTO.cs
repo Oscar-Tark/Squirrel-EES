@@ -94,6 +94,11 @@ namespace Scorpion.Crypto
             return ms.ToArray();
         }
 
+        public string To_String(byte[] byt)
+        {
+            return Encoding.Default.GetString(byt);
+        }
+
         public object To_Object(byte[] byt)
         {
             MemoryStream ms = new MemoryStream(byt);

@@ -87,6 +87,7 @@ namespace Scorpion
         public Memory_Security.Sanitizer san;
         public Timer_ tms;
         public Workspaces.Workspaces wkp;
+        public Memory mem;
     }
 
     public partial class Scorp
@@ -103,6 +104,7 @@ namespace Scorpion
             types = new Types(this);
             types.load_system_vars();
             wkp = new Workspaces.Workspaces(this);
+            mem = new Memory();
             return;
         }
 
@@ -145,7 +147,7 @@ namespace Scorpion
         {
             //Add as secure string?
             //No ref, we need actual value copied
-            AL_TCP_KY.Add(new string[2]{ private_s_RSA, private_s_RSA });
+            AL_TCP_KY.Add(new string[2]{ private_s_RSA, public_s_RSA });
             return;
         }
 
@@ -161,9 +163,6 @@ namespace Scorpion
         }
         //<--
 
-        //Tcpclients
-        public ArrayList AL_TCP_CLIENTS = new ArrayList();
-        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList();
 
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();
@@ -188,8 +187,10 @@ namespace Scorpion
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
     }
 
-    public class Memory
+    public partial class Memory
     {
+        //new memory class
+
         //Must be singleton
         bool instance = false;
         /*Memory Memory()
@@ -198,5 +199,55 @@ namespace Scorpion
                 return new Memory();
             return null;
         }*/
+
+        //Tcpclients
+        private ArrayList AL_TCP_CLIENTS = new ArrayList();
+        private ArrayList AL_TCP_CLIENTS_REF = new ArrayList();
+        private ArrayList AL_TCP_CLIENTS_KY = new ArrayList();
+    }
+
+    public partial class Memory
+    {
+        public void add_tcpclient(ref string reference, ref SimpleTCP.SimpleTcpClient to_add, ref string private_key_path, ref string public_key_path)
+        {
+            lock (AL_TCP_CLIENTS) lock (AL_TCP_CLIENTS_REF) lock (AL_TCP_CLIENTS_KY)
+                    {
+                        AL_TCP_CLIENTS.Add(to_add);
+                        AL_TCP_CLIENTS_REF.Add(reference);
+                        AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
+                    }
+            return;
+        }
+
+        public SimpleTCP.SimpleTcpClient get_tcpclient(int ndx)
+        {
+            return (SimpleTCP.SimpleTcpClient)AL_TCP_CLIENTS[ndx];
+        }
+
+        public int get_index_tcpclient(object client)
+        {
+            return AL_TCP_CLIENTS.IndexOf(client);
+        }
+
+        public int get_index_tcpclient(string client)
+        {
+            return AL_TCP_CLIENTS_REF.IndexOf(client);
+        }
+
+        public string[] get_tcpclient_key_paths(int ndx)
+        {
+            return (string[])AL_TCP_CLIENTS_KY[ndx];
+        }
+
+        public void remove_tcpclient(int ndx)
+        {
+            lock (AL_TCP_CLIENTS) lock (AL_TCP_CLIENTS_REF) lock (AL_TCP_CLIENTS_KY)
+                    {
+                        AL_TCP_CLIENTS.RemoveAt(ndx);
+                        AL_TCP_CLIENTS_KY.RemoveAt(ndx);
+                        AL_TCP_CLIENTS_REF.RemoveAt(ndx);
+                    }
+            return;
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace Scorpion
         {
             //                ![DEBUG]
             //::*name, *port, *rsaprivatekeyfilepath, *rsapublickeyfilepath
+            //::*name, *port, *rsaprivatekey, *rsapublickey
             //Check and add RSA key, if cannot do not continue
             string name = (string)var_get(objects[0]);
             int port = Convert.ToInt32(var_get(objects[1]));
@@ -121,12 +122,13 @@ namespace Scorpion
             return;
         }
 
+        //SERVER
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
             //get private key and decrypt
             int server_index = Do_on.AL_TCP.IndexOf(sender);
             byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(Do_on.get_tcp_key_paths(server_index)[0]));
-            string s_data = (string)Do_on.crypto.To_Object(data);
+            string s_data = Do_on.crypto.To_String(data);
 
             //Removes delimiter 0x13 and executes
             Enginefunctions ef__ = new Enginefunctions();
@@ -148,28 +150,34 @@ namespace Scorpion
             return;
         }
 
-        public void tcpclient(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void clientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *ip, *port, *publicrsakey
+            //::*name, *ip, *port, *private, *publicrsakey
             SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
             sctl.Connect((string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])));
             sctl.DataReceived += Sctl_clientDataReceived;
-            Do_on.write_success("Client " + var_get(objects[0]) + " connected to " + var_get(objects[1]) + ":" + var_get(objects[2]));
-                           
-            Do_on.AL_TCP_CLIENTS.Add(sctl);
-            Do_on.AL_TCP_CLIENTS_REF.Add(var_get(objects[0]));
+
+            string client = (string)var_get(objects[0]);
+            string public_key = (string)var_get(objects[4]);
+            string private_key = (string)var_get(objects[3]);
+
+            Do_on.write_success("Client " + client + " connected to " + var_get(objects[1]) + ":" + var_get(objects[2]));
+            Do_on.mem.add_tcpclient(ref client, ref sctl, ref private_key, ref public_key);
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
 
+        //CLIENT
         void Sctl_clientDataReceived(object sender, SimpleTCP.Message e)
         {
             //get private key and decrypt
-            int server_index = Do_on.AL_TCP_CLIENTS.IndexOf(sender);
-            byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(Do_on.get_tcp_key_paths(server_index)[0]));
-            string s_data = (string)Do_on.crypto.To_Object(data);
+            int client = Do_on.mem.get_index_tcpclient(sender);
+            string key_path = Do_on.mem.get_tcpclient_key_paths(client)[0];
+            SecureString key = Scorpion_RSA.Scorpion_RSA.get_private_key_file(key_path);
+            byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, key);
+            string s_data = Do_on.crypto.To_String(data);
 
             //Removes delimiter 0x13 and executes
             Enginefunctions ef__ = new Enginefunctions();
@@ -179,10 +187,38 @@ namespace Scorpion
             return;
         }
 
+        public void clientsend(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name, *data
+            byte[] data = null;
+            try
+            {
+                int client_ndx = Do_on.mem.get_index_tcpclient((string)var_get(objects[0]));
+                SimpleTCP.SimpleTcpClient tcl = Do_on.mem.get_tcpclient(client_ndx);
+                tcl.StringEncoder = Encoding.UTF8;
+                tcl.Delimiter = 0x13;
+                Do_on.write_debug(Do_on.mem.get_tcpclient_key_paths(client_ndx)[1]);
 
-        public void tcpclientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
+                data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.get_tcpclient_key_paths(client_ndx)[1]);
+                tcl.Write(data);
+                Do_on.write_success("Data sent");
+            }
+            catch (Exception e) { Do_on.write_error(e.Message); };
+
+            var_dispose_internal(ref data);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void clientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
+            Do_on.mem.remove_tcpclient(Do_on.mem.get_index_tcpclient((string)var_get(objects[0])));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
         }
 
         //LEGACY SOCKETS

@@ -1,22 +1,10 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Scorpion IEE" expanded="True">
-            <Node name="Scorpion" expanded="True">
-              <Node name="Crypto" expanded="True" />
-              <Node name="Io" expanded="True" />
-              <Node name="Main" expanded="True" />
-              <Node name="Memory Security" expanded="True" />
-              <Node name="Network" expanded="True" />
-              <Node name="Library_SYSTEM_OBJ.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
+    <Files>
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="196" Column="30" />
+      <File FileName="Scorpion/Objects.cs" Line="224" Column="46" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
