@@ -203,6 +203,9 @@
     <Reference Include="Scorpion_RSA">
       <HintPath>..\..\Scorpion_RSA\Scorpion_RSA\bin\Debug\Scorpion_RSA.dll</HintPath>
     </Reference>
+    <Reference Include="Scorpion_MongoDB_Library">
+      <HintPath>bin\Debug\Library_MongoDB\Scorpion_MongoDB_Library.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />

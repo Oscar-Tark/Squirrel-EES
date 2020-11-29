@@ -16,6 +16,7 @@
 */
 
 using System.Collections;
+using Scorpion_MongoDB_Library;
 
 namespace Scorpion
 {
@@ -31,7 +32,26 @@ namespace Scorpion
          * {meta}
         */
 
-        public void dbcreate(ref string Scorp_line_Exec, ref ArrayList objects)
+        public void mongodb(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*url, *port
+            Mongodb.Mongodbstart((string)var_get(objects[0]), (string)var_get(objects[1]));
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
+        }
+
+        public string mongodbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //returnable<<::*db, *collection, *filters, *options
+            string JSON = Mongodb.Mongoget((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]));
+
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return var_create_return(ref JSON, true);
+        }
+
+        public void dbcreate(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*File_Name_w_path, *pwd
             //MAX TABLE LEN IS 0x3a
@@ -42,11 +62,11 @@ namespace Scorpion
 
             name = null;
             var_arraylist_dispose(ref objects);
-            Scorp_line_Exec = null;
+            Scorp_Line_Exec = null;
             return;
         }
 
-        public void dbopen(string Scorp_line_Exec, ArrayList objects)
+        public void dbopen(string Scorp_Line_Exec, ArrayList objects)
         {
             //::*path, *pwd
             //MAX TABLE LEN IS 0x3a
@@ -61,7 +81,7 @@ namespace Scorpion
 
             var_arraylist_dispose(ref objects);
             name = null;
-            Scorp_line_Exec = null;
+            Scorp_Line_Exec = null;
             return;
         }
 

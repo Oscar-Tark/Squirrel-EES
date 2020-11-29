@@ -140,9 +140,12 @@ namespace Scorpion
             //(*,*,*,*,...)
             //ArrayList al = cut_variables(ref Scorp_Line_Exec);
             //Variables by default are created as booleans bearing the 'false' value
-            foreach (string s in objects)
-                var_new((object)Do_on.types.S_No, s, "", "");
 
+            lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                        {
+                            foreach (string s in objects)
+                                var_new((object)Do_on.types.S_No, s, "", "");
+                        }
             //clean
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -152,8 +155,10 @@ namespace Scorpion
         public void varset(string Scorp_Line_Exec, ArrayList objects)
         {
             /*(*where,*value)*/
-            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get(objects[1].ToString());
-
+            lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                        {
+                            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get(objects[1].ToString());
+                        }
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
@@ -162,9 +167,13 @@ namespace Scorpion
         public string varconcatenate(ref string Scorp_Line_Exec, ArrayList objects)
         {
             /*RETURNS :: *arg, *arg...*/
+
             string end = "";
-            foreach(object obj in objects)
-                end += var_get(obj);
+            lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                        {
+                            foreach (object obj in objects)
+                                end += var_get(obj);
+                        }
             return var_create_return(ref end, true);
         }
 
@@ -185,18 +194,22 @@ namespace Scorpion
         {
             //(*,*,*,*,*,...)
             int ndx = -1;
-            foreach (string s_var in objects)
-            {
-                ndx = Do_on.AL_CURR_VAR_REF.IndexOf(s_var);
-                Do_on.AL_CURR_VAR.RemoveAt(ndx);
-                Do_on.AL_CURR_VAR_REF.RemoveAt(ndx);
-                Do_on.AL_CURR_VAR_TAG.RemoveAt(ndx);
 
-                //TRIM
-                Do_on.AL_CURR_VAR.TrimToSize();
-                Do_on.AL_CURR_VAR_REF.TrimToSize();
-                Do_on.AL_CURR_VAR_TAG.TrimToSize();
-            }
+            lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                        {
+                            foreach (string s_var in objects)
+                            {
+                                ndx = Do_on.AL_CURR_VAR_REF.IndexOf(s_var);
+                                Do_on.AL_CURR_VAR.RemoveAt(ndx);
+                                Do_on.AL_CURR_VAR_REF.RemoveAt(ndx);
+                                Do_on.AL_CURR_VAR_TAG.RemoveAt(ndx);
+
+                                //TRIM
+                                Do_on.AL_CURR_VAR.TrimToSize();
+                                Do_on.AL_CURR_VAR_REF.TrimToSize();
+                                Do_on.AL_CURR_VAR_TAG.TrimToSize();
+                            }
+                        }
 
             //clean
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -314,7 +327,10 @@ namespace Scorpion
 
         private void var_set(string Reference, string Variable)
         {
-            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = var_get(Variable);
+            lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                        {
+                            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = var_get(Variable);
+                        }
             return;
         }
 
@@ -324,15 +340,18 @@ namespace Scorpion
             //(*,*,*,*,...)
             try
             {
-                if (Do_on.AL_CURR_VAR_REF.Contains(Reference) == false)
-                {
-                    //Variable = var_get(Variable.ToString());
-                    //{key, ref, val, encry, tag}
-                    var_cut_symbol(ref Reference);
-                    Do_on.AL_CURR_VAR.Add(new ArrayList { "", Reference, Variable, Tag });
-                    Do_on.AL_CURR_VAR_REF.Add(Reference);
-                    Do_on.AL_CURR_VAR_TAG.Add(Tag);
-                }
+                lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
+                            {
+                                if (Do_on.AL_CURR_VAR_REF.Contains(Reference) == false)
+                                {
+                                    //Variable = var_get(Variable.ToString());
+                                    //{key, ref, val, encry, tag}
+                                    var_cut_symbol(ref Reference);
+                                    Do_on.AL_CURR_VAR.Add(new ArrayList { "", Reference, Variable, Tag });
+                                    Do_on.AL_CURR_VAR_REF.Add(Reference);
+                                    Do_on.AL_CURR_VAR_TAG.Add(Tag);
+                                }
+                            }
             }
             catch { Do_on.write_to_cui("Scorpion IEE Error : Unable to Allocate Memory (Variable : '" + Variable.ToString() + "', Reference : '" + Reference + "')"); }
 

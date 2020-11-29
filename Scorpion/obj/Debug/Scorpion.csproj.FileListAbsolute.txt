@@ -1099,3 +1099,4 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Cryptography.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Randomizer.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_RSA.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_MongoDB_Library.dll

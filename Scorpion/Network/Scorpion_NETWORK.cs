@@ -103,7 +103,7 @@ namespace Scorpion
                 ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[server_index]).Broadcast(data);
                 Do_on.write_success("Data sent");
             }
-            catch (Exception e) { Do_on.write_error(e.Message); };
+            catch (Exception e) { Do_on.write_error(e.Message); }
 
             var_dispose_internal(ref data);
             var_dispose_internal(ref Scorp_Line_Exec);
