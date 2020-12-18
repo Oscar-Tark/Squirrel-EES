@@ -32,7 +32,7 @@ namespace Scorpion
          * {meta}
         */
 
-        public void mongodb(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void mongodbstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*url, *port
             Mongodb.Mongodbstart((string)var_get(objects[0]), (string)var_get(objects[1]));
@@ -41,16 +41,34 @@ namespace Scorpion
             return;
         }
 
-        public string mongodbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public string mongodbgetall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //returnable<<::*db, *collection, *filters, *options
-            string JSON = Mongodb.Mongoget((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]));
-
+            //returnable<<::*db, *collection
+            string JSON = Mongodb.Mongogetall((string)var_get(objects[0]), (string)var_get(objects[1]));
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return var_create_return(ref JSON, true);
         }
 
+        public string mongodbgetspecific(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //returnable<<::*db, *collection, *filter
+            string JSON = Mongodb.Mongogetspecific((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return var_create_return(ref JSON, true);
+        }
+
+        public void mongodbsetone(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            Mongodb.Mongoset((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
+        }
+
+
+        //LEGACY
         public void dbcreate(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*File_Name_w_path, *pwd

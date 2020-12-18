@@ -1,20 +1,20 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Database/Scorpion_DB.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Memory Security/Scorpion_SECMEM.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="180" Column="45" />
-      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="41" Column="20" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="64" Column="117" />
+      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="273" Column="6" />
+      <File FileName="Scorpion/Memory Security/Scorpion_SECMEM.cs" Line="204" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Database" expanded="True">
-                <Node name="Scorpion_DB.cs" selected="True" />
-              </Node>
               <Node name="Memory" expanded="True" />
+              <Node name="Memory Security" expanded="True">
+                <Node name="Scorpion_SECMEM.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

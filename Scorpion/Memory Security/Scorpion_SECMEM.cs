@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections;
+using System.Security;
 
 namespace Scorpion.Memory_Security
 {
@@ -170,6 +171,38 @@ namespace Scorpion.Memory_Security
         private byte[] var_get_encrypted(ref string Reference)
         {
             return (byte[])((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
+        }
+    }
+
+    //Creates a secure string pool
+    public class SecureStringVar
+    {
+        SecureString[] s_svar;
+        string[] s_sref;
+
+        public SecureStringVar(int size)
+        {
+            s_svar = new SecureString[size];
+            s_sref = new string[size];
+            return;
+        }
+
+        public SecureString varget()
+        {
+            return new SecureString();
+        }
+
+        public void varset(string reference, ref string value)
+        {
+
+
+        }
+
+        private bool clear_unsafe_string(ref string value)
+        {
+            for (int i = 0; i < value.Length - 1; i++)
+                value[i] = 0x00;
+            return true;
         }
     }
 }
