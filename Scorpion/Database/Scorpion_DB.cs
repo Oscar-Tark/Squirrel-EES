@@ -84,7 +84,7 @@ namespace Scorpion
             return;
         }
 
-        public void dbopen(string Scorp_Line_Exec, ArrayList objects)
+        public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path, *pwd
             //MAX TABLE LEN IS 0x3a

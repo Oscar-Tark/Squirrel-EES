@@ -1,49 +1,29 @@
-﻿using System;
+﻿using System.Collections;
+using Scorpion_Authenticator;
 
-
-namespace Scorpion.Auth
+namespace Scorpion
 {
-    public class Scorpion_AUTH
+    public partial class Librarian
     {
-        Form1 Do_on;
-        const string collection = "users";
-        public Scorpion_AUTH(Form1 fm1)
+        //USE SECURE STRING FOR PWD
+        public void deleteuser(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            Do_on = fm1;
+            Authenticator scauth = new Authenticator();
+            string usr = (string)var_get(objects[0]);
+            string pwd = (string)var_get(objects[1]);
+            scauth.delete_user(ref usr, ref pwd);
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_dispose_internal(ref usr);
+            var_dispose_internal(ref pwd);
+            var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void create_user()
+        public void resetuser()
         {
 
-        }
-
-        public void delete_user()
-        {
 
         }
-
-        public void check_user_pwd(ref string uname, ref string passcode, ref byte[] pin)
-        {
-            string filter = uname;
-            Do_on.mdb.get(ref filter, collection);
-            return;
-        }
-
-        public void passwd()
-        {
-
-        }
-
-        public bool check_db()
-        {
-
-            return true;
-        }
-    }
-
-    class Scorpion_USER
-    {
-
     }
 }

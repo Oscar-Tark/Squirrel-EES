@@ -61,6 +61,14 @@ namespace Scorpion
                 if (final.Length > 1)
                     Scorp_Line_Exec = final[1];
                 functions = ef__.get_function(ref Scorp_Line_Exec);
+
+                //Check permission
+                if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
+                {
+                    Do_on.write_error("This user does not have enough privileges to execute this function");
+                    return;
+                }
+
                 object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
                 object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 

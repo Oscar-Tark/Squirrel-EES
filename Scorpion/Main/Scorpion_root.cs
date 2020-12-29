@@ -79,7 +79,6 @@ namespace Scorpion
                         tries = 0;
                     }
                 }
-
                 tries++;
             }
 

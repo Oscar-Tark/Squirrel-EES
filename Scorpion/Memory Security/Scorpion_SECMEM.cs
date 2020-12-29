@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using System.Linq;
 using System.Collections;
 using System.Security;
 
@@ -106,6 +105,14 @@ namespace Scorpion.Memory_Security
             return;
         }
 
+        //AUTHENTICATE USER FOR EXECUTION OF A FUNCTION, DEFAULT = NO PERMISSION
+        public bool authenticate_execution(ref string function)
+        {
+            //Scorpion database is used for this
+            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Do_on.mmsec.uname);
+            return ep.check_authentication(ref Do_on.mmsec.uname, ref function);
+        }
+
         //make private
         public void set_pass(ref string pass, ref byte[] pin)
         {
@@ -200,8 +207,8 @@ namespace Scorpion.Memory_Security
 
         private bool clear_unsafe_string(ref string value)
         {
-            for (int i = 0; i < value.Length - 1; i++)
-                value[i] = 0x00;
+            /*for (int i = 0; i < value.Length - 1; i++)
+                value[i] = 0x00;*/
             return true;
         }
     }
