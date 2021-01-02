@@ -111,6 +111,12 @@ namespace Scorpion
             return Scorp_Line.Replace("\n", "").Replace("\r", "").Replace("959;1R", "");
         }
 
+        public string replace_phpapi(string Scorp_Line)
+        {
+            Scorp_Line = Scorp_Line.Remove(Scorp_Line.IndexOf("{&scorpion_end}", StringComparison.CurrentCulture));
+            return Scorp_Line.Remove(0, (Scorp_Line.IndexOf("{&scorpion}", StringComparison.CurrentCulture) + 11));
+        }
+
         public string[] get_function(ref string Scorp)
         {
             string[] delimiterChars = { "::" };

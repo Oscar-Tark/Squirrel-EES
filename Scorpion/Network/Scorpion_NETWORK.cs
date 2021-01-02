@@ -40,6 +40,33 @@ namespace Scorpion
             return var_create_return(ref IP, true);
         }
 
+        //UNENCRYPTED SERVER
+        public void serverstartphpapi(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //                ![DEBUG]
+            //::*name, *port, *rsaprivatekeyfilepath, *rsapublickeyfilepath
+            //::*name, *port, *rsaprivatekey, *rsapublickey
+            //Check and add RSA key, if cannot do not continue
+            string name = (string)var_get(objects[0]);
+            int port = Convert.ToInt32(var_get(objects[1]));
+
+            SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
+            sctl.ClientConnected += Sctl_ClientConnected;
+            sctl.ClientDisconnected += Sctl_ClientDisconnected;
+            sctl.DataReceived += Sctl_DataReceived_phpapi;
+            sctl.Start(port, true);
+            Do_on.AL_TCP.Add(sctl);
+            Do_on.AL_TCP_REF.Add(name + "_phpapi");
+            Do_on.write_warning("Scorpion PHP API server started. You do like to live dangerously :o. Non RSA servers can be read by MIM attacks and other sniffing techniques");
+            write_to_console("TCP server started");
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_dispose_internal(ref name);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        //ENCRYPTED SERVER
         public void serverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //                ![DEBUG]
@@ -123,6 +150,7 @@ namespace Scorpion
         }
 
         //SERVER
+        //RSA
         void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
             //get private key and decrypt
@@ -149,6 +177,28 @@ namespace Scorpion
             write_to_console("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
             return;
         }
+
+        //NO RSA
+        void Sctl_DataReceived_phpapi(object sender, SimpleTCP.Message e)
+        {
+            int server_index = Do_on.AL_TCP.IndexOf(sender);
+            //Removes delimiter 0x13 and executes
+            Enginefunctions ef__ = new Enginefunctions();
+            string command = ef__.replace_fakes(ef__.replace_telnet(e.MessageString));
+            command = ef__.replace_phpapi(command);
+
+            if (e.MessageString.Contains("GET /"))
+            {
+                e.ReplyLine("HTTP / 1.1 200 OK\n\n" + (string)var_get((string)command));
+                e.TcpClient.Client.Disconnect(true);
+                return;
+            }
+            scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
+
+            ef__ = null;
+            return;
+        }
+        //<--
 
         public void clientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
