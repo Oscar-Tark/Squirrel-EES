@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections;
 
 namespace Scorpion
@@ -51,9 +52,12 @@ namespace Scorpion
 
         public void load_system_vars()
         {
-            fm_1_ref.readr.lib_SCR.var("", new ArrayList() { "true", "false", "temp" });
-            fm_1_ref.readr.lib_SCR.varset("", new ArrayList() { "true", "'true'" });
-            fm_1_ref.readr.lib_SCR.varset("", new ArrayList() { "false", "'false'" });
+            fm_1_ref.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "temp" });
+            fm_1_ref.readr.lib_SCR.var("", new ArrayList(5) { "userfolder", "userfolder" });
+            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'true'" });
+            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'false'" });
+            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'" });
+
             return;
         }
 

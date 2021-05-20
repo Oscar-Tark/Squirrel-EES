@@ -85,6 +85,19 @@ namespace Scorpion
 
             return;
         }
+
+        public string getfilefolder(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Get a files folder
+            //RETURNABLE<<::*file
+            FileInfo fnf = new FileInfo((string)var_get(objects[0]));
+
+            //clean
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+
+            return var_create_return(fnf.DirectoryName, true);
+        }
     }
 
     partial class Librarian

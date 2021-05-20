@@ -187,10 +187,9 @@ namespace Scorpion
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
     }
 
+    //NEW WAY OF DEALING WITH MEMORY, SHIFT HERE
     public partial class Memory
     {
-        //new memory class
-
         //Must be singleton
         bool instance = false;
         /*Memory Memory()
@@ -201,11 +200,39 @@ namespace Scorpion
         }*/
 
         //Tcpclients
-        private ArrayList AL_TCP_CLIENTS = new ArrayList();
-        private ArrayList AL_TCP_CLIENTS_REF = new ArrayList();
-        private ArrayList AL_TCP_CLIENTS_KY = new ArrayList();
+        private ArrayList AL_TCP_CLIENTS = new ArrayList(100);
+        private ArrayList AL_TCP_CLIENTS_REF = new ArrayList(100);
+        private ArrayList AL_TCP_CLIENTS_KY = new ArrayList(100);
+
+        //Blockchain instances
+        private ArrayList AL_BLOCKCHAIN_REF = new ArrayList(5);
+        private ArrayList AL_BLOCKCHAIN_NODES = new ArrayList(5);
+
     }
 
+    //Blockchain instances
+    public partial class Memory
+    {
+        public void add_blockchain(ref string reference, ref object node)
+        {
+            lock (AL_BLOCKCHAIN_REF) lock (AL_BLOCKCHAIN_NODES)
+                {
+                    AL_BLOCKCHAIN_REF.Add(reference);
+                    AL_BLOCKCHAIN_NODES.Add(node);
+                }
+        }
+
+        public void remove_blockchain(ref int ndx)
+        {
+            lock (AL_BLOCKCHAIN_REF) lock (AL_BLOCKCHAIN_NODES)
+                {
+                    AL_BLOCKCHAIN_REF.RemoveAt(ndx);
+                    AL_BLOCKCHAIN_NODES.RemoveAt(ndx);
+                }
+        }
+    }
+
+    //TCP clients
     public partial class Memory
     {
         public void add_tcpclient(ref string reference, ref SimpleTCP.SimpleTcpClient to_add, ref string private_key_path, ref string public_key_path)

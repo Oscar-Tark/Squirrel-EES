@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SecurityDriven.Inferno</name>
+    </assembly>
+    <members>
+        <member name="M:SecurityDriven.Inferno.Cipher.AesCtrCryptoTransform.#ctor(System.Byte[],System.ArraySegment{System.Byte},System.Func{System.Security.Cryptography.Aes})">
+            <summary>ctor</summary>
+        </member>
+        <member name="T:SecurityDriven.Inferno.CryptoRandom">
+            <summary>Implements a fast, *thread-safe*, cryptographically-strong pseudo-random number generator.</summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextLong">
+            <summary>
+            Returns a nonnegative random number.
+            </summary>
+            <returns>
+            A 64-bit signed integer greater than or equal to zero and less than <see cref="F:System.Int64.MaxValue"/>.
+            </returns>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextLong(System.Int64)">
+            <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+            <param name="maxValue">The exclusive upper bound of the random number to be generated. <paramref name="maxValue"/> must be greater than or equal to zero.</param>
+            <returns>
+            A 64-bit signed integer greater than or equal to zero, and less than <paramref name="maxValue"/>; that is, the range of return values ordinarily includes zero but not <paramref name="maxValue"/>. However, if <paramref name="maxValue"/> equals zero, <paramref name="maxValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="maxValue"/> is less than zero.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextLong(System.Int64,System.Int64)">
+            <summary>
+            Returns a random number within a specified range.
+            </summary>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. <paramref name="maxValue"/> must be greater than or equal to <paramref name="minValue"/>.</param>
+            <returns>
+            A 64-bit signed integer greater than or equal to <paramref name="minValue"/> and less than <paramref name="maxValue"/>; that is, the range of return values includes <paramref name="minValue"/> but not <paramref name="maxValue"/>. If <paramref name="minValue"/> equals <paramref name="maxValue"/>, <paramref name="minValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.Next">
+            <summary>
+            Returns a nonnegative random number.
+            </summary>
+            <returns>
+            A 32-bit signed integer greater than or equal to zero and less than <see cref="F:System.Int32.MaxValue"/>.
+            </returns>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.Next(System.Int32)">
+            <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+            <param name="maxValue">The exclusive upper bound of the random number to be generated. <paramref name="maxValue"/> must be greater than or equal to zero.</param>
+            <returns>
+            A 32-bit signed integer greater than or equal to zero, and less than <paramref name="maxValue"/>; that is, the range of return values ordinarily includes zero but not <paramref name="maxValue"/>. However, if <paramref name="maxValue"/> equals zero, <paramref name="maxValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="maxValue"/> is less than zero.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random number within a specified range.
+            </summary>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. <paramref name="maxValue"/> must be greater than or equal to <paramref name="minValue"/>.</param>
+            <returns>
+            A 32-bit signed integer greater than or equal to <paramref name="minValue"/> and less than <paramref name="maxValue"/>; that is, the range of return values includes <paramref name="minValue"/> but not <paramref name="maxValue"/>. If <paramref name="minValue"/> equals <paramref name="maxValue"/>, <paramref name="minValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextDouble">
+            <summary>
+            Returns a random number between 0.0 and 1.0.
+            </summary>
+            <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
+            </returns>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextBytes(System.Int32)">
+            <summary>
+            Returns a new count-sized byte array filled with random bytes.
+            </summary>
+            <param name="count">Array length.</param>
+            <returns>Random byte array.</returns>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextBytes(System.Byte[])">
+            <summary>
+            Fills the elements of a specified array of bytes with random numbers.
+            Use "NextBytes(buffer,offset,count)" for a bit more performance (non-virtual).
+            </summary>
+            <param name="buffer">The array to fill with cryptographically strong random bytes.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="buffer"/> is null.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Fills the specified byte array with a cryptographically strong random sequence of values.
+            </summary>
+            <param name="buffer">An array of bytes to contain random numbers.</param>
+            <param name="offset"></param>
+            <param name="count">Number of bytes to generate (must be lte buffer.Length).</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="buffer"/> is null.
+            </exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.NextBytes(System.Span{System.Byte})">
+            <summary>Fills the elements of a specified span of bytes with cryptographically strong random values.</summary>
+            <param name="buffer">The span to be filled.</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.GetRandomInt">
+            <summary>
+            Gets one random signed 32bit integer in a thread safe manner.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.CryptoRandom.GetRandomLong">
+            <summary>
+            Gets one random signed 64bit integer in a thread safe manner.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.EtM_EncryptTransform.#ctor(System.Byte[],System.Nullable{System.ArraySegment{System.Byte}})">
+            <summary>ctor</summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.EtM_DecryptTransform.#ctor(System.Byte[],System.Nullable{System.ArraySegment{System.Byte}},System.Boolean)">
+            <summary>ctor</summary>
+        </member>
+        <member name="T:SecurityDriven.Inferno.Extensions.Base16Config">
+            <remarks>Not a constant-time implementation (memory lookups).</remarks>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base16Extensions.ToBase16(System.Byte[],SecurityDriven.Inferno.Extensions.Base16Config)">
+            <summary>
+            Converts a byte array into equivalent Base16-encoded string.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base16Extensions.ToBase16(System.ArraySegment{System.Byte},SecurityDriven.Inferno.Extensions.Base16Config)">
+            <summary>
+            Converts a byte array into equivalent Base16-encoded string.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base16Extensions.FromBase16(System.String,SecurityDriven.Inferno.Extensions.Base16Config)">
+            <summary>
+            Converts a Base16-encoded string into equivalent byte array. Does not validate Base16 encoding correctness.
+            </summary>
+        </member>
+        <member name="T:SecurityDriven.Inferno.Extensions.Base32Config">
+            <remarks>Not a constant-time implementation (memory lookups).</remarks>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base32Extensions.ToBase32(System.Byte[],SecurityDriven.Inferno.Extensions.Base32Config)">
+            <summary>
+            Converts a byte array into equivalent Base32-encoded string.
+            </summary>
+            <remarks>Binary array length must be a multiple of 5.</remarks>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base32Extensions.ToBase32(System.ArraySegment{System.Byte},SecurityDriven.Inferno.Extensions.Base32Config)">
+            <summary>
+            Converts a byte array segment into equivalent Base32-encoded string.
+            </summary>
+            <remarks>Binary segment length must be a multiple of 5.</remarks>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.Base32Extensions.FromBase32(System.String,SecurityDriven.Inferno.Extensions.Base32Config)">
+            <summary>
+            Converts a Base32-encoded string into equivalent byte array. Does not validate Base32 encoding correctness.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.CngKeyExtensions.GetSharedDhmSecret(System.Security.Cryptography.CngKey,System.Security.Cryptography.CngKey,System.Byte[],System.Byte[])">
+            <summary>
+            Both parties are static and authenticated.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Extensions.CngKeyExtensions.GetSharedEphemeralDhmSecret(System.Security.Cryptography.CngKey,System.Byte[],System.Byte[])">
+            <summary>
+            Sender is anonymous and keyless.
+            Receiver is static and authenticated.
+            </summary>
+        </member>
+        <member name="F:SecurityDriven.Inferno.Kdf.PBKDF2.DefaultIterations">
+            <summary>
+            Default iteration count.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.#ctor(System.Func{System.Security.Cryptography.HMAC},System.String,System.Int32)">
+            <summary>
+            ctor
+            </summary>
+            <param name="hmacFactory">hmacFactory</param>
+            <param name="password">password</param>
+            <param name="saltSize">saltSize</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.#ctor(System.Func{System.Security.Cryptography.HMAC},System.String,System.Byte[])">
+            <summary>
+            ctor
+            </summary>
+            <param name="hmacFactory">hmacFactory</param>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.#ctor(System.Func{System.Security.Cryptography.HMAC},System.String,System.Byte[],System.Int32)">
+            <summary>
+            ctor
+            </summary>
+            <param name="hmacFactory">hmacFactory</param>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+            <param name="iterations">iterations</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.#ctor(System.Func{System.Security.Cryptography.HMAC},System.String,System.Int32,System.Int32)">
+            <summary>
+            ctor
+            </summary>
+            <param name="hmacFactory">hmacFactory</param>
+            <param name="password">password</param>
+            <param name="saltSize">saltSize</param>
+            <param name="iterations">iterations</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.#ctor(System.Func{System.Security.Cryptography.HMAC},System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            ctor
+            </summary>
+            <param name="hmacFactory">hmacFactory</param>
+            <param name="password">password</param>
+            <param name="salt">salt</param>
+            <param name="iterations">iterations</param>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used, and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only managed resources.</param>
+        </member>
+        <member name="P:SecurityDriven.Inferno.Kdf.PBKDF2.IterationCount">
+            <summary>
+            Gets or sets the number of iterations for the operation.
+            </summary>
+        </member>
+        <member name="P:SecurityDriven.Inferno.Kdf.PBKDF2.Salt">
+            <summary>
+            Gets or sets the key salt value for the operation.
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.GetBytes(System.Int32)">
+            <summary>
+            Returns pseudo-random bytes.
+            </summary>
+            <param name="cb">The number of pseudo-random bytes to generate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Kdf.PBKDF2.Reset">
+            <summary>
+            Resets the state.
+            </summary>
+            <remarks>
+            This method is automatically called if the salt or iteration count is modified.
+            </remarks>
+        </member>
+        <member name="T:SecurityDriven.Inferno.Kdf.SP800_108_Ctr">
+            <remarks>
+            Concepts from:
+            http://dx.doi.org/10.6028/NIST.SP.800-108
+            http://referencesource.microsoft.com/#System.Web/Security/Cryptography/SP800_108.cs
+            </remarks>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Utils.ConstantTimeEqual(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <exception cref="T:System.NullReferenceException">Thrown when either array is null.</exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Utils.ConstantTimeEqual(System.Byte[],System.Byte[])">
+            <exception cref="T:System.NullReferenceException">Thrown when either array is null.</exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Utils.ConstantTimeEqual(System.String,System.String)">
+            <exception cref="T:System.NullReferenceException">Thrown when either string is null.</exception>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Utils.IntStruct.ToBEBytes(System.Byte[],System.Int32)">
+            <summary>
+            To Big-Endian
+            </summary>
+        </member>
+        <member name="M:SecurityDriven.Inferno.Utils.LongStruct.ToBEBytes(System.Byte[],System.Int32)">
+            <summary>
+            To Big-Endian
+            </summary>
+        </member>
+    </members>
+</doc>

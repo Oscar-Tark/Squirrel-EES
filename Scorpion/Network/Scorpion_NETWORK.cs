@@ -181,6 +181,7 @@ namespace Scorpion
         //NO RSA
         void Sctl_DataReceived_phpapi(object sender, SimpleTCP.Message e)
         {
+            //Add RSA support
             int server_index = Do_on.AL_TCP.IndexOf(sender);
             //Removes delimiter 0x13 and executes
             Enginefunctions ef__ = new Enginefunctions();
@@ -193,8 +194,16 @@ namespace Scorpion
                 e.TcpClient.Client.Disconnect(true);
                 return;
             }
-            scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
-
+            else
+            {
+                command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
+                string[] commands = command.Split(new char[] { '\n' });
+                Console.WriteLine(commands.Length);
+                foreach (string s in commands)
+                    scorpioniee(s);
+                e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
+                e.TcpClient.Client.Disconnect(true);
+            }
             ef__ = null;
             return;
         }

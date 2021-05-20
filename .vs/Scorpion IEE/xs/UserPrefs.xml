@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Compiler/Scorpion_COMPILER.cs">
+    <Files>
+      <File FileName="Scorpion/Compiler/Scorpion_COMPILER.cs" Line="16" Column="3" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Database" expanded="True" />
-              <Node name="Main" expanded="True" />
-              <Node name="Memory" expanded="True">
-                <Node name="Scorpion_MEMORY.cs" selected="True" />
+              <Node name="Compiler" expanded="True">
+                <Node name="Scorpion_COMPILER.cs" selected="True" />
               </Node>
-              <Node name="Memory Security" expanded="True" />
-              <Node name="Network" expanded="True" />
+              <Node name="Memory" expanded="True" />
+              <Node name="Processes" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -42,6 +42,11 @@ namespace Scorpion
         }
 
         //Creates return value for function according to value or copy value of another variable
+        private object var_create_return(ref object val)
+        {
+            return val;
+        }
+
         private string var_create_return(ref string val, bool is_val)
         {
             if (is_val)
@@ -89,6 +94,11 @@ namespace Scorpion
                 __bytes[i] = 0x00;
             __bytes = null;
             return;
+        }
+
+        private void get_variadic(ref ArrayList objects, int start, int end)
+        {
+
         }
     }
 
@@ -166,7 +176,7 @@ namespace Scorpion
 
         public string varconcatenate(ref string Scorp_Line_Exec, ArrayList objects)
         {
-            /*RETURNS :: *arg, *arg...*/
+            /*RETURNS<<:: *arg, *arg...*/
 
             string end = "";
             lock (Do_on.AL_CURR_VAR) lock (Do_on.AL_CURR_VAR_EVT) lock (Do_on.AL_CURR_VAR_REF) lock (Do_on.AL_CURR_VAR_TAG)
@@ -175,6 +185,12 @@ namespace Scorpion
                                 end += var_get(obj);
                         }
             return var_create_return(ref end, true);
+        }
+
+        public string varreplace(ref string Scorp_Line_Exec, ArrayList objects)
+        {
+            //RETURNS<<::*to_modify, *replace_this, *replace_with
+            return var_create_return((var_get(objects[0])).ToString().Replace((string)var_get(objects[1]), (string)var_get(objects[2])), true);
         }
 
         public void listvars(string Scorp_Line_Exec, ArrayList objects)

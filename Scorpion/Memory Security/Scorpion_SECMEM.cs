@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Security;
+using System.Runtime.InteropServices;
 
 namespace Scorpion.Memory_Security
 {
@@ -90,6 +91,7 @@ namespace Scorpion.Memory_Security
 
         private string uname = null;
         private string password = null;
+        private SecureString password_secured = null;
         private byte[] pin_cde_hx = new byte[32];
         private byte[] pin_iv = new byte[16];
         private byte pin_cde = 0x00;
@@ -150,7 +152,15 @@ namespace Scorpion.Memory_Security
                 catch { Do_on.write_to_cui("\n\n***********************************************\nArithmetic error: regenerating crypto key\n***********************************************"); }
             }
             while (success == false);
+            password_secured = set_secure(ref pass);
+            pass = ""; password = "";
             return;
+        }
+
+        private SecureString set_secure(ref string element)
+        {
+            SecureStringVar ssv = new SecureStringVar();
+            return ssv.create_secure_string(ref element);
         }
 
         public void encrypt(ref string Reference)
@@ -184,32 +194,30 @@ namespace Scorpion.Memory_Security
     //Creates a secure string pool
     public class SecureStringVar
     {
-        SecureString[] s_svar;
-        string[] s_sref;
-
-        public SecureStringVar(int size)
+        public SecureString create_secure_string(ref string element)
         {
-            s_svar = new SecureString[size];
-            s_sref = new string[size];
-            return;
+            SecureString sec = new SecureString();
+            foreach (char c_ in element)
+                sec.AppendChar(c_);
+            return sec;
         }
 
-        public SecureString varget()
+        public string convert_to_string(SecureString sec)
         {
-            return new SecureString();
+            IntPtr pointer = IntPtr.Zero;
+            try
+            {
+                pointer = Marshal.SecureStringToGlobalAllocUnicode(sec);
+                return Marshal.PtrToStringUni(pointer);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(pointer);
+            }
         }
+    }
 
-        public void varset(string reference, ref string value)
-        {
-
-
-        }
-
-        private bool clear_unsafe_string(ref string value)
-        {
-            /*for (int i = 0; i < value.Length - 1; i++)
-                value[i] = 0x00;*/
-            return true;
-        }
+    public class SecureArrayVar
+    {
     }
 }

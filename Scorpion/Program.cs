@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Collections;
 
 namespace Scorpion
 {
@@ -27,8 +28,14 @@ namespace Scorpion
         [STAThread]
         static void Main()
         {
-            Scorp f1 = new Scorp();
-            return;
+            int current_session = 0;
+            ArrayList sessions = new ArrayList(1) { new Scorp() };
+
+            while(true)
+            {
+                ((Scorp)sessions[current_session]).readr.access_library(Console.ReadLine());
+                ((Scorp)sessions[current_session]).th_clean_strt();
+            }
         }
     }
 }

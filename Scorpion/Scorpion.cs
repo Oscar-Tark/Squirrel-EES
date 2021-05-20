@@ -49,6 +49,7 @@ namespace Scorpion
         private void scorpion_exec(object Scorp_Line)
         {
             //*return<<function::*vars
+            //Add: @@@networkresponse{networkname}@@@
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
@@ -108,7 +109,7 @@ namespace Scorpion
 
         public string replace_telnet(string Scorp_Line)
         {
-            return Scorp_Line.Replace("\n", "").Replace("\r", "").Replace("959;1R", "");
+            return Scorp_Line.Replace("\r\n", "").Replace("959;1R", "");
         }
 
         public string replace_phpapi(string Scorp_Line)

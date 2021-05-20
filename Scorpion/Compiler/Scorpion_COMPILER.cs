@@ -1,9 +1,25 @@
-﻿using System;
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+using System;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Collections;
-
 
 namespace Scorpion
 {
@@ -11,12 +27,12 @@ namespace Scorpion
     {
         public void asmcompile(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *namespacedotclass, references...
+            //::*path, *namespacedotclass, *further_classes
             CompilerResults results = null;
             try
             {
                 string path_ = (string)var_get(objects[0]);
-                string dll_path = path_.Replace(".cs", ".dll");
+                string dll_path = path_.Replace(".cs", ".dllx");
 
                 asmmessage("Compiling to path '" + dll_path + "");
 
@@ -24,10 +40,12 @@ namespace Scorpion
                 CompilerParameters parameters = new CompilerParameters();
 
                 parameters.GenerateInMemory = false;
-                parameters.ReferencedAssemblies.Add("System.dll");
 
-                for (int i = 2; i < objects.Count; i++)
-                    parameters.ReferencedAssemblies.Add((string)var_get(objects[i]));
+                if (objects.Count > 2)
+                {
+                    for (int i = 2; i < objects.Count; i++)
+                        parameters.ReferencedAssemblies.Add((string)var_get(objects[i]));
+                }
 
                 parameters.OutputAssembly = dll_path;
                 results = provider.CompileAssemblyFromFile(parameters, path_);
@@ -36,7 +54,6 @@ namespace Scorpion
 
                 asmmessage("Compile OK " + assembly.FullName + "' CLR version " + assembly.ImageRuntimeVersion);
                 Type program = assembly.GetType((string)var_get(objects[1]));
-
 
                 MethodInfo[] mdinf = new MethodInfo[0];
                 foreach (MethodInfo mdf in program.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
@@ -72,20 +89,18 @@ namespace Scorpion
                 Do_on.AL_ASSEMB_PROG.Add(program);
                 asmmessage("Created Assembly Instance: '" + namespacedotclass + "'");
             }
-            catch(System.Exception e) { Console.WriteLine(e.Message + " ///" + e.StackTrace); }
-            //((ArrayList)((ArrayList)Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(ref_)])[1]).Add(classInstance);
-            //((ArrayList)((ArrayList)Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(ref_)])[0]).Add(namespace_class);*/
+            catch(Exception e) { Console.WriteLine(e.Message + " ///" + e.StackTrace); }
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void asmcall(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public object asmcall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path, *function, *parameters...
-
-            Type program = Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(var_get(objects[0]))].GetType();
+            object instance = Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(var_get(objects[0]))];
+            Type program = instance.GetType();
             MethodInfo mdf = program.GetMethod((string)var_get(objects[1]), BindingFlags.Public | BindingFlags.Instance);
 
             //Not doing a remove range due to var_get needed
@@ -93,82 +108,36 @@ namespace Scorpion
             for (int i = 0; i < objects.Count; i++)
                 objects[i] = var_get(objects[i]);
 
-            mdf.Invoke(program, objects.ToArray());
-
+            object return_value = null;
+            try
+            {
+                if(mdf.GetParameters().Length > 0)
+                    return_value = mdf.Invoke(instance, objects.ToArray());
+                else
+                    return_value = mdf.Invoke(instance, null);
+            }
+            catch(Exception e) { asmmessage(e.Message); }
             mdf = null;
             program = null;
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
-            return;
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return var_create_return(ref return_value);
         }
 
         public void listasm(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             foreach (string asm in Do_on.AL_ASSEMB_REF)
                 Do_on.write_to_cui(asm);
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
         private void asmmessage(string message)
         {
-            Do_on.write_to_cui("[C# Compiler] " + message);
+            Do_on.write_special("[C# Compiler] " + message);
             message = null;
             return;
         }
-
-        /*public void call_compiled_function(string Assembly_Name, Assembly assembly, string namespace_class, string function, string arguments)
-        {
-            //Type program = assembly.GetType(namespace_class);
-
-            (Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(Assembly_Name)]).GetType().GetMethod(function, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(Assembly_Name)], new object[0]);
-
-            //((Type)(Do_on.AL_ASSEMB_PROG[Do_on.AL_ASSEMB_REF.IndexOf(Assembly_Name)])).GetMethod(function).Invoke(Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(Assembly_Name)], new object[0]);
-            
-            
-            //object classInstance = Activator.CreateInstance(, null);
-            
-            /////////mdf.Invoke(Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(Assembly_Name)], new object[0]);
-
-            //namespace_class = null;
-            //-function = null;
-            //arguments = null;
-
-            //mdf = null;
-            //classInstance = null;
-            //program = null;
-            //assembly = null;
-
-            return;
-        }
-
-        public void create_instance(Assembly assembly, string namespace_class, string name)
-        {
-            Type program = assembly.GetType(namespace_class);
-
-            MessageBox.Show(Activator.CreateInstance(assembly.GetType(namespace_class)).GetType().Name);
-
-            Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(name)] = Activator.CreateInstance(assembly.GetType(namespace_class));
-            Do_on.AL_ASSEMB_PROG[Do_on.AL_ASSEMB_REF.IndexOf(name)] = program;
-            Do_on.write_to_cui("Created Assembly Instance: '" + namespace_class + "'");
-            //((ArrayList)((ArrayList)Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(ref_)])[1]).Add(classInstance);
-            //((ArrayList)((ArrayList)Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(ref_)])[0]).Add(namespace_class);
-
-            return;
-        }
-
-        //FIX
-        /*public void import_assembly(string name)
-        {
-            Do_on.AL_ASSEMB_REF.Add(name);
-            Do_on.AL_ASSEMB.Add(Assembly.LoadFile(Do_on.AL_DIRECTORIES[6] + name + ".dll"));
-            Do_on.AL_ASSEMB_INST.Add("");
-            Do_on.AL_ASSEMB_PROG.Add("");
-
-            Do_on.write_to_cui("Imported Assembly");
-
-            name = null;
-
-            return;
-        }*/
     }
 }

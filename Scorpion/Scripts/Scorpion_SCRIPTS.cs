@@ -46,8 +46,10 @@ namespace Scorpion
         public void runscript(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
-            //(*Path)
+            //::*path, *hasconfig:bool
             string line;
+
+            //Run Script
             FileStream fd = new FileStream((string)var_get((string)objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
             while ((line = sr.ReadLine()) != null)

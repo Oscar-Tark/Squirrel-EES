@@ -8,6 +8,16 @@ namespace Scorpion
     {
         Scorpion_Process scp = new Scorpion_Process();
 
+        //Pauses all processes incase they are taking the foreground output
+        public void apkill(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            Do_on.write_to_cui("Killing all proccesses");
+            scp.kill_processes();
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
         public void process(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*program, *arguments, *name, *foregroundoutput
@@ -23,6 +33,7 @@ namespace Scorpion
                 if ((string)var_get(objects[3]) == Do_on.types.S_No)
                 {
                     pri_s.RedirectStandardOutput = true;
+                    pri_s.RedirectStandardInput = true;
                     pri_s.UseShellExecute = false;
                 }
 
@@ -44,11 +55,20 @@ namespace Scorpion
 
         public void processio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //Show output for a process
             //::*name
             Do_on.write_to_cui(scp.get_std((string)var_get(objects[0])));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void proccessinput(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Incase a process asks for input a dialog will show up asking for command input
+
+
             return;
         }
 
@@ -106,10 +126,21 @@ namespace Scorpion
             return;
         }
 
+        public void kill_processes()
+        {
+            foreach (Process p in pr_list)
+                p.Kill();
+        }
+
         public string get_std(string name)
         {
             int proc = get_process(name);
-            return pr_list[proc].StandardOutput.ReadToEnd();
+            string out_ = "";
+            while (pr_list[proc].StandardOutput.Peek() > -1)
+                out_ = out_ + (pr_list[proc].StandardOutput.ReadLine()) + "\n";
+            pr_list[proc].StandardOutput.DiscardBufferedData();
+            pr_list[proc].StandardOutput.BaseStream.Flush();
+            return out_;
         }
 
         public int get_process(string name)
