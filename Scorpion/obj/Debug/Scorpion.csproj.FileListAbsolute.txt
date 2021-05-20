@@ -1021,6 +1021,8 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/LdaNative.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/CpuMathNative.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/libmongocrypt.so
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe.config
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion IEE core.exe
@@ -1043,10 +1045,20 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/GtkSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/IPPrototyper.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/JsonFx.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Core.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.CpuMath.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Data.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.DataView.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.KMeansClustering.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.PCA.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.StandardTrainers.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Transforms.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Libmongocrypt.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Neo.SmartContract.Framework.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/PangoSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/ProcessInterface.dll
@@ -1057,6 +1069,8 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SharpCompress.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SimpleTCP.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Buffers.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.CodeDom.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Collections.Immutable.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.IO.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Memory.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Net.Http.dll
@@ -1069,13 +1083,9 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Security.Cryptography.Primitives.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Security.Cryptography.X509Certificates.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Text.Encoding.CodePages.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Channels.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Tasks.Extensions.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.ValueTuple.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.IPPrototyper.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.xml
@@ -1099,35 +1109,6 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.ValueTuple.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SecurityDriven.Inferno.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/RestSharp.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Controls.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Imaging.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Math.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.Video.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AForge.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/LdaNative.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/CpuMathNative.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Core.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.CpuMath.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Data.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.DataView.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.KMeansClustering.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.PCA.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.StandardTrainers.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Transforms.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Neo.SmartContract.Framework.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.CodeDom.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Collections.Immutable.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Channels.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Tasks.Extensions.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Collections.Immutable.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.CpuMath.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.DataView.xml
@@ -1140,3 +1121,10 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.PCA.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.StandardTrainers.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Transforms.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb

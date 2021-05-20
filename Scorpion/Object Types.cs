@@ -77,10 +77,8 @@ namespace Scorpion
             {
                 case true:
                     return S_Yes;
-                    break;
                 default:
                     return S_No;
-                    break;
             }
         }
     }
