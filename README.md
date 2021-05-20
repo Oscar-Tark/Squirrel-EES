@@ -1,6 +1,6 @@
 ![IMG](/Art/Cropped.png)
 
-**Please note that Scorpion has only been tested on Mono in Linux using .NET 4.7.2**
+**Please note that Scorpion has been tested on Mono in Linux using .NET 4.7.2 && 4.8**
 
 [Scorpion IEE [Intelligent Execution Environment]]
 ------------------------------------------------
@@ -74,4 +74,36 @@ Example:
 
 **Running C# script functions**
 
-Functionaliy still in construction.
+You may now run a compiled function within a loaded assembly. This will allow you to call a function or a chain of functions. The beuty is that the sourcecoude can be modified recompiled and run on the fly. The current assembly must be removed from memory before loading in the new instance.
+
+Syntax:
+
+`asmcall::*path, *functionname, *arg, *arg...`
+
+**Running external processes**
+
+Running and controlling external processes is important for various use cases. You cannot control a process that is already running. You may create a process, view its output, kill a process or kill all running processes. Processes can run fully controlled by Scorpion or can be started as a new seperate process outsode of Scorpion Input insertion is coming soon!
+
+**Starting an external process**
+
+Syntax:
+
+`process::*main_program_or_program_path, *arguments, *name, *isnotcontrolled`
+
+Example:
+
+`process::*'ping', *'127.0.0.1', *'mypingprocess', *false`
+
+This example will run a ping process with the argument of '127.0.0.1'. false denotes that you would like the process to be controlled by Scorpion.
+
+**Viewing process output**
+
+Viewing processoutput is important. By default processes have their own stdout instances so that they will not print their output onto the main stdout seperating output and evading clutter. In order to see a processes stdout you may call the 'processio' function.
+
+Syntax:
+
+`processio::*name`
+
+Example
+
+`processio::*'mypingprocess'`
