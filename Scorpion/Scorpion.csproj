@@ -48,7 +48,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x64</PlatformTarget>
@@ -63,6 +63,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IPPrototyper">
@@ -83,9 +84,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="tracert">
-      <HintPath>bin\Debug\tracert.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -337,9 +335,7 @@
     <None Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <None Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
-    <Compile Include="Blockchain\Scorpion_BLOCKCHAIN.cs" />
     <Compile Include="Host\Scorpion_HOSTOS.cs" />
-    <Compile Include="Blockchain\Scorpion_NEO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -389,7 +385,6 @@
     <Folder Include="System\" />
     <Folder Include="Auth\" />
     <Folder Include="Resources\" />
-    <Folder Include="Blockchain\" />
     <Folder Include="Host\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

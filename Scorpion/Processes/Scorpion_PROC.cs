@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace Scorpion
 { 
@@ -12,7 +13,7 @@ namespace Scorpion
         public void apkill(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             Do_on.write_to_cui("Killing all proccesses");
-            scp.kill_processes();
+            Do_on.write_to_cui(scp.kill_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -46,7 +47,7 @@ namespace Scorpion
             return;
         }
 
-        void Pri__Exited(object sender, EventArgs e)
+        private void Pri__Exited(object sender, EventArgs e)
         {
             Process p = (Process)sender;
             Do_on.write_to_cui("Process Ended: [Status Code: " + p.ExitCode + "] " + p.ProcessName);
@@ -64,11 +65,23 @@ namespace Scorpion
             return;
         }
 
-        public void proccessinput(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void asyncprocessio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //Incase a process asks for input a dialog will show up asking for command input
+            scp.get_stdout_async((string)var_get(objects[0]));
 
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
 
+        public void processinput(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*name, *input
+            //Incase a process asks for input
+            scp.set_stdin((string)var_get(objects[0]), (string)var_get(objects[1]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
             return;
         }
 
@@ -126,10 +139,30 @@ namespace Scorpion
             return;
         }
 
-        public void kill_processes()
+        public string kill_processes()
         {
+            string out_ = "";
             foreach (Process p in pr_list)
-                p.Kill();
+            {
+                try
+                {
+                    out_ = out_ + "[KILL] " + p.ProcessName + "\n";
+                    p.Kill();
+                    if (p.HasExited)
+                        out_ = out_ + "[KILLED] " + p.ProcessName + "\n";
+                    else
+                        out_ = out_ + "[UNKILLED OR LOST] " + p.ProcessName + "\n";
+                }
+                finally { }
+            }
+            return out_;
+        }
+
+        public void set_stdin(string name, string input)
+        {
+            int proc = get_process(name);
+            pr_list[proc].StandardInput.WriteLine(input);
+            return;
         }
 
         public string get_std(string name)
@@ -141,6 +174,18 @@ namespace Scorpion
             pr_list[proc].StandardOutput.DiscardBufferedData();
             pr_list[proc].StandardOutput.BaseStream.Flush();
             return out_;
+        }
+
+        public void get_stdout_async(string name)
+        {
+            int proc = get_process(name);
+            Get_stdout_async_task(pr_list[proc]);
+        }
+
+        static async Task Get_stdout_async_task(Process p)
+        {
+            string s = await p.StandardOutput.ReadLineAsync();
+            Console.WriteLine(s);
         }
 
         public int get_process(string name)
@@ -157,7 +202,7 @@ namespace Scorpion
         {
             string list = "Processes:\n";
             for (int i = 0; i <= processes; i++)
-                list = list + "\n" + pr_list_ref[i] + " (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Affinity: " + pr_list[i].ProcessorAffinity + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]" + "\n";
+                list = list + "\n" + pr_list_ref[i] + " (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Affinity: " + pr_list[i].ProcessorAffinity + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]\n" + "[Actual process name: " + pr_list[i].ProcessName + "]\n";
             return list;
         }
     }

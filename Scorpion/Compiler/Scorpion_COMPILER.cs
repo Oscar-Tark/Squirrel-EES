@@ -38,13 +38,16 @@ namespace Scorpion
 
                 CSharpCodeProvider provider = new CSharpCodeProvider();
                 CompilerParameters parameters = new CompilerParameters();
-
+                
                 parameters.GenerateInMemory = false;
 
                 if (objects.Count > 2)
                 {
                     for (int i = 2; i < objects.Count; i++)
+                    {
+                        asmmessage("Adding assembly: " + (string)var_get(objects[i]));
                         parameters.ReferencedAssemblies.Add((string)var_get(objects[i]));
+                    }
                 }
 
                 parameters.OutputAssembly = dll_path;
@@ -63,6 +66,7 @@ namespace Scorpion
             {
                 foreach (CompilerError ce in results.Errors)
                     asmmessage("ERROR: " + ce.ErrorText + " AT LINE: " + ce.Line.ToString());
+                asmmessage("COMPILE FAILED");
             }
 
             Scorp_Line_Exec = null;

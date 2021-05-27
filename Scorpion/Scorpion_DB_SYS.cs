@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using System.Security;
 
 //DEPRECIATED
 namespace Dumper
@@ -59,25 +60,27 @@ namespace Dumper
             return;
         }
 
-        public void Create_DB(string path, string pwd)
+        public void Create_DB(string path, int size)
         {
-            //MAX SIZE 0x3a
-            string[] s_dat = new string[0x3a];
-            string[] s_tag = new string[0x3a];
-            string[] s_meta = new string[0x3a];
+            byte[] s_dat = new byte[size];
+            string[] s_tag = new string[size];
+            string[] s_meta = new string[size];
+            short[] s_type = new short[size];
+            //Create SHA seed
+            SecureString s_seed = Do_on.crypto.Create_Seed();
 
-            //NULLIFY(ref s_ref, ref s_dat);
+            //Create SHA out of seed
+            string sha_ = Do_on.crypto.SHA_SS(s_seed);
 
-            //Reference, data
-            ArrayList al = new ArrayList { s_dat, s_tag, s_meta };
+            ArrayList al = new ArrayList (4) { s_dat, s_tag, s_meta, s_type, sha_ };
+
+            //Encrypt s_dat, s_tag, s_meta with the seed
+
+
             byte[] b = Do_on.crypto.To_Byte(al);
-            //b = Do_on.crypto.encrypt(b, pwd);
-
-            File.WriteAllBytes(path, b);//Do_on.crypto.encrypt(b, pwd));
-
+            File.WriteAllBytes(path, b);
             b = null;
             path = null;
-            pwd = null;
             return;
         }
 

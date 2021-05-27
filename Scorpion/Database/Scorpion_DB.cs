@@ -16,6 +16,7 @@
 */
 
 using System.Collections;
+using System.Security;
 using Scorpion_MongoDB_Library;
 
 namespace Scorpion
@@ -31,7 +32,7 @@ namespace Scorpion
          * {tags}
          * {meta}
         */
-
+        //MONGODB
         public void mongodbstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*url, *port
@@ -71,12 +72,12 @@ namespace Scorpion
         //LEGACY
         public void dbcreate(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*File_Name_w_path, *pwd
-            //MAX TABLE LEN IS 0x3a
+            //::*File_Name_w_path, *sizein slots
+            //MAX TABLE LEN IS UNLIMITED
             //{val}
             string name = (string)var_get(objects[0]);
-            Do_on.vds.Create_DB(name, "");
-            Do_on.write_to_cui("Created Data File(to disk) : " + name);
+            Do_on.vds.Create_DB(name, int.Parse((string)var_get(objects[1])));
+            Do_on.write_to_cui("Created Data File(to disk) : " + name + " ["+ (string)var_get(objects[1]) + " slots]");
 
             name = null;
             var_arraylist_dispose(ref objects);
@@ -87,7 +88,6 @@ namespace Scorpion
         public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path, *pwd
-            //MAX TABLE LEN IS 0x3a
             string name = (string)var_get(objects[0]);
             if (!Do_on.AL_TBLE_REF.Contains(name))
             {

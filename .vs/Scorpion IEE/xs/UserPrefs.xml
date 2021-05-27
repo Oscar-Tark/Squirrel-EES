@@ -1,15 +1,19 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Object Types.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scripts/Scorpion_SCRIPTS.cs">
     <Files>
-      <File FileName="Scorpion/Object Types.cs" Line="81" Column="33" />
+      <File FileName="Scorpion/Processes/Scorpion_PROC.cs" Line="23" Column="10" />
+      <File FileName="Scorpion/Io/Library_IO.cs" Line="114" Column="5" />
+      <File FileName="Scorpion/Scripts/Scorpion_SCRIPTS.cs" Line="44" Column="71" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Object Types.cs" selected="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="Scorpion_SCRIPTS.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

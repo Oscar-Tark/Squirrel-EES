@@ -3,6 +3,8 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security;
+using System.Runtime.InteropServices;
 
 namespace Scorpion.Crypto
 {
@@ -37,6 +39,25 @@ namespace Scorpion.Crypto
             string s_decrypted = null;
             s_decrypted = Decrypt(block_, pin);
             return s_decrypted;
+        }
+
+        public byte[] AES_SECURE_ENCRYPT(SecureString SS, byte[] block_)
+        {
+            //Encrypts using a secure string as the key source
+            return Secure_Encrypt(SS, block_);
+        }
+
+        private static byte[] Secure_Encrypt(SecureString SS, byte[] block_)
+        {
+            byte[] encrypted_block = null;
+            IntPtr marshalled_pass = Marshal.SecureStringToGlobalAllocUnicode(SS);
+            unsafe
+            {
+
+            }
+            Marshal.ZeroFreeGlobalAllocUnicode(marshalled_pass);
+
+            return encrypted_block;
         }
 
         private static byte[] Encrypt(string block_, byte[] pin, byte[] IV)
@@ -75,10 +96,10 @@ namespace Scorpion.Crypto
 
     public partial class Cryptographer
     {
-        Scorpion.Scorp Do_on;
+        Scorp Do_on;
         /*Objects: These objects must be contained only in this file, any replications in other files can give away any encryption data*/
 
-        public Cryptographer(Scorpion.Scorp fm1)
+        public Cryptographer(Scorp fm1)
         {
             Do_on = fm1;
         }
@@ -105,9 +126,41 @@ namespace Scorpion.Crypto
             return new BinaryFormatter().Deserialize(ms);
         }
 
+        public SecureString Create_Seed()
+        {
+            SecureString s_seed = new SecureString();
+            Random rnd = new Random(DateTimeOffset.Now.Millisecond);
+            for (int i = 0; i <= 10; i++)
+                s_seed.AppendChar(Convert.ToChar(rnd.Next(21, 126)));
+            return s_seed;
+        }
+
         public static string SHA(string pass)
         {
             byte[] to_convert = Encoding.UTF8.GetBytes(pass);
+            to_convert = SHA256.Create().ComputeHash(to_convert);
+            return Convert.ToBase64String(to_convert);
+        }
+
+        public string SHA_SS(SecureString pass)
+        {
+            //Create SHA
+            byte[] to_convert = new byte[10];
+            IntPtr marshalled_pass = Marshal.SecureStringToGlobalAllocUnicode(pass);
+            unsafe
+            {
+                //Generate SHA seed from seed
+                byte* byteArray = (byte*)marshalled_pass.ToPointer();
+                int ndx = 0;
+                while(*byteArray != 0x00)
+                {
+                    to_convert[ndx] = *byteArray;
+                    byteArray++;
+                    ndx++;
+                }
+            }
+            Marshal.ZeroFreeGlobalAllocUnicode(marshalled_pass);
+
             to_convert = SHA256.Create().ComputeHash(to_convert);
             return Convert.ToBase64String(to_convert);
         }

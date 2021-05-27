@@ -1021,6 +1021,10 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/LdaNative.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/CpuMathNative.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/libmongocrypt.so
@@ -1121,10 +1125,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.PCA.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.StandardTrainers.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Transforms.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe.config
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.GenerateResource.cache
-/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache

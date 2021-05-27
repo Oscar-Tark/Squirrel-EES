@@ -95,8 +95,20 @@ namespace Scorpion
             //clean
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
-
             return var_create_return(fnf.DirectoryName, true);
+        }
+
+        public void listfolders(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path
+            //Get directories within folder
+            DirectoryInfo df = new DirectoryInfo((string)var_get(objects[0]));
+            foreach (DirectoryInfo dirs in df.GetDirectories())
+                Do_on.write_to_cui(dirs.Name);
+            //clean
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return;
         }
     }
 

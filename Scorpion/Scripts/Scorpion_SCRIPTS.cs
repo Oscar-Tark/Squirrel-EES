@@ -25,18 +25,36 @@ namespace Scorpion
         public void runscriptcondition(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
-            //::*if, *is, *Path
-            if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
+            //::*if, *is, *Path, *result_must_be_equal
+            if ((string)var_get(objects[3]) == Do_on.types.S_Yes)
             {
-                string line;
-                FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
-                StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-                while ((line = sr.ReadLine()) != null)
-                    scorpion_exec((object)line);
-                sr.Close();
-                fd.Close();
+                if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
+                {
+                    string line;
+                    FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
+                    StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
+                    while ((line = sr.ReadLine()) != null)
+                        scorpion_exec((object)line);
+                    sr.Close();
+                    fd.Close();
 
-                var_dispose_internal(ref line);
+                    var_dispose_internal(ref line);
+                }
+            }
+            else if ((string)var_get(objects[3]) == Do_on.types.S_Yes)
+            {
+                if ((string)var_get(objects[0]) != (string)var_get(objects[1]))
+                {
+                    string line;
+                    FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
+                    StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
+                    while ((line = sr.ReadLine()) != null)
+                        scorpion_exec((object)line);
+                    sr.Close();
+                    fd.Close();
+
+                    var_dispose_internal(ref line);
+                }
             }
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
