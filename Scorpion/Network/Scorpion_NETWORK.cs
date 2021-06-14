@@ -141,8 +141,14 @@ namespace Scorpion
         public void listservers(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::
+            int n = 0;
             foreach (string server in Do_on.AL_TCP_REF)
-                Do_on.write_to_cui(server);
+            { 
+                Do_on.write_to_cui(server + ":\n");
+                foreach (IPAddress ip in ((SimpleTCP.SimpleTcpServer)Do_on.AL_TCP[n]).GetListeningIPs())
+                    Do_on.write_to_cui(ip.ToString());
+                n++;
+            }
 
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);

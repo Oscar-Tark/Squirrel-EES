@@ -31,10 +31,31 @@ namespace Scorpion
             int current_session = 0;
             ArrayList sessions = new ArrayList(1) { new Scorp() };
 
+            string line = null;
+            //Create new session on demand
             while(true)
             {
-                ((Scorp)sessions[current_session]).readr.access_library(Console.ReadLine());
-                ((Scorp)sessions[current_session]).th_clean_strt();
+                line = Console.ReadLine();
+                if (line == "**new")
+                {
+                    sessions.Add(new Scorp());
+                    current_session++;
+                }
+                else if (line == "**back")
+                {
+                    current_session--;
+                    Console.WriteLine("Session {0}\n", current_session);
+                }
+                else if (line == "**next")
+                {
+                    current_session++;
+                    Console.WriteLine("Session {0}\n", current_session);
+                }
+                else
+                {
+                    ((Scorp)sessions[current_session]).readr.access_library(line);
+                    ((Scorp)sessions[current_session]).th_clean_strt();
+                }
             }
         }
     }

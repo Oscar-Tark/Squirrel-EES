@@ -96,6 +96,14 @@ namespace Scorpion
             return;
         }
 
+        private void var_dispose_internal(ref object[] __obj)
+        {
+            for (int i = 0; i < __obj.Length; i++)
+                __obj[i] = null;
+            __obj = null;
+            return;
+        }
+
         private void get_variadic(ref ArrayList objects, int start, int end)
         {
 

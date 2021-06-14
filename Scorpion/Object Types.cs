@@ -39,9 +39,11 @@ namespace Scorpion
         public string S_And = "&";
         public string S_Or = "|";
 
-        //SHS
-        public string in_ = "in";
-        public string out_ = "out";
+        //DB
+        public const string DB_TYPE_STRING = "text";
+        public const string DB_TYPE_EXECUTABLE = "bytes";
+        public const string DB_TYPE_MEDIA = "media";
+
 
         Scorp fm_1_ref;
         public Types(Scorp fm_1)

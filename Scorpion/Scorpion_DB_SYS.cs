@@ -8,6 +8,8 @@ namespace Dumper
 {
     public class Virtual_Dumper_System
     {
+        private const int DEFAULT_SLOT_SIZE = 2048;
+        private const int DEFAULT_STRT_SIZE = 0;
         Scorpion.Scorp Do_on;
         private string node_file = ".stg.nde";
         /*private string db_file = ".stg";
@@ -60,36 +62,32 @@ namespace Dumper
             return;
         }
 
-        public void Create_DB(string path, int size)
+        public void Create_DB(string path)
         {
-            byte[] s_dat = new byte[size];
-            string[] s_tag = new string[size];
-            string[] s_meta = new string[size];
-            short[] s_type = new short[size];
+            object[] s_data = new object[DEFAULT_SLOT_SIZE];
+            string[] s_tag = new string[DEFAULT_SLOT_SIZE];
+            string[] s_meta = new string[DEFAULT_SLOT_SIZE];
             //Create SHA seed
             SecureString s_seed = Do_on.crypto.Create_Seed();
-
             //Create SHA out of seed
             string sha_ = Do_on.crypto.SHA_SS(s_seed);
-
-            ArrayList al = new ArrayList (4) { s_dat, s_tag, s_meta, s_type, sha_ };
+            ArrayList al = new ArrayList (4) { s_data, s_tag, s_meta, sha_, DEFAULT_STRT_SIZE };
 
             //Encrypt s_dat, s_tag, s_meta with the seed
 
-
-            byte[] b = Do_on.crypto.To_Byte(al);
-            File.WriteAllBytes(path, b);
-            b = null;
+            byte[] bte = Do_on.crypto.To_Byte(al);
+            File.WriteAllBytes(path, bte);
+            bte = null;
             path = null;
             return;
         }
 
-        public ArrayList Load_DB(string path, string pwd)
+        public ArrayList Load_DB(string path)
         {
             //File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
-
-            pwd = null;
+            //Get pwd as securestring
+            SecureString scr = new SecureString();
             object o = Do_on.crypto.To_Object(b);
             return (ArrayList)o;
         }
@@ -99,74 +97,9 @@ namespace Dumper
             //Save in segments of 0x3a each
             //File.Encrypt(path);
             byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
-            //ArrayList al_bytes = Segment_DB(ref path, ref b);
             File.WriteAllBytes(path, b);
-
             path = null;
             pwd = null;
-
-            return;
-        }
-
-        public string Segment_DB(ref string path)
-        {
-            //Create new segment and modify or create segment file
-            /*Do_on.write_to_cui("Calling segmentation for file: " + path);
-            string node_path = path + node_file;
-            //Create node file
-            Do_on.write_to_cui("Creating node file");
-            if (!File.Exists(node_path))
-               File.Create(node_path);
-
-            //Create segmentation file
-            Random r = new Random(Do_on.mmsec.get_pin());
-            string seg_file = path + r.Next() + DateTime.Now.Ticks;
-            
-            StreamWriter sr = File.AppendText(node_path);
-            sr.WriteLine(seg_file);
-            sr.Flush();
-            sr.Close();
-
-            Do_on.write_to_cui("Creating segmentation file: " + seg_file);
-            Create_DB(seg_file, "");
-            Do_on.write_to_cui("Loading segmentation file: " + seg_file);
-            Do_on.readr.lib_SCR.dbopen(seg_file);
-            Do_on.write_to_cui("Segmentation successful");*/
-
-            //return seg_file;
-
-            return "";
-        }
-
-        public string Segment_search(ref string db, ref string var_ref)
-        {
-            /*if (!File.Exists(db + node_file))
-                return db;
-
-            foreach (string s_seg in File.ReadLines(db + node_file))
-            {
-                //CHECK IF SEGMENT ALOREADY LOADED
-                if (Do_on.AL_TBLE_REF.IndexOf(s_seg) == -1)
-                    Do_on.readr.lib_SCR.dbopen(s_seg);
-
-                foreach(string s_elem in ((string[])((ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(s_seg)])[0]))
-                    return s_seg;
-            }
-            */
-            return "ELEM";
-        }
-
-        public void Get_index(ref string segment)
-        { 
-            
-        
-        }
-
-        public void Close_DB(string path)
-        {
-            Do_on.AL_TBLE.TrimToSize();
-            Do_on.AL_TBLE_REF.TrimToSize();
-
             return;
         }
 
@@ -181,31 +114,17 @@ namespace Dumper
             return ((string[])al_tmp[1])[ndx];
         }
 
-        public void Data_setDB(string db, string name, string data, string meta, string tag, string variable_path)
+        public void Data_setDB(string path, object data, string meta, string tag)
         {
-            int ndx = Do_on.AL_TBLE_REF.IndexOf(db);
-            int position = 0;
-            string[] tbl = (string[])((ArrayList)Do_on.AL_TBLE[ndx])[0];
-            position = get_position(ref tbl);
-            string seg_ = null;
-
-            Console.WriteLine(position + ", " + tbl.Length);
-            if (position == -1)
+            lock (Do_on.AL_TBLE)
             {
-                seg_ = Segment_DB(ref db);
-                ndx = Do_on.AL_TBLE_REF.IndexOf(seg_);
-                Console.WriteLine("Segmented {0}", seg_);
-                tbl = (string[])((ArrayList)Do_on.AL_TBLE[ndx])[0];
-                position = get_position(ref tbl);
-                Do_on.readr.lib_SCR.varset("", new ArrayList() { variable_path, seg_ });
+                ArrayList al_tmp = (ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)];
+                int size = (int)al_tmp[4];
+                ((object[])al_tmp[0])[size] = data;
+                ((string[])al_tmp[1])[size] = meta;
+                ((string[])al_tmp[2])[size] = tag;
+                al_tmp[4] = size++;
             }
-
-            //Add reference
-            ((string[])((ArrayList)Do_on.AL_TBLE[ndx])[0])[position] = name;
-            //Add data
-            ((string[])((ArrayList)Do_on.AL_TBLE[ndx])[1])[position] = data;
-
-            //tbl = null;
             return;
         }
 

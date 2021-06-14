@@ -37,7 +37,6 @@ namespace Scorpion
                     pri_s.RedirectStandardInput = true;
                     pri_s.UseShellExecute = false;
                 }
-
                 pri_.StartInfo = pri_s;
                 scp.add_proccess(ref pri_, (string)var_get(objects[2]));
                 pri_.Start();
