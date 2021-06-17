@@ -87,10 +87,10 @@ namespace Scorpion
 
                 Type program = asm.GetType(namespacedotclass);
 
-                Do_on.AL_ASSEMB.Add(asm);
-                Do_on.AL_ASSEMB_REF.Add(asm_name);
-                Do_on.AL_ASSEMB_INST.Add(Activator.CreateInstance(asm.GetType(namespacedotclass)));
-                Do_on.AL_ASSEMB_PROG.Add(program);
+                Do_on.mem.AL_ASSEMB.Add(asm);
+                Do_on.mem.AL_ASSEMB_REF.Add(asm_name);
+                Do_on.mem.AL_ASSEMB_INST.Add(Activator.CreateInstance(asm.GetType(namespacedotclass)));
+                Do_on.mem.AL_ASSEMB_PROG.Add(program);
                 asmmessage("Created Assembly Instance: '" + namespacedotclass + "'");
             }
             catch(Exception e) { Console.WriteLine(e.Message + " ///" + e.StackTrace); }
@@ -103,7 +103,7 @@ namespace Scorpion
         public object asmcall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path, *function, *parameters...
-            object instance = Do_on.AL_ASSEMB_INST[Do_on.AL_ASSEMB_REF.IndexOf(var_get(objects[0]))];
+            object instance = Do_on.mem.AL_ASSEMB_INST[Do_on.mem.AL_ASSEMB_REF.IndexOf(var_get(objects[0]))];
             Type program = instance.GetType();
             MethodInfo mdf = program.GetMethod((string)var_get(objects[1]), BindingFlags.Public | BindingFlags.Instance);
 
@@ -130,7 +130,7 @@ namespace Scorpion
 
         public void listasm(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            foreach (string asm in Do_on.AL_ASSEMB_REF)
+            foreach (string asm in Do_on.mem.AL_ASSEMB_REF)
                 Do_on.write_to_cui(asm);
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);

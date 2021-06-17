@@ -69,7 +69,7 @@ namespace Scorpion
         public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
-                Do_on.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command));
+                Do_on.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command), Do_on);
 
             obj = null;
             GC.Collect();
@@ -77,37 +77,9 @@ namespace Scorpion
         }
     }
 
-    //CLASSES HERE
-    public partial class Scorp
+    //NEW WAY OF DEALING WITH MEMORY, SHIFT HERE
+    public class Memory
     {
-        public reader readr;
-        public Dumper.Virtual_Dumper_System vds;
-        public Crypto.Cryptographer crypto;
-        public Memory_Security.Secure_Memory mmsec;
-        public Memory_Security.Sanitizer san;
-        public Timer_ tms;
-        public Workspaces.Workspaces wkp;
-        public Memory mem;
-    }
-
-    public partial class Scorp
-    {
-        public void start_classes()
-        {
-            vds = new Dumper.Virtual_Dumper_System(this);
-            crypto = new Crypto.Cryptographer(this);
-            mmsec = new Memory_Security.Secure_Memory(this);
-            san = new Memory_Security.Sanitizer(this);
-            tms = new Timer_(this);
-
-            readr = new reader(this);
-            types = new Types(this);
-            types.load_system_vars();
-            wkp = new Workspaces.Workspaces(this);
-            mem = new Memory();
-            return;
-        }
-
         private object CloneObject(object o)
         {
             Object p = o.GetType().InvokeMember("", BindingFlags.CreateInstance, null, o, null);
@@ -122,7 +94,6 @@ namespace Scorpion
 
         public string[] cmdargs;
         public long engine_ndx = 0;
-        public Types types;
         public enum list_type { db_list };
 
         //COMMAND LOG
@@ -147,13 +118,18 @@ namespace Scorpion
         {
             //Add as secure string?
             //No ref, we need actual value copied
-            AL_TCP_KY.Add(new string[2]{ private_s_RSA, public_s_RSA });
+            AL_TCP_KY.Add(new string[2] { private_s_RSA, public_s_RSA });
             return;
         }
 
         public void remove_tcp_key_path(ref int ndx)
         {
-            AL_TCP_KY.RemoveAt(ndx);
+            try
+            {
+                //Server started with a key
+                AL_TCP_KY.RemoveAt(ndx);
+            }
+            catch { /*Server started without a key*/ }
             return;
         }
 
@@ -162,7 +138,6 @@ namespace Scorpion
             return (string[])AL_TCP_KY[ndx];
         }
         //<--
-
 
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();
@@ -185,96 +160,10 @@ namespace Scorpion
         //Inatantiated Assemblies
         public ArrayList AL_ASSEMB_INST = new ArrayList();
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
-    }
-
-    //NEW WAY OF DEALING WITH MEMORY, SHIFT HERE
-    public partial class Memory
-    {
-        //Must be singleton
-        bool instance = false;
-        /*Memory Memory()
-        {
-            if (!instance)
-                return new Memory();
-            return null;
-        }*/
 
         //Tcpclients
-        private ArrayList AL_TCP_CLIENTS = new ArrayList(100);
-        private ArrayList AL_TCP_CLIENTS_REF = new ArrayList(100);
-        private ArrayList AL_TCP_CLIENTS_KY = new ArrayList(100);
-
-        //Blockchain instances
-        private ArrayList AL_BLOCKCHAIN_REF = new ArrayList(5);
-        private ArrayList AL_BLOCKCHAIN_NODES = new ArrayList(5);
-
-    }
-
-    //Blockchain instances
-    public partial class Memory
-    {
-        public void add_blockchain(ref string reference, ref object node)
-        {
-            lock (AL_BLOCKCHAIN_REF) lock (AL_BLOCKCHAIN_NODES)
-                {
-                    AL_BLOCKCHAIN_REF.Add(reference);
-                    AL_BLOCKCHAIN_NODES.Add(node);
-                }
-        }
-
-        public void remove_blockchain(ref int ndx)
-        {
-            lock (AL_BLOCKCHAIN_REF) lock (AL_BLOCKCHAIN_NODES)
-                {
-                    AL_BLOCKCHAIN_REF.RemoveAt(ndx);
-                    AL_BLOCKCHAIN_NODES.RemoveAt(ndx);
-                }
-        }
-    }
-
-    //TCP clients
-    public partial class Memory
-    {
-        public void add_tcpclient(ref string reference, ref SimpleTCP.SimpleTcpClient to_add, ref string private_key_path, ref string public_key_path)
-        {
-            lock (AL_TCP_CLIENTS) lock (AL_TCP_CLIENTS_REF) lock (AL_TCP_CLIENTS_KY)
-                    {
-                        AL_TCP_CLIENTS.Add(to_add);
-                        AL_TCP_CLIENTS_REF.Add(reference);
-                        AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
-                    }
-            return;
-        }
-
-        public SimpleTCP.SimpleTcpClient get_tcpclient(int ndx)
-        {
-            return (SimpleTCP.SimpleTcpClient)AL_TCP_CLIENTS[ndx];
-        }
-
-        public int get_index_tcpclient(object client)
-        {
-            return AL_TCP_CLIENTS.IndexOf(client);
-        }
-
-        public int get_index_tcpclient(string client)
-        {
-            return AL_TCP_CLIENTS_REF.IndexOf(client);
-        }
-
-        public string[] get_tcpclient_key_paths(int ndx)
-        {
-            return (string[])AL_TCP_CLIENTS_KY[ndx];
-        }
-
-        public void remove_tcpclient(int ndx)
-        {
-            lock (AL_TCP_CLIENTS) lock (AL_TCP_CLIENTS_REF) lock (AL_TCP_CLIENTS_KY)
-                    {
-                        AL_TCP_CLIENTS.RemoveAt(ndx);
-                        AL_TCP_CLIENTS_KY.RemoveAt(ndx);
-                        AL_TCP_CLIENTS_REF.RemoveAt(ndx);
-                    }
-            return;
-        }
+        public ArrayList AL_TCP_CLIENTS = new ArrayList(100);
+        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList(100);
+        public ArrayList AL_TCP_CLIENTS_KY = new ArrayList(100);
     }
 }

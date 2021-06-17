@@ -59,7 +59,6 @@ namespace Scorpion
             fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'true'" });
             fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'false'" });
             fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'" });
-
             return;
         }
 

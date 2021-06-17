@@ -34,8 +34,10 @@ namespace Scorpion
             return;
         }
 
-        public void scorpioniee(object Scorp_Line)
+        public void scorpioniee(object Scorp_Line, Scorp Handle)
         {
+            if(Handle != null)
+                Do_on = Handle;
             try
             {
                 Thread ths = new Thread(new ParameterizedThreadStart(scorpion_exec));
@@ -87,8 +89,9 @@ namespace Scorpion
             }
 
             sp.Stop();
-            Do_on.engine_ndx++;
-            Do_on.write_success("Executed [Call: " + Do_on.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            Do_on.mem.engine_ndx++;
+            Do_on.write_to_cui("LIBRARIAN: DOING for: " + Do_on.instance);
+            Do_on.write_success("Executed [Call: " + Do_on.mem.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
             sp.Reset();
 
             //Make sure objects are set to null and disposed

@@ -338,6 +338,7 @@
     <Compile Include="Host\Scorpion_HOSTOS.cs" />
     <Compile Include="Generic\Scorpion_BASICMATH.cs" />
     <Compile Include="Database\Scorpion_MONGO.cs" />
+    <Compile Include="Session_dependent_handler.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

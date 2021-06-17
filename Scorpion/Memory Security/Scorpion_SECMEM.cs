@@ -181,13 +181,13 @@ namespace Scorpion.Memory_Security
 
         private void var_set_encrypted(string Reference, byte[] block_)
         {
-            ((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;
+            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;
             return;
         }
 
         private byte[] var_get_encrypted(ref string Reference)
         {
-            return (byte[])((ArrayList)Do_on.AL_CURR_VAR[Do_on.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
+            return (byte[])((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
         }
     }
 

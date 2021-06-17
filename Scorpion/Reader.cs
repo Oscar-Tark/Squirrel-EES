@@ -14,17 +14,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-using System.Threading;
-
 namespace Scorpion
 {
     public class reader
     {
         Scorp fmm;
         public Librarian lib_SCR;
-        private Thread th_cross; public bool Re_do = true; public int ndx = 0;
-        private delegate void dl_cross();
         public reader(Scorp Form_Handle)
         {
            fmm = Form_Handle;
@@ -35,7 +30,8 @@ namespace Scorpion
         //ACCESS ANY LIB
         public void access_library(string Scorp_Line)
         {
-            lib_SCR.scorpioniee(Scorp_Line);
+            fmm.write_to_cui("READER: DOING for: " + fmm.instance);
+            lib_SCR.scorpioniee(Scorp_Line, fmm);
             Scorp_Line = null;
             return;
         }

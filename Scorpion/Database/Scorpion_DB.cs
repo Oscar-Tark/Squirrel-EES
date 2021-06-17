@@ -50,10 +50,10 @@ namespace Scorpion
         {
             //::*File_Name_w_path, *pwd
             string name = (string)var_get(objects[0]);
-            if (!Do_on.AL_TBLE_REF.Contains(name))
+            if (!Do_on.mem.AL_TBLE_REF.Contains(name))
             {
-                Do_on.AL_TBLE.Add(Do_on.vds.Load_DB(name));
-                Do_on.AL_TBLE_REF.Add(name);
+                Do_on.mem.AL_TBLE.Add(Do_on.vds.Load_DB(name));
+                Do_on.mem.AL_TBLE_REF.Add(name);
                 Do_on.write_to_cui("Created Database: [" + name + "]");
             }
             else { Do_on.write_to_cui("Database [" + name + "] already in memory"); }
@@ -67,13 +67,13 @@ namespace Scorpion
         public void dbclose(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path/name
-            int ndx = Do_on.AL_TBLE_REF.IndexOf(var_get(objects[0]));
-            lock(Do_on.AL_TBLE) lock(Do_on.AL_TBLE_REF)
+            int ndx = Do_on.mem.AL_TBLE_REF.IndexOf(var_get(objects[0]));
+            lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF)
                 {
                     //Do_on.AL_TBLE[ndx] = 0x00;
                     //Do_on.AL_TCP_REF[ndx] = 0x00;
-                    Do_on.AL_TBLE.RemoveAt(ndx);
-                    Do_on.AL_TCP_REF.RemoveAt(ndx);
+                    Do_on.mem.AL_TBLE.RemoveAt(ndx);
+                    Do_on.mem.AL_TCP_REF.RemoveAt(ndx);
                 }
             Do_on.write_to_cui("Database [" + var_get(objects[0]) + "] closed");
             return;
@@ -95,7 +95,7 @@ namespace Scorpion
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            foreach (string s_name in Do_on.AL_TBLE_REF)
+            foreach (string s_name in Do_on.mem.AL_TBLE_REF)
                 Do_on.write_to_cui(s_name);
 
             Scorp_Line_Exec = null;

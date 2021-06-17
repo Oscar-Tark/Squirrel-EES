@@ -96,7 +96,7 @@ namespace Dumper
         {
             //Save in segments of 0x3a each
             //File.Encrypt(path);
-            byte[] b = Do_on.crypto.To_Byte(Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)]);
+            byte[] b = Do_on.crypto.To_Byte(Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(path)]);
             File.WriteAllBytes(path, b);
             path = null;
             pwd = null;
@@ -106,7 +106,7 @@ namespace Dumper
         public string Data_getDB(string db, string reference)
         {
             //
-            ArrayList al_tmp = (ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(db)];
+            ArrayList al_tmp = (ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(db)];
             int ndx = Array.IndexOf((string[])al_tmp[0], reference);
 
             if (ndx == -1)
@@ -116,9 +116,9 @@ namespace Dumper
 
         public void Data_setDB(string path, object data, string meta, string tag)
         {
-            lock (Do_on.AL_TBLE)
+            lock (Do_on.mem.AL_TBLE)
             {
-                ArrayList al_tmp = (ArrayList)Do_on.AL_TBLE[Do_on.AL_TBLE_REF.IndexOf(path)];
+                ArrayList al_tmp = (ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(path)];
                 int size = (int)al_tmp[4];
                 ((object[])al_tmp[0])[size] = data;
                 ((string[])al_tmp[1])[size] = meta;

@@ -29,7 +29,8 @@ namespace Scorpion
         static void Main()
         {
             int current_session = 0;
-            ArrayList sessions = new ArrayList(1) { new Scorp() };
+            ArrayList sessions = new ArrayList();
+            sessions.Add(new Scorp(current_session));
 
             string line = null;
             //Create new session on demand
@@ -38,8 +39,8 @@ namespace Scorpion
                 line = Console.ReadLine();
                 if (line == "**new")
                 {
-                    sessions.Add(new Scorp());
                     current_session++;
+                    sessions.Add(new Scorp(current_session));
                 }
                 else if (line == "**back")
                 {

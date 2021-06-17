@@ -22,6 +22,7 @@ namespace Scorpion
 {
     public partial class Librarian
     {
+        //Add to Session dependent handler
         public void runscriptcondition(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8

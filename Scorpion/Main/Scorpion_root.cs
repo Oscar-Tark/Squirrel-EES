@@ -21,10 +21,38 @@ using System.Threading;
 namespace Scorpion
 {
     //CHANGE CLASS NAME
-    public partial class Scorp
+    public class Scorp
     {
-        public Scorp()
+        public int instance;
+        public void start_classes()
         {
+            this.vds = new Dumper.Virtual_Dumper_System(this);
+            this.crypto = new Crypto.Cryptographer(this);
+            this.mmsec = new Memory_Security.Secure_Memory(this);
+            this.san = new Memory_Security.Sanitizer(this);
+            this.tms = new Timer_(this);
+            this.readr = new reader(this);
+            this.wkp = new Workspaces.Workspaces(this);
+            this.mem = new Memory();
+            this.types = new Types(this);
+            sdh = new SESSION_DEPENDENT_HANDLERS(this);
+            return;
+        }
+
+        public reader readr;
+        public Dumper.Virtual_Dumper_System vds;
+        public Crypto.Cryptographer crypto;
+        public Memory_Security.Secure_Memory mmsec;
+        public Memory_Security.Sanitizer san;
+        public Timer_ tms;
+        public Workspaces.Workspaces wkp;
+        public Memory mem;
+        public Types types;
+        public SESSION_DEPENDENT_HANDLERS sdh;
+
+        public Scorp(int instance_descriptor)
+        {
+            instance = instance_descriptor;
             start_classes();
             string passcode = null;
             string uname = null;
@@ -33,6 +61,7 @@ namespace Scorpion
             int pin_up = 0;
             int tries = 1;
             const int max_tries = 2;
+            types.load_system_vars();
 
             //Read passcode and pin
             while (true)
@@ -83,7 +112,7 @@ namespace Scorpion
             }
 
             Console.WriteLine("\nWelcome {1} to Scorpion V1.0b\n\n{0}", "Licensed Under the GNU GPL Version 3\n< Scorpion IEE Copyright(C) 2020+ Oscar Arjun Singh Tark >\n\nThis program is free software: you can redistribute it and / or modify\nit under the terms of the GNU Affero General Public License as \npublished by the Free Software Foundation, either version 3 of the \nLicense, or(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.If not, see < http://www.gnu.org/licenses/>.\n", uname);
-            Console.WriteLine("-------------------------\nCores {0}\nMachine name: {1}\nOperating system: {4}\n64bit OS: {2}\n64bit process: {3}\nProcess ID: {5}\n-------------------------\n", Environment.ProcessorCount, Environment.MachineName, Environment.Is64BitProcess, Environment.Is64BitOperatingSystem, Environment.OSVersion, Environment.CurrentManagedThreadId);
+            Console.WriteLine("-------------------------\nCores {0}\nMachine name: {1}\nOperating system: {4}\n64bit OS: {2}\n64bit process: {3}\nProcess ID: {5}\nInstance {6}\n-------------------------\n", Environment.ProcessorCount, Environment.MachineName, Environment.Is64BitProcess, Environment.Is64BitOperatingSystem, Environment.OSVersion, Environment.CurrentManagedThreadId, instance);
         }
 
         public void Application_ApplicationExit(object sender, EventArgs e)
@@ -106,13 +135,13 @@ namespace Scorpion
         {
             //Implement in a better way
             //General Memory
-            AL_CURR_VAR.TrimToSize();
-            AL_CURR_VAR_REF.TrimToSize();
-            AL_CURR_VAR_TAG.TrimToSize();
-            AL_CURR_VAR_EVT.TrimToSize();
+            mem.AL_CURR_VAR.TrimToSize();
+            mem.AL_CURR_VAR_REF.TrimToSize();
+            mem.AL_CURR_VAR_TAG.TrimToSize();
+            mem.AL_CURR_VAR_EVT.TrimToSize();
 
-            AL_AMCS.TrimToSize();
-            AL_AMCS_REF.TrimToSize();
+            mem.AL_AMCS.TrimToSize();
+            mem.AL_AMCS_REF.TrimToSize();
 
             GC.Collect();
             return;
