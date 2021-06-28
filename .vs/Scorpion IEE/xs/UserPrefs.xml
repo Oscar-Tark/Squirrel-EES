@@ -1,19 +1,22 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Session_dependent_handler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion_DB_SYS.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="50" Column="61" />
-      <File FileName="Scorpion/Objects.cs" Line="90" Column="48" />
-      <File FileName="Scorpion/Session_dependent_handler.cs" Line="76" Column="51" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="125" Column="32" />
+      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="173" Column="14" />
+      <File FileName="Scorpion/Object Types.cs" Line="32" Column="35" />
+      <File FileName="Scorpion/Reader.cs" Line="34" Column="23" />
+      <File FileName="Scorpion/Scorpion.cs" Line="92" Column="36" />
+      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="50" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="Network" expanded="True" />
-              <Node name="Scripts" expanded="True" />
-              <Node name="Session_dependent_handler.cs" selected="True" />
+              <Node name="Database" expanded="True" />
+              <Node name="Memory" expanded="True" />
+              <Node name="Scorpion_DB_SYS.cs" selected="True" />
             </Node>
           </Node>
         </State>

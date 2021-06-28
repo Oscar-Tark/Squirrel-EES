@@ -90,8 +90,7 @@ namespace Scorpion
 
             sp.Stop();
             Do_on.mem.engine_ndx++;
-            Do_on.write_to_cui("LIBRARIAN: DOING for: " + Do_on.instance);
-            Do_on.write_success("Executed [Call: " + Do_on.mem.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            Do_on.write_success("SESSION [" + Do_on.instance + "] --> Executed [Call: " + Do_on.mem.engine_ndx + "] >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
             sp.Reset();
 
             //Make sure objects are set to null and disposed

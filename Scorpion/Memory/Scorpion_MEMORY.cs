@@ -47,6 +47,11 @@ namespace Scorpion
             return val;
         }
 
+        private object var_create_return(ref object[] val)
+        {
+            return val;
+        }
+
         private string var_create_return(ref string val, bool is_val)
         {
             if (is_val)
@@ -151,8 +156,7 @@ namespace Scorpion
 
     partial class Librarian
     {
-        //Variables-->o
-        //NEW
+        //ADD ARRAY TYPE! **var, **var[[2]]
         public void var(string Scorp_Line_Exec, ArrayList objects)
         {
             //(*,*,*,*,...)
