@@ -55,7 +55,6 @@ namespace Scorpion
             sp.Start();
             Enginefunctions ef__ = new Enginefunctions();
             string Scorp_Line_Exec = (string)Scorp_Line;
-
             string[] functions = null;
             try
             {
@@ -71,13 +70,10 @@ namespace Scorpion
                     Do_on.write_error("This user does not have enough privileges to execute this function");
                     return;
                 }
-
-                object[] paramse = new object[2] { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-                object retfun = this.GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
-
+                object[] paramse = { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
+                object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
                 if (retfun != null)
                     ef__.process_return(ref retfun, ref final[0], this);
-
                 functions = null;
                 paramse = null;
                 retfun = null;
@@ -139,7 +135,7 @@ namespace Scorpion
 
         public bool process_return(ref object o, ref string var, Librarian lib)
         {
-            lib.varset("", new System.Collections.ArrayList() { var.Replace("*", "") , o });
+            lib.varset("", new System.Collections.ArrayList { var.Replace("*", "") , o });
             return true;
         }
     }

@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion_DB_SYS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
     <Files>
-      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="125" Column="32" />
-      <File FileName="Scorpion/Scorpion_DB_SYS.cs" Line="173" Column="14" />
-      <File FileName="Scorpion/Object Types.cs" Line="32" Column="35" />
-      <File FileName="Scorpion/Reader.cs" Line="34" Column="23" />
-      <File FileName="Scorpion/Scorpion.cs" Line="92" Column="36" />
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="50" Column="52" />
+      <File FileName="Scorpion/Database/Scorpion_DB.cs" Line="121" Column="13" />
+      <File FileName="Scorpion/Database/Scorpion_DB_SYS.cs" Line="115" Column="58" />
+      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="243" Column="36" />
+      <File FileName="Scorpion/Scorpion.cs" Line="72" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,7 +14,7 @@
             <Node name="Scorpion" expanded="True">
               <Node name="Database" expanded="True" />
               <Node name="Memory" expanded="True" />
-              <Node name="Scorpion_DB_SYS.cs" selected="True" />
+              <Node name="Scorpion.cs" selected="True" />
             </Node>
           </Node>
         </State>

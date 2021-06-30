@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections;
 using System.Security;
 
@@ -45,6 +46,11 @@ namespace Scorpion
         private object var_create_return(ref object val)
         {
             return val;
+        }
+
+        private object var_create_return(ref ArrayList val)
+        {
+            return (object)val;
         }
 
         private object var_create_return(ref object[] val)
@@ -160,26 +166,78 @@ namespace Scorpion
         public void var(string Scorp_Line_Exec, ArrayList objects)
         {
             //(*,*,*,*,...)
-            //ArrayList al = cut_variables(ref Scorp_Line_Exec);
             //Variables by default are created as booleans bearing the 'false' value
-
             lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_EVT) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
                         {
                             foreach (string s in objects)
-                                var_new((object)Do_on.types.S_No, s, "", "");
+                                var_new(Do_on.types.S_No, s, null, null);
                         }
-            //clean
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
-        public void varset(string Scorp_Line_Exec, ArrayList objects)
+        public void vararray(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            /*(*where,*value)*/
+            //::*var, *maintain_contents[BOOL]
             lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_EVT) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
                         {
-                            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get(objects[1].ToString());
+                            if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
+                                ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = new ArrayList { var_get(objects[0]) };
+                            else
+                                ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = new ArrayList();
+                                }
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return;
+        }
+
+        public void varintoarray(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*var, *var, *var...
+            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_EVT) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+                        {
+                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2]).Add(var_get(objects[1]));
+                        }
+            return;
+        }
+
+        public object varfromarray(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*result<<::*array, *index, *asobject
+            object ret = Do_on.types.S_No;
+            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_EVT) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+                        {
+                            int ndx = Convert.ToInt32((string)var_get(objects[1]));
+                            ret = (string)((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol((string)objects[0]))])[2])[ndx];
+                        }
+            if((string)var_get(objects[2]) == Do_on.types.S_No)
+                return var_create_return((string)ret, true);
+            return var_create_return(ref ret);
+        }
+
+        //delete var from array
+        public void vardeletearray()
+        { }
+
+        //indexof
+        public void varindexarray()
+        { }
+
+        public void varset(string Scorp_Line_Exec, ArrayList objects)
+        {
+            //::*where, *value
+            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_EVT) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+                        {
+                            try
+                            {
+                                ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = var_get((string)objects[1]);
+                            }
+                            catch
+                            {
+                                //if not string based then save object directly
+                                ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[2] = objects[1];
+                            }
                         }
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -279,23 +337,23 @@ namespace Scorpion
         //memory get
         public object var_get(ref string Block)
         {
-            object o = (object)Block;
+            object o = Block;
             try
             {
                 //BY VALUE
-                if (!o.ToString().StartsWith("\'", System.StringComparison.CurrentCulture))
+                if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture))
                 {
                     try
                     {
-                        o = (object)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
+                        o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
                     }
-                    catch { }
+                    finally { }
                 }
                 //BY VAR
                 else
                     o = var_cut_str_symbol(var_cut_symbol(ref Block));
             }
-            catch { }
+            finally { }
             return o;
         }
     }

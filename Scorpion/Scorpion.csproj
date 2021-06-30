@@ -317,7 +317,6 @@
     <Compile Include="Io\Library_IO.cs" />
     <Compile Include="MAN\Scorpion_MAN.cs" />
     <Compile Include="Functions\Scorpion_FNC.cs" />
-    <Compile Include="Scorpion_DB_SYS.cs" />
     <Compile Include="Memory\Scorpion_MEMORY.cs" />
     <Compile Include="Processes\Scorpion_PROC.cs" />
     <None Include="System\db_functions_bak.txt" />
@@ -339,6 +338,7 @@
     <Compile Include="Generic\Scorpion_BASICMATH.cs" />
     <Compile Include="Database\Scorpion_MONGO.cs" />
     <Compile Include="Session_dependent_handler.cs" />
+    <Compile Include="Database\Scorpion_DB_SYS.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

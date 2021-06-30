@@ -46,7 +46,6 @@ namespace Scorpion
         {
             /*VARIABLES MUST BE {&quot}, {&var} not * or *'' */
             Do_on.tms.add(var_get(objects[0]), var_get(objects[1]));
-
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;

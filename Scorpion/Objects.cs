@@ -96,6 +96,9 @@ namespace Scorpion
         public long engine_ndx = 0;
         public enum list_type { db_list };
 
+        //Use as default maximum run for loops sizes of arrays etc
+        public readonly int max_value_type = 1024;
+
         //COMMAND LOG
         public int commands_point = 0;
         public string[] commands = new string[64];

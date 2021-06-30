@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.Collections;
 
 namespace Scorpion
@@ -69,8 +68,6 @@ namespace Scorpion
             int ndx = Do_on.mem.AL_TBLE_REF.IndexOf(var_get(objects[0]));
             lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF)
                 {
-                    //Do_on.AL_TBLE[ndx] = 0x00;
-                    //Do_on.AL_TCP_REF[ndx] = 0x00;
                     Do_on.mem.AL_TBLE.RemoveAt(ndx);
                     Do_on.mem.AL_TCP_REF.RemoveAt(ndx);
                     trim_table_memory();
@@ -83,11 +80,9 @@ namespace Scorpion
         {
             //::*path/name, *pwd
             string name = (string)var_get(objects[0]);
-
             //Save without passphrase for now
             Do_on.vds.Save_DB(name, "");
-            Do_on.write_to_cui("Database [" + name + "] saved");
-
+            Do_on.write_success("Database [" + name + "] saved");
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             name = null;
@@ -105,9 +100,9 @@ namespace Scorpion
 
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path/name, *value, *tag, *meta, *field_type
-            if (Do_on.vds.Data_setDB((string)var_get(objects[0]), (object)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Convert.ToUInt16(var_get(objects[4]))))
-                Do_on.write_success("Value set to database");
+            //::*path/name, *data, *tag
+            if (Do_on.vds.Data_setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2])))
+                Do_on.write_to_cui("Value set to database");
             else
                 Do_on.write_error("Unable to set value to database");
             var_arraylist_dispose(ref objects);
@@ -115,14 +110,22 @@ namespace Scorpion
             return;
         }
 
-        //QUERY STYLED
-        public object dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public ArrayList dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *searchORfalse for all
-            object[] elem = Do_on.vds.Data_getDB((string)var_get(objects[0]), (string)var_get(objects[1]));
+            //::*path, *data, *tag
+            ArrayList elem = Do_on.vds.Data_getDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            return var_create_return(ref elem);
+            return elem;
+        }
+
+        public void dbremove(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path, *data, *tag
+            Do_on.vds.Data_deleteDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]));
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
         }
 
         private void trim_table_memory()
