@@ -108,13 +108,13 @@ namespace Scorpion
             return;
         }
 
-        public ArrayList dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *data, *tag
-            ArrayList elem = Do_on.vds.Data_getDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]));
+            //::*path, *data, *tag, *insertintovariable
+            Do_on.vds.Data_getDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), objects[3]);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            return elem;
+            return;
         }
     }
 }

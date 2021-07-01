@@ -31,11 +31,10 @@ namespace Scorpion
             return;
         }
 
-        public void jsontoarray(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public ArrayList jsontoarray(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates variables partaining to the JSON object. a special tag is used in order to chain variables
             //::*jsonvar, *prefix, *key, *contains_key, tag
-
             JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
             string key = (string)var_get(objects[2]);
             string contains_key = (string)var_get(objects[3]);
@@ -50,7 +49,7 @@ namespace Scorpion
             }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
-            return;
+            return al_keys;
         }
 
         //public void jsonvarfill()

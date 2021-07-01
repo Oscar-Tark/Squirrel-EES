@@ -263,11 +263,23 @@ namespace Scorpion
             return var_create_return((var_get(objects[0])).ToString().Replace((string)var_get(objects[1]), (string)var_get(objects[2])), true);
         }
 
+        public void lv(string Scorp_Line_Exec, ArrayList objects)
+        {
+            listvars(Scorp_Line_Exec, objects);
+            return;
+        }
+
         public void listvars(string Scorp_Line_Exec, ArrayList objects)
         {
-            string STR_ = "";
+            string STR_ = ""; string val = "";
             foreach (string s in Do_on.mem.AL_CURR_VAR_REF)
-                STR_ += s + " [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[2] + "] TAG: [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[3] + "]\n";
+            {
+                val = (string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[2];
+                if (val.Length > 256)
+                    val = val.Remove(256) + "...";
+                STR_ += "*" + s + " [" + val + "] TAG: [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[3] + "]\n";
+                val = null;
+            }
             Do_on.write_to_cui(STR_);
 
             //clean
