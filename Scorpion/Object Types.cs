@@ -1,5 +1,5 @@
-﻿/*  <Scorpion IEE(Intelligent Execution Environment). Kernel To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2014>  <Oscar Arjun Singh Tark>
+﻿/*  <Scorpion IEE(Intelligent Execution Environment)>
+    Copyright (C) <2014+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -22,43 +22,24 @@ namespace Scorpion
 {
     public class Types
     {
-        public bool B_Yes = true;
-        public bool B_No = false;
-        public string S_Yes = "true";
-        public string S_No = "false";
-        public int INDEX_NOT_FOUND = -1;
-        public char C_Delim_Start = '[';
-        public char C_Delim_Stop = ']';
-        public string S_NULL = "";
+        public readonly string S_Yes = "true";
+        public readonly string S_No = "false";
+        public readonly string S_NULL = "";
 
-        //COMPARERS
-        public string S_Equal = "=";
-        public string S_Less = "<";
-        public string S_Greater = ">";
-        public string S_Not_Equal = "!=";
-        public string S_And = "&";
-        public string S_Or = "|";
-
-        //DB
-        public const string DB_TYPE_STRING = "text";
-        public const string DB_TYPE_EXECUTABLE = "bytes";
-        public const string DB_TYPE_MEDIA = "media";
-
-
-        Scorp fm_1_ref;
-        public Types(Scorp fm_1)
+        Scorp HANDLE;
+        public Types(Scorp HANDLE_)
         {
-            fm_1_ref = fm_1;
+            HANDLE = HANDLE_;
             return;
         }
 
         public void load_system_vars()
         {
-            fm_1_ref.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "temp" });
-            fm_1_ref.readr.lib_SCR.var("", new ArrayList(5) { "userfolder", "userfolder" });
-            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'true'" });
-            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'false'" });
-            fm_1_ref.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'" });
+            HANDLE.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "temp", "userfolder", "null" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'" + S_Yes + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'" + S_No + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'/Scorpion" });
             return;
         }
 
@@ -72,7 +53,7 @@ namespace Scorpion
             return false;
         }
 
-        public string Convert_booltostring(bool bool_)
+        public string Convert_Bool_To_String(bool bool_)
         {
             switch(bool_)
             {

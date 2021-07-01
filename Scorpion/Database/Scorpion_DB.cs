@@ -68,9 +68,7 @@ namespace Scorpion
             int ndx = Do_on.mem.AL_TBLE_REF.IndexOf(var_get(objects[0]));
             lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF)
                 {
-                    Do_on.mem.AL_TBLE.RemoveAt(ndx);
-                    Do_on.mem.AL_TCP_REF.RemoveAt(ndx);
-                    trim_table_memory();
+                    Do_on.vds.Close_DB((string)var_get(objects[0]));
                 }
             Do_on.write_to_cui("Database [" + var_get(objects[0]) + "] closed");
             return;
@@ -117,22 +115,6 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return elem;
-        }
-
-        public void dbremove(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //::*path, *data, *tag
-            Do_on.vds.Data_deleteDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]));
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            return;
-        }
-
-        private void trim_table_memory()
-        {
-            Do_on.mem.AL_TBLE.TrimToSize();
-            Do_on.mem.AL_TBLE_REF.TrimToSize();
-            return;
         }
     }
 }

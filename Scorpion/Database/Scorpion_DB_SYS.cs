@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.IO;
 using System.Security;
-using System.Threading;
 
 //DEPRECIATED
 namespace Dumper
 {
     public class Virtual_Dumper_System
     {
-        private const int DEFAULT_SLOT_SIZE = 2048;
+        private const int DEFAULT_SLOT_SIZE = 4096;
         private const int DEFAULT_STRT_SIZE = 0;
         private readonly string[] Field_Type_Data = { "dat", "num", "bin" };
         private readonly ArrayList Query_Types = new ArrayList(4) { "data", "tag", "meta", "type" };
@@ -21,13 +19,10 @@ namespace Dumper
             return;
         }
 
-        private void NULLIFY(ref string[] reference_, ref string[] data)
+        private void NULLIFY(ref ArrayList AL)
         {
-            for(int i = 0; i < reference_.Length; i++)
-            {
-                reference_[i] = null;
-                data[i] = null;
-            }
+            for (int i = 0; i < AL.Count; i++)
+                AL[i] = 0x00;
             return;
         }
 
@@ -59,9 +54,15 @@ namespace Dumper
         }
 
         public void Close_DB(string path)
-        { 
+        {
             //PURGE MEMORY
-
+            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)]).Clear();
+            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)]).TrimToSize();
+            HANDLE.mem.AL_TBLE.RemoveAt(HANDLE.mem.AL_TBLE_REF.IndexOf(path));
+            HANDLE.mem.AL_TBLE.TrimToSize();
+            HANDLE.mem.AL_TBLE_REF.Remove(path);
+            HANDLE.mem.AL_TBLE_REF.TrimToSize();
+            return;
             //Close and remove
         }
 
@@ -129,27 +130,6 @@ namespace Dumper
                 ((ArrayList)al_tmp[0]).Add(data);
                 ((ArrayList)al_tmp[1]).Add(tag);
             }
-            return true;
-        }
-
-        public bool Data_deleteDB(string path, object data, string tag)
-        {
-            /*int current = 0;
-            if (tag != HANDLE.types.S_NULL && tag != HANDLE.types.S_No)
-            {
-                while (current < DEFAULT_SLOT_SIZE)
-                {
-                    current = tag_handle.IndexOf(tag, current);
-                    if (current == -1)
-                        break;
-                    returnable.Add(data_handle[current]);
-                    current++;
-                }
-            }
-            else if (data != null)
-            {
-            }
-                return true;*/
             return true;
         }
     }

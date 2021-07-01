@@ -24,16 +24,16 @@ namespace Scorpion
 {
     public class Timer_
     {
-        Scorp Do_on;
+        Scorp HANDLE;
         public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
         Enginefunctions ef__ = new Enginefunctions();
         int interval = 100000;
 
-        public Timer_(Scorp fm1)
+        public Timer_(Scorp HANDLE_)
         {
-            Do_on = fm1;
+            HANDLE = HANDLE_;
             tms = new Timer(tms_call, null, 0, interval);
             return;
         }
@@ -52,10 +52,10 @@ namespace Scorpion
             {
                 AL_REC.Add(Object);
                 AL_REC_REF.Add(Name);
-                Do_on.write_to_cui("Recursive functions by default will run every " + interval + "s. To run functions everyday use the recursivetime::*time function to store 86400000s");
+                HANDLE.write_to_cui("Recursive functions by default will run every " + interval + "s. To run functions everyday use the recursivetime::*time function to store 86400000s");
             }
             else
-                Do_on.write_to_cui("Name for recursive function already exists");
+                HANDLE.write_to_cui("Name for recursive function already exists");
             return;
         }
 
@@ -69,8 +69,7 @@ namespace Scorpion
         public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
-                Do_on.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command), Do_on);
-
+                HANDLE.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command), HANDLE);
             obj = null;
             GC.Collect();
             return;
@@ -82,8 +81,7 @@ namespace Scorpion
     {
         private object CloneObject(object o)
         {
-            Object p = o.GetType().InvokeMember("", BindingFlags.CreateInstance, null, o, null);
-
+            object p = o.GetType().InvokeMember("", BindingFlags.CreateInstance, null, o, null);
             foreach (PropertyInfo pi in o.GetType().GetProperties())
             {
                 if (pi.CanWrite)
@@ -93,7 +91,7 @@ namespace Scorpion
         }
 
         public string[] cmdargs;
-        public long engine_ndx = 0;
+        public ulong engine_ndx = 0;
         public enum list_type { db_list };
 
         //Use as default maximum run for loops sizes of arrays etc
@@ -106,16 +104,6 @@ namespace Scorpion
         //Ubearables
         public readonly string[] AL_UNBEARABLE_CHARS = new string[3] { ",", "]", ")" };
         public readonly string[] AL_WILDCARDS = new string[2] { "-", " " };
-
-        //Sockets
-        public ArrayList AL_SOCK = new ArrayList();
-        public ArrayList AL_SOCK_REF = new ArrayList();
-        public ArrayList AL_SOCK_SESSION = new ArrayList();
-
-        //Tcp-->
-        public ArrayList AL_TCP = new ArrayList();
-        public ArrayList AL_TCP_REF = new ArrayList();
-        private ArrayList AL_TCP_KY = new ArrayList();
 
         public void add_tcp_key_path(string private_s_RSA, string public_s_RSA)
         {
@@ -152,10 +140,6 @@ namespace Scorpion
         public ArrayList AL_TBLE = new ArrayList();
         public ArrayList AL_TBLE_REF = new ArrayList();
 
-        //TCPIP Networking
-        public ArrayList AL_AMCS = new ArrayList();
-        public ArrayList AL_AMCS_REF = new ArrayList();
-
         //Assemblies
         public ArrayList AL_ASSEMB = new ArrayList();
         public ArrayList AL_ASSEMB_REF = new ArrayList();
@@ -165,8 +149,13 @@ namespace Scorpion
         public ArrayList AL_ASSEMB_PROG = new ArrayList();
 
         //Tcpclients
-        public ArrayList AL_TCP_CLIENTS = new ArrayList(100);
-        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList(100);
-        public ArrayList AL_TCP_CLIENTS_KY = new ArrayList(100);
+        public ArrayList AL_TCP_CLIENTS = new ArrayList(0xa);
+        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList(0xa);
+        public ArrayList AL_TCP_CLIENTS_KY = new ArrayList(0xa);
+
+        //Tcpservers
+        public ArrayList AL_TCP = new ArrayList();
+        public ArrayList AL_TCP_REF = new ArrayList();
+        private ArrayList AL_TCP_KY = new ArrayList();
     }
 }

@@ -22,7 +22,7 @@ namespace Scorpion
 {
     public partial class Librarian
     {
-        //Add to Session dependent handler
+        //Add to Session dependent handler and encryption dependent
         public void runscriptcondition(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
@@ -35,7 +35,7 @@ namespace Scorpion
                     FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
-                        scorpion_exec((object)line);
+                        scorpion_exec(line);
                     sr.Close();
                     fd.Close();
 
@@ -50,7 +50,7 @@ namespace Scorpion
                     FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
-                        scorpion_exec((object)line);
+                        scorpion_exec(line);
                     sr.Close();
                     fd.Close();
 
@@ -65,58 +65,30 @@ namespace Scorpion
         public void runscript(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
-            //::*path, *hasconfig:bool
+            //::*path
             string line;
-
             //Run Script
             FileStream fd = new FileStream((string)var_get((string)objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
             while ((line = sr.ReadLine()) != null)
-                scorpion_exec((object)line);
+                scorpion_exec(line);
             sr.Close();
             fd.Close();
-
             Scorp_Line_Exec = null;
             var_dispose_internal(ref line);
             var_arraylist_dispose(ref objects);
             return;
         }
 
-        /*public void runscriptencrypted(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //All fules must be UTF8
-            //::*path, *key
-            string line = "";
-            string encry_ = read_file((string)var_get(objects[0]));
-
-            //byte[] b = Do_on.crypto.decrypt(Do_on.crypto.To_Byte(encry_), (string)var_get(objects[1]));
-
-            //object decry_ = Do_on.crypto.To_Object(new MemoryStream(b));
-
-            /*while ((line = sr.ReadLine()) != null)
-            {
-                scorpion_exec((object)line);
-            }
-
-            Scorp_Line_Exec = null;
-            var_dispose_internal(ref line);
-            var_arraylist_dispose(ref objects);
-            return;
-        }
-
-        public void scriptencrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
+        /*public void scriptencrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*path, *key
             FileStream fd = new FileStream((string)var_get(objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-
-           // byte[] b = Do_on.crypto.encrypt(sr.ReadToEnd(), (string)var_get(objects[1]));
-
-            //File.WriteAllBytes((string)var_get(objects[0]), b);
-
+            byte[] b = Do_on.crypto.AES_ENCRYPT(sr.ReadToEnd(), (string)var_get(objects[1]));
+            File.WriteAllBytes((string)var_get(objects[0]), b);
             sr.Close();
             fd.Close();
-
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
