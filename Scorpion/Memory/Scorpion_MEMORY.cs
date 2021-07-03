@@ -240,7 +240,7 @@ namespace Scorpion
                             }
                         }
             var_arraylist_dispose(ref objects);
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
@@ -350,22 +350,25 @@ namespace Scorpion
         public object var_get(ref string Block)
         {
             object o = Block;
-            try
+            //BY VAR
+            if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture) && !((string)o).StartsWith("f\'", StringComparison.CurrentCulture))
             {
-                //BY VALUE
-                if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture))
+                try
                 {
-                    try
-                    {
-                        o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
-                    }
-                    finally { }
+                    o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
                 }
-                //BY VAR
-                else
-                    o = var_cut_str_symbol(var_cut_symbol(ref Block));
+                finally { }
             }
-            finally { }
+            //BY VALUE
+            else
+            {
+                //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between {[[, ]]} are replaced by existing variables if one is found
+                if (Block.StartsWith("f\'", StringComparison.CurrentCulture))
+                    Block = ef__.replace_format(ref Do_on,ref Block).Remove(0, 1);
+
+                //Directly assign the value contained in the single quotes to the variable
+                o = var_cut_str_symbol(var_cut_symbol(ref Block));
+            }
             return o;
         }
     }

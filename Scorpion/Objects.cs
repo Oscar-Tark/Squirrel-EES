@@ -91,7 +91,6 @@ namespace Scorpion
         }
 
         public string[] cmdargs;
-        public ulong engine_ndx = 0;
         public enum list_type { db_list };
 
         //Use as default maximum run for loops sizes of arrays etc
