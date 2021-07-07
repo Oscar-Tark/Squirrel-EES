@@ -192,7 +192,7 @@ namespace Dumper
             }
 
             //Add result to existing variable, this is done manually for specific reasons such as checking weather the variable already contains an array if so the results are added to the variable if not the array is added directly
-            lock(HANDLE.mem.AL_CURR_VAR) lock(HANDLE.mem.AL_CURR_VAR_REF) lock(HANDLE.mem.AL_CURR_VAR_TAG) lock(HANDLE.mem.AL_CURR_VAR_EVT)
+            lock(HANDLE.mem.AL_CURR_VAR) lock(HANDLE.mem.AL_CURR_VAR_REF) lock(HANDLE.mem.AL_CURR_VAR_TAG)
                         {
                             /*if(((ArrayList)HANDLE.mem.AL_CURR_VAR[HANDLE.mem.AL_CURR_VAR_REF.IndexOf(resvar)])[2].GetType() is ArrayList)
                             {

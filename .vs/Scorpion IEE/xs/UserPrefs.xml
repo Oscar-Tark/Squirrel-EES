@@ -1,18 +1,14 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Scorpion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="Scorpion/Memory/Scorpion_MEMORY.cs" Line="367" Column="46" />
-      <File FileName="Scorpion/Scorpion.cs" Line="127" Column="13" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="24" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
-            <Node name="Scorpion" expanded="True">
-              <Node name="Memory" expanded="True" />
-              <Node name="Scorpion.cs" selected="True" />
-            </Node>
+            <Node name="Scorpion" expanded="True" />
           </Node>
         </State>
       </Pad>

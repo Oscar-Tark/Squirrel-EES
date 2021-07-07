@@ -1,5 +1,5 @@
 ﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
-    Copyright (C) <2020>  <Oscar Arjun Singh Tark>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -23,44 +23,32 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        public void exit(string Scorp_Line_Exec, ArrayList Objects)
+        public void exit(ref string Scorp_Line_Exec, ref ArrayList Objects)
         {
             Environment.Exit(0);
             return;
         }
 
-        //??
-        public string writeto(ref string Scorp_Line_Exec, ArrayList Objects)
-        {
-            //::*arg..
-            string writable = "";
-            foreach (string o in Objects)
-                writable += var_get(o);
-            write_to_console(ref writable);
-            return var_create_return(ref writable, true);
-        }
-
-        public string input(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //*returnable<<::*message, *allowed_length
-            Do_on.write_to_cui(var_get(objects[0]));
-            Console.WriteLine("Input a value:");
-
-            //Due to main engine and input() having a simultaneous Console.Readline() Input is not read properly. Create a dialog or fix
-            string __ret = Console.ReadLine();
-            return var_create_return(ref __ret, true);
-        }
-
         public void output(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*var, *var..
-            string writable = "";
-            foreach (string o in Objects)
-                writable += var_get(o);
+            string writable = ""; object temp;
+            foreach (string reference in Objects)
+            {
+                if ((temp = var_get(reference)) is ArrayList)
+                {
+                    writable += "Array: [(";
+                    foreach (object o in (ArrayList)((ArrayList)temp)[2])
+                        writable += " '" + o + "' ";
+                    writable += ")]";
+                }
+                else
+                    writable += var_get(reference);
+                writable += '\n';
+            }
             write_to_console(ref writable);
-
             var_arraylist_dispose(ref Objects);
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
 
@@ -69,11 +57,10 @@ namespace Scorpion
             //::*var
             object obj = var_get(Objects[0]);
             byte[] bytes = Do_on.crypto.To_Byte(obj);
-
             Console.WriteLine("Byte sequence for [" + Objects[0] + "]:\n");
             foreach (byte __byte in bytes)
-                Console.Write("{0:X} ", __byte);
-
+                Console.Write($"0x{__byte,0:X} ", __byte);
+            Console.Write('\n');
             var_arraylist_dispose(ref Objects);
             Scorp_Line_Exec = null;
             return;
@@ -96,7 +83,6 @@ namespace Scorpion
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
             foreach (object o in al)
                 Do_on.write_to_cui(var_get(o.ToString()) + "\n");
-
             var_arraylist_dispose(ref al);
             Scorp_Line_Exec = null;
             return;

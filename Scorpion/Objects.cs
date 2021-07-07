@@ -133,7 +133,6 @@ namespace Scorpion
         public ArrayList AL_CURR_VAR = new ArrayList();
         public ArrayList AL_CURR_VAR_REF = new ArrayList();
         public ArrayList AL_CURR_VAR_TAG = new ArrayList();
-        public ArrayList AL_CURR_VAR_EVT = new ArrayList();
 
         //Tables DATA
         public ArrayList AL_TBLE = new ArrayList();

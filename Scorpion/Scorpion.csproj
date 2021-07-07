@@ -311,7 +311,7 @@
     <Compile Include="Network\Scorpion_NETWORK.cs" />
     <None Include="App.config" />
     <Compile Include="Generic\Scorpion_CONDITIONS.cs" />
-    <Compile Include="Generic\Library_APP.cs" />
+    <Compile Include="Generic\Scorpion_STDIO.cs" />
     <Compile Include="Network\Scorpion_JSON.cs" />
     <Compile Include="Database\Scorpion_DB.cs" />
     <Compile Include="Io\Library_IO.cs" />

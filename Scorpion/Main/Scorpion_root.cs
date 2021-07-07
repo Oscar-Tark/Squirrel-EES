@@ -138,7 +138,6 @@ namespace Scorpion
             mem.AL_CURR_VAR.TrimToSize();
             mem.AL_CURR_VAR_REF.TrimToSize();
             mem.AL_CURR_VAR_TAG.TrimToSize();
-            mem.AL_CURR_VAR_EVT.TrimToSize();
 
             GC.Collect();
             return;

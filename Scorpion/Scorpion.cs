@@ -92,6 +92,7 @@ namespace Scorpion
                 if (retfun != null)
                     ef__.process_return(ref retfun, ref final[0], this);
                 functions = null;
+                var_dispose_internal(ref paramse);
                 paramse = null;
                 retfun = null;
             }

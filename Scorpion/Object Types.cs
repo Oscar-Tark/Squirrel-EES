@@ -36,9 +36,9 @@ namespace Scorpion
         public void load_system_vars()
         {
             HANDLE.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "temp", "userfolder", "null" });
-            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'" + S_Yes + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'" + S_No + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'" + S_Yes + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'/Scorpion" });
             return;
         }

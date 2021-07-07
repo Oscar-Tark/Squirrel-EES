@@ -24,7 +24,7 @@ namespace Scorpion
             for (int i = 0; i < jv.Count-1; i++)
             {
                 if(jv[i].ContainsKey(key) && jv[i].ContainsKey(contains_key))
-                    var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]));
+                    var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]), Do_on.types.S_No);
             }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
