@@ -30,7 +30,7 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 Arrays can replace an existing variable and transport it's value into index 0 of the array or as an empty array. Arrays may initialize a new variable and set it as an array.
 
-`vararray::*name_or_existing, if_existing_copy_value_into_new_array`
+`vararray::*name_or_existing, *if_existing_copy_value_into_new_array`
 
 **Function calls:**
 
