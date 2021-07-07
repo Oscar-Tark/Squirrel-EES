@@ -16,11 +16,21 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 `*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
 
+`*f''` = Denotes a value variable which can be formatted. You may insert other variables into the current formatted value variable with the {[[ ]]} denotations.
+
 (Example):
 
 `var::*store`
 
 `jsonget::*'http://ip.jsontest.com/', *store`
+
+`output::*f'Hello {[[store]]}`
+
+**Arrays**
+
+Arrays can replace an existing variable and transport it's value into index 0 of the array or as an empty array. Arrays may initialize a new variable and set it as an array.
+
+`vararray::*name_or_existing, if_existing_copy_value_into_new_array`
 
 **Function calls:**
 
