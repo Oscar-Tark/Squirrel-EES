@@ -16,11 +16,40 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 `*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
 
+`*f''` = Denotes a value variable which can be formatted. You may insert other variables into the current formatted value variable with the {[[ ]]} denotations.
+
 (Example):
 
 `var::*store`
 
 `jsonget::*'http://ip.jsontest.com/', *store`
+
+`output::*f'Hello {[[store]]}`
+
+**Arrays**
+
+Arrays can replace an existing variable and transport it's value into index 0 of the array or as an empty array. Arrays may initialize a new variable and set it as an array.
+
+`vararray::*name_or_existing, *if_existing_copy_value_into_new_array`
+
+**String escape sequences**
+
+Since certain symbols may be used for command execution, we have come up with some escape sequences that allow you to use those symbols within your strings of data similar to escape sequences in C such as \' for a single quote. Scorpion's escape sequences are abit different but the principal is the same. All escape sequences use the following format:
+
+`{&escapee}`
+
+where 'escapee' is a character denoting the type of escape.
+
+Here they are:
+
+> {&c} = ,
+> {&v} = *
+> {&q} = '
+> {&r} = >>
+> {&l} = <<
+> {&d} = ::
+> {&fl} = {[[
+> {&fr} = ]]}
 
 **Function calls:**
 
@@ -28,7 +57,7 @@ Are made with the following syntax:
 
 `*return_var<<function::*var1, *var2...`
 
-The first variable is a return variable. Any variable that the function returns will be stored there, if you would not like a return variable to be stored or the function you are calling does not return a variable you may ignore this section. 'function' denotes the name of the function to call. :: denotes that you are sending variables as agruments to the functions and subsequently all variables seperated by commas. any extra variables sent that do not interest the function call will be ignored such as a function call that requires 2 arguments but gets passed 5. The last 3 wil be ignored
+The first variable is a return variable. Any variable that the function returns will be shifted left and stored there, if you would not like a return variable to be stored or the function you are calling does not return a variable you may ignore this section. 'function' denotes the name of the function to call. :: denotes that you are sending variables as agruments to the functions and subsequently all variables seperated by commas. any extra variables sent that do not interest the function call will be ignored such as a function call that requires 2 arguments but gets passed 5. The last 3 wil be ignored
 
 (Example):
 
@@ -37,6 +66,12 @@ The first variable is a return variable. Any variable that the function returns 
 `var::*var1`
 
 `varset::*var1, *'Scorpions are SO misunderstood..'`
+
+**One line multiple function calls:**
+
+Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right. To shift execution right use the >> symbol.
+
+`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {[[name]]}!. Let us play the GNU SONG!' >> exit`
 
 **Running scripts:**
 
