@@ -32,6 +32,25 @@ Arrays can replace an existing variable and transport it's value into index 0 of
 
 `vararray::*name_or_existing, *if_existing_copy_value_into_new_array`
 
+**String escape sequences**
+
+Since certain symbols may be used for command execution, we have come up with some escape sequences that allow you to use those symbols within your strings of data similar to escape sequences in C such as \' for a single quote. Scorpion's escape sequences are abit different but the principal is the same. All escape sequences use the following format:
+
+`{&escapee}`
+
+where 'escapee' is a character denoting the type of escape.
+
+Here they are:
+
+> {&c} = ,
+> {&v} = *
+> {&q} = '
+> {&r} = >>
+> {&l} = <<
+> {&d} = ::
+> {&fl} = {[[
+> {&fr} = ]]}
+
 **Function calls:**
 
 Are made with the following syntax:
@@ -47,6 +66,12 @@ The first variable is a return variable. Any variable that the function returns 
 `var::*var1`
 
 `varset::*var1, *'Scorpions are SO misunderstood..'`
+
+**One line multiple function calls:**
+
+Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right using the >> symbol.
+
+`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {{[name]]}!. Let us play the GNU SONG!' >> exit`
 
 **Running scripts:**
 
