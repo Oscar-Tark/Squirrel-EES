@@ -57,7 +57,7 @@ Are made with the following syntax:
 
 `*return_var<<function::*var1, *var2...`
 
-The first variable is a return variable. Any variable that the function returns will be stored there, if you would not like a return variable to be stored or the function you are calling does not return a variable you may ignore this section. 'function' denotes the name of the function to call. :: denotes that you are sending variables as agruments to the functions and subsequently all variables seperated by commas. any extra variables sent that do not interest the function call will be ignored such as a function call that requires 2 arguments but gets passed 5. The last 3 wil be ignored
+The first variable is a return variable. Any variable that the function returns will be shifted left and stored there, if you would not like a return variable to be stored or the function you are calling does not return a variable you may ignore this section. 'function' denotes the name of the function to call. :: denotes that you are sending variables as agruments to the functions and subsequently all variables seperated by commas. any extra variables sent that do not interest the function call will be ignored such as a function call that requires 2 arguments but gets passed 5. The last 3 wil be ignored
 
 (Example):
 
@@ -69,7 +69,7 @@ The first variable is a return variable. Any variable that the function returns 
 
 **One line multiple function calls:**
 
-Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right using the >> symbol.
+Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right. To shift execution right use the >> symbol.
 
 `var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {[[name]]}!. Let us play the GNU SONG!' >> exit`
 
