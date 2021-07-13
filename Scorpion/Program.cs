@@ -37,20 +37,46 @@ namespace Scorpion
             while(true)
             {
                 line = Console.ReadLine();
-                if (line == "**new")
+                if (line.ToLower() == "**new")
                 {
                     current_session++;
+                    Console.WriteLine("Created new session");
                     sessions.Add(new Scorp(current_session));
                 }
-                else if (line == "**back")
+                else if (line.ToLower() == "**back")
                 {
-                    current_session--;
-                    Console.WriteLine("Session {0}\n", current_session);
+                    if (current_session > 0)
+                    {
+                        current_session--;
+                        Console.WriteLine("Session: [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
+                    }
+                    else
+                        Console.WriteLine("No previous session available");
                 }
-                else if (line == "**next")
+                else if (line.ToLower() == "**next")
                 {
-                    current_session++;
-                    Console.WriteLine("Session {0}\n", current_session);
+                    if (current_session != sessions.Count - 1)
+                    {
+                        current_session++;
+                        Console.WriteLine("Session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
+                    }
+                    else
+                        Console.WriteLine("No next session available");
+                }
+                else if (line.ToLower() == "**exit")
+                {
+                    Console.WriteLine("Removing session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
+                    sessions.RemoveAt(current_session);
+                    if (sessions.Count == 0)
+                    {
+                        Console.WriteLine("No sessions running. Exiting...\n");
+                        Environment.Exit(0);
+                    }
+                    else if (current_session > 0)
+                        current_session--;
+                    else if (current_session != sessions.Count - 1)
+                        current_session++;
+                    Console.WriteLine("Switched to session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
                 }
                 else
                 {

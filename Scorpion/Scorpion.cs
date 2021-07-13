@@ -16,7 +16,6 @@
 */
 
 using System;
-using System.Collections;
 using System.Reflection;
 using System.Threading;
 
@@ -56,9 +55,13 @@ namespace Scorpion
         {
             //*return<<function::*vars ###comment
             //Start the timer to count how long it takes to execute this line of code
-            sp.Start();
             string Scorp_Line_Exec = (string)Scorp_Line;
+            //Empty line then do not waste CPU cycles and return
+            if (Scorp_Line_Exec.Trim() == "")
+                return;
+
             string[] functions = null;
+            sp.Start();
             try
             {
                 //Check if there are comments, and strip the string of anything after the comment
@@ -66,7 +69,10 @@ namespace Scorpion
                 {
                     //If a comment line do not waste resources and return else well waste a few more resources in order to make sure :P
                     if ((Scorp_Line_Exec = ef__.remove_commented(ref Scorp_Line_Exec)).Replace(" ", "").Length == 0)
+                    {
+                        sp.Stop();
                         return;
+                    }
                 }
 
                 //You can add multiple functions to an execution with the >> symbol. >> means execute rightwards
@@ -91,6 +97,7 @@ namespace Scorpion
                     if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
                     {
                         Do_on.write_error("This user does not have enough privileges to execute this function");
+                        sp.Stop();
                         return;
                     }
                     //Invoke the C# function and get a return value if any as an object
@@ -98,45 +105,18 @@ namespace Scorpion
 
                     //If there is a return value, process it and set it to a Scorpion variable
                     if (retfun != null)
-                        ef__.process_return(ref retfun, ref final[0], this);
+                    {
+                        if (final.Length > 1)
+                            ef__.process_return(ref retfun, ref final[0], this);
+                        else
+                            Do_on.write_warning("This function requires a return variable");
+                    }
 
+                    //Set used variables to null for GC
                     functions = null;
                     var_dispose_internal(ref paramse);
                     paramse = null;
                     retfun = null;
-
-
-
-
-                    //Gets and removes the return variable
-                    /*string[] final = ef__.get_return(ref Scorp_Line_Exec);
-                    if (final.Length > 1)
-                        Scorp_Line_Exec = final[1];
-
-                    //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
-                    object[] paramse = { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-
-                    //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
-                    //Seperates all commands that may be in one function and makes them executable sequentially
-                    functions = ef__.get_functions(ref Scorp_Line_Exec);
-
-                    //Check if the current user has the required permissions to run this function
-                    if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
-                    {
-                        Do_on.write_error("This user does not have enough privileges to execute this function");
-                        return;
-                    }
-                    //Invoke the C# function and get a return value if any as an object
-                    object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
-
-                    //If there is a return value, process it and set it to a Scorpion variable
-                    if (retfun != null)
-                        ef__.process_return(ref retfun, ref final[0], this);
-
-                    functions = null;
-                    var_dispose_internal(ref paramse);
-                    paramse = null;
-                    retfun = null;*/
                 }
             }
             catch (Exception erty)
@@ -146,7 +126,7 @@ namespace Scorpion
             }
             //End the timer to count how long it took to run the specific line of code
             sp.Stop();
-            Do_on.write_success("LOGGED IN SESSION INSTANCE NUMBER [" + Do_on.instance + "/UNAME: "+ "NA" +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            Do_on.write_success("[Instance: " + Do_on.instance + "]-[Username: "+ Do_on.mmsec.get_uname() +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
             sp.Reset();
 
             //Make sure objects are set to null and disposed
@@ -154,90 +134,6 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line);
             GC.Collect();
             return;
-        }
-    }
-
-    public class Enginefunctions
-    {
-        public string[] execution_seperation(ref string Scorp)
-        {
-            //You can add multiple functions to an execution with the <<< or >>> symbols. >>> means execute rightwards <<< means execute leftwards
-            string[] delimiterChars = { ">>" };
-            string[] commands = Scorp.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
-
-            for (int i = 0; i < commands.Length; i++)
-                commands[i] = commands[i].Trim();
-            return commands;
-        }
-
-        public string[] get_functions(ref string Scorp)
-        {
-            string[] delimiterChars = { "::" };
-            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        public string[] get_return(ref string Scorp)
-        {
-            string[] delimiterChars = { "<<" };
-            return Scorp.Split(delimiterChars, StringSplitOptions.None);
-        }
-
-        //OLD DEPRECIATE TO: replace_escape
-        public string replace_fakes(string Scorp_Line)
-        {
-            return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::");
-        }
-
-        public string replace_escape(ref Scorp HANDLE, string paramse)
-        {
-            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
-                paramse = paramse.Replace(esc_arr[0], esc_arr[1]);
-            return paramse;
-        }
-
-        //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly
-        public string replace_format(ref Scorp HANDLE, ref string var)
-        {
-            //f'Hi my name is {[[name]]}'
-            string to_change = "";
-            string[] vars = var.Split(new char[] { '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < vars.Length; i++)
-            {
-                if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
-                {
-                    to_change = vars[i].Replace("[[", "*").Replace("]]", "");
-                    var = var.Replace("{" + vars[i] + "}", (string)HANDLE.readr.lib_SCR.var_get(ref to_change));
-                }
-            }
-            return var;
-        }
-
-        public string replace_telnet(string Scorp_Line)
-        {
-            return Scorp_Line.Replace("\r\n", "").Replace("959;1R", "");
-        }
-
-        public string remove_commented(ref string Scorp_Line)
-        {
-            //Removes comments denoted by '###' in a line of code or a comment line.
-            return Scorp_Line.Remove(Scorp_Line.IndexOf("###", 0, StringComparison.CurrentCulture));
-        }
-
-        public string replace_phpapi(string Scorp_Line)
-        {
-            Scorp_Line = Scorp_Line.Remove(Scorp_Line.IndexOf("{&scorpion_end}", StringComparison.CurrentCulture));
-            return Scorp_Line.Remove(0, (Scorp_Line.IndexOf("{&scorpion}", StringComparison.CurrentCulture) + 11));
-        }
-
-        public string line_check(ref Scorp HANDLE, ref string Scorp)
-        {
-            return HANDLE.san.sanitize(ref Scorp);
-        }
-
-        public bool process_return(ref object o, ref string var, Librarian lib)
-        {
-            lib.varset("", new System.Collections.ArrayList { var.Replace("*", "") , o });
-            return true;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Scorpion
             return var_create_return(ref JSON, true);
         }
 
-        public string mongodbgetspecific(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public string mongodbgetfilter(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //returnable<<::*db, *collection, *filter
             string JSON = Mongodb.Mongogetspecific((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));

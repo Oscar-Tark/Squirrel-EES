@@ -1,0 +1,15 @@
+MAN/READERS MANUAL Entry for 'apkill':
+******************************************************
+FUNCTION: [apkill]
+
+Description
+Kills all processes running within this Scorpion instance
+
+General Syntax
+apkill
+
+Example:
+apkill
+
+See Also
+process, processdelete, listprocesses

@@ -1,0 +1,17 @@
+MAN/READERS MANUAL Entry for 'asyncprocessio':
+******************************************************
+FUNCTION: [asyncprocessio]
+
+Description
+If a process is started with it's output in the background. The output of said process may be retrieved with this function, compared to [FUNCTION:processio] this function retrieves output asynchronously
+
+General Syntax
+::*processname
+
+*processname                    = A name used to identify the process within scorpion
+
+Example:
+asyncprocessio::*'my_ping'
+
+See Also
+processio, processdelete, listprocesses

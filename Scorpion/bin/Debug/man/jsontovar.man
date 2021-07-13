@@ -1,3 +1,5 @@
+[MAN PAGE IS INCOMPLETE OR OLD]
+
 Description
 Creates variables partaining to the JSON object. A special tag is used in order to chain variables
 

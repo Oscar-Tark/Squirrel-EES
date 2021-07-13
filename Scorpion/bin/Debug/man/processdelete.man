@@ -1,0 +1,17 @@
+MAN/READERS MANUAL Entry for 'processdelete':
+******************************************************
+FUNCTION: [processdelete]
+
+Description
+Kills and deletes a process in Scorpions control
+
+General Syntax
+::*processname
+
+*processname             = A name used to identify the process within scorpion
+
+Example:
+processdelete::*'my_ping'
+
+See Also
+processio, process, listprocesses

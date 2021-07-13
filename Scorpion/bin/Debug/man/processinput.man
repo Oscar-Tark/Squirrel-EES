@@ -1,0 +1,18 @@
+MAN/READERS MANUAL Entry for 'processinput':
+******************************************************
+FUNCTION: [processinput]
+
+Description
+Sends input from a variable into the STDIN of a Scorpion controlled process
+
+General Syntax
+::*processname, *input
+
+*processname             = A name used to identify the process within scorpion
+*input                   = Input to send to the STDIN of the controlled process
+
+Example:
+processinput::*'my_texteditor', *'Hello World!'
+
+See Also
+processio, processdelete, listprocesses

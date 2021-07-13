@@ -1,8 +1,11 @@
 Description
-Lists all variables present in memory including their values
+Lists all variables present in memory including their values and READONLY status
+
+General Syntax
+listvars or lv
 
 Example:
-listvars
+lv
 
 See Also
 var, varset, varconcatenate

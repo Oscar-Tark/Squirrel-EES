@@ -226,9 +226,6 @@
       <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="Neo.SmartContract.Framework">
-      <HintPath>..\packages\Neo.SmartContract.Framework.2.10.0\lib\net40\Neo.SmartContract.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System.CodeDom">
       <HintPath>..\packages\System.CodeDom.4.4.0\lib\net461\System.CodeDom.dll</HintPath>
     </Reference>
@@ -268,6 +265,30 @@
     <Reference Include="Microsoft.ML.Transforms">
       <HintPath>..\packages\Microsoft.ML.1.5.5\lib\netstandard2.0\Microsoft.ML.Transforms.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.1.11\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Ubiety.Dns.Core">
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Zstandard.Net">
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\Zstandard.Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -279,12 +300,12 @@
     <Compile Include="Library_SYSTEM_OBJ.cs" />
     <Compile Include="Memory Security\Scorpion_SECMEM.cs" />
     <Compile Include="Diff.cs" />
-    <Compile Include="Main\Scorpion_root.cs">
+    <Compile Include="Main\Scorpion_MAIN.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Scorpion.cs" />
     <Compile Include="Object Types.cs" />
-    <Compile Include="Objects.cs">
+    <Compile Include="Scorpion_objects.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -339,6 +360,9 @@
     <Compile Include="Database\Scorpion_MONGO.cs" />
     <Compile Include="Session_dependent_handler.cs" />
     <Compile Include="Database\Scorpion_DB_SYS.cs" />
+    <Compile Include="Scorpion_engine_functions.cs" />
+    <Compile Include="Database\Scorpion_MYSQL.cs" />
+    <Compile Include="Scorpion_cache.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

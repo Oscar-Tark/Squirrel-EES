@@ -2,14 +2,12 @@ Description
 Concatenate multiple variables or values together and store them into a return variable
 
 General Syntax
-::*var, *var...
+*string<<varconcatenate::*var, *var
 
-*var    = var represents the variables to be concatenated one after the other
+*var		= var represents the variables to be concatenated one after the other
 
 Example:
-var::*hello
-varset::*hello, *'Hello '
-*return<<varconcatenate::*hello, *'World'
+var::*hello, *sentence >> varset::*hello, *'Hello ' >> *sentence<<varconcatenate::*hello, *'World!'
 
 See Also
 var, varset, listvars

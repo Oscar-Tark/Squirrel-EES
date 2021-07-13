@@ -1,8 +1,0 @@
-Description
-Reloads all system variables. If they exist, this function will reset all values to the original system values
-
-Example:
-varsystem
-
-See Also
-var, varset, vardelete, vardeleteall

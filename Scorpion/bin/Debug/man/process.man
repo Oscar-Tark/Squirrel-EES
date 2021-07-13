@@ -2,9 +2,8 @@ MAN/READERS MANUAL Entry for 'process':
 ******************************************************
 FUNCTION: [process]
 
-
 Description
-Starts an external process
+Starts an external process with default affinity and priority
 
 General Syntax
 ::*processpath, *arguments, *name, *foregroundoutput
@@ -15,7 +14,7 @@ General Syntax
 *foregoundoutput         = *true for visible output *false to hide process output and display it only on 'processio::*name' function call
 
 Example:
-process::*'ifconfig', *'eth0', *'myprocess', *true
+process::*'ping', *'127.0.0.1', *'my_ping', *true
 
 See Also
 processio, processdelete, listprocesses

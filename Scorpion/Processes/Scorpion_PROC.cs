@@ -53,20 +53,22 @@ namespace Scorpion
             return;
         }
 
-        public void processio(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public string processio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Show output for a process
-            //::*name
-            Do_on.write_to_cui(scp.get_std((string)var_get(objects[0])));
+            //*return<<::*name
+            string output_ = scp.get_std((string)var_get(objects[0]));
+            Do_on.write_to_cui(output_);
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            return;
+            return var_create_return(ref output_, true);
         }
 
         public void asyncprocessio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            scp.get_stdout_async((string)var_get(objects[0]));
+            //::*name=
+           scp.get_stdout_async((string)var_get(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -97,7 +99,6 @@ namespace Scorpion
         public void listprocesses(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             Do_on.write_to_cui(scp.list_processes());
-
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
         }
@@ -201,7 +202,7 @@ namespace Scorpion
         {
             string list = "Processes:\n";
             for (int i = 0; i <= processes; i++)
-                list = list + "\n" + pr_list_ref[i] + " (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Affinity: " + pr_list[i].ProcessorAffinity + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]\n" + "[Actual process name: " + pr_list[i].ProcessName + "]\n";
+                list = list + "\n[Name: " + pr_list_ref[i] + "] (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Affinity: " + pr_list[i].ProcessorAffinity + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]\n" + "[Full process name: " + pr_list[i].ProcessName + "]\n";
             return list;
         }
     }

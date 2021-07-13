@@ -1,0 +1,15 @@
+MAN/READERS MANUAL Entry for 'listprocesses':
+******************************************************
+FUNCTION: [listprocesses]
+
+Description
+Lists all running processes under Scorpion's control
+
+General Syntax
+listprocesses
+
+Example:
+listprocesses
+
+See Also
+processio, processdelete, process

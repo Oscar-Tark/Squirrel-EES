@@ -107,6 +107,11 @@ namespace Scorpion.Memory_Security
             return;
         }
 
+        public string get_uname()
+        {
+            return uname;
+        }
+
         //AUTHENTICATE USER FOR EXECUTION OF A FUNCTION, DEFAULT = NO PERMISSION
         public bool authenticate_execution(ref string function)
         {

@@ -1,5 +1,9 @@
+MAN/READERS MANUAL Entry for 'var':
+******************************************************
+FUNCTION: [var]
+
 Description
-Creates a new empty variable or multiple empty variables
+Creates a new empty variable or multiple empty variables, the function is variadic in nature
 
 General Syntax
 ::*var, *var, *var...
