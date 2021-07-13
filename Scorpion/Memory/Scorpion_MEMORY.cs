@@ -381,23 +381,28 @@ namespace Scorpion
         public object var_get(ref string Block)
         {
             object o = Block;
-            //BY VAR
+            //IS OBJECT//IS BINARY//IS BIN
             if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture) && !((string)o).StartsWith("f\'", StringComparison.CurrentCulture))
             {
                 try
                 {
+                    //Assign a raw C# object regardless of type
                     o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
                 }
                 finally { }
             }
-            //BY VALUE
+            //IS STRING
             else
             {
-                //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between {[[, ]]} are replaced by existing variables if one is found
+                //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between [{{, }}] are replaced by existing variables if one is found
                 if (Block.StartsWith("f\'", StringComparison.CurrentCulture))
                     Block = ef__.replace_format(ref Do_on,ref Block).Remove(0, 1);
-                //Directly assign the value contained in the single quotes to the variable
+
+                //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
                 o = var_cut_str_symbol(var_cut_symbol(ref Block));
+
+                //Replace escape sequences
+                o = ef__.replace_escape(ref Do_on, (string)o);
             }
             return o;
         }

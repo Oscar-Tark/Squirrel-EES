@@ -101,7 +101,7 @@ namespace Scorpion
         public string[] commands = new string[64];
 
         //Ubearables
-        public readonly string[] AL_UNBEARABLE_CHARS = new string[3] { ",", "]", ")" };
+        public readonly string[] AL_UNBEARABLE_CHARS = new string[1] { "," };
         public readonly string[] AL_WILDCARDS = new string[2] { "-", " " };
 
         public void add_tcp_key_path(string private_s_RSA, string public_s_RSA)

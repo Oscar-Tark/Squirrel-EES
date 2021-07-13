@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Collections;
 using System.Reflection;
 using System.Threading;
 
@@ -68,33 +69,75 @@ namespace Scorpion
                         return;
                 }
 
-                //Gets and removes the return variable
-                string[] final = ef__.get_return(ref Scorp_Line_Exec);
-                if (final.Length > 1)
-                    Scorp_Line_Exec = final[1];
-                //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
-                functions = ef__.get_function(ref Scorp_Line_Exec);
+                //You can add multiple functions to an execution with the >> symbol. >> means execute rightwards
+                string[] commands = ef__.execution_seperation(ref Scorp_Line_Exec);
 
-                //Check if the current user has the required permissions to run this function
-                if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
+                string exec_ = null;
+                foreach (string command in commands)
                 {
-                    Do_on.write_error("This user does not have enough privileges to execute this function");
-                    return;
+                    exec_ = command;
+                    string[] final = ef__.get_return(ref exec_);
+                    if (final.Length > 1)
+                        exec_ = final[1];
+
+                    //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
+                    //Seperates all commands that may be in one function and makes them executable sequentially
+                    functions = ef__.get_functions(ref exec_);
+
+                    //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
+                    object[] paramse = { exec_, cut_variables(ref exec_) };
+
+                    //Check if the current user has the required permissions to run this function
+                    if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
+                    {
+                        Do_on.write_error("This user does not have enough privileges to execute this function");
+                        return;
+                    }
+                    //Invoke the C# function and get a return value if any as an object
+                    object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+
+                    //If there is a return value, process it and set it to a Scorpion variable
+                    if (retfun != null)
+                        ef__.process_return(ref retfun, ref final[0], this);
+
+                    functions = null;
+                    var_dispose_internal(ref paramse);
+                    paramse = null;
+                    retfun = null;
+
+
+
+
+                    //Gets and removes the return variable
+                    /*string[] final = ef__.get_return(ref Scorp_Line_Exec);
+                    if (final.Length > 1)
+                        Scorp_Line_Exec = final[1];
+
+                    //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
+                    object[] paramse = { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
+
+                    //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
+                    //Seperates all commands that may be in one function and makes them executable sequentially
+                    functions = ef__.get_functions(ref Scorp_Line_Exec);
+
+                    //Check if the current user has the required permissions to run this function
+                    if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
+                    {
+                        Do_on.write_error("This user does not have enough privileges to execute this function");
+                        return;
+                    }
+                    //Invoke the C# function and get a return value if any as an object
+                    object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+
+                    //If there is a return value, process it and set it to a Scorpion variable
+                    if (retfun != null)
+                        ef__.process_return(ref retfun, ref final[0], this);
+
+                    functions = null;
+                    var_dispose_internal(ref paramse);
+                    paramse = null;
+                    retfun = null;*/
                 }
-
-                //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
-                object[] paramse = { Scorp_Line_Exec, cut_variables(ref Scorp_Line_Exec) };
-
-                //Invoke the C# function and get a return value if any as an object
-                object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
-
-                //If there is a return value, process it and set it to a Scorpion variable
-                if (retfun != null)
-                    ef__.process_return(ref retfun, ref final[0], this);
-                functions = null;
-                var_dispose_internal(ref paramse);
-                paramse = null;
-                retfun = null;
             }
             catch (Exception erty)
             {
@@ -116,9 +159,40 @@ namespace Scorpion
 
     public class Enginefunctions
     {
+        public string[] execution_seperation(ref string Scorp)
+        {
+            //You can add multiple functions to an execution with the <<< or >>> symbols. >>> means execute rightwards <<< means execute leftwards
+            string[] delimiterChars = { ">>" };
+            string[] commands = Scorp.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < commands.Length; i++)
+                commands[i] = commands[i].Trim();
+            return commands;
+        }
+
+        public string[] get_functions(ref string Scorp)
+        {
+            string[] delimiterChars = { "::" };
+            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public string[] get_return(ref string Scorp)
+        {
+            string[] delimiterChars = { "<<" };
+            return Scorp.Split(delimiterChars, StringSplitOptions.None);
+        }
+
+        //OLD DEPRECIATE TO: replace_escape
         public string replace_fakes(string Scorp_Line)
         {
-            return Scorp_Line.Replace("{&var}", "*").Replace("{&quot}", "'");
+            return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::");
+        }
+
+        public string replace_escape(ref Scorp HANDLE, string paramse)
+        {
+            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+                paramse = paramse.Replace(esc_arr[0], esc_arr[1]);
+            return paramse;
         }
 
         //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly
@@ -153,18 +227,6 @@ namespace Scorpion
         {
             Scorp_Line = Scorp_Line.Remove(Scorp_Line.IndexOf("{&scorpion_end}", StringComparison.CurrentCulture));
             return Scorp_Line.Remove(0, (Scorp_Line.IndexOf("{&scorpion}", StringComparison.CurrentCulture) + 11));
-        }
-
-        public string[] get_function(ref string Scorp)
-        {
-            string[] delimiterChars = { "::" };
-            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.None);
-        }
-
-        public string[] get_return(ref string Scorp)
-        {
-            string[] delimiterChars = { "<<" };
-            return Scorp.Split(delimiterChars, StringSplitOptions.None);
         }
 
         public string line_check(ref Scorp HANDLE, ref string Scorp)

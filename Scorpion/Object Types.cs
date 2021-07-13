@@ -25,6 +25,7 @@ namespace Scorpion
         public readonly string S_Yes = "true";
         public readonly string S_No = "false";
         public readonly string S_NULL = "";
+        public readonly string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" } };
 
         Scorp HANDLE;
         public Types(Scorp HANDLE_)
@@ -35,11 +36,13 @@ namespace Scorpion
 
         public void load_system_vars()
         {
-            HANDLE.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "temp", "userfolder", "null" });
+            HANDLE.readr.lib_SCR.var("", new ArrayList(5) { "true", "false", "null", "yes", "no", "temp", "path" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "false", "'" + S_No + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "no", "'" + S_No + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "path", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'/Scorpion" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'" + S_Yes + "'" });
-            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "userfolder", "'" + Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "'/Scorpion" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
             return;
         }
 

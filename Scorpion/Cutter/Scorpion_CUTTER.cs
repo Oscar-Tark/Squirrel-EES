@@ -29,10 +29,8 @@ namespace Scorpion
 
         private ArrayList split_vars(ref string Scorp)
         {
-            string[] vars = Scorp.Split('*', '(', ')', ',');
-
+            string[] vars = Scorp.Split('*', ',');
             //Allow value variables with ubearables
-
             ArrayList vars_ = new ArrayList();
             int ndx = 0;
             foreach (string s in vars)
