@@ -71,7 +71,7 @@ The first variable is a return variable. Any variable that the function returns 
 
 Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right using the >> symbol.
 
-`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {{[name]}}!. Let us play the GNU SONG!' >> exit`
+`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {[[name]]}!. Let us play the GNU SONG!' >> exit`
 
 **Running scripts:**
 
