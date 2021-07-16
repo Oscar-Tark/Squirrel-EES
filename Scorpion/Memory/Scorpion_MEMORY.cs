@@ -161,11 +161,8 @@ namespace Scorpion
         public void var(string Scorp_Line_Exec, ArrayList objects)
         {
             //Variadic function that creates a new variable. Variables are instantiated with the boolean value 'false'
-
             //Template:
             //::*var, *var, *var...
-
-            //*var, *var, *var...: names of new variables
             foreach (string s in objects)
                 var_new(Do_on.types.S_No, s, null, null, Do_on.types.S_No);
             var_arraylist_dispose(ref objects);
@@ -308,7 +305,12 @@ namespace Scorpion
         public void varset(string Scorp_Line_Exec, ArrayList objects)
         {
             //::*where, *value
-            var_manipulate((string)objects[0], var_get((string)objects[1]), false, OPCODE_SET);
+            //If string store the string value
+            if(objects[1] is string)
+                var_manipulate((string)objects[0], var_get((string)objects[1]), false, OPCODE_SET);
+            //If not a string do not attempt a var_get and just store the object directly
+            else
+                var_manipulate((string)objects[0], objects[1], false, OPCODE_SET);
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
@@ -340,10 +342,12 @@ namespace Scorpion
 
         public void listvars(string Scorp_Line_Exec, ArrayList objects)
         {
-            string STR_ = ""; object val = null;
+            string STR_ = ""; object val = null; int index = -1;
+            Do_on.write_to_cui("Loaded GLOBAL variables:\n-------------------------\n");
             foreach (string s in Do_on.mem.AL_CURR_VAR_REF)
             {
-                val = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[2];
+                index = Do_on.mem.AL_CURR_VAR_REF.IndexOf(s);
+                val = ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[2];
                 if (val is string)
                 {
                     if (((string)val).Length > 256)
@@ -352,11 +356,11 @@ namespace Scorpion
                 else if(val is ArrayList)
                 {
                     val = "Array: [(";
-                    foreach (object o in ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[2]))
+                    foreach (object o in (ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[2])
                         val += " '" + o + "' ";
                     val += ")]";
                 }
-                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[3] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(s)])[4] + "]\n";
+                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[3] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[5].ToString() + "]\n";
                 val = null;
             }
             Do_on.write_to_cui(STR_);
@@ -380,6 +384,10 @@ namespace Scorpion
         //memory get
         public object var_get(ref string Block)
         {
+            //BUILD CACHE FUNCTIONS HERE
+            //
+            //
+
             object o = Block;
             //IS OBJECT//IS BINARY//IS BIN
             if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture) && !((string)o).StartsWith("f\'", StringComparison.CurrentCulture))
@@ -467,8 +475,12 @@ namespace Scorpion
         private ushort OPCODE_INSERT = 0x03;
         private void var_manipulate(string Reference, object Variable, bool is_array, ushort OPCODE)
         {
+            //BUILD CACHE FUNCTIONS HERE
+            //
+            //
+
             Reference = var_cut_symbol(Reference);
-            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
                     {
                         if ((string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[4] == Do_on.types.S_No)
                         {
@@ -505,11 +517,13 @@ namespace Scorpion
                                     Do_on.mem.AL_CURR_VAR.RemoveAt(ndx);
                                     Do_on.mem.AL_CURR_VAR_REF.RemoveAt(ndx);
                                     Do_on.mem.AL_CURR_VAR_TAG.RemoveAt(ndx);
+                                    Do_on.mem.AL_CURR_VAR_NACESSED.RemoveAt(ndx);
 
                                     //TRIM
                                     Do_on.mem.AL_CURR_VAR.TrimToSize();
                                     Do_on.mem.AL_CURR_VAR_REF.TrimToSize();
                                     Do_on.mem.AL_CURR_VAR_TAG.TrimToSize();
+                                    Do_on.mem.AL_CURR_VAR_NACESSED.TrimToSize();
                                 }
                                 else
                                 {
@@ -537,23 +551,25 @@ namespace Scorpion
             return;
         }
 
+        //Create a new variable
         private void var_new(object Variable, string Reference, string Type_, string Tag, string RONLY)
         {
             //By default all variables are created as bools with a default value of 'false'
             //(*,*,*,*,...)
             try
             {
-                lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+                lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
                             {
-                                if (Do_on.mem.AL_CURR_VAR_REF.Contains(Reference) == false)
-                                {
-                                    //Variable = var_get(Variable.ToString());
-                                    //{??, ref, val, tag, is_readonly}
-                                    var_cut_symbol(ref Reference);
-                                    Do_on.mem.AL_CURR_VAR.Add(new ArrayList { "", Reference, Variable, Tag, RONLY });
-                                    Do_on.mem.AL_CURR_VAR_REF.Add(Reference);
-                                    Do_on.mem.AL_CURR_VAR_TAG.Add(Tag);
-                                }
+                                    if (Do_on.mem.AL_CURR_VAR_REF.Contains(Reference) == false)
+                                    {
+                                        //Variable = var_get(Variable.ToString());
+                                        //{??, ref, val, tag, is_readonly, cached, created}
+                                        var_cut_symbol(ref Reference);
+                                        Do_on.mem.AL_CURR_VAR.Add(new ArrayList(7) { "", Reference, Variable, Tag, RONLY, false, DateTime.UtcNow });
+                                        Do_on.mem.AL_CURR_VAR_REF.Add(Reference);
+                                        Do_on.mem.AL_CURR_VAR_TAG.Add(Tag);
+                                        Do_on.mem.AL_CURR_VAR_NACESSED.Add(0);
+                                    }
                             }
             }
             catch { Do_on.write_to_cui("Scorpion IEE Error : Unable to Allocate Memory (Variable : '" + Variable + "', Reference : '" + Reference + "')"); }
@@ -562,7 +578,6 @@ namespace Scorpion
             Variable = null;
             Reference = null;
             Type_ = null;
-
             return;
         }
 

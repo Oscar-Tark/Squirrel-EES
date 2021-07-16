@@ -59,7 +59,7 @@ namespace Scorpion
                     Do_on.sdh.add_tcpserver(name, port, RSA_private_path, RSA_public_path);
             }
 
-            Do_on.write_warning("Scorpion PHP API server started. You do like to live dangerously :o. Non RSA servers can be read by MIM attacks and other sniffing techniques");
+            Do_on.write_warning("Scorpion PHP API server started. Servers are created without RSA keys at the moment. Non RSA servers can be read by MIM attacks and other sniffing techniques");
             write_to_console("TCP server started");
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -120,6 +120,12 @@ namespace Scorpion
             }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
+            return;
+        }
+
+        public void ls(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            listservers(ref Scorp_Line_Exec, ref objects);
             return;
         }
 

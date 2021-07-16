@@ -37,14 +37,17 @@ namespace Scorpion
             {
                 if ((temp = var_get(reference)) is ArrayList)
                 {
-                    writable += "Array: [(";
-                    foreach (object o in (ArrayList)((ArrayList)temp)[2])
-                        writable += " '" + o + "' ";
-                    writable += ")]";
+                    try
+                    {
+                        writable += "Array: [(";
+                        foreach (object internal_obj in (ArrayList)temp)
+                            writable += " '" + internal_obj + "' ";
+                        writable += ")]";
+                    }
+                    catch (Exception e) { Console.WriteLine(e.Message); }
                 }
                 else
                     writable += var_get(reference);
-                writable += '\n';
             }
             write_to_console(ref writable);
             var_arraylist_dispose(ref Objects);

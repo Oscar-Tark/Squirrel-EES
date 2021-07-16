@@ -1,54 +1,37 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Collections;
+using LazyCache;
 
 namespace Scorpion
 {
     class Cache
     {
-        ArrayList AL_CACHE; // {*var, DateTime}
-        ArrayList AL_CACHE_REF;
+        //Memory structures containing the cached elements
+        private ArrayList AL_CACHE_REF;
+        private ArrayList AL_CACHE;
 
-        int maxsize = 0;
-        //Denote if cache should be used or not //true=on, false=off
-        bool onoff = false;
-        bool paging = false;
+        //Default to 20s
+        private int interval = 20000;
+        private Scorp HANDLE;
+        Timer cache_timer;
 
-        public Cache(int max_size, bool on_off, bool paging_)
+        public Cache(int interval_, Scorp HANDLE_)
         {
-            maxsize = max_size;
-            onoff = on_off;
-            paging = paging_;
+            HANDLE = HANDLE_;
+            interval = interval_;
+            cache_timer = new Timer(run_cache_worker);
+            cache_timer.Change(0, interval_);
+            return;
+        }
 
-            if(onoff)
+        void run_cache_worker(object state)
+        {
+            //If our main memory structure is larger than max_value_type
+            if(HANDLE.mem.AL_CURR_VAR.Count > HANDLE.mem.max_value_type)
             {
-                AL_CACHE = new ArrayList(maxsize);
-                AL_CACHE_REF = new ArrayList(maxsize);
+
             }
-        }
-
-        public void setCache(object ref_, object var)
-        { 
-            if(!AL_CACHE_REF.Contains(ref_))
-            { 
-                lock(AL_CACHE) lock(AL_CACHE_REF)
-                    {
-                        
-                    }
-            }
-        }
-
-        private void purgeCache()
-        { 
-        
-        }
-
-        private void setPageCache()
-        { 
-        
-        }
-
-        private void getPageCache()
-        { 
-        
+            return;
         }
     }
 }

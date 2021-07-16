@@ -5,9 +5,9 @@ using System.Security;
 using System.Threading;
 
 //DEPRECIATED
-namespace Dumper
+namespace Scorpion_DB
 {
-    public class Virtual_Dumper_System
+    public class Scorpion_Micro_DB
     {
         private const int DEFAULT_SLOT_SIZE = 4096;
         private const int DEFAULT_STRT_SIZE = 0;
@@ -15,7 +15,7 @@ namespace Dumper
         private readonly ArrayList Query_Types = new ArrayList(4) { "data", "tag", "meta", "type" };
         Scorpion.Scorp HANDLE;
 
-        public Virtual_Dumper_System(Scorpion.Scorp HANDLE_)
+        public Scorpion_Micro_DB(Scorpion.Scorp HANDLE_)
         {
             HANDLE = HANDLE_;
             return;
@@ -40,6 +40,13 @@ namespace Dumper
 
         public void Create_DB(string path)
         {
+            //A scorpion database is composed of three data fields:
+            /*
+            * Tag: A tag consists of a super identifier. This can be a group to which the data belongs to such as 'Row1'
+            * SubTag: A subtag consists of an identifier of what the data represents within the tag, for example 'Name' or 'Age' within the Tag 'Row1'
+            * Dara: Data contained in the database
+            */
+            ArrayList s_subtag = new ArrayList(DEFAULT_SLOT_SIZE);
             ArrayList s_tag = new ArrayList(DEFAULT_SLOT_SIZE);
             ArrayList s_data = new ArrayList(DEFAULT_SLOT_SIZE);
             //Create SHA seed
@@ -47,7 +54,7 @@ namespace Dumper
             //Create SHA out of seed
             string sha_ = HANDLE.crypto.SHA_SS(s_seed);
                                                /*DATA  TAG */
-            ArrayList al = new ArrayList (2) { s_data, s_tag };
+            ArrayList al = new ArrayList (2) { s_data, s_tag, s_subtag };
             byte[] bte = HANDLE.crypto.To_Byte(al);
             File.WriteAllBytes(path, bte);
             bte = null;
@@ -74,8 +81,8 @@ namespace Dumper
             byte[] b = File.ReadAllBytes(path);
             //Get pwd as securestring
             SecureString scr = new SecureString();
-            object o = HANDLE.crypto.To_Object(b);
-            return (ArrayList)o;
+            object db_object = HANDLE.crypto.To_Object(b);
+            return (ArrayList)db_object;
         }
 
         public void Save_DB(string path, string pwd)
@@ -89,53 +96,7 @@ namespace Dumper
             return;
         }
 
-        public void Data_getDB(string db, object data, string tag, object resultvar)
-        {
-            //Make container for thread objects that will be initiated
-            Thread[] th_contain = new Thread[Environment.ProcessorCount];
-            int current_start = 0; int current_end = 0;
-
-            //Create threads for processing
-            for (int i = 0; i <= (Environment.ProcessorCount - 1); i++)
-            {
-                th_contain[i] = new Thread(new ParameterizedThreadStart(DBGET_thread));
-                current_start = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i;
-                current_end = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i++;
-                th_contain[i].Start(new object[] { current_start, current_end, data, tag, db, resultvar });
-            }
-
-            //DEPRECIATED, keeping just incase
-            /*ArrayList returnable = new ArrayList();
-            ArrayList tag_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1];
-            ArrayList data_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0];
-            /*int current = 0;
-            if (tag != HANDLE.types.S_NULL && tag != HANDLE.types.S_No)
-            {
-                while (current < DEFAULT_SLOT_SIZE)
-                {
-                    current = tag_handle.IndexOf(tag, current);
-                    if (current == -1)
-                        break;
-                    returnable.Add(data_handle[current]);
-                    current++;
-                }
-            }
-            else if(data != null)
-            {
-                while (current < DEFAULT_SLOT_SIZE)
-                {
-                    current = data_handle.IndexOf(data, current);
-                    if (current == -1)
-                        break;
-                    returnable.Add(data_handle[current]);
-                    current++;
-                }
-            }
-            return returnable;*/
-        }
-
-
-        public bool Data_setDB(string path, object data, string tag)
+        public bool Data_setDB(string path, object data, string tag, string subtag)
         {
             lock (HANDLE.mem.AL_TBLE)
             {
@@ -144,11 +105,109 @@ namespace Dumper
                     return false;
                 ((ArrayList)al_tmp[0]).Add(data);
                 ((ArrayList)al_tmp[1]).Add(tag);
+                ((ArrayList)al_tmp[2]).Add(subtag);
             }
             return true;
         }
 
-        private void DBGET_thread(object dat)
+        public ArrayList Data_getDB_all_no_thread(string db)
+        {
+            ArrayList data_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0];
+            return data_handle;
+        }
+
+        public readonly short OPCODE_GET = 0x00;
+        public readonly short OPCODE_DELETE = 0x02;
+        public ArrayList Data_doDB_selective_no_thread(string db, object data, string tag, string subtag, short OPCODE)
+        {
+            ArrayList returnable = new ArrayList();
+            ArrayList subtag_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[2];
+            ArrayList tag_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1];
+            ArrayList data_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0];
+            bool skip = false;
+            int current = 0;
+            //Get data by tag
+            if (tag != HANDLE.types.S_NULL && tag != HANDLE.types.S_No)
+            {
+                while (current < DEFAULT_SLOT_SIZE)
+                {
+                    //Reset skip
+                    skip = false;
+
+                    //Get next index of occurrance
+                    current = tag_handle.IndexOf(tag, current);
+
+                    //Refine search with subtag if any. If not skip
+                    if (subtag != HANDLE.types.S_NULL && subtag != HANDLE.types.S_No && current != -1)
+                    {
+                        //If the subtags do not match, do not include the result
+                        if ((string)subtag_handle[current] != subtag)
+                            skip = true;
+                    }
+
+                    //If there are no more occurances break the loop
+                    if (current == -1)
+                        break;
+
+                    //If the value does not fit due to a wrong subtag skip and advance search
+                    if (!skip)
+                    {
+                        if (OPCODE == OPCODE_GET)
+                            returnable.Add(data_handle[current]);
+                        else if(OPCODE == OPCODE_DELETE)
+                        {
+                            lock (HANDLE.mem.AL_TBLE)
+                            {
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0]).RemoveAt(current);
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1]).RemoveAt(current);
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[2]).RemoveAt(current);
+                            }
+                        }
+                    }
+                    current++;
+                }
+            }
+            //Get data by value
+            else if (data != null)
+            {
+                while (current < DEFAULT_SLOT_SIZE)
+                {
+                    current = data_handle.IndexOf(data, current);
+                    if (current == -1)
+                        break;
+                    if (OPCODE == OPCODE_GET)
+                        returnable.Add(data_handle[current]);
+                    else if (OPCODE == OPCODE_DELETE)
+                    {
+                        lock (HANDLE.mem.AL_TBLE)
+                        {
+                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0]).RemoveAt(current);
+                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1]).RemoveAt(current);
+                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[2]).RemoveAt(current);
+                        }
+                    }
+                    current++;
+                }
+            }
+            return returnable;
+        }
+
+
+        //Make container for thread objects that will be initiated
+        //Thread[] th_contain = new Thread[Environment.ProcessorCount];
+        //int current_start = 0; int current_end = 0;
+
+        //Create threads for processing
+        /*for (int i = 0; i <= (Environment.ProcessorCount - 1); i++)
+        {
+            th_contain[i] = new Thread(new ParameterizedThreadStart(DBGET_thread));
+            current_start = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i;
+            current_end = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i++;
+            th_contain[i].Start(new object[] { current_start, current_end, data, tag, db, resultvar });
+        }*/
+
+        //TO_BUILD: THREADED:
+        /*private void DBGET_thread(object dat)
         {
             //Get passed elements
             int start = (int)((object[])dat)[0];
@@ -203,8 +262,8 @@ namespace Dumper
                             {
                                 //This variable does not contain an array, convert its value to one by directly copying the result array
                             }*/
-                        }
-            return;
-        }
+        //}
+        /*return;
+     }*/
     }
 }

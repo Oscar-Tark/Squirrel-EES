@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections;
 
 namespace Scorpion
@@ -89,6 +90,7 @@ namespace Scorpion
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            Do_on.write_to_cui("Loaded databases:\n-------------------------\n");
             foreach (string s_name in Do_on.mem.AL_TBLE_REF)
                 Do_on.write_to_cui(s_name);
             Scorp_Line_Exec = null;
@@ -96,10 +98,16 @@ namespace Scorpion
             return;
         }
 
+        public void ld(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            listdbs(ref Scorp_Line_Exec, ref objects);
+            return;
+        }
+
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path/name, *data, *tag
-            if (Do_on.vds.Data_setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2])))
+            //::*path/name, *data, *tag|or *null, *subtag|or *null
+            if (Do_on.vds.Data_setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
                 Do_on.write_to_cui("Value set to database");
             else
                 Do_on.write_error("Unable to set value to database");
@@ -108,10 +116,27 @@ namespace Scorpion
             return;
         }
 
-        public void dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public object dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *data, *tag, *insertintovariable
-            Do_on.vds.Data_getDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), objects[3]);
+            //This function gets values from a Scorpion.Database by Datavalue, Tag or Subtag
+            //::*path, *data, *tag, *subtag
+            ArrayList result = Do_on.vds.Data_doDB_selective_no_thread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_GET);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return var_create_return(ref result);
+        }
+
+        public object dbgetall(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            ArrayList result = Do_on.vds.Data_getDB_all_no_thread((string)var_get(objects[0]));
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return var_create_return(ref result);
+        }
+
+        public void dbdelete(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            Do_on.vds.Data_doDB_selective_no_thread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_DELETE);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;

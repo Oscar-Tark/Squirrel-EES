@@ -99,9 +99,9 @@ namespace Scorpion
             return HANDLE.san.sanitize(ref Scorp);
         }
 
-        public bool process_return(ref object o, ref string var, Librarian lib)
+        public bool process_return(ref object return_object, ref string var, Librarian lib)
         {
-            lib.varset("", new ArrayList { var.Replace("*", ""), o });
+            lib.varset("", new ArrayList { var.Replace("*", ""), return_object });
             return true;
         }
     }

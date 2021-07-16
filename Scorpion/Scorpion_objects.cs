@@ -104,9 +104,6 @@ namespace Scorpion
         public readonly string[] AL_UNBEARABLE_CHARS = new string[1] { "," };
         public readonly string[] AL_WILDCARDS = new string[2] { "-", " " };
 
-        //Cache
-        Cache cache = new Cache(1024, false, false);
-
         public void add_tcp_key_path(string private_s_RSA, string public_s_RSA)
         {
             //Add as secure string?
@@ -136,6 +133,7 @@ namespace Scorpion
         public ArrayList AL_CURR_VAR = new ArrayList();
         public ArrayList AL_CURR_VAR_REF = new ArrayList();
         public ArrayList AL_CURR_VAR_TAG = new ArrayList();
+        public ArrayList AL_CURR_VAR_NACESSED = new ArrayList();
 
         //Tables DATA
         public ArrayList AL_TBLE = new ArrayList();
