@@ -2,12 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs">
     <Files>
-      <File FileName="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs" Line="6" Column="33" />
+      <File FileName="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs" Line="6" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
+            <Node name="Scorpion_Hasher_Library" expanded="True" />
             <Node name="Scorpion_RSA" expanded="True">
               <Node name="Scorpion_RSA_main.cs" selected="True" />
             </Node>
