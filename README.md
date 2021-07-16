@@ -20,11 +20,9 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 (Example):
 
-`var::*store`
+`var::*store >> varset::*store, *'My computer store'`
 
-`jsonget::*'http://ip.jsontest.com/', *store`
-
-`output::*f'Hello {[[store]]}`
+`output::*f'Hello {[[store]]}!`
 
 **Arrays**
 
