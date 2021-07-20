@@ -34,7 +34,7 @@ Arrays can replace an existing variable and transport it's value into index 0 of
 
 Dictionaries act equally to arrays, except that they are arrays with key:value items. It a dictionary replaces a current array, there is no option to copy the current variable's value into the dictionary that substitutes it.
 
-`vardictionary::*name_or_existing
+`vardictionary::*name_or_existing`
 
 **String escape sequences**
 
