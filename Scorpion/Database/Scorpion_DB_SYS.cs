@@ -1,15 +1,31 @@
-﻿using System;
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 using System.Collections;
 using System.IO;
 using System.Security;
-using System.Threading;
 
 //DEPRECIATED
-namespace Scorpion_DB
+namespace Scorpion_MDB
 {
     public class Scorpion_Micro_DB
     {
-        private const int DEFAULT_SLOT_SIZE = 4096;
+
+        public readonly int DEFAULT_SLOT_SIZE = 50000;
         private const int DEFAULT_STRT_SIZE = 0;
         private readonly string[] Field_Type_Data = { "dat", "num", "bin" };
         private readonly ArrayList Query_Types = new ArrayList(4) { "data", "tag", "meta", "type" };
@@ -38,23 +54,28 @@ namespace Scorpion_DB
             return false;
         }
 
-        public void Create_DB(string path)
+        public void Create_DB(string path, bool spill)
         {
             //A scorpion database is composed of three data fields:
             /*
             * Tag: A tag consists of a super identifier. This can be a group to which the data belongs to such as 'Row1'
             * SubTag: A subtag consists of an identifier of what the data represents within the tag, for example 'Name' or 'Age' within the Tag 'Row1'
-            * Dara: Data contained in the database
+            * Data: Data contained in the database
             */
+
             ArrayList s_subtag = new ArrayList(DEFAULT_SLOT_SIZE);
             ArrayList s_tag = new ArrayList(DEFAULT_SLOT_SIZE);
             ArrayList s_data = new ArrayList(DEFAULT_SLOT_SIZE);
+
+            //Group tag allows us to group multiple databases in clusters incase one database gets to it's maximum size data can spillover into a new database with the same groupname
+            FileInfo fnf_db = new FileInfo(path);
+
             //Create SHA seed
             SecureString s_seed = HANDLE.crypto.Create_Seed();
             //Create SHA out of seed
             string sha_ = HANDLE.crypto.SHA_SS(s_seed);
-                                               /*DATA  TAG */
-            ArrayList al = new ArrayList (2) { s_data, s_tag, s_subtag };
+            /*DATA  TAG */
+            ArrayList al = new ArrayList (3) { s_data, s_tag, s_subtag };
             byte[] bte = HANDLE.crypto.To_Byte(al);
             File.WriteAllBytes(path, bte);
             bte = null;
@@ -75,14 +96,23 @@ namespace Scorpion_DB
             //Close and remove
         }
 
-        public ArrayList Load_DB(string path)
+        public void Load_DB(string path)
         {
             //File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
             //Get pwd as securestring
             SecureString scr = new SecureString();
             object db_object = HANDLE.crypto.To_Object(b);
-            return (ArrayList)db_object;
+
+            if (!HANDLE.mem.AL_TBLE_REF.Contains(path))
+            {
+                HANDLE.mem.AL_TBLE.Add(db_object);
+                HANDLE.mem.AL_TBLE_REF.Add(path);
+                HANDLE.write_to_cui("Opened Database: [" + path + "]");
+            }
+            else { HANDLE.write_to_cui("Database [" + path + "] already in memory"); }
+
+            return;// (ArrayList)db_object;
         }
 
         public void Save_DB(string path, string pwd)
@@ -101,8 +131,6 @@ namespace Scorpion_DB
             lock (HANDLE.mem.AL_TBLE)
             {
                 ArrayList al_tmp = (ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)];
-                if (al_tmp.Count >= DEFAULT_SLOT_SIZE)
-                    return false;
                 ((ArrayList)al_tmp[0]).Add(data);
                 ((ArrayList)al_tmp[1]).Add(tag);
                 ((ArrayList)al_tmp[2]).Add(subtag);
@@ -154,7 +182,7 @@ namespace Scorpion_DB
                     {
                         if (OPCODE == OPCODE_GET)
                             returnable.Add(data_handle[current]);
-                        else if(OPCODE == OPCODE_DELETE)
+                        else if (OPCODE == OPCODE_DELETE)
                         {
                             lock (HANDLE.mem.AL_TBLE)
                             {
@@ -168,102 +196,51 @@ namespace Scorpion_DB
                 }
             }
             //Get data by value
-            else if (data != null)
+            else if (data != null && (string)data != HANDLE.types.S_NULL)
             {
+                //ArrayList temp_tags = new ArrayList();
+                int current_tag = 0;
+
                 while (current < DEFAULT_SLOT_SIZE)
                 {
                     current = data_handle.IndexOf(data, current);
+
+                    //Gets the tag for the current data value and extracts all data related to that tag
+                    //temp_tags.Add(tag_handle[current]);
+
+                    //Get all data with the same tag
                     if (current == -1)
                         break;
-                    if (OPCODE == OPCODE_GET)
-                        returnable.Add(data_handle[current]);
-                    else if (OPCODE == OPCODE_DELETE)
+                    //Get data with related tag
+                    while (current_tag != -1)
                     {
-                        lock (HANDLE.mem.AL_TBLE)
+                        //Find tag for the current data value
+                        current_tag = tag_handle.IndexOf(tag_handle[current], current_tag);
+                        if (current_tag == -1)
+                            break;
+
+                        if (OPCODE == OPCODE_GET)
                         {
-                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0]).RemoveAt(current);
-                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1]).RemoveAt(current);
-                            ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[2]).RemoveAt(current);
+                            //If index is not -1 or so the tag exists then add the value
+                            returnable.Add(data_handle[current_tag]);
                         }
+                        else if (OPCODE == OPCODE_DELETE)
+                        {
+                            lock (HANDLE.mem.AL_TBLE)
+                            {
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0]).RemoveAt(current_tag);
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1]).RemoveAt(current_tag);
+                                ((ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[2]).RemoveAt(current_tag);
+                            }
+                        }
+                        //Increment tag index so not to stay stuck on the preceeding one
+                        current_tag++;
                     }
+
                     current++;
                 }
             }
             return returnable;
         }
-
-
-        //Make container for thread objects that will be initiated
-        //Thread[] th_contain = new Thread[Environment.ProcessorCount];
-        //int current_start = 0; int current_end = 0;
-
-        //Create threads for processing
-        /*for (int i = 0; i <= (Environment.ProcessorCount - 1); i++)
-        {
-            th_contain[i] = new Thread(new ParameterizedThreadStart(DBGET_thread));
-            current_start = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i;
-            current_end = (DEFAULT_SLOT_SIZE / Environment.ProcessorCount) * i++;
-            th_contain[i].Start(new object[] { current_start, current_end, data, tag, db, resultvar });
-        }*/
-
-        //TO_BUILD: THREADED:
-        /*private void DBGET_thread(object dat)
-        {
-            //Get passed elements
-            int start = (int)((object[])dat)[0];
-            int end = (int)((object[])dat)[1];
-            string src_dat = (string)((object[])dat)[2];
-            string src_tag = (string)((object[])dat)[3];
-            string db = (string)((object[])dat)[4];
-            string resvar = (string)((object[])dat)[5];
-
-            //Create variable for results
-            ArrayList returnable = new ArrayList(4096) { };
-            //Create a copy of the database
-            ArrayList tag_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[1];
-            ArrayList data_handle = (ArrayList)((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(db)])[0];
-
-            //Shorten down to ranges defined by the start and end integers
-            //tag_handle.RemoveRange();
-
-            int current = 0;
-            if (src_tag != HANDLE.types.S_NULL && src_tag != HANDLE.types.S_No)
-            {
-                while (current < DEFAULT_SLOT_SIZE)
-                {
-                    current = tag_handle.IndexOf(src_tag, current);
-                    if (current == -1)
-                        break;
-                    returnable.Add(data_handle[current]);
-                    current++;
-                }
-            }
-            else if (src_dat != null)
-            {
-                while (current < DEFAULT_SLOT_SIZE)
-                {
-                    current = data_handle.IndexOf(src_dat, current);
-                    if (current == -1)
-                        break;
-                    returnable.Add(data_handle[current]);
-                    current++;
-                }
-            }
-
-            //Add result to existing variable, this is done manually for specific reasons such as checking weather the variable already contains an array if so the results are added to the variable if not the array is added directly
-            lock(HANDLE.mem.AL_CURR_VAR) lock(HANDLE.mem.AL_CURR_VAR_REF) lock(HANDLE.mem.AL_CURR_VAR_TAG)
-                        {
-                            /*if(((ArrayList)HANDLE.mem.AL_CURR_VAR[HANDLE.mem.AL_CURR_VAR_REF.IndexOf(resvar)])[2].GetType() is ArrayList)
-                            {
-                                //This variable already contains an array, add to that array
-                                ((ArrayList)((ArrayList)HANDLE.mem.AL_CURR_VAR[HANDLE.mem.AL_CURR_VAR_REF.IndexOf(resvar)])[2]);
-                            }
-                            else
-                            {
-                                //This variable does not contain an array, convert its value to one by directly copying the result array
-                            }*/
-        //}
-        /*return;
-     }*/
     }
 }

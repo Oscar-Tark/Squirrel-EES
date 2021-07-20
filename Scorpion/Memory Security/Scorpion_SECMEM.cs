@@ -120,6 +120,14 @@ namespace Scorpion.Memory_Security
             return ep.check_authentication(ref Do_on.mmsec.uname, ref function);
         }
 
+        public void write_permissions()
+        {
+            //Scorpion database is used for this
+            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Do_on.mmsec.uname);
+            ep.write_permissions();
+            return;
+        }
+
         //make private
         public void set_pass(ref string pass, ref byte[] pin)
         {

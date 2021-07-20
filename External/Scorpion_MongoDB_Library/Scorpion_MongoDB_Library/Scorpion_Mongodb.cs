@@ -1,7 +1,24 @@
-﻿using MongoDB.Bson;
+﻿/*  <Scorpion IEE(Intelligent Execution Environment). Server To Run Scorpion Built Applications Using the Scorpion Language>
+    Copyright (C) <2020+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+using System;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
-using System;
 using System.Collections.Generic;
 
 namespace Scorpion_MongoDB_Library
@@ -22,12 +39,13 @@ namespace Scorpion_MongoDB_Library
         public static string Mongogetall(string db_, string collection_)
         {
             //Returns JSON
+
+            string JSON = "[";
             Console.WriteLine("Connecting to {0}", connectionstring);
             var client = new MongoClient(connectionstring);
             var db = client.GetDatabase(db_);
             var collection = db.GetCollection<BsonDocument>(collection_);
 
-            string JSON = "[";
             using (IAsyncCursor<BsonDocument> cursor = collection.FindSync(new BsonDocument()))
             {
                 while (cursor.MoveNext())
@@ -37,7 +55,7 @@ namespace Scorpion_MongoDB_Library
                         JSON = JSON + document.ToJson();
                 }
             }
-            return JSON + ']';
+            return JSON.Replace("ObjectId(", "").Replace(")", "") + "]";
         }
 
         public static string Mongogetspecific(string db_, string collection_, string filter_)

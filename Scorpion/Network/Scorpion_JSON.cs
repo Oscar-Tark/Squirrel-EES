@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Scorpion
 {
     partial class Librarian
     {
-        public void jsontovar(ref string Scorp_Line_Exec, ref ArrayList objects)
+        /*public void jsontovar(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates variables partaining to the JSON object. a special tag is used in order to chain variables
             //::*jsonvar, *prefix, *key, *contains_key, tag
@@ -29,30 +30,33 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
+        }*/
+
+        public string jsonfromdictionary(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*return<<::*Scorpion.Dictionary
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(var_get((string)objects[0]), Newtonsoft.Json.Formatting.Indented);
+            Console.WriteLine(JSON);
+            return "["+JSON+"]";
         }
 
-        public ArrayList jsontoarray(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public IDictionary jsontodictionary(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates variables partaining to the JSON object. a special tag is used in order to chain variables
             //::*jsonvar, *prefix, *key, *contains_key, tag
-            JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
-            string key = (string)var_get(objects[2]);
-            string contains_key = (string)var_get(objects[3]);
-            string prefix = (string)var_get(objects[1]);
 
-            ArrayList al_keys = new ArrayList();
-            for (int i = 0; i < jv.Count - 1; i++)
+            Dictionary<string, object> dictObj = null;
+            try
             {
-                if (jv[i].ContainsKey(key) && jv[i].ContainsKey(contains_key))
-                    al_keys.Add(var_get(objects[4]));
-                    //var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]));
+                JArray Jarr = JArray.Parse((string)var_get(objects[0]));
+                foreach (JObject Jobj in Jarr)
+                    dictObj = Jobj.ToObject<Dictionary<string, object>>();
             }
+            catch(Exception e) { Console.WriteLine(e.Message); }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
-            return al_keys;
+            return dictObj;
         }
-
-        //public void jsonvarfill()
 
         public void jsonget(string Scorp_Line_Exec, ArrayList objects)
         {

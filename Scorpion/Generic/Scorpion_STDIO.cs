@@ -46,6 +46,17 @@ namespace Scorpion
                     }
                     catch (Exception e) { Console.WriteLine(e.Message); }
                 }
+                else if ((temp = var_get(reference)) is IDictionary)
+                {
+                    try
+                    {
+                        writable += "Dictionary: [(";
+                        foreach (DictionaryEntry internal_obj in (IDictionary)temp)
+                            writable += " '" + internal_obj.Key + "' : '" + internal_obj.Value + "' ";
+                        writable += ")]";
+                    }
+                    catch (Exception e) { Console.WriteLine(e.Message); }
+                }
                 else
                     writable += var_get(reference);
             }

@@ -161,12 +161,6 @@
     <Reference Include="JsonFx">
       <HintPath>..\packages\JsonFx.2.0.1209.2802\lib\net40\JsonFx.dll</HintPath>
     </Reference>
-    <Reference Include="Flurl">
-      <HintPath>..\packages\Flurl.3.0.2\lib\net472\Flurl.dll</HintPath>
-    </Reference>
-    <Reference Include="Flurl.Http">
-      <HintPath>..\packages\Flurl.Http.3.2.0\lib\net472\Flurl.Http.dll</HintPath>
-    </Reference>
     <Reference Include="Cauldron.Cryptography">
       <HintPath>..\..\Scorpion_RSA\Scorpion_RSA\bin\Debug\Cauldron.Cryptography.dll</HintPath>
     </Reference>
@@ -246,15 +240,6 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
-    <Reference Include="MySql.Data">
-      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Ubiety.Dns.Core">
-      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\Ubiety.Dns.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Zstandard.Net">
-      <HintPath>..\packages\MySql.Data.8.0.25\lib\net48\Zstandard.Net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
@@ -282,6 +267,8 @@
     <Reference Include="Microsoft.Win32.Registry">
       <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -347,7 +334,6 @@
     <Compile Include="Session_dependent_handler.cs" />
     <Compile Include="Database\Scorpion_DB_SYS.cs" />
     <Compile Include="Scorpion_engine_functions.cs" />
-    <Compile Include="Database\Scorpion_MYSQL.cs" />
     <Compile Include="Scorpion_cache.cs" />
     <Compile Include="Http\Scorpion_HTTP.cs" />
   </ItemGroup>

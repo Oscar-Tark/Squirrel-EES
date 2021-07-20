@@ -59,7 +59,7 @@ namespace Scorpion
                     Do_on.sdh.add_tcpserver(name, port, RSA_private_path, RSA_public_path);
             }
 
-            Do_on.write_warning("Scorpion PHP API server started. Servers are created without RSA keys at the moment. Non RSA servers can be read by MIM attacks and other sniffing techniques");
+            Do_on.write_warning("Scorpion PHP API server started. Servers are created without RSA keys at the moment. Non RSA servers can be read by MITM attacks and other sniffing techniques");
             write_to_console("TCP server started");
 
             var_dispose_internal(ref Scorp_Line_Exec);

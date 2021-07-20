@@ -8,10 +8,11 @@ namespace Scorpion
     partial class Librarian
     {
         Scorpion_Process scp = new Scorpion_Process();
-
-        //Pauses all processes incase they are taking the foreground output
         public void apkill(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //Kills all processes controlled by Scorpion
+            //::
+
             Do_on.write_to_cui("Killing all proccesses");
             Do_on.write_to_cui(scp.kill_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -21,10 +22,12 @@ namespace Scorpion
 
         public void process(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*program, *arguments, *name, *foregroundoutput
+            //Creates a new Scorpion.Process. This is a standard process which can be any program. The program is partially controlled by scorpion
+            //::*program, *arguments, *process_name, *foregroundoutput
             //*status<<
             //*foregroundoutput: shows output in standard console and not by calling processio
             //*arguments is a unique string, function is not variadic in nature
+
             try
             {
                 Do_on.write_to_cui("Process is starting call 'processio::*name' to see output");
@@ -56,7 +59,8 @@ namespace Scorpion
         public string processio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Show output for a process
-            //*return<<::*name
+            //*return<<::*process_name
+
             string output_ = scp.get_std((string)var_get(objects[0]));
             Do_on.write_to_cui(output_);
 
@@ -67,8 +71,10 @@ namespace Scorpion
 
         public void asyncprocessio(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name=
-           scp.get_stdout_async((string)var_get(objects[0]));
+            //Show C#.Async output for a process
+            //::*process_name
+
+            scp.get_stdout_async((string)var_get(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -77,8 +83,9 @@ namespace Scorpion
 
         public void processinput(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *input
-            //Incase a process asks for input
+            //Sends input from a variable to a process
+            //::*process_name, *input
+
             scp.set_stdin((string)var_get(objects[0]), (string)var_get(objects[1]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -89,6 +96,9 @@ namespace Scorpion
         //ALWAYS CALL PROCESSDELETE ELSE PROCESS WILL STAY IN MEMORY
         public void processdelete(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //Stops an closes a process and deletes it from Scorpions control
+            //::*process_name
+
             scp.remove_process((string)var_get(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -98,6 +108,9 @@ namespace Scorpion
 
         public void listprocesses(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //Lists all Scorpion controlled processes and their state
+            //::
+
             Do_on.write_to_cui(scp.list_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -106,16 +119,13 @@ namespace Scorpion
 
     class Scorpion_Process
     {
+        //This class invokes the internal working of the Scorpion.Process system
+
         int processes = -1;
         private Process[] pr_list = new Process[4];
         private string[] pr_list_ref = new string[4];
         private string[] pr_list_name = new string[4];
         private string[] pr_output = new string[4];
-
-        public Scorpion_Process()
-        {
-            return;
-        }
 
         public void add_proccess(ref Process pri, string name)
         {

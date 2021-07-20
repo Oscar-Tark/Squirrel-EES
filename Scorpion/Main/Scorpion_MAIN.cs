@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Reflection;
 using System.Threading;
 
 namespace Scorpion
@@ -26,22 +27,22 @@ namespace Scorpion
         public int instance;
         public void start_classes()
         {
-            this.vds = new Scorpion_DB.Scorpion_Micro_DB(this);
-            this.crypto = new Crypto.Cryptographer(this);
-            this.mmsec = new Memory_Security.Secure_Memory(this);
-            this.san = new Memory_Security.Sanitizer(this);
-            this.tms = new Timer_(this);
-            this.readr = new reader(this);
-            this.wkp = new Workspaces.Workspaces(this);
-            this.mem = new Memory();
-            this.types = new Types(this);
+            vds = new Scorpion_MDB.Scorpion_Micro_DB(this);
+            crypto = new Crypto.Cryptographer(this);
+            mmsec = new Memory_Security.Secure_Memory(this);
+            san = new Memory_Security.Sanitizer(this);
+            tms = new Timer_(this);
+            readr = new reader(this);
+            wkp = new Workspaces.Workspaces(this);
+            mem = new Memory();
+            types = new Types(this);
             sdh = new SESSION_DEPENDENT_HANDLERS(this);
             wbsp = new Scorpion_WEBPAGES.Scorpion_WEBPAGES("", new string[] { }, 208);
             return;
         }
 
         public reader readr;
-        public Scorpion_DB.Scorpion_Micro_DB vds;
+        public Scorpion_MDB.Scorpion_Micro_DB vds;
         public Crypto.Cryptographer crypto;
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
@@ -50,7 +51,6 @@ namespace Scorpion
         public Memory mem;
         public Types types;
         public SESSION_DEPENDENT_HANDLERS sdh;
-        public Scorpion_MYSQL sql;
         public Scorpion_WEBPAGES.Scorpion_WEBPAGES wbsp;
 
         public Scorp(int instance_descriptor)
@@ -105,7 +105,7 @@ namespace Scorpion
                     write_error("Wrong username password combination");
                     if (max_tries == tries)
                     {
-                        auth.create_user();
+                        auth.create_user(readr.lib_SCR.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance));
                         tries = 0;
                     }
                 }

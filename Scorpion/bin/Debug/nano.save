@@ -1,0 +1,4 @@
+runscript::*f'{[[path]]}/Databases/dbdelete.script'
+
+
+vararray::*true, *'true' >> output::*true
