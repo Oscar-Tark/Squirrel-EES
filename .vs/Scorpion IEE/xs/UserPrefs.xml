@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Session_dependent_handler.cs">
     <Files>
-      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="97" Column="94" />
-      <File FileName="Scorpion/Scorpion_objects.cs" Line="136" Column="65" />
-      <File FileName="Scorpion/Session_dependent_handler.cs" Line="12" Column="34" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="105" Column="17" />
+      <File FileName="Scorpion/Scorpion_objects.cs" Line="127" Column="10" />
+      <File FileName="Scorpion/Session_dependent_handler.cs" Line="130" Column="59" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

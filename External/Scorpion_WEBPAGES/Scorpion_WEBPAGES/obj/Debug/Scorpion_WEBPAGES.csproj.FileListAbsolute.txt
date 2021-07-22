@@ -8,3 +8,4 @@
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_WEBPAGES/Scorpion_WEBPAGES/obj/Debug/Scorpion_WEBPAGES.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_WEBPAGES/Scorpion_WEBPAGES/obj/Debug/Scorpion_WEBPAGES.dll
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_WEBPAGES/Scorpion_WEBPAGES/obj/Debug/Scorpion_WEBPAGES.pdb
+/home/ferret/GIT/Scorpion-IEE/External/Scorpion_WEBPAGES/Scorpion_WEBPAGES/obj/Debug/Scorpion_WEBPAGES.csprojAssemblyReference.cache

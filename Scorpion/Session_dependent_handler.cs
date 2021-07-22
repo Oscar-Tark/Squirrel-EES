@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Security;
 
 namespace Scorpion
 {
@@ -24,7 +25,10 @@ namespace Scorpion
                     HANDLE.mem.AL_TCP.Add(sctl);
                     HANDLE.mem.AL_TCP_REF.Add(reference);
                     if (RSA_private_path == null && RSA_public_path == null)
+                    {
+                        HANDLE.mem.add_tcp_key_path(null, null);
                         sctl.DataReceived += Sctl_DataReceived_noencrypt;
+                    }
                     else
                     {
                         HANDLE.mem.add_tcp_key_path(RSA_private_path, RSA_public_path);
@@ -88,7 +92,7 @@ namespace Scorpion
         }
 
         //TCP CLIENT
-        /*public SimpleTCP.SimpleTcpClient get_tcpclient(int ndx)
+        public SimpleTCP.SimpleTcpClient get_tcpclient(int ndx)
         {
             return (SimpleTCP.SimpleTcpClient)HANDLE.mem.AL_TCP_CLIENTS[ndx];
         }
@@ -153,6 +157,6 @@ namespace Scorpion
             HANDLE.readr.access_library(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
             ef__ = null;
             return;
-        }*/
+        }
     }
 }

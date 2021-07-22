@@ -17,3 +17,4 @@
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Authenticator/Scorpion_Authenticator/obj/Debug/Scorpion_Authenticator.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Authenticator/Scorpion_Authenticator/obj/Debug/Scorpion_Authenticator.dll
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Authenticator/Scorpion_Authenticator/obj/Debug/Scorpion_Authenticator.pdb
+/home/ferret/GIT/Scorpion-IEE/External/Scorpion_Authenticator/Scorpion_Authenticator/obj/Debug/Scorpion_Authenticator.csprojAssemblyReference.cache

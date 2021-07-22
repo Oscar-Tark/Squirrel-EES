@@ -127,8 +127,9 @@ namespace Scorpion
         {
             return (string[])AL_TCP_KY[ndx];
         }
-        //<--
 
+        //<--
+        //Could have used dictionaries, but meh
         //Variables
         public ArrayList AL_CURR_VAR = new ArrayList();
         public ArrayList AL_CURR_VAR_REF = new ArrayList();

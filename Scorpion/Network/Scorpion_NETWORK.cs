@@ -21,7 +21,6 @@ using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
-using System.Security;
 
 namespace Scorpion
 {
@@ -51,16 +50,18 @@ namespace Scorpion
             string RSA_private_path = (string)var_get(objects[2]);
             string RSA_public_path = (string)var_get(objects[3]);
 
-            if (RSA_public_path == Do_on.types.S_No || RSA_private_path == Do_on.types.S_No)
-                Do_on.sdh.add_tcpserver(name, port, null, null);
-            else
+            if (RSA_public_path != Do_on.types.S_No && RSA_public_path != Do_on.types.S_NULL && RSA_private_path != Do_on.types.S_NULL && RSA_private_path != Do_on.types.S_No)
             {
                 if (File.Exists(RSA_private_path) && File.Exists(RSA_public_path))
                     Do_on.sdh.add_tcpserver(name, port, RSA_private_path, RSA_public_path);
             }
+            else
+            {
+                Do_on.sdh.add_tcpserver(name, port, null, null);
+                Do_on.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
+            }
 
-            Do_on.write_warning("Scorpion PHP API server started. Servers are created without RSA keys at the moment. Non RSA servers can be read by MITM attacks and other sniffing techniques");
-            write_to_console("TCP server started");
+            write_to_console("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_dispose_internal(ref name);
@@ -95,13 +96,19 @@ namespace Scorpion
                 int server_index = Do_on.mem.AL_TCP_REF.IndexOf(var_get(objects[0]));
                 ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).StringEncoder = Encoding.UTF8;
                 ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Delimiter = 0x13;
-                Do_on.write_debug(Do_on.mem.get_tcp_key_paths(server_index)[1]);
-                data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.get_tcp_key_paths(server_index)[1]);
+
+                //If there are no RSA keys, skip encryption
+                if (Do_on.mem.get_tcp_key_paths(server_index)[1] != null)
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.get_tcp_key_paths(server_index)[1]);
+                else
+                    data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
+
+                //Broadcast the data
                 ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Broadcast(data);
                 Do_on.write_success("Data sent");
             }
             catch (Exception e) { Do_on.write_error(e.Message); }
-            var_dispose_internal(ref data);
+            //var_dispose_internal(ref data);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -129,15 +136,14 @@ namespace Scorpion
             return;
         }
 
-        /*public void clientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void clientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *ip, *port, *private, *publicrsakey
-            string client = (string)var_get(objects[0]);
-            string ip = (string)var_get(objects[1]);
-            int port = Convert.ToInt32(var_get(objects[1]));
-            string public_key = (string)var_get(objects[4]);
-            string private_key = (string)var_get(objects[3]);
-            Do_on.sdh.add_tcpclient(client, ip, port, private_key, public_key);
+            //A function that allows you to start an RSA encryption supported TCP client or one with no encryption
+            //::*name, *ip, *port, [*privatekey|BOOLEAN *false|*null], [*publicrsakey|BOOLEAN *false|*null]
+            if((string)var_get(objects[3]) != Do_on.types.S_No && (string)var_get(objects[3]) != Do_on.types.S_NULL && (string)var_get(objects[4]) != Do_on.types.S_No && (string)var_get(objects[4]) != Do_on.types.S_NULL)
+                Do_on.sdh.add_tcpclient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), (string)var_get(objects[3]), (string)var_get(objects[4]));
+            else
+                Do_on.sdh.add_tcpclient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), null, null);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -174,10 +180,11 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
-        }*/
+        }
     }
 
-    class ConnectionFunctions
+
+    /*class ConnectionFunctions
     {
         Scorp fm1;
         public ConnectionFunctions(Scorp fm1_)
@@ -261,5 +268,5 @@ namespace Scorpion
         public byte[] buffer = new byte[BufferSize];
         // Received data string.  
         public StringBuilder sb = new StringBuilder();
-    }
+    }*/
 }
