@@ -30,6 +30,12 @@ Arrays can replace an existing variable and transport it's value into index 0 of
 
 `vararray::*name_or_existing, *if_existing_copy_value_into_new_array`
 
+**Dictionaries**
+
+Dictionaries act equally to arrays, except that they are arrays with key:value items. It a dictionary replaces a current array, there is no option to copy the current variable's value into the dictionary that substitutes it.
+
+`vardictionary::*name_or_existing`
+
 **String escape sequences**
 
 Since certain symbols may be used for command execution, we have come up with some escape sequences that allow you to use those symbols within your strings of data similar to escape sequences in C such as \' for a single quote. Scorpion's escape sequences are abit different but the principal is the same. All escape sequences use the following format:
@@ -140,3 +146,7 @@ Syntax:
 Example
 
 `processio::*'mypingprocess'`
+
+**Databases**
+
+Functionality works, Manual comming soon.
