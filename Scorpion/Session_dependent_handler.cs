@@ -86,7 +86,7 @@ namespace Scorpion
             foreach (string s_dat in commands)
                 HANDLE.readr.access_library(s_dat);
             e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
-            e.TcpClient.Client.Disconnect(true);
+            //e.TcpClient.Client.Disconnect(true);
             ef__ = null;
             return;
         }

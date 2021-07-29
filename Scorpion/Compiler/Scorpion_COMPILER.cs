@@ -39,7 +39,7 @@ namespace Scorpion
                 CSharpCodeProvider provider = new CSharpCodeProvider();
                 CompilerParameters parameters = new CompilerParameters();
                 
-                parameters.GenerateInMemory = false;
+                parameters.GenerateInMemory = true;
 
                 if (objects.Count > 2)
                 {
@@ -102,13 +102,13 @@ namespace Scorpion
 
         public object asmcall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path, *function, *parameters...
+            //*return<<::*path, *function, *parameters...
             object instance = Do_on.mem.AL_ASSEMB_INST[Do_on.mem.AL_ASSEMB_REF.IndexOf(var_get(objects[0]))];
             Type program = instance.GetType();
             MethodInfo mdf = program.GetMethod((string)var_get(objects[1]), BindingFlags.Public | BindingFlags.Instance);
 
             //Not doing a remove range due to var_get needed
-            objects.RemoveRange(0,1);
+            objects.RemoveRange(0,2);
             for (int i = 0; i < objects.Count; i++)
                 objects[i] = var_get(objects[i]);
 

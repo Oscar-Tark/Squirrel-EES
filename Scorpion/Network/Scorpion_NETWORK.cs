@@ -136,7 +136,7 @@ namespace Scorpion
             return;
         }
 
-        public void clientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void tcpclientstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //A function that allows you to start an RSA encryption supported TCP client or one with no encryption
             //::*name, *ip, *port, [*privatekey|BOOLEAN *false|*null], [*publicrsakey|BOOLEAN *false|*null]
@@ -149,7 +149,7 @@ namespace Scorpion
             return;
         }
 
-        public void clientsend(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void tcpclientsend(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *data
             byte[] data = null;
@@ -159,11 +159,20 @@ namespace Scorpion
                 SimpleTCP.SimpleTcpClient tcl = Do_on.sdh.get_tcpclient(client_ndx);
                 tcl.StringEncoder = Encoding.UTF8;
                 tcl.Delimiter = 0x13;
-                Do_on.write_debug(Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1]);
 
-                data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1]);
+                //If there are no RSA keys, skip encryption
+                if (Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1] != null)
+                {
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1]);
+                }
+                else
+                {
+                    data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
+                }
+
                 tcl.Write(data);
                 Do_on.write_success("Data sent");
+                //Do_on.sdh.remove_tcpclient(client_ndx);
             }
             catch (Exception e) { Do_on.write_error(e.Message); };
 
@@ -173,7 +182,7 @@ namespace Scorpion
             return;
         }
 
-        public void clientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void tcpclientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
             Do_on.sdh.remove_tcpclient(Do_on.sdh.get_index_tcpclient((string)var_get(objects[0])));
