@@ -314,7 +314,7 @@
     <Compile Include="Generic\Scorpion_CONDITIONS.cs" />
     <Compile Include="Generic\Scorpion_STDIO.cs" />
     <Compile Include="Network\Scorpion_JSON.cs" />
-    <Compile Include="Database\Scorpion_DB.cs" />
+    <Compile Include="Database\Scorpion_MicroDB.cs" />
     <Compile Include="Io\Library_IO.cs" />
     <Compile Include="MAN\Scorpion_MAN.cs" />
     <Compile Include="Functions\Scorpion_FNC.cs" />
@@ -332,10 +332,11 @@
     <Compile Include="Host\Scorpion_HOSTOS.cs" />
     <Compile Include="Generic\Scorpion_BASICMATH.cs" />
     <Compile Include="Session_dependent_handler.cs" />
-    <Compile Include="Database\Scorpion_DB_SYS.cs" />
+    <Compile Include="Database\Scorpion_MicroDB_SYS.cs" />
     <Compile Include="Scorpion_engine_functions.cs" />
     <Compile Include="Scorpion_cache.cs" />
     <Compile Include="Http\Scorpion_HTTP.cs" />
+    <Compile Include="Database\Scorpion_MONGO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

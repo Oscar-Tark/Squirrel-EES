@@ -24,7 +24,6 @@ namespace Scorpion_MDB
 {
     public class Scorpion_Micro_DB
     {
-
         public readonly int DEFAULT_SLOT_SIZE = 50000;
         private const int DEFAULT_STRT_SIZE = 0;
         private readonly string[] Field_Type_Data = { "dat", "num", "bin" };
@@ -83,20 +82,21 @@ namespace Scorpion_MDB
             return;
         }
 
-        public void Close_DB(string path)
+        public void Close_DB(string name)
         {
-            //PURGE MEMORY
-            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)]).Clear();
-            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)]).TrimToSize();
-            HANDLE.mem.AL_TBLE.RemoveAt(HANDLE.mem.AL_TBLE_REF.IndexOf(path));
+            //Close and remove
+            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(name)]).Clear();
+            ((ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(name)]).TrimToSize();
+            HANDLE.mem.AL_TBLE.RemoveAt(HANDLE.mem.AL_TBLE_REF.IndexOf(name));
             HANDLE.mem.AL_TBLE.TrimToSize();
-            HANDLE.mem.AL_TBLE_REF.Remove(path);
+            HANDLE.mem.AL_TBLE_PATH.RemoveAt(HANDLE.mem.AL_TBLE_REF.IndexOf(name));
+            HANDLE.mem.AL_TBLE_PATH.TrimToSize();
+            HANDLE.mem.AL_TBLE_REF.Remove(name);
             HANDLE.mem.AL_TBLE_REF.TrimToSize();
             return;
-            //Close and remove
         }
 
-        public void Load_DB(string path)
+        public void Load_DB(string path, string name)
         {
             //File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
@@ -104,33 +104,36 @@ namespace Scorpion_MDB
             SecureString scr = new SecureString();
             object db_object = HANDLE.crypto.To_Object(b);
 
-            if (!HANDLE.mem.AL_TBLE_REF.Contains(path))
+            if (!HANDLE.mem.AL_TBLE_REF.Contains(name) && !HANDLE.mem.AL_TBLE_PATH.Contains(path))
             {
                 HANDLE.mem.AL_TBLE.Add(db_object);
-                HANDLE.mem.AL_TBLE_REF.Add(path);
-                HANDLE.write_to_cui("Opened Database: [" + path + "]");
+                HANDLE.mem.AL_TBLE_REF.Add(name);
+                HANDLE.mem.AL_TBLE_PATH.Add(path);
+                HANDLE.write_to_cui("Opened Database: [" + path + "] as [" + name + "]");
             }
-            else { HANDLE.write_to_cui("Database [" + path + "] already in memory"); }
+            else
+                HANDLE.write_to_cui("Database [" + path + "]/[" + name + "] already in memory");
 
-            return;// (ArrayList)db_object;
+            return;
         }
 
-        public void Save_DB(string path, string pwd)
+        public void Save_DB(string name, string pwd)
         {
             //Save in segments of 0x3a each
             //File.Encrypt(path);
-            byte[] b = HANDLE.crypto.To_Byte(HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)]);
-            File.WriteAllBytes(path, b);
-            path = null;
+            int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
+            byte[] b = HANDLE.crypto.To_Byte(HANDLE.mem.AL_TBLE[ndx]);
+            File.WriteAllBytes((string)HANDLE.mem.AL_TBLE_PATH[ndx], b);
+            name = null;
             pwd = null;
             return;
         }
 
-        public bool Data_setDB(string path, object data, string tag, string subtag)
+        public bool Data_setDB(string name, object data, string tag, string subtag)
         {
             lock (HANDLE.mem.AL_TBLE)
             {
-                ArrayList al_tmp = (ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(path)];
+                ArrayList al_tmp = (ArrayList)HANDLE.mem.AL_TBLE[HANDLE.mem.AL_TBLE_REF.IndexOf(name)];
                 ((ArrayList)al_tmp[0]).Add(data);
                 ((ArrayList)al_tmp[1]).Add(tag);
                 ((ArrayList)al_tmp[2]).Add(subtag);

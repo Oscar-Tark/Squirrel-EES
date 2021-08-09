@@ -23,7 +23,7 @@ namespace Scorpion
     public partial class Librarian
     {
         //Add to Session dependent handler and encryption dependent
-        public void runscriptcondition(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void scriptruncondition(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
             //::*if, *is, *Path, *result_must_be_equal
@@ -36,6 +36,8 @@ namespace Scorpion
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
                         scorpion_exec(line);
+
+                    fd.Flush();
                     sr.Close();
                     fd.Close();
 
@@ -51,6 +53,8 @@ namespace Scorpion
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
                         scorpion_exec(line);
+
+                    fd.Flush();
                     sr.Close();
                     fd.Close();
 
@@ -62,7 +66,7 @@ namespace Scorpion
             return;
         }
 
-        public void runscript(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void scriptrun(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //All files must be UTF8
             //::*path
@@ -72,6 +76,8 @@ namespace Scorpion
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
             while ((line = sr.ReadLine()) != null)
                 scorpion_exec(line);
+
+            fd.Flush();
             sr.Close();
             fd.Close();
             Scorp_Line_Exec = null;

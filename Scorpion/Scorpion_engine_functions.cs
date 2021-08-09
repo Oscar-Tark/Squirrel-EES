@@ -53,6 +53,12 @@ namespace Scorpion
             return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::");
         }
 
+        public string create_fakes(string Scorp)
+        {
+            //return Scorp.Replace();
+            return Scorp.Replace("*", "{&v}").Replace("'", "{&q}").Replace(">>", "{&r}").Replace("<<", "{&l}").Replace("::", "{&c}");
+        }
+
         public string replace_escape(ref Scorp HANDLE, string paramse)
         {
             foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)

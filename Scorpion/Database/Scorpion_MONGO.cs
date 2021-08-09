@@ -17,7 +17,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*using System;
 using System.Collections;
 using Scorpion_MongoDB_Library;
 
@@ -35,12 +34,12 @@ namespace Scorpion
          * {meta}
         */
         //MONGODB
-        /*public void mongodbstart(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void mongodbstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*url, *port
-                Mongodb.Mongodbstart((string)var_get(objects[0]), (string)var_get(objects[1]));
-                var_arraylist_dispose(ref objects);
-                Scorp_Line_Exec = null;
+            Mongodb.Mongodbstart((string)var_get(objects[0]), (string)var_get(objects[1]));
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
             return;
         }
 
@@ -54,7 +53,7 @@ namespace Scorpion
             return var_create_return(ref JSON, true);
         }
 
-            public string mongodbgetfilter(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public string mongodbgetfilter(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //returnable<<::*db, *collection, *filter
             string JSON = Mongodb.Mongogetspecific((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
@@ -69,6 +68,6 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
-        }*/
-    /*}
-}*/
+        }
+    }
+}

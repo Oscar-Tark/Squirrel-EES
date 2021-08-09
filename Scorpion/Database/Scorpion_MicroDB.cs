@@ -47,13 +47,12 @@ namespace Scorpion
 
         public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*File_Name_w_path, *pwd
+            //::*name, *path
             string name = (string)var_get(objects[0]);
+            string path = (string)var_get(objects[1]);
 
-            lock (Do_on.mem.AL_TBLE) lock (Do_on.mem.AL_TBLE_REF)
-                {
-                    Do_on.vds.Load_DB(name);
-                }
+            lock (Do_on.mem.AL_TBLE) lock (Do_on.mem.AL_TBLE_REF) lock (Do_on.mem.AL_TBLE_PATH)
+                        Do_on.vds.Load_DB(path, name);
             var_arraylist_dispose(ref objects);
             name = null;
             Scorp_Line_Exec = null;
@@ -62,9 +61,8 @@ namespace Scorpion
 
         public void dbclose(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path/name
-            int ndx = Do_on.mem.AL_TBLE_REF.IndexOf(var_get(objects[0]));
-            lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF)
+            //::*name
+            lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF) lock(Do_on.mem.AL_TBLE_PATH)
                 {
                     Do_on.vds.Close_DB((string)var_get(objects[0]));
                 }
@@ -74,7 +72,7 @@ namespace Scorpion
 
         public void dbsave(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path/name, *pwd
+            //::*name
             string name = (string)var_get(objects[0]);
             //Save without passphrase for now
             Do_on.vds.Save_DB(name, "");
@@ -89,7 +87,7 @@ namespace Scorpion
         {
             Do_on.write_to_cui("Loaded databases:\n-------------------------\n");
             foreach (string s_name in Do_on.mem.AL_TBLE_REF)
-                Do_on.write_to_cui("PATH: [" + s_name + "] CURRENT USED SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Count + "] MAXIMUM SYSTEM SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Capacity + "]");
+                Do_on.write_to_cui("NAME: [" + s_name + "] CURRENT USED SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Count + "] MAXIMUM SYSTEM SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Capacity + "]");
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
@@ -103,7 +101,7 @@ namespace Scorpion
 
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*path/name, *data, *tag|or *null, *subtag|or *null
+            //::*name, *data, *tag|or *null, *subtag|or *null
             if (Do_on.vds.Data_setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
                 Do_on.write_to_cui("Value set to database");
             else

@@ -139,6 +139,7 @@ namespace Scorpion
         //Tables DATA
         public ArrayList AL_TBLE = new ArrayList();
         public ArrayList AL_TBLE_REF = new ArrayList();
+        public ArrayList AL_TBLE_PATH = new ArrayList();
 
         //Assemblies
         public ArrayList AL_ASSEMB = new ArrayList();

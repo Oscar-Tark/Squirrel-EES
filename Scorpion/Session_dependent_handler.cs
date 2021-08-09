@@ -42,13 +42,13 @@ namespace Scorpion
         /*TCP server : Events*/
         void Sctl_ClientConnected(object sender, TcpClient e)
         {
-            HANDLE.write_to_cui("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
+            HANDLE.write_to_cui("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
             return;
         }
 
         void Sctl_ClientDisconnected(object sender, TcpClient e)
         {
-            HANDLE.write_to_cui("Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
+            HANDLE.write_to_cui("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
             return;
         }
 
@@ -86,7 +86,7 @@ namespace Scorpion
             foreach (string s_dat in commands)
                 HANDLE.readr.access_library(s_dat);
             e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
-            //e.TcpClient.Client.Disconnect(true);
+            e.TcpClient.Client.Disconnect(true);
             ef__ = null;
             return;
         }

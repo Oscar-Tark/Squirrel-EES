@@ -92,5 +92,10 @@ namespace Scorpion_MongoDB_Library
             document.Add(collection_, BsonArray);
             collection.InsertOneAsync(document);
         }
+
+        public void Mongodbs()
+        { 
+            
+        }
     }
 }

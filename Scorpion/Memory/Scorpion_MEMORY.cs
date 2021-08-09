@@ -51,7 +51,12 @@ namespace Scorpion
 
         private object var_create_return(ref ArrayList val)
         {
-            return (object)val;
+            return val;
+        }
+
+        private object var_create_return(ref Dictionary<object, object> val)
+        {
+            return val;
         }
 
         private object var_create_return(ref object[] val)
@@ -127,14 +132,52 @@ namespace Scorpion
     //MEMORY TAGS
     partial class Librarian
     {
-        //TAG FUNCTIONS FOR CHAINING
+        //TAG FUNCTIONS FOR CHAINING OR IDENTIFYING SESSIONS
         public void vartag(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //Sets a tag element to a variable, this allows us to pool variables by an identifiable element
+            //In order to remove a tag set the tag value to *null/Scorpion.Types.S_NULL
             //::*var, *tag
+            if (var_get(objects[1]) is string)
+                Do_on.mem.AL_CURR_VAR_TAG[Do_on.mem.AL_CURR_VAR_REF.IndexOf(objects[0])] = var_get(objects[1]);
+            else
+                Do_on.write_error("Could not add tag to the specified variable. Tag is not an identifyable string but an object of another type");
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;
+        }
+
+        public string vartagexists(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Resurns a Scorpion.BOOLEAN describing whether a tag already exists
+            //*result<<::*tag
+
+            if (Do_on.mem.AL_CURR_VAR_TAG.Contains(var_get(objects[0])))
+                return Do_on.types.S_Yes;
+            return Do_on.types.S_No;
+        }
+
+        public object vartagget(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Returns an array of elements with a specific tag
+            //*result<<::*tag
+
+            Dictionary<object, object> result = new Dictionary<object, object>();
+            int current_ndx = 0;
+            foreach (string tag in Do_on.mem.AL_CURR_VAR_TAG)
+            {
+                current_ndx = Do_on.mem.AL_CURR_VAR_TAG.IndexOf(var_get(objects[0]), current_ndx);
+
+                if (current_ndx == -1)
+                    break;
+
+                result.Add((string)Do_on.mem.AL_CURR_VAR_REF[current_ndx], (string)((ArrayList)(Do_on.mem.AL_CURR_VAR[current_ndx]))[2]);
+                current_ndx++;
+            }
+            Scorp_Line_Exec = null;
+            var_arraylist_dispose(ref objects);
+            return var_create_return(ref result);
         }
     }
 
@@ -478,7 +521,7 @@ namespace Scorpion
                         val += " '" + de.Key + "' : '" + de.Value + "', ";
                     val += ")]";
                 }
-                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[3] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[5].ToString() + "]\n";
+                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)Do_on.mem.AL_CURR_VAR_TAG[index] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[5].ToString() + "]\n";
                 val = null;
             }
             Do_on.write_to_cui(STR_);
@@ -593,10 +636,6 @@ namespace Scorpion
         private ushort OPCODE_INSERT = 0x03;
         private void var_manipulate(string Reference, object Variable, bool is_array, bool is_dictionary, ushort OPCODE)
         {
-            //BUILD CACHE FUNCTIONS HERE
-            //
-            //
-
             Reference = var_cut_symbol(Reference);
             lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
                     {
