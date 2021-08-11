@@ -1023,6 +1023,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/hamster/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion IEE core.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/LdaNative.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/CpuMathNative.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/libmongocrypt.so
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/scorpion.exe.config
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/scorpion.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/scorpion.pdb
@@ -1048,6 +1049,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Caching.Abstractions.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Caching.Memory.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Logging.Abstractions.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Options.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Primitives.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.Core.dll
@@ -1091,6 +1093,10 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Channels.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Threading.Tasks.Extensions.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.ValueTuple.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Libmongocrypt.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_Authenticator.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_Hasher_Library.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_MongoDB_Library.pdb
@@ -1111,6 +1117,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.ValueTuple.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SecurityDriven.Inferno.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/RestSharp.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.CodeDom.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Collections.Immutable.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.CpuMath.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.ML.DataView.xml
@@ -1136,6 +1143,10 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Security.Principal.Windows.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Security.AccessControl.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Win32.Registry.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Logging.Abstractions.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csprojAssemblyReference.cache
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/scorpion.exe.config
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.Properties.Resources.resources
@@ -1144,10 +1155,5 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/scorpion.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/scorpion.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Libmongocrypt.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.xml
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.pdb

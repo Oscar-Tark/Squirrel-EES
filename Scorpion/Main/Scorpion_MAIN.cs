@@ -38,6 +38,7 @@ namespace Scorpion
             types = new Types(this);
             sdh = new SESSION_DEPENDENT_HANDLERS(this);
             wbsp = new Scorpion_WEBPAGES.Scorpion_WEBPAGES("", new string[] { }, 208);
+            sclog = new Scorpion_LOG.Scorpion_LOG(types.main_user_path);
             return;
         }
 
@@ -52,6 +53,7 @@ namespace Scorpion
         public Types types;
         public SESSION_DEPENDENT_HANDLERS sdh;
         public Scorpion_WEBPAGES.Scorpion_WEBPAGES wbsp;
+        public Scorpion_LOG.Scorpion_LOG sclog;
 
         public Scorp(int instance_descriptor)
         {
@@ -103,6 +105,7 @@ namespace Scorpion
                 else
                 {
                     write_error("Wrong username password combination");
+                    sclog.log("Login attempt failed as " + uname);
                     if (max_tries == tries)
                     {
                         auth.create_user(readr.lib_SCR.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance));

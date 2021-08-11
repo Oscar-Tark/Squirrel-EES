@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 
@@ -94,10 +95,22 @@ namespace Scorpion
             return Scorp_Line.Remove(Scorp_Line.IndexOf("###", 0, StringComparison.CurrentCulture));
         }
 
-        public string replace_phpapi(string Scorp_Line)
+        public Dictionary<string, string> replace_phpapi(string Scorp_Line)
         {
-            Scorp_Line = Scorp_Line.Remove(Scorp_Line.IndexOf("{&scorpion_end}", StringComparison.CurrentCulture));
-            return Scorp_Line.Remove(0, (Scorp_Line.IndexOf("{&scorpion}", StringComparison.CurrentCulture) + 11));
+            Scorp_Line = Scorp_Line.Remove(0, Scorp_Line.IndexOf("{&scorpion}", StringComparison.CurrentCulture));
+            //Scorp_Line = Scorp_Line.Remove((Scorp_Line.IndexOf("{&/scorpion}", StringComparison.CurrentCulture) + 12));
+
+            if (Scorp_Line.Contains("{&scorpion}") && Scorp_Line.Contains("{&/scorpion}"))
+            {
+                //Split other elements
+                //Get the app
+                string[] db, tag, subtag;
+                db = Scorp_Line.Split(new string[] { "{&db}", "{&/db}" }, StringSplitOptions.RemoveEmptyEntries);
+                tag = Scorp_Line.Split(new string[] { "{&tag}", "{&/tag}" }, StringSplitOptions.RemoveEmptyEntries);
+                subtag = Scorp_Line.Split(new string[] { "{&subtag}", "{&/subtag}" }, StringSplitOptions.RemoveEmptyEntries);
+                return new Dictionary<string, string> { { "db", db[1] }, { "tag", tag[1] }, { "subtag", subtag[1] } };
+            }
+            return null;
         }
 
         public string line_check(ref Scorp HANDLE, ref string Scorp)

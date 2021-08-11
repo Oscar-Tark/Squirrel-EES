@@ -651,6 +651,11 @@
             Gets or sets the hint. This must either be a BsonString representing the index name or a BsonDocument representing the key pattern of the index.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.AggregateOptions.Let">
+            <summary>
+            Gets or sets the "let" definition.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.AggregateOptions.MaxAwaitTime">
             <summary>
             Gets or sets the maximum await time.
@@ -1277,6 +1282,14 @@
             The default transaction options.
             </value>
         </member>
+        <member name="P:MongoDB.Driver.ClientSessionOptions.Snapshot">
+            <summary>
+            Gets or sets a value indicating whether snapshot reads are requested.
+            </summary>
+            <value>
+              <c>true</c> if snapshot reads are requested; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:MongoDB.Driver.ClusterRegistry">
             <summary>
             Represents a registry of already created clusters.
@@ -1508,6 +1521,11 @@
             Gets or sets a value indicating whether the collection is capped.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.CreateCollectionOptions.ExpireAfter">
+            <summary>
+            Gets or sets a timespan indicating how long documents in a time series collection should be retained.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.CreateCollectionOptions.IndexOptionDefaults">
             <summary>
             Gets or sets the index option defaults.
@@ -1539,6 +1557,11 @@
         <member name="P:MongoDB.Driver.CreateCollectionOptions.StorageEngine">
             <summary>
             Gets or sets the storage engine options.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.CreateCollectionOptions.TimeSeriesOptions">
+            <summary>
+            Gets or sets the <see cref="P:MongoDB.Driver.CreateCollectionOptions.TimeSeriesOptions"/> to use when creating a time series collection.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.CreateCollectionOptions.UsePowerOf2Sizes">
@@ -1644,6 +1667,11 @@
         <member name="P:MongoDB.Driver.CreateIndexOptions.ExpireAfter">
             <summary>
             Gets or sets when documents expire (used with TTL indexes).
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.CreateIndexOptions.Hidden">
+            <summary>
+            Gets or sets a value indicating whether the index is hidden.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.CreateIndexOptions.LanguageOverride">
@@ -1959,6 +1987,11 @@
             </summary>
             <value>The maximum time.</value>
         </member>
+        <member name="P:MongoDB.Driver.Encryption.AutoEncryptionLibMongoCryptController.InternalClient">
+            <summary>
+            this property is used by DisposableMongoClient.Dispose to unregister the internal cluster.
+            </summary>
+        </member>
         <member name="T:MongoDB.Driver.Encryption.AutoEncryptionOptions">
             <summary>
             Auto encryption options.
@@ -2192,12 +2225,35 @@
             <param name="masterKey">The master key.</param>
             <returns>A new DataKeyOptions instance.</returns>
         </member>
+        <member name="T:MongoDB.Driver.Encryption.EncryptionAlgorithm">
+            <summary>
+            Represents an encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:MongoDB.Driver.Encryption.EncryptionAlgorithm.AEAD_AES_256_CBC_HMAC_SHA_512_Deterministic">
+            <summary>
+            Deterministic algorithm.
+            </summary>
+        </member>
+        <member name="F:MongoDB.Driver.Encryption.EncryptionAlgorithm.AEAD_AES_256_CBC_HMAC_SHA_512_Random">
+            <summary>
+            Random algorithm.
+            </summary>
+        </member>
         <member name="T:MongoDB.Driver.Encryption.EncryptOptions">
             <summary>
             Encryption options for explicit encryption.
             </summary>
         </member>
         <member name="M:MongoDB.Driver.Encryption.EncryptOptions.#ctor(System.String,MongoDB.Driver.Optional{System.String},MongoDB.Driver.Optional{System.Nullable{System.Guid}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Driver.Encryption.EncryptOptions"/> class.
+            </summary>
+            <param name="algorithm">The encryption algorithm.</param>
+            <param name="alternateKeyName">The alternate key name.</param>
+            <param name="keyId">The key Id.</param>
+        </member>
+        <member name="M:MongoDB.Driver.Encryption.EncryptOptions.#ctor(MongoDB.Driver.Encryption.EncryptionAlgorithm,MongoDB.Driver.Optional{System.String},MongoDB.Driver.Optional{System.Nullable{System.Guid}})">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Driver.Encryption.EncryptOptions"/> class.
             </summary>
@@ -2248,6 +2304,13 @@
             Initializes a new instance of the <see cref="T:MongoDB.Driver.Encryption.MongoEncryptionException"/> class.
             </summary>
             <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:MongoDB.Driver.Encryption.MongoEncryptionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Driver.Encryption.MongoEncryptionException"/> class (this overload used by deserialization).
+            </summary>
+            <param name="info">The SerializationInfo.</param>
+            <param name="context">The StreamingContext.</param>
         </member>
         <member name="T:MongoDB.Driver.EstimatedDocumentCountOptions">
             <summary>
@@ -10891,11 +10954,30 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A cursor.</returns>
         </member>
+        <member name="M:MongoDB.Driver.IMongoIndexManager`1.List(MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <summary>
+            Lists the indexes.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A cursor.</returns>
+        </member>
         <member name="M:MongoDB.Driver.IMongoIndexManager`1.List(MongoDB.Driver.IClientSessionHandle,System.Threading.CancellationToken)">
             <summary>
             Lists the indexes.
             </summary>
             <param name="session">The session.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A cursor.
+            </returns>
+        </member>
+        <member name="M:MongoDB.Driver.IMongoIndexManager`1.List(MongoDB.Driver.IClientSessionHandle,MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <summary>
+            Lists the indexes.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="options">The options.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>
             A cursor.
@@ -10908,11 +10990,30 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A Task whose result is a cursor.</returns>
         </member>
+        <member name="M:MongoDB.Driver.IMongoIndexManager`1.ListAsync(MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <summary>
+            Lists the indexes.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A Task whose result is a cursor.</returns>
+        </member>
         <member name="M:MongoDB.Driver.IMongoIndexManager`1.ListAsync(MongoDB.Driver.IClientSessionHandle,System.Threading.CancellationToken)">
             <summary>
             Lists the indexes.
             </summary>
             <param name="session">The session.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A Task whose result is a cursor.
+            </returns>
+        </member>
+        <member name="M:MongoDB.Driver.IMongoIndexManager`1.ListAsync(MongoDB.Driver.IClientSessionHandle,MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <summary>
+            Lists the indexes.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="options">The options.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>
             A Task whose result is a cursor.
@@ -13720,6 +13821,11 @@
             Options for a list collections operation.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.ListCollectionsOptions.BatchSize">
+            <summary>
+            Gets or sets the batch size.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.ListCollectionsOptions.Filter">
             <summary>
             Gets or sets the filter.
@@ -13758,6 +13864,16 @@
         <member name="P:MongoDB.Driver.ListDatabasesOptions.NameOnly">
             <summary>
             Gets or sets the NameOnly flag.
+            </summary>
+        </member>
+        <member name="T:MongoDB.Driver.ListIndexesOptions">
+            <summary>
+            Options for a list indexes operation.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.ListIndexesOptions.BatchSize">
+            <summary>
+            Gets or sets the batch size.
             </summary>
         </member>
         <member name="T:MongoDB.Driver.MapReduceOptions`2">
@@ -14347,6 +14463,11 @@
             Gets or sets the connection mode.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.MongoClientSettings.ConnectionModeSwitch">
+            <summary>
+            Gets the connection mode switch.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.MongoClientSettings.ConnectTimeout">
             <summary>
             Gets or sets the connect timeout.
@@ -14360,6 +14481,11 @@
         <member name="P:MongoDB.Driver.MongoClientSettings.Credentials">
             <summary>
             Gets or sets the credentials.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoClientSettings.DirectConnection">
+            <summary>
+            Gets or sets the direct connection.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoClientSettings.GuidRepresentation">
@@ -14385,6 +14511,11 @@
         <member name="P:MongoDB.Driver.MongoClientSettings.IPv6">
             <summary>
             Gets or sets a value indicating whether to use IPv6.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoClientSettings.LoadBalanced">
+            <summary>
+            Gets or sets whether load balanced mode is used.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoClientSettings.LocalThreshold">
@@ -14453,6 +14584,11 @@
         <member name="P:MongoDB.Driver.MongoClientSettings.SdamLogFilename">
             <summary>
             Gets or set the name of the SDAM log file. Null turns logging off. stdout will log to console.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoClientSettings.ServerApi">
+            <summary>
+            Gets or sets the server API.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoClientSettings.Server">
@@ -15984,13 +16120,25 @@
         <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.List(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.List(MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.List(MongoDB.Driver.IClientSessionHandle,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.List(MongoDB.Driver.IClientSessionHandle,MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.ListAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.ListAsync(MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.ListAsync(MongoDB.Driver.IClientSessionHandle,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:MongoDB.Driver.MongoIndexManagerBase`1.ListAsync(MongoDB.Driver.IClientSessionHandle,MongoDB.Driver.ListIndexesOptions,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:MongoDB.Driver.MongoInternalIdentity">
@@ -16141,6 +16289,11 @@
             Gets the connection mode.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.MongoUrl.ConnectionModeSwitch">
+            <summary>
+            Gets the connection mode switch.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.MongoUrl.ConnectTimeout">
             <summary>
             Gets the connect timeout.
@@ -16149,6 +16302,11 @@
         <member name="P:MongoDB.Driver.MongoUrl.DatabaseName">
             <summary>
             Gets the optional database name.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoUrl.DirectConnection">
+            <summary>
+            Gets the direct connection.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoUrl.FSync">
@@ -16189,6 +16347,11 @@
         <member name="P:MongoDB.Driver.MongoUrl.Journal">
             <summary>
             Gets the Journal component of the write concern.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoUrl.LoadBalanced">
+            <summary>
+            Gets or sets whether load balanced mode is used.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoUrl.LocalThreshold">
@@ -16484,6 +16647,11 @@
             Gets or sets the connection mode.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.MongoUrlBuilder.ConnectionModeSwitch">
+            <summary>
+            Gets the connection mode switch.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.MongoUrlBuilder.ConnectTimeout">
             <summary>
             Gets or sets the connect timeout.
@@ -16492,6 +16660,11 @@
         <member name="P:MongoDB.Driver.MongoUrlBuilder.DatabaseName">
             <summary>
             Gets or sets the optional database name.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoUrlBuilder.DirectConnection">
+            <summary>
+            Gets or sets the direct connection.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoUrlBuilder.FSync">
@@ -16522,6 +16695,11 @@
         <member name="P:MongoDB.Driver.MongoUrlBuilder.Journal">
             <summary>
             Gets or sets the Journal component of the write concern.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Driver.MongoUrlBuilder.LoadBalanced">
+            <summary>
+            Gets or sets whether load balanced mode is used.
             </summary>
         </member>
         <member name="P:MongoDB.Driver.MongoUrlBuilder.LocalThreshold">
@@ -20707,7 +20885,7 @@
             Creates a pop first operator.
             </summary>
             <param name="field">The field.</param>
-            <returns>A pop first operator.</returns>
+            <returns>A pop last operator.</returns>
         </member>
         <member name="M:MongoDB.Driver.UpdateDefinitionBuilder`1.Pull``1(MongoDB.Driver.FieldDefinition{`0},``0)">
             <summary>
@@ -21131,10 +21309,18 @@
             Gets the error information.
             </summary>
         </member>
+        <member name="P:MongoDB.Driver.WriteConcernError.ErrorLabels">
+            <summary>
+            Gets the error labels.
+            </summary>
+        </member>
         <member name="P:MongoDB.Driver.WriteConcernError.Message">
             <summary>
             Gets the error message.
             </summary>
+        </member>
+        <member name="M:MongoDB.Driver.WriteConcernError.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Driver.WriteError">
             <summary>
@@ -21160,6 +21346,9 @@
             <summary>
             Gets the error message.
             </summary>
+        </member>
+        <member name="M:MongoDB.Driver.WriteError.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Driver.WriteModel`1">
             <summary>
@@ -21211,6 +21400,28 @@
             <summary>
             A model to update many documents.
             </summary>
+        </member>
+        <member name="M:MongoDB.Shared.ConnectionStringConversions.GetComputedWaitQueueSize(System.Int32,System.Double)">
+            <summary>
+            Compute the wait queue size.
+            </summary>
+            <param name="effectiveMaxConnections">The max number of connections.</param>
+            <param name="multiplier">The multiplier.</param>
+            <returns>The computed wait queue size.</returns>
+        </member>
+        <member name="M:MongoDB.Shared.ConnectionStringConversions.GetEffectiveMaxConnections(System.Int32)">
+            <summary>
+            Gets the effective max connections.
+            </summary>
+            <param name="maxConnections">The max connections (0 means no max).</param>
+            <returns>The effective max connections.</returns>
+        </member>
+        <member name="M:MongoDB.Shared.ConnectionStringConversions.GetEffectiveMaxConnections(System.Nullable{System.Int32})">
+            <summary>
+            Gets the effective max connections.
+            </summary>
+            <param name="maxConnections">The max connections (0 means no max).</param>
+            <returns>The effective max connections (or null if maxConnections is null).</returns>
         </member>
         <member name="M:MongoDB.Shared.SecureStringHelper.ToInsecureString(System.Security.SecureString)">
             <summary>

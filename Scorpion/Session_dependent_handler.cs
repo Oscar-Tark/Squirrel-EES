@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Security;
@@ -63,6 +65,7 @@ namespace Scorpion
             Enginefunctions ef__ = new Enginefunctions();
             string command = ef__.replace_fakes(ef__.replace_telnet(s_data));
             HANDLE.readr.access_library(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
+            e.TcpClient.Client.Disconnect(true);
             ef__ = null;
             return;
         }
@@ -71,22 +74,44 @@ namespace Scorpion
         {
             //Add RSA support
             //Removes delimiter 0x13 and executes
+            /*
+            {&scorpion}{&app}{&/app}{&page}{&/page}{&/scorpion_end}
+            */
             Enginefunctions ef__ = new Enginefunctions();
             string command = ef__.replace_fakes(ef__.replace_telnet(e.MessageString));
-            command = ef__.replace_phpapi(command);
-            if (e.MessageString.Contains("GET /"))
+            HANDLE.sclog.log("Network command: " + command);
+            Dictionary<string, string> processed = ef__.replace_phpapi(command);
+
+            try
             {
-                //Not getting according to seesion
-                e.ReplyLine("HTTP / 1.1 200 OK\n\n" + (string)HANDLE.readr.lib_SCR.var_get(ref command));
-                e.TcpClient.Client.Disconnect(true);
-                return;
+                if (processed != null)
+                {
+                    if (e.MessageString.Contains("GET /"))
+                    {
+                        //Not getting according to seesion
+                        HANDLE.sclog.log("Executing query for [DATABASE: " + processed["db"] + "], [TAG: " + processed["tag"] + "], [SUBTAG: " + processed["subtag"] + "]");
+                        //Console.WriteLine("Executing query for [DATABASE: {0}], [TAG: {1}], [SUBTAG: {2}]", processed["db"], processed["tag"], processed["subtag"]);
+                        ArrayList data = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
+                        if(data.Count > 0)
+                            e.ReplyLine("HTTP / 1.1 200 OK\n\n" + data[0]);
+                        else
+                            e.ReplyLine("HTTP / 1.1 404 NOT FOUND\n\nNOT FOUND");
+                        e.TcpClient.Client.Disconnect(true);
+                        return;
+                    }
+                    command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
+                    string[] commands = command.Split(new char[] { '\n' });
+                    foreach (string s_dat in commands)
+                        HANDLE.readr.access_library(s_dat);
+                    e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
+                }
+                else
+                    e.ReplyLine("HTTP / 1.1 500 INTERNAL SERVER ERROR\n\nINTERNAL SERVER ERROR");
             }
-            command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
-            string[] commands = command.Split(new char[] { '\n' });
-            foreach (string s_dat in commands)
-                HANDLE.readr.access_library(s_dat);
-            e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
-            e.TcpClient.Client.Disconnect(true);
+            finally
+            {
+                e.TcpClient.Client.Disconnect(true);
+            }
             ef__ = null;
             return;
         }

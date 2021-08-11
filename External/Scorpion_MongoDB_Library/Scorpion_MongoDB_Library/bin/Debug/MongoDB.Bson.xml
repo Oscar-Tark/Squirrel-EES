@@ -200,6 +200,13 @@
             Converts a DateTime to number of milliseconds since Unix epoch.
             </summary>
             <param name="dateTime">A DateTime.</param>
+            <returns>Number of milliseconds since Unix epoch.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.BsonUtils.ToSecondsSinceEpoch(System.DateTime)">
+            <summary>
+            Converts a DateTime to number of seconds since Unix epoch.
+            </summary>
+            <param name="dateTime">A DateTime.</param>
             <returns>Number of seconds since Unix epoch.</returns>
         </member>
         <member name="M:MongoDB.Bson.BsonUtils.ToUniversalTime(System.DateTime)">
@@ -2252,7 +2259,7 @@
             <param name="utf8">The element name.</param>
             <param name="node">
             When this method returns, contains the node associated with the specified element name, if the key is found;
-            otherwise, null. This parameter is passed unitialized.
+            otherwise, null. This parameter is passed uninitialized.
             </param>
             <returns>True if the node was found; otherwise, false.</returns>
         </member>
@@ -2275,7 +2282,7 @@
             <param name="utf8">The element name.</param>
             <param name="value">
             When this method returns, contains the value associated with the specified element name, if the key is found;
-            otherwise, the default value for the type of the value parameter. This parameter is passed unitialized.
+            otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
             </param>
             <returns>True if the value was found; otherwise, false.</returns>
         </member>
@@ -2286,7 +2293,7 @@
             <param name="elementName">The element name.</param>
             <param name="value">
             When this method returns, contains the value associated with the specified element name, if the key is found;
-            otherwise, the default value for the type of the value parameter. This parameter is passed unitialized.
+            otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
             </param>
             <returns>True if the value was found; otherwise, false.</returns>
         </member>
@@ -2991,6 +2998,11 @@
         </member>
         <member name="M:MongoDB.Bson.IO.ElementAppendingBsonWriter.WriteStartDocument">
             <inheritdoc />
+        </member>
+        <member name="T:MongoDB.Bson.IO.EncodingHelper">
+            <summary>
+            Represents a class that has some helper methods for <see cref="T:System.Text.Encoding"/>.
+            </summary>
         </member>
         <member name="T:MongoDB.Bson.IO.IBsonChunk">
             <summary>
@@ -5362,6 +5374,15 @@
         </member>
         <member name="M:MongoDB.Bson.IO.SingleChunkBuffer.SetBytes(System.Int32,System.Byte[],System.Int32,System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.IO.ThreadStaticBuffer">
+            <summary>
+            Represents a class that provides reusable buffer per thread.
+            Use this technique ONLY when:
+                1. Buffer is not shared across multiple threads.
+                2. No nested methods invocations use the same buffer.
+            Advised to limit the usage scope to a single method.
+            </summary>
         </member>
         <member name="T:MongoDB.Bson.IO.TrieNameDecoder`1">
             <summary>
@@ -13727,10 +13748,10 @@
         </member>
         <member name="M:MongoDB.Bson.Serialization.BsonClassMap`1.MapProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
-            Creates a member map for the Id property and adds it to the class map.
+            Creates a member map for the property and adds it to the class map.
             </summary>
             <typeparam name="TMember">The member type.</typeparam>
-            <param name="propertyLambda">A lambda expression specifying the Id property.</param>
+            <param name="propertyLambda">A lambda expression specifying the property.</param>
             <returns>The member map.</returns>
         </member>
         <member name="M:MongoDB.Bson.Serialization.BsonClassMap`1.UnmapField``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
@@ -14653,6 +14674,7 @@
         <member name="M:MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(System.Type)">
             <summary>
             Gets the serializer for the specified <paramref name="type" />.
+            If none is already registered, the serialization providers will be used to create a serializer and it will be automatically registered.
             </summary>
             <param name="type">The type.</param>
             <returns>
@@ -14662,6 +14684,7 @@
         <member name="M:MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer``1">
             <summary>
             Gets the serializer for the specified <typeparamref name="T" />.
+            If none is already registered, the serialization providers will be used to create a serializer and it will be automatically registered.
             </summary>
             <typeparam name="T">The value type of the serializer.</typeparam>
             <returns>
@@ -14677,7 +14700,7 @@
         </member>
         <member name="M:MongoDB.Bson.Serialization.BsonSerializerRegistry.RegisterSerializationProvider(MongoDB.Bson.Serialization.IBsonSerializationProvider)">
             <summary>
-            Registers the serialization provider. This behaves like a stack, so the 
+            Registers the serialization provider. This behaves like a stack, so the
             last provider registered is the first provider consulted.
             </summary>
             <param name="serializationProvider">The serialization provider.</param>
