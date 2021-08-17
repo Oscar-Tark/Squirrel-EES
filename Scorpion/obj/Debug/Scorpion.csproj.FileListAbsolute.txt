@@ -1028,6 +1028,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/scorpion.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/scorpion.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/AtkSharp.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/BCrypt.Net-Next.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/BouncyCastle.Crypto.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/CairoSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Cauldron.Cryptography.dll
@@ -1067,9 +1068,9 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/RestSharp.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_Authenticator.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_Hasher_Library.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_MongoDB_Library.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_RSA.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_WEBPAGES.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SecurityDriven.Inferno.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SharpCompress.dll
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/SimpleTCP.dll
@@ -1101,7 +1102,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_Hasher_Library.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_MongoDB_Library.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_RSA.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_WEBPAGES.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.pdb
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/EntityFramework.SqlServer.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Newtonsoft.Json.xml
@@ -1144,6 +1145,7 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/System.Security.AccessControl.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Win32.Registry.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Microsoft.Extensions.Logging.Abstractions.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/BCrypt.Net-Next.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Bson.xml
 /home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/MongoDB.Driver.Core.xml
@@ -1155,5 +1157,3 @@ C:/Users/oscar/source/repos/Scorpion-.NET/Scorpion/obj/Debug/Scorpion IEE core.p
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/Scorpion.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/scorpion.exe
 /home/ferret/GIT/Scorpion-IEE/Scorpion/obj/Debug/scorpion.pdb
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.dll
-/home/ferret/GIT/Scorpion-IEE/Scorpion/bin/Debug/Scorpion_LOG.pdb

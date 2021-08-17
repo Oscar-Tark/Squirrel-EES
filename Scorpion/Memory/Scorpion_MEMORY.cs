@@ -191,7 +191,7 @@ namespace Scorpion
             //Allows us to get pin by going through mmsec
             Do_on.mmsec.encrypt(ref ref_);
 
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }

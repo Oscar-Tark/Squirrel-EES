@@ -272,6 +272,9 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="BCrypt.Net-Next">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.2\lib\net48\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
@@ -406,10 +409,6 @@
     <ProjectReference Include="..\External\Scorpion_RSA\Scorpion_RSA\Scorpion_RSA.csproj">
       <Project>{52639D43-957C-466E-BFCA-AB80FD57B601}</Project>
       <Name>Scorpion_RSA</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\External\Scorpion_WEBPAGES\Scorpion_WEBPAGES\Scorpion_WEBPAGES.csproj">
-      <Project>{B16DC295-F4B0-48B6-91F4-E7E73837E413}</Project>
-      <Name>Scorpion_WEBPAGES</Name>
     </ProjectReference>
     <ProjectReference Include="..\External\Scorpion_LOG\Scorpion_LOG\Scorpion_LOG.csproj">
       <Project>{677BFEAE-0D28-4699-9ACA-01FE3BF83F7A}</Project>

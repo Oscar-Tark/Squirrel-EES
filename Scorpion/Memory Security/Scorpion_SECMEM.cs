@@ -90,16 +90,8 @@ namespace Scorpion.Memory_Security
         }
 
         private string uname = null;
-        private string password = null;
+        private SecureString password = null;
         private SecureString password_secured = null;
-        private byte[] pin_cde_hx = new byte[32];
-        private byte[] pin_iv = new byte[16];
-        private byte pin_cde = 0x00;
-
-        public byte get_pin()
-        {
-            return pin_cde;
-        }
 
         public void set_uname(ref string username)
         {
@@ -110,6 +102,11 @@ namespace Scorpion.Memory_Security
         public string get_uname()
         {
             return uname;
+        }
+
+        public SecureString get_pwd()
+        {
+            return password;
         }
 
         //AUTHENTICATE USER FOR EXECUTION OF A FUNCTION, DEFAULT = NO PERMISSION
@@ -129,44 +126,10 @@ namespace Scorpion.Memory_Security
         }
 
         //make private
-        public void set_pass(ref string pass, ref byte[] pin)
+        public void set_pass(SecureString pass)
         {
-            bool success = true;
             password = pass;
-            //CREATE MAXED OUT PIN CODE OD ONE BYTE TO USE AS A SEED
-            do
-            {
-                try
-                {
-                    for (int i = 0; i <= 3; i++)
-                    {
-                        pin_cde_hx[i] = pin[i];
-                        pin_cde += pin_cde_hx[i];
-                    }
-
-                    //SCRAMBLE
-                    Random rnd = new Random();
-                    int seed = rnd.Next(1, pin_cde);
-                    for (short i = 0; i <= 31; i++)
-                    {
-                        if (i > 0)
-                            pin_cde_hx[i] = (byte)((pin_cde_hx[i - 1] / Convert.ToByte(password[rnd.Next(0, 4)]) + Convert.ToByte(rnd.Next(0, 12))) * (seed / 10));
-                        else
-                            pin_cde_hx[i] = (byte)(pin_cde + Convert.ToByte(rnd.Next(0, 4)));
-
-                        if (i < 16)
-                            pin_iv[i] = (byte)(((pin_cde_hx[i] + Convert.ToByte(i)) / Convert.ToByte(password[0])) + rnd.Next(0, 12));
-                    }
-
-                    Do_on.crypto.AES_KEY(pin_cde_hx, pin_iv);
-                    Do_on.write_to_cui("\n\n*************************************************************************************************************************\n[Notice] Cryptographic key generated: You may use the 'encrypt' and 'decrypt' functions in order to safeguard variables.\nSaving variables to a database will require you to use the same Passcode and pin in order to decrypt them\n*************************************************************************************************************************");
-                    success = true;
-                }
-                catch { Do_on.write_to_cui("\n\n***********************************************\nArithmetic error: regenerating crypto key\n***********************************************"); }
-            }
-            while (success == false);
-            password_secured = set_secure(ref pass);
-            pass = ""; password = "";
+            password_secured = password;
             return;
         }
 
@@ -179,7 +142,7 @@ namespace Scorpion.Memory_Security
         public void encrypt(ref string Reference)
         {
             //::*ref, var
-            byte[] b_e = Do_on.crypto.AES_ENCRYPT((string)Reference, (string)Do_on.readr.lib_SCR.var_get(ref Reference), pin_cde_hx, pin_iv);
+            byte[] b_e = Do_on.crypto.AES_ENCRYPT(Reference, Do_on.readr.lib_SCR.var_get(ref Reference), Cauldron.ExtensionsSecureString.GetBytes(password_secured));
             var_set_encrypted(Reference, b_e);
             return;
         }
@@ -187,7 +150,7 @@ namespace Scorpion.Memory_Security
         public void decrypt(ref string Reference)
         {
             //::*ref
-            string s_d = Do_on.crypto.AES_DECRYPT(Reference, var_get_encrypted(ref Reference), pin_cde_hx, pin_iv);
+            object s_d = Do_on.crypto.AES_DECRYPT(Reference, var_get_encrypted(ref Reference), Cauldron.ExtensionsSecureString.GetBytes(password_secured));
             Do_on.readr.lib_SCR.varset("", new ArrayList() { Reference, s_d});
             return;
         }
@@ -228,9 +191,5 @@ namespace Scorpion.Memory_Security
                 Marshal.ZeroFreeGlobalAllocUnicode(pointer);
             }
         }
-    }
-
-    public class SecureArrayVar
-    {
     }
 }

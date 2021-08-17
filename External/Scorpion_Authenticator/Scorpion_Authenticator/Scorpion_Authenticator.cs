@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Security;
 using System.Security.Principal;
 using Scorpion_Hasher_Library;
-using System;
-using System.Reflection;
 
 namespace Scorpion_Authenticator
 {
@@ -22,9 +23,8 @@ namespace Scorpion_Authenticator
             return;
         }
 
-        public bool authenticate(ref string User, ref string Passcode)
+        public bool authenticate(ref string User, SecureString Passcode)
         {
-            Scorpion_Hasher sch = new Scorpion_Hasher();
             string[] elements;
             string[] sep = { "@@@~" };
             if (Config_file_content.Length == 0 || Config_file_content[0] == "")
@@ -34,7 +34,7 @@ namespace Scorpion_Authenticator
             {
                 elements = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
                 if (elements[0] == User)
-                    return sch.verify(Passcode, elements[1]);
+                    return new Scorpion_Hasher().Bverify(Passcode, elements[1]);
             }
             return false;
         }
@@ -44,32 +44,11 @@ namespace Scorpion_Authenticator
             Console.Write("New username >> ");
             string uname = Console.ReadLine();
             Console.Write("New password >> ");
-            string pwd = Console.ReadLine();
-
-            bool pwd_len_ok = false;
-            while (!pwd_len_ok)
-            {
-                if (pwd.Length < 10)
-                {
-                    Console.WriteLine("The password you have entered is too short. Make sure it is atleast {0} characters long:", 10);
-                    Console.Write("Re-enter a valid new password >> ");
-                    pwd = Console.ReadLine();
-                }
-                else
-                    break;
-            }
-
+            SecureString pwd = read_password();
             write_config(ref uname, ref pwd);
             ExecutionPersmissions ep = new ExecutionPersmissions(ref uname);
             ep.create(ref uname, scorpion_functions);
-            return;
-        }
-
-        public void delete_user(ref string user, ref string pwd)
-        {
-            Console.WriteLine("Deleting user...");
-            if (authenticate(ref user, ref pwd))
-                delete_from_config(ref user);
+            read_config();
             return;
         }
 
@@ -116,12 +95,12 @@ namespace Scorpion_Authenticator
             return;
         }
 
-        private void write_config(ref string uname, ref string pwd)
+        private void write_config(ref string uname, ref SecureString pwd)
         {
             Scorpion_Hasher sch = new Scorpion_Hasher();
             StreamWriter sr = File.AppendText(full_path);
             Console.WriteLine("Creating user...");
-            sr.WriteLine("@@@~" + uname + "@@@~" + sch.hash(pwd) + "@@@~");
+            sr.WriteLine("@@@~" + uname + "@@@~" + sch.Bhash(pwd) + "@@@~");
             sr.Flush();
             sr.Close();
             return;
@@ -141,6 +120,20 @@ namespace Scorpion_Authenticator
                 ndx++;
             }
             return;
+        }
+
+        public SecureString read_password()
+        {
+            ConsoleKeyInfo cki;
+            SecureString s_pwd = new SecureString();
+            do
+            {
+                cki = Console.ReadKey(true);
+                if (cki.Key != ConsoleKey.Enter)
+                    s_pwd.AppendChar(cki.KeyChar);
+            }
+            while (cki.Key != ConsoleKey.Enter);
+            return s_pwd;
         }
     }
 

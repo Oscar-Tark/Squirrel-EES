@@ -18,6 +18,8 @@
 using System;
 using System.Reflection;
 using System.Threading;
+using System.IO;
+using System.Security;
 
 namespace Scorpion
 {
@@ -37,7 +39,6 @@ namespace Scorpion
             mem = new Memory();
             types = new Types(this);
             sdh = new SESSION_DEPENDENT_HANDLERS(this);
-            wbsp = new Scorpion_WEBPAGES.Scorpion_WEBPAGES("", new string[] { }, 208);
             sclog = new Scorpion_LOG.Scorpion_LOG(types.main_user_path);
             return;
         }
@@ -52,21 +53,40 @@ namespace Scorpion
         public Memory mem;
         public Types types;
         public SESSION_DEPENDENT_HANDLERS sdh;
-        public Scorpion_WEBPAGES.Scorpion_WEBPAGES wbsp;
         public Scorpion_LOG.Scorpion_LOG sclog;
+
+        private bool check_directory()
+        {
+            //Check if the main Scorpion directory exists if not create it
+            if (!Directory.Exists(types.main_user_path))
+                Directory.CreateDirectory(types.main_user_path);
+
+            //Check if the Directory was created if not return false, if yes return true
+            if (!Directory.Exists(types.main_user_path))
+                return false;
+            return true;
+        }
 
         public Scorp(int instance_descriptor)
         {
+            //Assign the session instance int:identifier for this instance
             instance = instance_descriptor;
+
+            //Initialization functions
             start_classes();
-            string passcode = null;
+            if (!check_directory())
+            {
+                Console.WriteLine("Could create the main user folder for Scorpion at {0}", types.main_user_path);
+                return;
+            }
+
+            SecureString ss_passcode = new SecureString();
             string uname = null;
-            ConsoleKeyInfo key_rd;
             byte[] pin = new byte[4];
-            int pin_up = 0;
             int tries = 1;
             const int max_tries = 2;
             types.load_system_vars();
+            Scorpion_Authenticator.Authenticator auth = new Scorpion_Authenticator.Authenticator();
 
             //Read passcode and pin
             while (true)
@@ -76,30 +96,12 @@ namespace Scorpion
                 Console.Write("Username >> ");
                 uname = Console.ReadLine();
                 Console.Write("Password >> ");
-                passcode = Console.ReadLine();
+                ss_passcode = auth.read_password();
 
-                if (pin_up != 4)
-                {
-                    write_to_cui("\n4 character pin [Only numbers] (NOTE: This pin is saved only for this session. Saving encrypted variables to files may render them not recoverable): ");
-                    Console.Write("Instance pin >> ");
-                    while (pin_up <= 3)
-                    {
-                        key_rd = Console.ReadKey();
-                        if (char.IsDigit(key_rd.KeyChar))
-                        {
-                            pin[pin_up] = (byte)key_rd.KeyChar;
-                            pin_up++;
-                        }
-                        else
-                            write_warning("\nEntered key '" + key_rd.KeyChar + "' is not a number and will be ignored");
-                    }
-                }
-
-                Scorpion_Authenticator.Authenticator auth = new Scorpion_Authenticator.Authenticator();
-                if (auth.authenticate(ref uname, ref passcode))
+                if (auth.authenticate(ref uname, ss_passcode))
                 {
                     mmsec.set_uname(ref uname);
-                    mmsec.set_pass(ref passcode, ref pin);
+                    mmsec.set_pass(ss_passcode);
                     break;
                 }
                 else
