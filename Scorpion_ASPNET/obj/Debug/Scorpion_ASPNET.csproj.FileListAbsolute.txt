@@ -1,0 +1,15 @@
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/Scorpion_ASPNET.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/Scorpion_ASPNET.pdb
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/Newtonsoft.Json.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Net.Http.Formatting.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Web.Http.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Web.Http.WebHost.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/Newtonsoft.Json.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Net.Http.Formatting.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Web.Http.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/bin/System.Web.Http.WebHost.xml
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/obj/Debug/Scorpion_ASPNET.csprojAssemblyReference.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/obj/Debug/Scorpion_ASPNET.csproj.CoreCompileInputs.cache
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/obj/Debug/Scorpion_ASPNET.csproj.CopyComplete
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/obj/Debug/Scorpion_ASPNET.dll
+/home/ferret/GIT/Scorpion-IEE/Scorpion_ASPNET/obj/Debug/Scorpion_ASPNET.pdb

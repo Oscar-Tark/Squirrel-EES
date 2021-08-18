@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Main/Scorpion_MAIN.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion_ASPNET/App_Start/WebApiConfig.cs">
     <Files>
-      <File FileName="Scorpion/Main/Scorpion_MAIN.cs" Line="5" Column="67" />
+      <File FileName="Scorpion_ASPNET/App_Start/WebApiConfig.cs" Line="22" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Scorpion IEE" expanded="True" selected="True" />
+          <Node name="Scorpion IEE" expanded="True" />
         </State>
       </Pad>
     </Pads>
