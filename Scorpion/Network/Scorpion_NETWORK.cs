@@ -19,8 +19,6 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Net;
-using System.Net.Sockets;
-using System.IO;
 
 namespace Scorpion
 {
@@ -42,25 +40,14 @@ namespace Scorpion
         //UNENCRYPTED SERVER
         public void serverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //                ![DEBUG]
-            //::*name, *port, *rsaprivatekeyfilepath, *rsapublickeyfilepath
+            //::*name, *port, *rsaprivatekeyfilepath, *rsapublickeyfilepath, *api
             //No rsa then pass *false for rsa parameters
             string name = (string)var_get(objects[0]);
             int port = Convert.ToInt32(var_get(objects[1]));
             string RSA_private_path = (string)var_get(objects[2]);
             string RSA_public_path = (string)var_get(objects[3]);
 
-            if (RSA_public_path != Do_on.types.S_No && RSA_public_path != Do_on.types.S_NULL && RSA_private_path != Do_on.types.S_NULL && RSA_private_path != Do_on.types.S_No)
-            {
-                if (File.Exists(RSA_private_path) && File.Exists(RSA_public_path))
-                    Do_on.sdh.add_tcpserver(name, port, RSA_private_path, RSA_public_path);
-            }
-            else
-            {
-                Do_on.sdh.add_tcpserver(name, port, null, null);
-                Do_on.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
-            }
-
+            Do_on.sdh.add_tcpserver(name, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
             write_to_console("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);

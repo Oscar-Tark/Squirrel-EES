@@ -38,8 +38,8 @@ namespace Scorpion
             //This function is not used internally from class.Librarian but rather from an external class such as class.Scorp. This helps thread execution
             //*****
             //The class.Scorp handle is checked to see weather it has an instance associeted to it
-            if(Handle != null)
-                Do_on = Handle;
+            Do_on = Handle == null ? null : Handle;
+
             //Start thread for the single line of interpretation code
             try
             {

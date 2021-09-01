@@ -77,6 +77,7 @@ namespace Scorpion_MDB
             ArrayList al = new ArrayList (3) { s_data, s_tag, s_subtag };
             byte[] bte = HANDLE.crypto.To_Byte(al);
             File.WriteAllBytes(path, bte);
+            //File.WriteAllText(path, HANDLE.crypto.Array_To_String(al));
             bte = null;
             path = null;
             return;

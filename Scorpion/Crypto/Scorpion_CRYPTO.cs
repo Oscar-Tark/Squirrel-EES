@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 namespace Scorpion.Crypto
 {
@@ -30,6 +31,24 @@ namespace Scorpion.Crypto
         public Cryptographer(Scorp fm1)
         {
             Do_on = fm1;
+        }
+
+        public string Array_To_String(System.Collections.ArrayList ar)
+        {
+            StringBuilder sb = new StringBuilder();
+            System.Xml.XmlWriterSettings st = new System.Xml.XmlWriterSettings();
+            st.OmitXmlDeclaration = true;
+            st.Indent = false;
+            System.Xml.XmlWriter w = System.Xml.XmlWriter.Create(sb, st);
+            System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(ar.GetType());
+            s.Serialize(w, ar);
+            w.Close();
+            return sb.ToString();
+        }
+
+        public ArrayList String_To_Array(string str)
+        {
+            return null;
         }
 
         public byte[] To_Byte(object obj)

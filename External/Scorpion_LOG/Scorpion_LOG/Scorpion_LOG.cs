@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 
 namespace Scorpion_LOG
 {
@@ -23,7 +24,14 @@ namespace Scorpion_LOG
 
         public void log(string message)
         {
-            fs_log = new FileStream(log_path, FileMode.Append, FileAccess.Write);
+            Thread ths = new Thread(new ParameterizedThreadStart(write_log));
+            ths.Start(message);
+            return;
+        }
+
+        private void write_log(object message)
+        {
+            fs_log = new FileStream(log_path, FileMode.Append, FileAccess.Write, FileShare.Write);
             sr_log = new StreamWriter(fs_log);
 
             sr_log.WriteLine("LOG >> [{0}]-[TIME:{1}]", message, DateTime.UtcNow);

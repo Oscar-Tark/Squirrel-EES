@@ -1,6 +1,6 @@
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/bin/Debug/Scorpion_LOG.dll
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/bin/Debug/Scorpion_LOG.pdb
+/home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/obj/Debug/Scorpion_LOG.csprojAssemblyReference.cache
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/obj/Debug/Scorpion_LOG.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/obj/Debug/Scorpion_LOG.dll
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/obj/Debug/Scorpion_LOG.pdb
-/home/ferret/GIT/Scorpion-IEE/External/Scorpion_LOG/Scorpion_LOG/obj/Debug/Scorpion_LOG.csprojAssemblyReference.cache

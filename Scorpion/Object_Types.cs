@@ -54,26 +54,5 @@ namespace Scorpion
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
             return;
         }
-
-        //Conversions
-        public bool Convert_String_To_Bool(string YN)
-        {
-            if (YN.ToLower() == "yes" || YN.ToLower() == "true")
-                return true;
-            //CLEAN
-            YN = null;
-            return false;
-        }
-
-        public string Convert_Bool_To_String(bool bool_)
-        {
-            switch(bool_)
-            {
-                case true:
-                    return S_Yes;
-                default:
-                    return S_No;
-            }
-        }
     }
 }

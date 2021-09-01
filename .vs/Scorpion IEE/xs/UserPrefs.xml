@@ -1,13 +1,24 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion_ASPNET/App_Start/WebApiConfig.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Database/Scorpion_MicroDB_SYS.cs">
     <Files>
-      <File FileName="Scorpion_ASPNET/App_Start/WebApiConfig.cs" Line="22" Column="1" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="1" Column="1" />
+      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="51" Column="25" />
+      <File FileName="Scorpion/Database/Scorpion_MicroDB_SYS.cs" Line="110" Column="39" />
+      <File FileName="Scorpion/Database/Scorpion_MicroDB.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Scorpion IEE" expanded="True" />
+          <Node name="Scorpion IEE" expanded="True">
+            <Node name="Scorpion" expanded="True">
+              <Node name="Crypto" expanded="True" />
+              <Node name="Database" expanded="True">
+                <Node name="Scorpion_MicroDB_SYS.cs" selected="True" />
+              </Node>
+              <Node name="Network" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

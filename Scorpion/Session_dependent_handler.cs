@@ -26,16 +26,12 @@ namespace Scorpion
                 {
                     HANDLE.mem.AL_TCP.Add(sctl);
                     HANDLE.mem.AL_TCP_REF.Add(reference);
-                    if (RSA_private_path == null && RSA_public_path == null)
-                    {
-                        HANDLE.mem.add_tcp_key_path(null, null);
-                        sctl.DataReceived += Sctl_DataReceived_noencrypt;
-                    }
-                    else
-                    {
-                        HANDLE.mem.add_tcp_key_path(RSA_private_path, RSA_public_path);
-                        sctl.DataReceived += Sctl_DataReceived;
-                    }
+                    HANDLE.mem.add_tcp_key_path(RSA_private_path, RSA_public_path);
+
+                    if(RSA_public_path == null || RSA_private_path == null)
+                        HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
+
+                    sctl.DataReceived += Sctl_DataReceived;
                     sctl.Start(port, true);
                 }
             return;
@@ -56,63 +52,69 @@ namespace Scorpion
 
         public void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
-            //get private key and decrypt
-            int server_index = HANDLE.mem.AL_TCP.IndexOf(sender);
-            byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0]));
-            string s_data = HANDLE.crypto.To_String(data);
-
-            //Removes delimiter 0x13 and executes
-            Enginefunctions ef__ = new Enginefunctions();
-            string command = ef__.replace_fakes(ef__.replace_telnet(s_data));
-            HANDLE.readr.access_library(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
-            e.TcpClient.Client.Disconnect(true);
-            ef__ = null;
-            return;
-        }
-
-        void Sctl_DataReceived_noencrypt(object sender, SimpleTCP.Message e)
-        {
             //Add RSA support
             //Removes delimiter 0x13 and executes
             /*
-            {&scorpion}{&app}{&/app}{&page}{&/page}{&/scorpion_end}
+            {&scorpion}{&type}type{&/type}{&database}db{&/database}{&tag}tag{&/tag}{&subtag}subtag{&/subtag}{&/scorpion}
             */
             Enginefunctions ef__ = new Enginefunctions();
-            string command = ef__.replace_fakes(ef__.replace_telnet(e.MessageString));
-            HANDLE.sclog.log("Network command: " + command);
-            Dictionary<string, string> processed = ef__.replace_phpapi(command);
+            NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
+
+            int server_index = HANDLE.mem.AL_TCP.IndexOf(sender);
+            byte[] data = e.Data;
+
+            //Check if RSA
+            if (HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
+                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0]));
+
+            //Btyte->string, Parse string
+            string s_data = HANDLE.crypto.To_String(data);
+            string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
+            //HANDLE.sclog.log("Network command: " + command);
+            Dictionary<string, string> processed = nef__.replace_api(command);
+            string reply = null;
 
             try
             {
                 if (processed != null)
                 {
-                    if (e.MessageString.Contains("GET /"))
+                    if (processed["type"] == nef__.api_requests["get"])
                     {
                         //Not getting according to seesion
-                        HANDLE.sclog.log("Executing query for [DATABASE: " + processed["db"] + "], [TAG: " + processed["tag"] + "], [SUBTAG: " + processed["subtag"] + "]");
-                        //Console.WriteLine("Executing query for [DATABASE: {0}], [TAG: {1}], [SUBTAG: {2}]", processed["db"], processed["tag"], processed["subtag"]);
-                        ArrayList data = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
-                        if(data.Count > 0)
-                            e.ReplyLine("HTTP / 1.1 200 OK\n\n" + data[0]);
+                        //HANDLE.sclog.log("Executing query for [DATABASE: " + processed["db"] + "], [TAG: " + processed["tag"] + "], [SUBTAG: " + processed["subtag"] + "]");
+                        ArrayList query_result = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
+                        if (query_result.Count > 0)
+                            reply = nef__.build_api(Convert.ToString(query_result[0]), false);
                         else
-                            e.ReplyLine("HTTP / 1.1 404 NOT FOUND\n\nNOT FOUND");
-                        e.TcpClient.Client.Disconnect(true);
-                        return;
+                            reply = nef__.build_api("Query resulted in 0 elements returned", true);
                     }
-                    command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
-                    string[] commands = command.Split(new char[] { '\n' });
-                    foreach (string s_dat in commands)
-                        HANDLE.readr.access_library(s_dat);
-                    e.ReplyLine("HTTP / 1.1 200 OK\n\n COMMANDS EXECUTED [Commands can fail on networked connections without warning!]");
+                    else if (processed["type"] == nef__.api_requests["set"])
+                    {
+                        command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
+                        string[] commands = command.Split(new char[] { '\n' });
+                        foreach (string s_dat in commands)
+                            HANDLE.readr.access_library(s_dat);
+                        reply = nef__.build_api("Command executed", false);
+                    }
                 }
                 else
-                    e.ReplyLine("HTTP / 1.1 500 INTERNAL SERVER ERROR\n\nINTERNAL SERVER ERROR");
+                    reply = nef__.build_api("Command error. Incorrect syntax", true);
+
+                //RSA then encrypt and send
+                if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
+                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0])));
+
+                //No RSA then just send
+                if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] == null)
+                    e.Reply(reply);
             }
             finally
             {
                 e.TcpClient.Client.Disconnect(true);
             }
+
             ef__ = null;
+            nef__ = null;
             return;
         }
 
@@ -177,10 +179,12 @@ namespace Scorpion
             string s_data = HANDLE.crypto.To_String(data);
 
             //Removes delimiter 0x13 and executes
+            NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
             Enginefunctions ef__ = new Enginefunctions();
-            string command = ef__.replace_fakes(ef__.replace_telnet(s_data));
+            string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
             HANDLE.readr.access_library(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
             ef__ = null;
+            nef__ = null;
             return;
         }
     }
