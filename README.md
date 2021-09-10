@@ -79,9 +79,9 @@ Scorpion allows you to run multiple functions in one line. Unlike other language
 
 **Running scripts:**
 
-You may run external files as scripts which contain various scorpion function calls delimited by newlines. You may call a script by sending a path argument to the function 'runscript', it is reccomended to not use an extension for filenames:
+You may run external files as scripts which contain various scorpion function calls delimited by newlines. You may call a script by sending a path argument to the function 'scriptrun', it is reccomended to not use an extension for filenames:
 
-`runscript::*'/home/user/myscript'`
+`scriptrun::*'/home/user/myscript'`
 
 You can also put other runscript calls inside of a script.
 
