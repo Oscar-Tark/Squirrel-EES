@@ -19,7 +19,7 @@ using System.Collections;
 using System.IO;
 using System.Security;
 
-//DEPRECIATED
+//DEPRECIATED will be replaced with a C version
 namespace Scorpion_MDB
 {
     public class Scorpion_Micro_DB
@@ -75,10 +75,7 @@ namespace Scorpion_MDB
             string sha_ = HANDLE.crypto.SHA_SS(s_seed);
             /*DATA  TAG */
             ArrayList al = new ArrayList (3) { s_data, s_tag, s_subtag };
-            byte[] bte = HANDLE.crypto.To_Byte(al);
-            File.WriteAllBytes(path, bte);
-            //File.WriteAllText(path, HANDLE.crypto.Array_To_String(al));
-            bte = null;
+            File.WriteAllText(path, HANDLE.crypto.Array_To_String(al));
             path = null;
             return;
         }
@@ -100,10 +97,12 @@ namespace Scorpion_MDB
         public void Load_DB(string path, string name)
         {
             //File.Decrypt(path);
-            byte[] b = File.ReadAllBytes(path);
+            //byte[] b = File.ReadAllBytes(path);
+            string xml = File.ReadAllText(path);
+
             //Get pwd as securestring
             SecureString scr = new SecureString();
-            object db_object = HANDLE.crypto.To_Object(b);
+            object db_object = HANDLE.crypto.String_To_Array(xml);
 
             if (!HANDLE.mem.AL_TBLE_REF.Contains(name) && !HANDLE.mem.AL_TBLE_PATH.Contains(path))
             {
@@ -123,8 +122,7 @@ namespace Scorpion_MDB
             //Save in segments of 0x3a each
             //File.Encrypt(path);
             int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
-            byte[] b = HANDLE.crypto.To_Byte(HANDLE.mem.AL_TBLE[ndx]);
-            File.WriteAllBytes((string)HANDLE.mem.AL_TBLE_PATH[ndx], b);
+            File.WriteAllText((string)HANDLE.mem.AL_TBLE_PATH[ndx], HANDLE.crypto.Array_To_String((ArrayList)HANDLE.mem.AL_TBLE[ndx]));
             name = null;
             pwd = null;
             return;

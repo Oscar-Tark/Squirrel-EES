@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Xml.Serialization;
 
 namespace Scorpion.Crypto
 {
@@ -33,24 +34,30 @@ namespace Scorpion.Crypto
             Do_on = fm1;
         }
 
-        public string Array_To_String(System.Collections.ArrayList ar)
+        public string Array_To_String(ArrayList obj)
         {
             StringBuilder sb = new StringBuilder();
             System.Xml.XmlWriterSettings st = new System.Xml.XmlWriterSettings();
             st.OmitXmlDeclaration = true;
             st.Indent = false;
             System.Xml.XmlWriter w = System.Xml.XmlWriter.Create(sb, st);
-            System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(ar.GetType());
-            s.Serialize(w, ar);
+            XmlSerializer s = new XmlSerializer(obj.GetType());
+            s.Serialize(w, obj);
             w.Close();
             return sb.ToString();
         }
 
-        public ArrayList String_To_Array(string str)
+        public ArrayList String_To_Array(string obj)
         {
-            return null;
+            XmlSerializer xml = new XmlSerializer(typeof(ArrayList));
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(obj));
+            ArrayList al_ret = (ArrayList)xml.Deserialize(ms);
+            ms.Flush();
+            ms.Close();
+            return al_ret;
         }
 
+        //DEPRECIATED - Remove and replace
         public byte[] To_Byte(object obj)
         {
             MemoryStream ms = new MemoryStream();
@@ -63,6 +70,7 @@ namespace Scorpion.Crypto
             return Encoding.Default.GetString(byt);
         }
 
+        //DEPRECIATED - Remove and replace
         public object To_Object(byte[] byt)
         {
             MemoryStream ms = new MemoryStream(byt);

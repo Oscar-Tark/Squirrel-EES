@@ -1,19 +1,24 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/Network/Scorpion_NETWORK.cs">
     <Files>
-      <File FileName="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs" Line="88" Column="6" />
+      <File FileName="External/Scorpion_RSA/Scorpion_RSA/Scorpion_RSA_main.cs" Line="81" Column="31" />
+      <File FileName="Scorpion/Database/Scorpion_MicroDB.cs" Line="100" Column="10" />
+      <File FileName="Scorpion/Database/Scorpion_MicroDB_SYS.cs" Line="78" Column="72" />
+      <File FileName="Scorpion/Crypto/Scorpion_CRYPTO.cs" Line="61" Column="26" />
+      <File FileName="Scorpion/Database/Scorpion_MONGO.cs" Line="1" Column="1" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="89" Column="61" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="References" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Scorpion_NETWORK.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Scorpion_RSA" expanded="True">
-              <Node name="Scorpion_RSA_main.cs" selected="True" />
-            </Node>
+            <Node name="Scorpion_RSA" expanded="True" />
           </Node>
         </State>
       </Pad>

@@ -24,4 +24,3 @@
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Hasher_Library/Scorpion_Hasher_Library/obj/Debug/Scorpion_Hasher_Library.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Hasher_Library/Scorpion_Hasher_Library/obj/Debug/Scorpion_Hasher_Library.dll
 /home/ferret/GIT/Scorpion-IEE/External/Scorpion_Hasher_Library/Scorpion_Hasher_Library/obj/Debug/Scorpion_Hasher_Library.pdb
-/home/ferret/GIT/Scorpion-IEE/External/Scorpion_Hasher_Library/Scorpion_Hasher_Library/obj/Debug/Scorpion_Hasher_Library.csprojAssemblyReference.cache
