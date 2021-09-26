@@ -545,12 +545,8 @@ namespace Scorpion
         //memory get
         public object var_get(ref string Block)
         {
-            //BUILD CACHE FUNCTIONS HERE
-            //
-            //
-
             object o = Block;
-            //IS OBJECT//IS BINARY//IS BIN
+            //IS OBJECT|IS BINARY|IS BIN
             if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture) && !((string)o).StartsWith("f\'", StringComparison.CurrentCulture))
             {
                 try
@@ -571,7 +567,7 @@ namespace Scorpion
                 o = var_cut_str_symbol(var_cut_symbol(ref Block));
 
                 //Replace escape sequences
-                o = ef__.replace_escape(ref Do_on, (string)o);
+                o = ef__.replaceEscape(ref Do_on, (string)o);
             }
             return o;
         }
@@ -734,6 +730,7 @@ namespace Scorpion
             //(*,*,*,*,...)
             try
             {
+                Reference = Enginefunctions.CleanEscape(ref Do_on, Reference);
                 lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
                             {
                                     if (Do_on.mem.AL_CURR_VAR_REF.Contains(Reference) == false)

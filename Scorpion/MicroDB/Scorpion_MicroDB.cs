@@ -83,6 +83,14 @@ namespace Scorpion
             return;
         }
 
+        public void dbappimport(ref string Scorp_Line_Exec, ref ArrayList objecs)
+        {
+            //::*dbname, *folder, *appname
+            //Imports a vue app into a MicroDB application
+
+
+        }
+
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             Do_on.write_to_cui("Loaded databases:\n-------------------------\n");

@@ -23,7 +23,6 @@ namespace Scorpion
 {
     public class Enginefunctions
     {
-
         public string[] execution_seperation(ref string Scorp)
         {
             //You can add multiple functions to an execution with the <<< or >>> symbols. >>> means execute rightwards <<< means execute leftwards
@@ -35,10 +34,10 @@ namespace Scorpion
             return commands;
         }
 
-        public string[] get_functions(ref string Scorp)
+        public string getFunction(ref string Scorp)
         {
             string[] delimiterChars = { "::" };
-            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+            return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries)[0];
         }
 
         public string[] get_return(ref string Scorp)
@@ -50,20 +49,35 @@ namespace Scorpion
         //OLD DEPRECIATE TO: replace_escape
         public string replace_fakes(string Scorp_Line)
         {
-            return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::");
+            return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::").Replace("{&u}", ",");
         }
 
+        //OLD DEPRECIATE TO: toEscape()
         public string create_fakes(string Scorp)
         {
             //return Scorp.Replace();
-            return Scorp.Replace("*", "{&v}").Replace("'", "{&q}").Replace(">>", "{&r}").Replace("<<", "{&l}").Replace("::", "{&c}");
+            return Scorp.Replace("*", "{&v}").Replace("'", "{&q}").Replace(">>", "{&r}").Replace("<<", "{&l}").Replace("::", "{&c}").Replace(",", "{&u}");
         }
 
-        public string replace_escape(ref Scorp HANDLE, string paramse)
+        public string replaceEscape(ref Scorp HANDLE, string paramse)
         {
             foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
                 paramse = paramse.Replace(esc_arr[0], esc_arr[1]);
             return paramse;
+        }
+
+        public string toEscape(ref Scorp HANDLE, string Scorp)
+        {
+            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+                Scorp = Scorp.Replace(esc_arr[1], esc_arr[0]);
+            return Scorp;
+        }
+
+        public static string CleanEscape(ref Scorp HANDLE, string Scorp)
+        {
+            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+                Scorp = Scorp.Replace(esc_arr[1], "");
+            return Scorp;
         }
 
         //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly

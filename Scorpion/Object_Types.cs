@@ -29,7 +29,7 @@ namespace Scorpion
         public readonly string main_user_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion";
 
         //Available Scorpion.EscapeSequences
-        public readonly string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" } };
+        public readonly string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" }, new string[] { "{&u}", "," } };
 
         //Available Scorpion.Types
         public readonly Type[] S_TYPES = { new ArrayList().GetType() };

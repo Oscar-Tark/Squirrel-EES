@@ -60,7 +60,7 @@ namespace Scorpion
             if (Scorp_Line_Exec.Trim() == "")
                 return;
 
-            string[] functions = null;
+            string function = null;
             sp.Start();
             try
             {
@@ -86,22 +86,25 @@ namespace Scorpion
                     if (final.Length > 1)
                         exec_ = final[1];
 
+                    //Remove all value based variables temporarily
+
+
                     //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
                     //Seperates all commands that may be in one function and makes them executable sequentially
-                    functions = ef__.get_functions(ref exec_);
+                    function = ef__.getFunction(ref exec_);
 
                     //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
                     object[] paramse = { exec_, cut_variables(ref exec_) };
 
                     //Check if the current user has the required permissions to run this function
-                    if (!Do_on.mmsec.authenticate_execution(ref functions[0]))
+                    if (!Do_on.mmsec.authenticate_execution(ref function))
                     {
                         Do_on.write_error("This user does not have enough privileges to execute this function");
                         sp.Stop();
                         return;
                     }
                     //Invoke the C# function and get a return value if any as an object
-                    object retfun = GetType().GetMethod(functions[0], BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
+                    object retfun = GetType().GetMethod(function, BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
                     //If there is a return value, process it and set it to a Scorpion variable
                     if (retfun != null)
@@ -113,7 +116,7 @@ namespace Scorpion
                     }
 
                     //Set used variables to null for GC
-                    functions = null;
+                    function = null;
                     var_dispose_internal(ref paramse);
                     paramse = null;
                     retfun = null;
@@ -122,7 +125,7 @@ namespace Scorpion
             catch (Exception erty)
             {
                 Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
-                showman(functions[0]);
+                showman(function);
             }
             //End the timer to count how long it took to run the specific line of code
             sp.Stop();
