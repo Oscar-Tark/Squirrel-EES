@@ -279,7 +279,6 @@
   <ItemGroup>
     <Compile Include="Cutter\Scorpion_CUTTER.cs" />
     <Compile Include="Scripts\Scorpion_SCRIPTS.cs" />
-    <Compile Include="Crypter.cs" />
     <Compile Include="Crypto\Scorpion_CRYPTO.cs" />
     <Compile Include="FormSerialisor.cs" />
     <Compile Include="Compiler\Scorpion_COMPILER.cs" />
@@ -343,6 +342,7 @@
     <Compile Include="Scorpion_cache.cs" />
     <Compile Include="MicroDB\Scorpion_MONGO.cs" />
     <Compile Include="MicroDB\Scorpion_MicroDB_Importer.cs" />
+    <Compile Include="HTTP\Scorpion_HTTP.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -393,6 +393,7 @@
     <Folder Include="Auth\" />
     <Folder Include="Resources\" />
     <Folder Include="Host\" />
+    <Folder Include="HTTP\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\External\Scorpion_Authenticator\Scorpion_Authenticator\Scorpion_Authenticator.csproj">

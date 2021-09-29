@@ -13,7 +13,7 @@ namespace Scorpion.MicroDB
         private const string logic_file = "logic.vue";
         private const string visuals_file = "visuals.vue";
 
-        public string[] importScripts(string data_base_name, string folder)
+        public static string[] importScripts(string data_base_name, string folder)
         {
             string[] file_contents = { null, null, null };
             if(Directory.Exists(folder))

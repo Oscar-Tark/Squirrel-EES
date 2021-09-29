@@ -83,12 +83,27 @@ namespace Scorpion
             return;
         }
 
-        public void dbappimport(ref string Scorp_Line_Exec, ref ArrayList objecs)
+        public void dbappimport(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*dbname, *folder, *appname
             //Imports a vue app into a MicroDB application
+            string dbname = (string)var_get(objects[0]);
+            string[] files = MicroDB.Scorpion_MicroDB_Importer.importScripts(dbname, (string)var_get(objects[1]));
 
+            if (files != null)
+            {
+                //Set to db
+                Do_on.vds.Data_setDB(dbname, files[0], (string)var_get(objects[2]), "structure");
+                Do_on.vds.Data_setDB(dbname, files[1], (string)var_get(objects[2]), "logic");
+                Do_on.vds.Data_setDB(dbname, files[2], (string)var_get(objects[2]), "visuals");
+            }
+            else
+                Do_on.write_error("There was an error importing your files to the database, please make sure you have included these files within the folder:\n\n> structure.vue\n> logic.vue\n> visuals.vue");
 
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref dbname);
+            return;
         }
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)

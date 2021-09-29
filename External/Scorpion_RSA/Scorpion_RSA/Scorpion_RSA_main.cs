@@ -16,7 +16,7 @@ namespace Scorpion_RSA
                 KeyPair kp = create_keypair();
                 save_publickey_tofile(kp.PublicKey, public_key_file);
                 save_privatekey_tofile(kp.PrivateKey, private_key_file);
-                Console.WriteLine("Private and public keys generated and saved (Never give your private key to anyone)");
+                Console.WriteLine("Private and public keys generated and saved (Never give you're private key to anyone)");
             }
             catch(Exception e)
             {
