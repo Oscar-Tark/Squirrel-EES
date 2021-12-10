@@ -20,6 +20,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Scorpion_MongoDB_Library
 {
@@ -36,7 +37,18 @@ namespace Scorpion_MongoDB_Library
             connectionstring = "mongodb://" + URL + ":" + PORT;
         }
 
-        public static string Mongogetall(string db_, string collection_)
+        public static ArrayList mongoList()
+        {
+            var dbClient = new MongoClient(connectionstring);
+            var dbList = dbClient.ListDatabases().ToList();
+
+            ArrayList al = new ArrayList();
+            foreach (var db in dbList)
+                al.Add(db);
+            return al;
+        }
+
+        public static ArrayList mongoGetAll(string db_, string collection_)
         {
             //Returns JSON
 
@@ -46,24 +58,31 @@ namespace Scorpion_MongoDB_Library
             var db = client.GetDatabase(db_);
             var collection = db.GetCollection<BsonDocument>(collection_);
 
+            ArrayList al = new ArrayList();
+
             using (IAsyncCursor<BsonDocument> cursor = collection.FindSync(new BsonDocument()))
             {
                 while (cursor.MoveNext())
                 {
                     IEnumerable<BsonDocument> batch = cursor.Current;
                     foreach (BsonDocument document in batch)
+                    {
+                        al.Add(document.ToJson());
                         JSON = JSON + document.ToJson();
+                    }
                 }
             }
-            return JSON.Replace("ObjectId(", "").Replace(")", "") + "]";
+            return al;
         }
 
-        public static string Mongogetspecific(string db_, string collection_, string filter_)
+        public static string mongoFind(string db_, string collection_, string filter_)
         {
             Console.WriteLine("Connecting to {0}", connectionstring);
             var client = new MongoClient(connectionstring);
             var db = client.GetDatabase(db_);
             var collection = db.GetCollection<BsonDocument>(collection_);
+
+            //var filter = Builders<BsonDocument>.Filter.Gt("Scorpion_Data.code", "BEST");
 
             string JSON = "[";
             using (IAsyncCursor<BsonDocument> cursor = collection.FindSync(filter_))

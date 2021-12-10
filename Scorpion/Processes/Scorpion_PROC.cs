@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Scorpion
@@ -20,6 +21,46 @@ namespace Scorpion
             return;
         }
 
+        public void processrun(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*process_name
+            scp.start_process((string)var_get(objects[0]));
+            //Do_on.write_success("Process '" + var_get(0) + "' started...");
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void processoption(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*process_name, *options...
+            //All options for scorpion or SEHT programs must use the '=' delimiter, other programs may do as they want
+            //function is variadic
+            //scp.get_process((string)var_get(objects[0]));
+            scp.add_option((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+
+            return;
+        }
+
+        public void processlistoptions(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            var returned = scp.get_options((string)var_get(objects[0]));
+
+            if (returned != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in returned)
+                    Do_on.write_to_cui(kvp.Key + " = " + kvp.Value);
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+
+            return;
+        }
+
         public void process(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates a new Scorpion.Process. This is a standard process which can be any program. The program is partially controlled by scorpion
@@ -30,7 +71,8 @@ namespace Scorpion
 
             try
             {
-                Do_on.write_to_cui("Process is starting call 'processio::*name' to see output");
+                Do_on.write_to_cui("Process created. Call processrun::*processname in order to start the process");
+                //Do_on.write_to_cui("Process is starting call 'processio::*name' to see output");
                 Process pri_ = new Process();
                 ProcessStartInfo pri_s = new ProcessStartInfo((string)var_get(objects[0]), (string)var_get(objects[1]));
                 pri_.Exited += Pri__Exited;
@@ -42,9 +84,10 @@ namespace Scorpion
                 }
                 pri_.StartInfo = pri_s;
                 scp.add_proccess(ref pri_, (string)var_get(objects[2]));
-                pri_.Start();
+                //pri_.Start();
             }
             catch(Exception e) { Console.WriteLine(e.Message); }
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
@@ -122,10 +165,11 @@ namespace Scorpion
         //This class invokes the internal working of the Scorpion.Process system
 
         int processes = -1;
-        private Process[] pr_list = new Process[4];
-        private string[] pr_list_ref = new string[4];
-        private string[] pr_list_name = new string[4];
-        private string[] pr_output = new string[4];
+        private Process[] pr_list = new Process[0x4];
+        private string[] pr_list_ref = new string[0x4];
+        private string[] pr_list_name = new string[0x4];
+        private string[] pr_output = new string[0x4];
+        private Dictionary<string, Dictionary<string, string>> pr_options = new Dictionary<string, Dictionary<string, string>>();
 
         public void add_proccess(ref Process pri, string name)
         {
@@ -149,8 +193,29 @@ namespace Scorpion
             return;
         }
 
+        public void start_process(string name)
+        {
+            //process options as arguments
+            var options = get_options(name);
+            if (options != null)
+            {
+                Console.WriteLine("IN");
+                foreach (KeyValuePair<string, string> kvp in options)
+                {
+                    Console.WriteLine("OPT");
+                    pr_list[get_process(name)].StartInfo.Arguments.Insert(0, kvp.Key + "=" + kvp.Value);
+                }
+            }
+
+            pr_list[get_process(name)].Start();
+            Console.WriteLine("Process '{0}' started", name);
+            return;
+        }
+
         public string kill_processes()
         {
+            //BUG: Remove all process elements!!!!!!
+
             string out_ = "";
             foreach (Process p in pr_list)
             {
@@ -173,6 +238,31 @@ namespace Scorpion
             int proc = get_process(name);
             pr_list[proc].StandardInput.WriteLine(input);
             return;
+        }
+
+        public void add_option(string proc_name, string option_name, string option)
+        {
+            //Check if the process is running if so warn the user that options will not e applied unless the process is restarted
+            /*try
+            {
+                if (!pr_list[get_process(proc_name)].HasExited)
+                    Console.WriteLine("The process '{0}' is currently running. Any options cannot be applied to a running process, please restart the process to apply any options", proc_name);
+            }
+            finally
+            {*/
+                //check if process option entry exists
+                if (!pr_options.ContainsKey(proc_name))
+                    pr_options.Add(proc_name, new Dictionary<string, string>());
+
+                //Add the options to the process options dictionary
+                pr_options[proc_name].Add(option_name, option);
+            //}
+            return;
+        }
+
+        public Dictionary<string, string> get_options(string name)
+        {
+            return pr_options.ContainsKey(name) ? pr_options[name] : null;
         }
 
         public string get_std(string name)

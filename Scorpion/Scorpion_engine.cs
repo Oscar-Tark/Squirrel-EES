@@ -135,7 +135,7 @@ namespace Scorpion
             //Make sure objects are set to null and disposed
             var_dispose_internal(ref Scorp_Line_Exec);
             var_dispose_internal(ref Scorp_Line);
-            GC.Collect();
+            //GC.Collect();
             return;
         }
     }

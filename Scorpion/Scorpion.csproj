@@ -340,9 +340,9 @@
     <Compile Include="MicroDB\Scorpion_MicroDB_SYS.cs" />
     <Compile Include="Scorpion_engine_functions.cs" />
     <Compile Include="Scorpion_cache.cs" />
-    <Compile Include="MicroDB\Scorpion_MONGO.cs" />
     <Compile Include="MicroDB\Scorpion_MicroDB_Importer.cs" />
     <Compile Include="HTTP\Scorpion_HTTP.cs" />
+    <Compile Include="MongoDB_depreciated\Scorpion_MONGO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -394,6 +394,8 @@
     <Folder Include="Resources\" />
     <Folder Include="Host\" />
     <Folder Include="HTTP\" />
+    <Folder Include="Noding\" />
+    <Folder Include="MongoDB_depreciated\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\External\Scorpion_Authenticator\Scorpion_Authenticator\Scorpion_Authenticator.csproj">

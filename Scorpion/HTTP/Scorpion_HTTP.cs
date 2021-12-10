@@ -3,6 +3,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Scorpion
 {
@@ -10,7 +12,12 @@ namespace Scorpion
     {
         public void httpstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            Do_on.http.startServer(null);
+            //*local_ip, *jsframework, *db
+            //Check if the Database exists
+            if (Do_on.vds.checkLoaded((string)var_get(objects[2])))
+                Do_on.http.startServer((string)var_get(objects[0]) == "" ? null : (string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
+            else
+                Do_on.write_error("The database '" + (string)var_get(objects[2]) + "' is not loaded");
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -23,28 +30,32 @@ namespace ScorpionHTTPServer
     public class HTTPServer
     {
         private static HttpListener scorpion_http_listener;
-        public static string url = "http://localhost:8000/"; private string current_prefix = null;
+
+        private static string local_url = "http://localhost:8000/";
         public static int pageViews = 0;
         public static int requestCount = 0;
         static Scorpion.Scorp HANDLE;
+        private static string js_framework = null;
+        private static string database = null;
 
         public HTTPServer(string prefix, Scorpion.Scorp Do_on)
         {
             HANDLE = Do_on;
-            //Start the HTTP server
-            //if (!startServer(prefix == "null" ? null : prefix))
-            //    Console.WriteLine("Unable to start the HTTP server as the HTTPListener module is not supported by your system.You may try configuring your server and try running the HTTP server again\n\nexiting server...");
             return;
         }
 
-        public bool startServer(string prefix)
+        public bool startServer(string prefix, string js_framework_, string database_)
         {
-            if (!HttpListener.IsSupported)
+            Console.WriteLine("checked");
+            if (!HttpListener.IsSupported && HTTPElements.HTTPElements.js_framework_includers[js_framework_] != null)
                 return false;
+
             scorpion_http_listener = new HttpListener();
+            js_framework = js_framework_;
+            database = database_;
 
             //Adds the default prefix is none is given in the arguments when starting the application and starts the HTTP server
-            scorpion_http_listener.Prefixes.Add(prefix = (prefix == null ? url : prefix));
+            scorpion_http_listener.Prefixes.Add(prefix = (prefix == null ? local_url : prefix));
             scorpion_http_listener.Start();
             Console.WriteLine("HTTP server started with prefix: {0}", prefix);
 
@@ -76,52 +87,84 @@ namespace ScorpionHTTPServer
 
                 // Print out some info about the request
                 Console.WriteLine("Request #: {0}", ++requestCount);
-                Console.WriteLine(req.Url);
-                Console.WriteLine(req.HttpMethod);
-                Console.WriteLine(req.UserHostName);
-                Console.WriteLine(req.UserAgent);
-                Console.WriteLine(req.RawUrl[0]);
+                Console.WriteLine("Refferer: {0}", req.Url);
+                Console.WriteLine("HTTP method: {0}", req.HttpMethod);
+                Console.WriteLine("User host name: {0}", req.UserHostName);
+                Console.WriteLine("User agent: {0}", req.UserAgent);
+                Console.WriteLine("Local end point: {0}", req.LocalEndPoint.Address);
+                Console.WriteLine("Remote end point: {0}", req.RemoteEndPoint.Address);
+                Console.WriteLine("User host address: {0}", req.UserHostAddress);
+                Console.WriteLine("Raw URL: {0}", req.RawUrl[0]);
+                Console.WriteLine("Database: {0}", database);
+                Console.WriteLine("----------------------------");
+
+                string[] accept = req.AcceptTypes;
+
+                foreach (string acc in accept)
+                    Console.WriteLine("Accept type: {0}", acc);
+
+                string[] URL_elements = getPathElements(req);
 
                 // If `shutdown` url requested w/ POST, then shutdown the server after serving the page
                 if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/input"))
                 {
-                    //Console.WriteLine("Shutdown requested");
-                    //runServer = false;
+                    Console.WriteLine("Input requested");
+                    string text = null;
+                    using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
+                    {
+                        text = reader.ReadToEnd();
+                    }
+                    Console.WriteLine("POST Data: {0}", text);
+                    Scorpion.NetworkEngineFunctions nef__ = new Scorpion.NetworkEngineFunctions();
+                    nef__.replace_api(text);
+
+                    //Execute data operations, data can only enter as JSON
+                    
                 }
-
-                // Make sure we don't increment the page views counter if `favicon.ico` is requested
-                if (req.Url.AbsolutePath != "/favicon.ico")
-                    pageViews += 1;
-
-                // Write the response info
-                string disableSubmit = !runServer ? "disabled" : "";
-                byte[] data = null;
-                string[] URL_elements = getPathElements(req);
-
-                if (req.Url.AbsolutePath != "/")
+                else
                 {
-                    Console.WriteLine("Fetching {0} : Page {1}", URL_elements[1], URL_elements[2]);
-                    //Get from db
-                    ArrayList structure_result = HANDLE.vds.Data_doDB_selective_no_thread(URL_elements[1], "", URL_elements[2], "structure", HANDLE.vds.OPCODE_GET);
-                    ArrayList logic_result = HANDLE.vds.Data_doDB_selective_no_thread(URL_elements[1], "", URL_elements[2], "logic", HANDLE.vds.OPCODE_GET);
-                    ArrayList css_result = HANDLE.vds.Data_doDB_selective_no_thread(URL_elements[1], "", URL_elements[2], "visuals", HANDLE.vds.OPCODE_GET);
+                    // Make sure we don't increment the page views counter if `favicon.ico` is requested
+                    if (req.Url.AbsolutePath != "/favicon.ico")
+                        pageViews += 1;
+                    else continue;
 
-                    //Load response strings
-                    string structure = (structure_result.Count == 0 ? StaticElements.StaticElements.errorPageData : (string)structure_result[0]);
-                    string logic = (logic_result.Count == 0 ? "" : "<script>" + (string)logic_result[0] + "</script>");
-                    string css = (css_result.Count == 0 ? "" : "<style>" + (string)css_result[0] + "</style>");
+                    // Write the response info
+                    string disableSubmit = !runServer ? "disabled" : "";
+                    byte[] data = null;
 
-                    //Encode response
-                    data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, structure, css, logic));
-                }
+                    if (req.Url.AbsolutePath != "/")
+                    {
+                        Console.WriteLine("Fetching Page {0}", URL_elements[1]);
 
-                if (data != null)
-                {
-                    resp.ContentType = "text/html";
-                    resp.ContentEncoding = Encoding.UTF8;
-                    resp.ContentLength64 = data.LongLength;
-                    // Write out to the response stream (asynchronously), then close it
-                    await resp.OutputStream.WriteAsync(data, 0, data.Length);
+                        //Get from db
+                        ArrayList structure_result = HANDLE.vds.Data_doDB_selective_no_thread(database, "", URL_elements[1], "structure", HANDLE.vds.OPCODE_GET);
+                        ArrayList logic_result = HANDLE.vds.Data_doDB_selective_no_thread(database, "", URL_elements[1], "logic", HANDLE.vds.OPCODE_GET);
+                        ArrayList css_result = HANDLE.vds.Data_doDB_selective_no_thread(database, "", URL_elements[1], "visuals", HANDLE.vds.OPCODE_GET);
+
+                        //Load response strings
+                        string structure = structure_result.Count == 0 ? HTTPElements.HTTPElements.errorPageData : (string)structure_result[0];
+                        string logic = (logic_result.Count == 0 ? "" : "<script>" + (string)logic_result[0] + "</script>");
+                        string css = (css_result.Count == 0 ? "" : "<style>" + (string)css_result[0] + "</style>");
+
+                        //Encode response
+                        //Elaborate response type:
+                        if (Array.IndexOf(accept, HTTPElements.HTTPElements.accept_html) > -1)
+                            data = Encoding.UTF8.GetBytes(string.Format(HTTPElements.HTTPElements.developmentFormatData, structure, css, logic, HTTPElements.HTTPElements.js_framework_includers[js_framework]));
+                        else if (Array.IndexOf(accept, HTTPElements.HTTPElements.accept_json) > -1)
+                        {
+                            Console.WriteLine("Response as JSON");
+                            data = Encoding.UTF8.GetBytes(string.Format("['structure' : {0}, 'css' : {1}, 'logic' : {2}, 'js_framework' : {3}]", structure, css, logic, HTTPElements.HTTPElements.js_framework_includers[js_framework]));
+                        }
+                    }
+
+                    if (data != null)
+                    {
+                        resp.ContentType = "text/html";
+                        resp.ContentEncoding = Encoding.UTF8;
+                        resp.ContentLength64 = data.LongLength;
+                        // Write out to the response stream (asynchronously), then close it
+                        await resp.OutputStream.WriteAsync(data, 0, data.Length);
+                    }
                 }
                 resp.Close();
             }
@@ -132,9 +175,8 @@ namespace ScorpionHTTPServer
             //This function parses the URL for the needed specific elements
             //URL format: /page:db/data:tag/data:subtag
             if (request.Url.AbsolutePath == "/")
-                return new string[] { "/" };
-            else
-                return request.Url.AbsolutePath.Split('/');
+                return new string[] { "/" }; 
+            return request.Url.AbsolutePath.Split('/');
         }
 
         public void stopServer()
@@ -147,10 +189,13 @@ namespace ScorpionHTTPServer
     }
 }
 
-namespace StaticElements
+namespace HTTPElements
 {
-    public static class StaticElements
+    public static class HTTPElements
     {
+        public static string accept_html = "text/html";
+        public static string accept_json = "application/json";
+
         public static string pageData =
              "<!DOCTYPE>" +
              "<html>" +
@@ -176,9 +221,15 @@ namespace StaticElements
             "</html>";
 
         public static string developmentFormatData =
-            "<!DOCTYPE html><html><script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script><body>{0} {1} {2}</body></html>";
+            "<!DOCTYPE html><html><head>{3}</head></script><body>{0} {1} {2}</body></html>";
 
         public static string productionFormatData =
-            "<!DOCTYPE html><html><script src='https://cdn.jsdelivr.net/npm/vue@2'></script><body>{0} {1} {2}</body></html>";
+            "<!DOCTYPE html><html><head>{3}</script></head><body>{0} {1} {2}</body></html>";
+
+        //private List<string> js_frameworks = new List<string> = {};
+        public static Dictionary<string, string> js_framework_includers = new Dictionary<string, string> {
+            { "vue.js_development", "<script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'>" },
+            { "vue.js", "<script src='https://cdn.jsdelivr.net/npm/vue@2'>" }
+        };
     }
 }

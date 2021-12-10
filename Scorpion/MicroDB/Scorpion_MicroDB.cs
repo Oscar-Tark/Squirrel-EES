@@ -83,6 +83,16 @@ namespace Scorpion
             return;
         }
 
+        public void dbreload(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*dbname
+
+
+            var_arraylist_dispose(ref objects);
+            Scorp_Line_Exec = null;
+            return;
+        }
+
         public void dbappimport(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*dbname, *folder, *appname

@@ -53,6 +53,13 @@ namespace Scorpion_MDB
             return false;
         }
 
+        public bool checkLoaded(string dbname)
+        {
+            if (HANDLE.mem.AL_TBLE_REF.IndexOf(dbname) > -1)
+                return true;
+            return false;
+        }
+
         public void Create_DB(string path, bool spill)
         {
             //A scorpion database is composed of three data fields:
@@ -113,6 +120,19 @@ namespace Scorpion_MDB
             }
             else
                 HANDLE.write_to_cui("Database [" + path + "]/[" + name + "] already in memory");
+
+            return;
+        }
+
+        public void ReLoad_DB(string name)
+        {
+            int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
+            string path = (string)HANDLE.mem.AL_TBLE_PATH[ndx];
+
+            Close_DB(name);
+            Load_DB(path, name);
+
+            HANDLE.write_to_cui("Reloaded Database: [" + path + "] as [" + name + "]");
 
             return;
         }

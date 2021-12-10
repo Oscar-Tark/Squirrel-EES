@@ -1,22 +1,22 @@
 ﻿<Properties StartupConfiguration="{B34D5BC8-824D-46DB-A09A-341E977695D0}|Default">
   <MonoDevelop.Ide.ItemProperties.Scorpion PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/HTTP/Scorpion_HTTP.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scorpion/MicroDB/Scorpion_MicroDB.cs">
     <Files>
-      <File FileName="Scorpion/MicroDB/Scorpion_MicroDB_Importer.cs" Line="28" Column="18" />
-      <File FileName="Scorpion/MicroDB/Scorpion_MicroDB.cs" Line="114" Column="36" />
-      <File FileName="Scorpion/HTTP/Scorpion_HTTP.cs" Line="107" Column="120" />
+      <File FileName="Scorpion/Network/Scorpion_NETWORK.cs" Line="50" Column="33" />
+      <File FileName="Scorpion/Session_dependent_handler.cs" Line="87" Column="100" />
+      <File FileName="Scorpion/Scorpion_engine.cs" Line="139" Column="20" />
+      <File FileName="Scorpion/MicroDB/Scorpion_MicroDB.cs" Line="36" Column="10" />
+      <File FileName="Scorpion/MicroDB/Scorpion_MicroDB_SYS.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Scorpion IEE" expanded="True">
             <Node name="Scorpion" expanded="True">
-              <Node name="HTTP" expanded="True">
-                <Node name="Scorpion_HTTP.cs" selected="True" />
+              <Node name="MicroDB" expanded="True">
+                <Node name="Scorpion_MicroDB.cs" selected="True" />
               </Node>
-              <Node name="MicroDB" expanded="True" />
             </Node>
-            <Node name="Scorpion_Authenticator" expanded="True" />
           </Node>
         </State>
       </Pad>

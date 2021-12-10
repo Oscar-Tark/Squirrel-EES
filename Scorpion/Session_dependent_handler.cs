@@ -32,7 +32,8 @@ namespace Scorpion
                         HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     sctl.DataReceived += Sctl_DataReceived;
-                    sctl.Start(port, true);
+                    IPAddress ipa = IPAddress.Parse("127.0.0.1");
+                    sctl.Start(ipa, port);//(port, true);
                 }
             return;
         }
@@ -70,6 +71,7 @@ namespace Scorpion
             //Btyte->string, Parse string
             string s_data = HANDLE.crypto.To_String(data);
             string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
+
             //HANDLE.sclog.log("Network command: " + command);
             Dictionary<string, string> processed = nef__.replace_api(command);
             string reply = null;
