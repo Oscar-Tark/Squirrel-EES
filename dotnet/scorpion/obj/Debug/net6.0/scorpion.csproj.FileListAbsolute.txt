@@ -1,0 +1,5 @@
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.csproj.AssemblyReference.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.AssemblyInfoInputs.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.AssemblyInfo.cs
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.csproj.CoreCompileInputs.cache
