@@ -1,23 +1,9 @@
-/*  <Scorpion Server>
-    Copyright (C) <2022>  <Oscar Arjun Singh Tark>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+//#
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Security;
@@ -34,7 +20,7 @@ namespace Scorpion
         }
 
         /*TCP server*/
-        public void add_tcpserver(string reference, int port, string RSA_private_path, string RSA_public_path)
+        public void add_tcpserver(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
         {
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
             sctl.ClientConnected += Sctl_ClientConnected;
@@ -49,7 +35,7 @@ namespace Scorpion
                         HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     sctl.DataReceived += Sctl_DataReceived;
-                    IPAddress ipa = IPAddress.Parse("127.0.0.1");
+                    IPAddress ipa = IPAddress.Parse(ip == HANDLE.types.S_NULL ? "127.0.0.1" : ip);
                     sctl.Start(ipa, port);//(port, true);
                 }
             return;
@@ -101,11 +87,16 @@ namespace Scorpion
                 {
                     if (processed["type"] == nef__.api_requests["get"])
                     {
-                        //Not getting according to seesion
-                        //HANDLE.sclog.log("Executing query for [DATABASE: " + processed["db"] + "], [TAG: " + processed["tag"] + "], [SUBTAG: " + processed["subtag"] + "]");
+                        //Get file
+                        string page_file = File.ReadAllText(HANDLE.types.main_user_projects_path + "/" + processed["tag"] + "/" + processed["subtag"]);
+
+                        //Get php style processing commands and compile for response
                         ArrayList query_result = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
                         if (query_result.Count > 0)
-                            reply = nef__.build_api(Convert.ToString(query_result[0]), false);
+                        {
+                            reply = nef__.build_api(page_file + Convert.ToString(query_result[0]), false);
+                            //reply = nef__.build_api(Convert.ToString(query_result[0]), false);
+                        }
                         else
                             reply = nef__.build_api("Query resulted in 0 elements returned", true);
                     }

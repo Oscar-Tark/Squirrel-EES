@@ -1,5 +1,6 @@
-/*  <Scorpion Server>
-    Copyright (C) <2022+>  <Oscar Arjun Singh Tark>
+//#
+/*  <Scorpion IEE(Intelligent Execution Environment)>
+    Copyright (C) <2014+>  <Oscar Arjun Singh Tark>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -27,6 +28,7 @@ namespace Scorpion
         public readonly string S_No = "false";
         public readonly string S_NULL = "";
         public readonly string main_user_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion";
+        public readonly string main_user_projects_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Projects";
 
         //Available Scorpion.EscapeSequences
         public readonly string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" }, new string[] { "{&u}", "," } };
@@ -50,6 +52,7 @@ namespace Scorpion
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "no", "'" + S_No + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "path", "'" + main_user_path + "'" });
+            //HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "projectspath", "'" + main_user_projects_path + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { S_Yes, "'" + S_Yes + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
             return;

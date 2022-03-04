@@ -20,7 +20,7 @@ namespace Scorpion
         }
 
         /*TCP server*/
-        public void add_tcpserver(string reference, int port, string RSA_private_path, string RSA_public_path)
+        public void add_tcpserver(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
         {
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
             sctl.ClientConnected += Sctl_ClientConnected;
@@ -35,7 +35,7 @@ namespace Scorpion
                         HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     sctl.DataReceived += Sctl_DataReceived;
-                    IPAddress ipa = IPAddress.Parse("127.0.0.1");
+                    IPAddress ipa = IPAddress.Parse(ip == HANDLE.types.S_NULL ? "127.0.0.1" : ip);
                     sctl.Start(ipa, port);//(port, true);
                 }
             return;

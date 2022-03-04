@@ -1,11 +1,265 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "BCrypt.Net-Next/4.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Cryptography/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Capgemini.Cauldron.Randomizer": "3.2.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Randomizer/3.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SimpleTCP.Net5/1.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        }
+      },
+      "scorpion_authenticator/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "scorpion_hasher": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_authenticator.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_authenticator.dll": {}
+        }
+      },
+      "scorpion_hasher/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.2",
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_hasher.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_hasher.dll": {}
+        }
+      },
+      "scorpion_log/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/scorpion_log.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_log.dll": {}
+        }
+      },
+      "scorpion_rsa/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_rsa.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_rsa.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BCrypt.Net-Next/4.0.2": {
+      "sha512": "LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.2.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net40/BCrypt.Net-Next.dll",
+        "lib/net40/BCrypt.Net-Next.xml",
+        "lib/net452/BCrypt.Net-Next.dll",
+        "lib/net452/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.dll",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml"
+      ]
+    },
+    "Capgemini.Cauldron.Cryptography/3.2.3": {
+      "sha512": "cfIT95HcNw/KeWpxgZI2P1qzn07APwL+cLqwHt6iLPURiMuVopTTZeSnxa1DY8rFpZ5BJVOMuaeTwqvpICOMbQ==",
+      "type": "package",
+      "path": "capgemini.cauldron.cryptography/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.cryptography.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.cryptography.nuspec",
+        "lib/net45/Cauldron.Cryptography.dll",
+        "lib/net45/Cauldron.Cryptography.xml",
+        "lib/net451/Cauldron.Cryptography.dll",
+        "lib/net451/Cauldron.Cryptography.xml",
+        "lib/net452/Cauldron.Cryptography.dll",
+        "lib/net452/Cauldron.Cryptography.xml",
+        "lib/net46/Cauldron.Cryptography.dll",
+        "lib/net46/Cauldron.Cryptography.xml",
+        "lib/net461/Cauldron.Cryptography.dll",
+        "lib/net461/Cauldron.Cryptography.xml",
+        "lib/net462/Cauldron.Cryptography.dll",
+        "lib/net462/Cauldron.Cryptography.xml",
+        "lib/netstandard2.0/Cauldron.Cryptography.dll",
+        "lib/netstandard2.0/Cauldron.Cryptography.xml",
+        "lib/uap10.0/Cauldron.Cryptography.XML",
+        "lib/uap10.0/Cauldron.Cryptography.dll",
+        "lib/uap10.0/Cauldron.Cryptography.pri"
+      ]
+    },
+    "Capgemini.Cauldron.Randomizer/3.2.3": {
+      "sha512": "Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
+      "type": "package",
+      "path": "capgemini.cauldron.randomizer/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.randomizer.nuspec",
+        "lib/net45/Cauldron.Randomizer.dll",
+        "lib/net45/Cauldron.Randomizer.xml",
+        "lib/net451/Cauldron.Randomizer.dll",
+        "lib/net451/Cauldron.Randomizer.xml",
+        "lib/net452/Cauldron.Randomizer.dll",
+        "lib/net452/Cauldron.Randomizer.xml",
+        "lib/net46/Cauldron.Randomizer.dll",
+        "lib/net46/Cauldron.Randomizer.xml",
+        "lib/net461/Cauldron.Randomizer.dll",
+        "lib/net461/Cauldron.Randomizer.xml",
+        "lib/net462/Cauldron.Randomizer.dll",
+        "lib/net462/Cauldron.Randomizer.xml",
+        "lib/netstandard2.0/Cauldron.Randomizer.dll",
+        "lib/netstandard2.0/Cauldron.Randomizer.xml",
+        "lib/uap10.0/Cauldron.Randomizer.XML",
+        "lib/uap10.0/Cauldron.Randomizer.dll",
+        "lib/uap10.0/Cauldron.Randomizer.pri"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "SimpleTCP.Net5/1.0.25": {
+      "sha512": "TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
+      "type": "package",
+      "path": "simpletcp.net5/1.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/SimpleTCP.Net5.dll",
+        "simpletcp.net5.1.0.25.nupkg.sha512",
+        "simpletcp.net5.nuspec"
+      ]
+    },
+    "scorpion_authenticator/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_authenticator/scorpion_authenticator.csproj",
+      "msbuildProject": "../scorpion_authenticator/scorpion_authenticator.csproj"
+    },
+    "scorpion_hasher/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_hasher/scorpion_hasher.csproj",
+      "msbuildProject": "../scorpion_hasher/scorpion_hasher.csproj"
+    },
+    "scorpion_log/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_log/scorpion_log.csproj",
+      "msbuildProject": "../scorpion_log/scorpion_log.csproj"
+    },
+    "scorpion_rsa/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_rsa/scorpion_rsa.csproj",
+      "msbuildProject": "../scorpion_rsa/scorpion_rsa.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Newtonsoft.Json >= 13.0.1",
+      "SimpleTCP.Net5 >= 1.0.25",
+      "scorpion_authenticator >= 1.0.0",
+      "scorpion_log >= 1.0.0",
+      "scorpion_rsa >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/ferret/.nuget/packages/": {}
@@ -31,7 +285,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/scorpion_rsa.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/scorpion_rsa.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -43,6 +307,16 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
+          "SimpleTCP.Net5": {
+            "target": "Package",
+            "version": "[1.0.25, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

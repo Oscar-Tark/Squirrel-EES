@@ -43,11 +43,12 @@ namespace Scorpion
             //::*name, *port, *[rsaprivatekeyfilepath||*null], *[rsapublickeyfilepath||*null], *api
             //No rsa then pass *false for rsa parameters
             string name = (string)var_get(objects[0]);
-            int port = Convert.ToInt32(var_get(objects[1]));
-            string RSA_private_path = (string)var_get(objects[2]);
-            string RSA_public_path = (string)var_get(objects[3]);
+            string ip = (string)var_get(objects[1]);
+            int port = Convert.ToInt32(var_get(objects[2]));
+            string RSA_private_path = (string)var_get(objects[3]);
+            string RSA_public_path = (string)var_get(objects[4]);
 
-            Do_on.sdh.add_tcpserver(name, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
+            Do_on.sdh.add_tcpserver(name, ip, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
             write_to_console("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);

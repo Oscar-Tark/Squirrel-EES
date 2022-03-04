@@ -40,7 +40,6 @@ namespace Scorpion
             types = new Types(this);
             sdh = new SESSION_DEPENDENT_HANDLERS(this);
             sclog = new Scorpion_LOG.Scorpion_LOG(types.main_user_path);
-            http = new ScorpionHTTPServer.HTTPServer(null, this);
             return;
         }
 
@@ -55,7 +54,6 @@ namespace Scorpion
         public Types types;
         public SESSION_DEPENDENT_HANDLERS sdh;
         public Scorpion_LOG.Scorpion_LOG sclog;
-        public ScorpionHTTPServer.HTTPServer http;
 
         private bool check_directory()
         {
