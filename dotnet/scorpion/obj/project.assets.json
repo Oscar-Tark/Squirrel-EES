@@ -32,6 +32,15 @@
           "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
         }
       },
+      "MySqlConnector/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -98,6 +107,19 @@
         },
         "runtime": {
           "bin/placeholder/scorpion_rsa.dll": {}
+        }
+      },
+      "scorpion_sql/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MySqlConnector": "2.1.8"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_sql.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_sql.dll": {}
         }
       }
     }
@@ -192,6 +214,35 @@
         "lib/uap10.0/Cauldron.Randomizer.pri"
       ]
     },
+    "MySqlConnector/2.1.8": {
+      "sha512": "CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
+      "type": "package",
+      "path": "mysqlconnector/2.1.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.1.8.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -250,6 +301,11 @@
       "type": "project",
       "path": "../scorpion_rsa/scorpion_rsa.csproj",
       "msbuildProject": "../scorpion_rsa/scorpion_rsa.csproj"
+    },
+    "scorpion_sql/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_sql/scorpion_sql.csproj",
+      "msbuildProject": "../scorpion_sql/scorpion_sql.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -258,7 +314,8 @@
       "SimpleTCP.Net5 >= 1.0.25",
       "scorpion_authenticator >= 1.0.0",
       "scorpion_log >= 1.0.0",
-      "scorpion_rsa >= 1.0.0"
+      "scorpion_rsa >= 1.0.0",
+      "scorpion_sql >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -294,6 +351,9 @@
             },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/scorpion_rsa.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/scorpion_rsa.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj"
             }
           }
         }

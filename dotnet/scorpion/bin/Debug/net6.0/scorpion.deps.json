@@ -12,7 +12,8 @@
           "SimpleTCP.Net5": "1.0.25",
           "scorpion_authenticator": "1.0.0",
           "scorpion_log": "1.0.0",
-          "scorpion_rsa": "1.0.0"
+          "scorpion_rsa": "1.0.0",
+          "scorpion_sql": "1.0.0"
         },
         "runtime": {
           "scorpion.dll": {}
@@ -42,6 +43,14 @@
           "lib/netstandard2.0/Cauldron.Randomizer.dll": {
             "assemblyVersion": "3.2.0.3",
             "fileVersion": "3.2.0.3"
+          }
+        }
+      },
+      "MySqlConnector/2.1.8": {
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.8.0"
           }
         }
       },
@@ -90,6 +99,14 @@
         "runtime": {
           "scorpion_rsa.dll": {}
         }
+      },
+      "scorpion_sql/1.0.0": {
+        "dependencies": {
+          "MySqlConnector": "2.1.8"
+        },
+        "runtime": {
+          "scorpion_sql.dll": {}
+        }
       }
     }
   },
@@ -119,6 +136,13 @@
       "sha512": "sha512-Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
       "path": "capgemini.cauldron.randomizer/3.2.3",
       "hashPath": "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512"
+    },
+    "MySqlConnector/2.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
+      "path": "mysqlconnector/2.1.8",
+      "hashPath": "mysqlconnector.2.1.8.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
@@ -150,6 +174,11 @@
       "sha512": ""
     },
     "scorpion_rsa/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_sql/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
