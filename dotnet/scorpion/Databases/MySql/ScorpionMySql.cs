@@ -26,7 +26,7 @@ namespace Scorpion
         public void mysqlnew(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates a new generic data table
-            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
+            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
             //::*connectionstringvar, *tablename
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlnew::*con, *'test'
             using(var mysql = new ScorpionMySql.ScorpionSql())
@@ -54,21 +54,41 @@ namespace Scorpion
 
         public object mysqlget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //Inserts data into MySql table
-            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
+            //Gets data from a Mysql table
+            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
             //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
-            //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> *temp<<mysqlget::*con, *'test', *'/test', *'name', *''
+            //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> *temp<<mysqlget::*con, *'test', *'/test', *'name', *'', *'token'
             
             object returnable = Do_on.types.S_NULL;
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                returnable = mysql.scfmtSqlGet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]));
+                returnable = mysql.scfmtSqlGet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[5]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref returnable);
         }
+
+        public void mysqlset(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Inserts data into a MySql table
+            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
+            //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
+            //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlset::*con, *'test', *'/test', *'last name', *'Doe', *'token'
+            
+            using(var mysql = new ScorpionMySql.ScorpionSql())
+            {
+                mysql.scfmtSqlSet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[5]));
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void mysqlupdate()
+        {}
 
         public void mysqltest(ref string Scorp_Line_Exec, ref ArrayList objects)
         {

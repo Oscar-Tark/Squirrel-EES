@@ -13,23 +13,23 @@ namespace ScorpionMySql
 {
 public class ScorpionSql:IDisposable
 {
-    public object scfmtSqlGet(string connection_string, string table, string path, string identifier, string data)
+    public object scfmtSqlGet(string connection_string, string table, string path, string identifier, string data, string token)
     {
         //Get data from MySql in the generic format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
 
-        //object returnable;
-        //DataTable returnable_data = new DataTable();
         ArrayList returnable_data = new ArrayList();
 
+        
+        try{
         using (var connection = new MySqlConnection(connection_string))
         {
-            try{
             connection.Open();
-            using (var command = new MySqlCommand(string.Format("SELECT * FROM {0} WHERE path=@path AND identifier=@identifier AND data LIKE @data;", table), connection))
+            using (var command = new MySqlCommand(string.Format("SELECT * FROM {0} WHERE path=@path AND identifier=@identifier AND data LIKE @data AND token=@token;", table), connection))
             {
                 command.Parameters.AddWithValue("path", path);
                 command.Parameters.AddWithValue("identifier", identifier);
                 command.Parameters.AddWithValue("data", string.Format("%{0}%", data));
+                command.Parameters.AddWithValue("token", token);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -43,14 +43,40 @@ public class ScorpionSql:IDisposable
                     }
                 }
             }
-            }
-            catch(System.Exception e){ System.Console.WriteLine(e.Message); }
         }
+        }
+        catch(System.Exception e){ System.Console.WriteLine(e.Message); }
         return (object)returnable_data;
     }
 
-    public void scfmtSqlSet()
+    public void scfmtSqlSet(string connection_string, string table, string path, string identifier, string data, string token)
     {
+        //Set data into MySql in the generic format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
+        
+        try
+        {
+        using (var connection = new MySqlConnection(connection_string))
+        {
+            connection.Open();
+            using (var command = new MySqlCommand(string.Format("INSERT INTO {0} values(DEFAULT, @path, @identifier, @data, @token)", table), connection))
+            {
+                command.Parameters.AddWithValue("path", path);
+                command.Parameters.AddWithValue("identifier", identifier);
+                command.Parameters.AddWithValue("data", data);
+                command.Parameters.AddWithValue("token", token);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch(System.Exception e){ System.Console.WriteLine(e.Message); }
+                }
+            }
+        }
+        }
+        catch(System.Exception e){ System.Console.WriteLine(e.Message); }
         return;
     }
 
@@ -59,10 +85,12 @@ public class ScorpionSql:IDisposable
         //Creates a new generic data table
         //[id:int] [path:string] [identifier(name, age...):string] [data:string]
         
+        try
+        {
         using (var connection = new MySqlConnection(connection_string))
         {
             connection.Open();
-            using (var command = new MySqlCommand(string.Format("CREATE TABLE {0} (id INT NOT NULL AUTO_INCREMENT, path VARCHAR(128) NOT NULL, identifier VARCHAR(32) NOT NULL, data VARCHAR(2048) NULL, PRIMARY KEY (id))", table_name), connection))
+            using (var command = new MySqlCommand(string.Format("CREATE TABLE {0} (id INT NOT NULL AUTO_INCREMENT, path VARCHAR(128) NOT NULL, identifier VARCHAR(32) NOT NULL, data VARCHAR(2048) NULL, token VARCHAR(256) NOT NULL, PRIMARY KEY (id))", table_name), connection))
             {
                 try
                 {
@@ -71,6 +99,8 @@ public class ScorpionSql:IDisposable
                 catch(System.Exception e){ System.Console.WriteLine(e.Message); }
             }
         }
+        }
+        catch(Exception e){ Console.WriteLine(e.Message); }
         return;
     }
 

@@ -11,26 +11,6 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        /*public void jsontovar(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //Creates variables partaining to the JSON object. a special tag is used in order to chain variables
-            //::*jsonvar, *prefix, *key, *contains_key, tag
-
-            JsonValue jv = JsonValue.Parse((string)var_get(objects[0]));
-            string key = (string)var_get(objects[2]);
-            string contains_key = (string)var_get(objects[3]);
-            string prefix = (string)var_get(objects[1]);
-
-            for (int i = 0; i < jv.Count-1; i++)
-            {
-                if(jv[i].ContainsKey(key) && jv[i].ContainsKey(contains_key))
-                    var_new(jv[i][contains_key], prefix + jv[i][key], "", (string)var_get(objects[4]), Do_on.types.S_No);
-            }
-            var_arraylist_dispose(ref objects);
-            var_dispose_internal(ref Scorp_Line_Exec);
-            return;
-        }*/
-
         public string jsonfromdictionary(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*return<<::*Scorpion.Dictionary

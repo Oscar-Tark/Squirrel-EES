@@ -2,6 +2,7 @@ using System.IO;
 
 namespace Scorpion.MicroDB
 {
+    [System.Obsolete]
     public class Scorpion_MicroDB_Importer
     {
         /*Imports three files in any folder into a MicroDB entry as a loadable application:

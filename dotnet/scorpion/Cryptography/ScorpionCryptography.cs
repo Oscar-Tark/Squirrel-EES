@@ -57,7 +57,7 @@ namespace Scorpion.Crypto
             return al_ret;
         }
 
-        //DEPRECIATED - Remove and replace
+        [Obsolete]
         public byte[] To_Byte(object obj)
         {
             MemoryStream ms = new MemoryStream();
@@ -70,7 +70,7 @@ namespace Scorpion.Crypto
             return Encoding.Default.GetString(byt);
         }
 
-        //DEPRECIATED - Remove and replace
+        [Obsolete]
         public object To_Object(byte[] byt)
         {
             MemoryStream ms = new MemoryStream(byt);

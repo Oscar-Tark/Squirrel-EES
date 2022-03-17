@@ -24,7 +24,7 @@ namespace Scorpion
 {
     public class Timer_
     {
-        Scorp HANDLE;
+        Scorp HANDLE = default;
         public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
