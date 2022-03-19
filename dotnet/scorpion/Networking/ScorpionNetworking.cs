@@ -19,6 +19,7 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Net;
+using System.ComponentModel;
 
 namespace Scorpion
 {
@@ -176,6 +177,27 @@ namespace Scorpion
             Do_on.sdh.remove_tcpclient(Do_on.sdh.get_index_tcpclient((string)var_get(objects[0])));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
+            return;
+        }
+    }
+
+    public sealed partial class Librarian
+    {
+        private void downloadFile(string url, string local_path)
+        {
+            WebClient web_client = new WebClient();
+            web_client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadFileDone);
+            web_client.DownloadFile(@url, local_path);
+            Do_on.write_success("Done");
+            return;
+        }
+
+        private static void DownloadFileDone(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                Do_on.write_error("FAILED");
+            if (e.Error != null)
+                Do_on.write_error(e.Error.ToString());
             return;
         }
     }

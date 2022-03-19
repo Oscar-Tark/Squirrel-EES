@@ -62,6 +62,7 @@ namespace Scorpion
 
             string function = null;
             sp.Start();
+            
             try
             {
                 //Check if there are comments, and strip the string of anything after the comment
@@ -125,7 +126,7 @@ namespace Scorpion
             catch (Exception erty)
             {
                 Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
-                showman(function);
+                showMan(function);
             }
             //End the timer to count how long it took to run the specific line of code
             sp.Stop();

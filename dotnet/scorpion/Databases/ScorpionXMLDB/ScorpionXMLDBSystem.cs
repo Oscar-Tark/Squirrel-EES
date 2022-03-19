@@ -18,6 +18,7 @@
 using System.Collections;
 using System.IO;
 using System.Security;
+using EasyEncrypt2;
 
 //DEPRECIATED will be replaced with a C version
 namespace Scorpion_MDB
@@ -83,6 +84,9 @@ namespace Scorpion_MDB
             /*DATA  TAG */
             ArrayList al = new ArrayList (3) { s_data, s_tag, s_subtag };
             File.WriteAllText(path, HANDLE.crypto.Array_To_String(al));
+
+            encryptDb(path);
+
             path = null;
             return;
         }
@@ -143,9 +147,33 @@ namespace Scorpion_MDB
             //File.Encrypt(path);
             int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
             File.WriteAllText((string)HANDLE.mem.AL_TBLE_PATH[ndx], HANDLE.crypto.Array_To_String((ArrayList)HANDLE.mem.AL_TBLE[ndx]));
+            encryptDb();
+
             name = null;
             pwd = null;
             return;
+        }
+
+        private string encryptDb(string contents, string pwd)
+        {
+            //Encrypt file
+            //var encrypter = new EasyEncrypt();
+            //encrypter.EncryptFile(path, path);
+            using var encrypterWithPassword = new EasyEncrypt(pwd, "Salt12345678");
+
+            // Encrypt and decrypt a byte[]
+            var encryptedArray = encrypter.Encrypt(Encoding.UTF8.GetBytes(contents));
+            var decryptedArray = encrypter.Decrypt(encryptedArray);
+        }
+
+        private string decryptDb(string contents, string pwd)
+        {
+            //Encrypt file
+            //var encrypter = new EasyEncrypt();
+            //encrypter.DecryptFile(path, path);
+
+            using var encrypterWithPassword = new EasyEncrypt(pwd, "Salt12345678");
+            var decryptedArray = encrypter.Decrypt(encryptedArray);
         }
 
         public bool Data_setDB(string name, object data, string tag, string subtag)

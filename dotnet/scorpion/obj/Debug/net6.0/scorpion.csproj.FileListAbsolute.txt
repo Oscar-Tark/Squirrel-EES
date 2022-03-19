@@ -30,3 +30,4 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_sql.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_sql.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/MySqlConnector.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/EasyEncrypt.dll

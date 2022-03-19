@@ -32,6 +32,15 @@
           "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
         }
       },
+      "EasyEncrypt/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        }
+      },
       "MySqlConnector/2.1.8": {
         "type": "package",
         "compile": {
@@ -214,6 +223,18 @@
         "lib/uap10.0/Cauldron.Randomizer.pri"
       ]
     },
+    "EasyEncrypt/2.2.1": {
+      "sha512": "Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "type": "package",
+      "path": "easyencrypt/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "easyencrypt.2.2.1.nupkg.sha512",
+        "easyencrypt.nuspec",
+        "lib/netstandard2.0/EasyEncrypt.dll"
+      ]
+    },
     "MySqlConnector/2.1.8": {
       "sha512": "CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
       "type": "package",
@@ -310,6 +331,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "EasyEncrypt >= 2.2.1",
       "Newtonsoft.Json >= 13.0.1",
       "SimpleTCP.Net5 >= 1.0.25",
       "scorpion_authenticator >= 1.0.0",
@@ -368,6 +390,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "EasyEncrypt": {
+            "target": "Package",
+            "version": "[2.2.1, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"

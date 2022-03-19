@@ -129,6 +129,34 @@ namespace Scorpion
         }
     }
 
+    //Escapecharacters
+    partial class Librarian
+    {
+        public string varescape(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Replaces a string with values which cannot be properly parsed by scorpion into an escaped string
+            //Ex: "Hi my name is 'Oscar'" to: "Hi my name is &qOscar&q"
+            //*return<::*vartoescape
+            string escaped = ef__.toEscape(ref Do_on, (string)var_get(objects[0]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return var_create_return(ref escaped, true);
+        }
+
+        public string varunescape(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Replaces a string's escaped values into unescaped values
+            //Ex: "Hi my name is &qOscar&q" to: "Hi my name is 'Oscar'"
+            //*return<::*vartounescape
+            string unescaped = ef__.replaceEscape(ref Do_on, (string)var_get(objects[0]));
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return var_create_return(ref unescaped, true);
+        }
+    }
+
     //MEMORY TAGS
     partial class Librarian
     {
