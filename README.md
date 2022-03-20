@@ -1,9 +1,5 @@
 ![IMG](/mono_legacy/Art/Cropped.png)
 
-**Please note that Scorpion has the following versions:**
-
-dotnet: works on .NET6, and mono_legacy (Not maintained): works on mono using .net 4.7.
-
 [Scorpion IEE [Intelligent Execution Environment]]
 ------------------------------------------------
 
