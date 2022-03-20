@@ -18,7 +18,6 @@
 using System.Collections;
 using System.IO;
 using System.Security;
-using EasyEncrypt2;
 
 //DEPRECIATED will be replaced with a C version
 namespace Scorpion_MDB
@@ -61,7 +60,7 @@ namespace Scorpion_MDB
             return false;
         }
 
-        public void Create_DB(string path, bool spill)
+        public void Create_DB(string path, bool spill, string password)
         {
             //A scorpion database is composed of three data fields:
             /*
@@ -83,9 +82,8 @@ namespace Scorpion_MDB
             string sha_ = HANDLE.crypto.SHA_SS(s_seed);
             /*DATA  TAG */
             ArrayList al = new ArrayList (3) { s_data, s_tag, s_subtag };
-            File.WriteAllText(path, HANDLE.crypto.Array_To_String(al));
 
-            encryptDb(path);
+            File.WriteAllBytes(path, ScorpionAES.ScorpionAES.encryptData(HANDLE.crypto.Array_To_String(al), password));
 
             path = null;
             return;
@@ -105,14 +103,11 @@ namespace Scorpion_MDB
             return;
         }
 
-        public void Load_DB(string path, string name)
+        public void Load_DB(string path, string name, string password)
         {
             //File.Decrypt(path);
-            //byte[] b = File.ReadAllBytes(path);
-            string xml = File.ReadAllText(path);
-
-            //Get pwd as securestring
-            SecureString scr = new SecureString();
+            byte[] b = File.ReadAllBytes(path);
+            string xml = ScorpionAES.ScorpionAES.decryptData(b, password);
             object db_object = HANDLE.crypto.String_To_Array(xml);
 
             if (!HANDLE.mem.AL_TBLE_REF.Contains(name) && !HANDLE.mem.AL_TBLE_PATH.Contains(path))
@@ -128,52 +123,27 @@ namespace Scorpion_MDB
             return;
         }
 
-        public void ReLoad_DB(string name)
+        public void ReLoad_DB(string name, string password)
         {
             int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
             string path = (string)HANDLE.mem.AL_TBLE_PATH[ndx];
 
             Close_DB(name);
-            Load_DB(path, name);
+            Load_DB(path, name, password);
 
             HANDLE.write_to_cui("Reloaded Database: [" + path + "] as [" + name + "]");
 
             return;
         }
 
-        public void Save_DB(string name, string pwd)
+        public void Save_DB(string name, string password)
         {
-            //Save in segments of 0x3a each
-            //File.Encrypt(path);
             int ndx = HANDLE.mem.AL_TBLE_REF.IndexOf(name);
-            File.WriteAllText((string)HANDLE.mem.AL_TBLE_PATH[ndx], HANDLE.crypto.Array_To_String((ArrayList)HANDLE.mem.AL_TBLE[ndx]));
-            encryptDb();
+            File.WriteAllBytes((string)HANDLE.mem.AL_TBLE_PATH[ndx], ScorpionAES.ScorpionAES.encryptData(HANDLE.crypto.Array_To_String((ArrayList)HANDLE.mem.AL_TBLE[ndx]), password));
 
             name = null;
-            pwd = null;
+            password = null;
             return;
-        }
-
-        private string encryptDb(string contents, string pwd)
-        {
-            //Encrypt file
-            //var encrypter = new EasyEncrypt();
-            //encrypter.EncryptFile(path, path);
-            using var encrypterWithPassword = new EasyEncrypt(pwd, "Salt12345678");
-
-            // Encrypt and decrypt a byte[]
-            var encryptedArray = encrypter.Encrypt(Encoding.UTF8.GetBytes(contents));
-            var decryptedArray = encrypter.Decrypt(encryptedArray);
-        }
-
-        private string decryptDb(string contents, string pwd)
-        {
-            //Encrypt file
-            //var encrypter = new EasyEncrypt();
-            //encrypter.DecryptFile(path, path);
-
-            using var encrypterWithPassword = new EasyEncrypt(pwd, "Salt12345678");
-            var decryptedArray = encrypter.Decrypt(encryptedArray);
         }
 
         public bool Data_setDB(string name, object data, string tag, string subtag)

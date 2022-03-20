@@ -9,3 +9,4 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/ref/scorpion_aes.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.csproj.AssemblyReference.cache

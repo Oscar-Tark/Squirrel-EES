@@ -71,6 +71,9 @@
       "scorpion_aes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
         "compile": {
           "bin/placeholder/scorpion_aes.dll": {}
         },
@@ -361,7 +364,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "EasyEncrypt >= 2.2.1",
       "Newtonsoft.Json >= 13.0.1",
       "SimpleTCP.Net5 >= 1.0.25",
       "scorpion_aes >= 1.0.0",
@@ -428,10 +430,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "EasyEncrypt": {
-            "target": "Package",
-            "version": "[2.2.1, )"
-          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"

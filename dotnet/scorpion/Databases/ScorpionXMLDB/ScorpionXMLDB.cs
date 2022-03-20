@@ -34,10 +34,12 @@ namespace Scorpion
         //LEGACY
         public void dbcreate(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*File_Name_w_path
+            //::*File_Name_w_path, *pwd
             //{val}
             string name = (string)var_get(objects[0]);
-            Do_on.vds.Create_DB(name, false);
+            string password = (string)var_get(objects[1]);
+
+            Do_on.vds.Create_DB(name, false, password);
             Do_on.write_to_cui("Created Data File(to disk) : " + name + "]");
             name = null;
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -47,12 +49,13 @@ namespace Scorpion
 
         public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *path
+            //::*name, *path, *password
             string name = (string)var_get(objects[0]);
             string path = (string)var_get(objects[1]);
+            string password = (string)var_get(objects[2]);
 
             lock (Do_on.mem.AL_TBLE) lock (Do_on.mem.AL_TBLE_REF) lock (Do_on.mem.AL_TBLE_PATH)
-                        Do_on.vds.Load_DB(path, name);
+                        Do_on.vds.Load_DB(path, name, password);
             var_arraylist_dispose(ref objects);
             name = null;
             Scorp_Line_Exec = null;
@@ -72,10 +75,11 @@ namespace Scorpion
 
         public void dbsave(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name
+            //::*name, *password
             string name = (string)var_get(objects[0]);
-            //Save without passphrase for now
-            Do_on.vds.Save_DB(name, "");
+            string password = (string)var_get(objects[1]);
+            
+            Do_on.vds.Save_DB(name, password);
             Do_on.write_success("Database [" + name + "] saved");
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -85,37 +89,16 @@ namespace Scorpion
 
         public void dbreload(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*dbname
+            //::*dbname, *password
+            string name = (string)var_get(objects[0]);
+            string password = (string)var_get(objects[1]);
 
+            Do_on.vds.ReLoad_DB(name, password);
 
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             return;
         }
-
-        //Update, does not follow new methodology
-        /*public void dbappimport(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //::*dbname, *folder, *appname
-            //Imports a vue app into a MicroDB application
-            string dbname = (string)var_get(objects[0]);
-            string[] files = MicroDB.Scorpion_MicroDB_Importer.importScripts(dbname, (string)var_get(objects[1]));
-
-            if (files != null)
-            {
-                //Set to db
-                Do_on.vds.Data_setDB(dbname, files[0], (string)var_get(objects[2]), "structure");
-                Do_on.vds.Data_setDB(dbname, files[1], (string)var_get(objects[2]), "logic");
-                Do_on.vds.Data_setDB(dbname, files[2], (string)var_get(objects[2]), "visuals");
-            }
-            else
-                Do_on.write_error("There was an error importing your files to the database, please make sure you have included these files within the folder:\n\n> structure.vue\n> logic.vue\n> visuals.vue");
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            var_dispose_internal(ref dbname);
-            return;
-        }*/
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
@@ -156,7 +139,7 @@ namespace Scorpion
         public object dbget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //This function gets values from a Scorpion.Database by Datavalue, Tag or Subtag
-            //::*path, *data|OR NULL, *tag|OR NULL, *subtag|OR NULL
+            //return<<::*path, *data|OR NULL, *tag|OR NULL, *subtag|OR NULL
             /*
              * path = path/name of database
              * data = the specific value and related data you may want to get | If data is *'' elements are searched by tag and subtag

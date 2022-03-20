@@ -8,10 +8,11 @@
     ".NETCoreApp,Version=v6.0": {
       "scorpion/1.0.0": {
         "dependencies": {
-          "EasyEncrypt": "2.2.1",
           "Newtonsoft.Json": "13.0.1",
           "SimpleTCP.Net5": "1.0.25",
+          "scorpion_aes": "1.0.0",
           "scorpion_authenticator": "1.0.0",
+          "scorpion_compiler": "1.0.0",
           "scorpion_log": "1.0.0",
           "scorpion_rsa": "1.0.0",
           "scorpion_sql": "1.0.0"
@@ -79,12 +80,25 @@
           }
         }
       },
+      "scorpion_aes/1.0.0": {
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "runtime": {
+          "scorpion_aes.dll": {}
+        }
+      },
       "scorpion_authenticator/1.0.0": {
         "dependencies": {
           "scorpion_hasher": "1.0.0"
         },
         "runtime": {
           "scorpion_authenticator.dll": {}
+        }
+      },
+      "scorpion_compiler/1.0.0": {
+        "runtime": {
+          "scorpion_compiler.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -174,7 +188,17 @@
       "path": "simpletcp.net5/1.0.25",
       "hashPath": "simpletcp.net5.1.0.25.nupkg.sha512"
     },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "scorpion_authenticator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_compiler/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

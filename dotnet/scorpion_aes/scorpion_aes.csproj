@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EasyEncrypt" Version="2.2.1" />
+  </ItemGroup>
+
 </Project>
