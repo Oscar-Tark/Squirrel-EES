@@ -1,4 +1,4 @@
-![IMG](/img/Cropped.png)
+![IMG](/dotnet/img/Cropped.png)
 
 [Scorpion IEE [Intelligent Execution Environment]]
 ------------------------------------------------
