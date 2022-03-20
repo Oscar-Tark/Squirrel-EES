@@ -46,14 +46,14 @@ where 'escapee' is a character denoting the type of escape.
 
 Here they are:
 
-> {&c} = ,
-> {&v} = *
-> {&q} = '
-> {&r} = >>
-> {&l} = <<
-> {&d} = ::
-> {&fl} = {[[
-> {&fr} = ]]}
+- {&c} = ,
+- {&v} = *
+- {&q} = '
+- {&r} = >>
+- {&l} = <<
+- {&d} = ::
+- {&fl} = {[[
+- {&fr} = ]]}
 
 **Function calls:**
 
@@ -221,9 +221,9 @@ XMLDB is mostly reccomended as a static database for storing string data that yo
 
 All data in XMLDB is represented by the following characteristics:
 
-> tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
-> subtag : What does your data represent within the tag or classification of data (Example: your name or age)
-> data : Contained data
+- tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
+- subtag : What does your data represent within the tag or classification of data (Example: your name or age)
+- data : Contained data
 
 **Getting data:XMLDB**
 
@@ -273,8 +273,8 @@ Example:
 
 You may view a list of all open databases by using the following commands:
 
-> `listdbs`
-> `ld`
+- `listdbs`
+- `ld`
 
 [Databases:MYSQL]
 ---------------
@@ -295,9 +295,10 @@ Example:
 
 **Creating a new mysql table in the default format**
 
-You may create a new mysql table from scorpion in it's default format. In order to simplify the way scorpion databases store data scorpion will automatically generate specific columns:
+You may create a new mysql table from scorpion in it's default format or so in the XMLDB format. In order to simplify the way scorpion databases store data scorpion will automatically generate specific columns:
 
-> id : An identifier for every row
-> tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
-> subtag : What does your data represent within the tag or classification of data (Example: your name or age)
-> data : Contained data
+- id : An identifier for every row
+- tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
+- subtag : What does your data represent within the tag or classification of data (Example: your name or age)
+- data : Contained data
+- token : Contains a scorpion based token for creating user based applications. The token can be used to verify that the user belongs to a specific user
