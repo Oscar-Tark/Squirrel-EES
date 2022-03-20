@@ -1,8 +1,0 @@
-Description
-Deletes all variables from memory and their corresponding value and tags
-
-Example:
-vardeleteall
-
-See Also
-var, varset, vardelete, vartag

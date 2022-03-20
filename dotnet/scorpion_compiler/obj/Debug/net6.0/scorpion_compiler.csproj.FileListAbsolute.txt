@@ -1,0 +1,12 @@
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.csproj.AssemblyReference.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.AssemblyInfoInputs.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.AssemblyInfo.cs
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.csproj.CoreCompileInputs.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/bin/Debug/net6.0/scorpion_compiler.deps.json
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/bin/Debug/net6.0/scorpion_compiler.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/bin/Debug/net6.0/ref/scorpion_compiler.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/bin/Debug/net6.0/scorpion_compiler.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/ref/scorpion_compiler.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/obj/Debug/net6.0/scorpion_compiler.pdb

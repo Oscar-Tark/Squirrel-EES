@@ -68,6 +68,16 @@
           "lib/net5.0/SimpleTCP.Net5.dll": {}
         }
       },
+      "scorpion_aes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        }
+      },
       "scorpion_authenticator/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -79,6 +89,16 @@
         },
         "runtime": {
           "bin/placeholder/scorpion_authenticator.dll": {}
+        }
+      },
+      "scorpion_compiler/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/scorpion_compiler.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_compiler.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -303,10 +323,20 @@
         "simpletcp.net5.nuspec"
       ]
     },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_aes/scorpion_aes.csproj",
+      "msbuildProject": "../scorpion_aes/scorpion_aes.csproj"
+    },
     "scorpion_authenticator/1.0.0": {
       "type": "project",
       "path": "../scorpion_authenticator/scorpion_authenticator.csproj",
       "msbuildProject": "../scorpion_authenticator/scorpion_authenticator.csproj"
+    },
+    "scorpion_compiler/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_compiler/scorpion_compiler.csproj",
+      "msbuildProject": "../scorpion_compiler/scorpion_compiler.csproj"
     },
     "scorpion_hasher/1.0.0": {
       "type": "project",
@@ -334,7 +364,9 @@
       "EasyEncrypt >= 2.2.1",
       "Newtonsoft.Json >= 13.0.1",
       "SimpleTCP.Net5 >= 1.0.25",
+      "scorpion_aes >= 1.0.0",
       "scorpion_authenticator >= 1.0.0",
+      "scorpion_compiler >= 1.0.0",
       "scorpion_log >= 1.0.0",
       "scorpion_rsa >= 1.0.0",
       "scorpion_sql >= 1.0.0"
@@ -365,8 +397,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+            },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/scorpion_compiler.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/scorpion_compiler.csproj"
             },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj"
