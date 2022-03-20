@@ -145,6 +145,123 @@ Example
 
 `processio::*'mypingprocess'`
 
-**Databases**
+**Databases:XMLDB**
 
-Functionality works, Manual comming soon.
+Databases are based of the XML standard and are simple encrypted files on your hard drive for storing static data. Scorpion's XMLDB allows you to get, set and query data.
+
+**Creating a database:XMLDB**
+
+Syntax:
+
+`dbcreate::*dbpath, *password`
+
+Example:
+
+`dbcreate::*f'{[[path]]}/Databases/database.db'`
+
+**Opening a database:XMLDB**
+
+Databases can be opened by providing a path and a name which can be used to identify the database when working with it.
+
+Syntax:
+
+`dbopen::*dbname, *dbpath, *password`
+
+Example:
+
+`dbopen::*'mydatabase', *f'{[[path]]}/Databases/database.db', *'12345'`
+
+**Closing a database:XMLDB**
+
+Syntax:
+
+`dbclose::*dbname`
+
+Example:
+
+`dbclose::*'mydatabase'`
+
+**Saving a database:XMLDB**
+
+Always remember to save changes before closing or reloading a database, if you do not all changes will be lost. It is reccomended to create a script that saves your database state every few minutes if the database is an active one.
+
+Syntax:
+
+`dbsave::*dbname, *password`
+
+Example:
+
+`dbsave::*'mydatabase', *'12345'`
+
+**Reloading a database::XMLDB**
+
+If you want to loose any changes made or want a fresh copy of a database in its previously last saved state you may reload a database.
+
+Syntax:
+
+`dbreload::*dbname, *password`
+
+Example:
+
+`dbreload::*'mydatabase', *'12345'`
+
+**Querying data in XMLDB**
+
+XMLDB is mostly reccomended as a static database for storing string data that you'd like to use later on. This can be HTML for a website which you can then process with formatted strings or image links. Data must be only in a string format. Saving images or videos may not work and will corrupt a database you may test it at your own perrill.
+
+All data in XMLDB is represented by the following characteristics:
+
+> tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
+> subtag : What does your data represent within the tag or classification of data (Example: your name or age)
+> data : Contained data
+
+**Getting data:XMLDB**
+
+You may get data in XMLDB using either tags or/and subtags or/and data. If you do not have the value of one of them say you are fetching data relating to 'Tag:John Doe' but don't know what data is contained, you may pass the `*null` value as a parameter, all parameters are nullable. All queries return an array.
+
+Syntax:
+
+`*return_var<<dbget::*dbname, *data|OR NULL, *tag|OR NULL, *subtag|OR NULL`
+
+Example:
+
+`*result<<dbget::*dbname, *null, *'first_name', *null`
+
+**Getting all data:XMLDB**
+
+You may also get all available data from an XMLDB database, this will be returned as an array.
+
+Syntax:
+
+`*return_var::*dbname`
+
+**Setting data:XMLDB**
+
+You may insert but not update data in XMLDB, hence we reccomend using XMLDB mostly for static data such as containing a webpage.
+
+Syntax:
+
+`dbset::*dbname, *data, *tag|OR NULL, *subtag|OR NULL`
+
+Example:
+
+`dbset::*dbname, *'<p>Welcome!</p>', *'www.mywebsite.com', *'HTML'`
+
+**Deleting data:XMLDB**
+
+Data may be deleted in XMLDB using the query syntax allowing you to delete one or more elements partaining to a tag or subtag. Deleting all elements with a subtag deletes the subtag, deleting all elements with a tag deletes that tag.
+
+Syntax:
+
+`dbdelete::*dbname, *data|OR NULL, *tag|OR NULL, *subtag|OR NULL`
+
+Example:
+
+`dbdelete::*dbname, *null, *'first_name', *'John Doe'`
+
+**Listing all open databases:XMLDB**
+
+You may view a list of all open databases by using the following commands:
+
+> `listdbs`
+> `ld`
