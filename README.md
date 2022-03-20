@@ -75,7 +75,10 @@ Scorpion allows you to run multiple functions in one line. Unlike other language
 
 `var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {[[name]]}!. Let us play the GNU SONG!' >> exit`
 
-**Running scripts:**
+[Scripts]
+---------------
+
+**Running Scorpion syntax scripts:**
 
 You may run external files as scripts which contain various scorpion function calls delimited by newlines. You may call a script by sending a path argument to the function 'scriptrun', it is reccomended to not use an extension for filenames:
 
@@ -97,7 +100,8 @@ Example:
 
 `asmcompile::*'/home/myhome/test.cs', *'test.Test', *'System.IO', *'System.Threading'`
 
-**Loading C# scripts (mono_legacy only):**
+[Loading C# scripts (mono_legacy only)]
+---------------
 
 In order to use any compiled C# script we must load them into Scorpion. This will allow us to call any function within a class. Please note that loading a C# library only supports loading one class at a time from all assemblies, this means that in order to load multiple classes from one assembly is currently not possible.
 
@@ -116,6 +120,9 @@ You may now run a compiled function within a loaded assembly. This will allow yo
 Syntax:
 
 `asmcall::*path, *functionname, *arg, *arg...`
+
+[Processes]
+---------------
 
 **Running external processes**
 
@@ -145,7 +152,8 @@ Example
 
 `processio::*'mypingprocess'`
 
-**Databases:XMLDB**
+[Databases:XMLDB]
+---------------
 
 Databases are based of the XML standard and are simple encrypted files on your hard drive for storing static data. Scorpion's XMLDB allows you to get, set and query data.
 
@@ -265,3 +273,6 @@ You may view a list of all open databases by using the following commands:
 
 > `listdbs`
 > `ld`
+
+[Databases:MYSQL]
+---------------
