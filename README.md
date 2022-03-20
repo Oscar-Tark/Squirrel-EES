@@ -1,9 +1,11 @@
 ![IMG](/dotnet/img/Cropped.png)
 
-[Scorpion IEE [Intelligent Execution Environment]]
-------------------------------------------------
+[Scorpion IEE [Intelligent Execution Environment]:Quickstart Guide]
+-------------------------------------------------------------------
 
 Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to scorpion with functions you created in order to call them. Scorpion contains its own memory and databasing system. Each function call is done on an isolated thread.
+
+!NOTE: Call the `manual` function in order to view all available manuals and runnable functions for scorpion. You may use the `manual::*manual_name` function to view a manual.
 
 [General syntax]
 ---------------
