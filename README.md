@@ -3,7 +3,7 @@
 [Scorpion IEE [Intelligent Execution Environment]:Quickstart Guide]
 -------------------------------------------------------------------
 
-Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to scorpion with functions you created in order to call them. Scorpion contains its own memory and databasing system. Each function call is done on an isolated thread.
+Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to scorpion with functions you created in order to call them. Scorpion contains its own memory and database system. Each function call is done on an isolated thread.
 
 !NOTE: Call the `manual` function in order to view all available manuals and runnable functions for scorpion. You may use the `manual::*manual_name` function to view a manual.
 
@@ -278,3 +278,26 @@ You may view a list of all open databases by using the following commands:
 
 [Databases:MYSQL]
 ---------------
+
+It is imperative that you have already set up a database and a user for your MYSQL instance in order to use Scorpion with it. Scorpion has a limited number of functionalities it can perform with MYSQL at the moment. This will be expanded in future releases to include fullscale MYSQL integration.
+
+**Creating a new MYSQL connection string**
+
+You may create a mysql connection string on your own and store it in a variable, type it out as a value variable. Scorpion allows you to automatically create a new mysql connection string and store it within a Scorpion variable as a returnable variable.
+
+Syntax:
+
+`*return_var<<mysqlcreatestring::*host|OR IP, *port|OR '3306', *database, *user, *password`
+
+Example:
+
+`result<<mysqlcreatestring::*'localhost', *'3306', *'mydatabase', *'user', *'12345'`
+
+**Creating a new mysql table in the default format**
+
+You may create a new mysql table from scorpion in it's default format. In order to simplify the way scorpion databases store data scorpion will automatically generate specific columns:
+
+> id : An identifier for every row
+> tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
+> subtag : What does your data represent within the tag or classification of data (Example: your name or age)
+> data : Contained data
