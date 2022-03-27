@@ -36,7 +36,7 @@ namespace Scorpion
                     FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
-                        scorpion_exec(line);
+                        scorpionExec(line);
 
                     fd.Flush();
                     sr.Close();
@@ -53,7 +53,7 @@ namespace Scorpion
                     FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
-                        scorpion_exec(line);
+                        scorpionExec(line);
 
                     fd.Flush();
                     sr.Close();
@@ -77,7 +77,7 @@ namespace Scorpion
             FileStream fd = new FileStream((string)var_get((string)objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
             while ((line = sr.ReadLine()) != null)
-                scorpion_exec(line);
+                scorpionExec(line);
 
             fd.Flush();
             sr.Close();

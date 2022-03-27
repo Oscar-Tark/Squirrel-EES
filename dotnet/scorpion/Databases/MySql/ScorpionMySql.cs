@@ -26,12 +26,12 @@ namespace Scorpion
         public void mysqlnew(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates a new generic data table
-            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
+            //Table format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
             //::*connectionstringvar, *tablename
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlnew::*con, *'test'
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                mysql.sqlnew((string)var_get(objects[0]), (string)var_get(objects[1]));
+                mysql.sqlfmtnew((string)var_get(objects[0]), (string)var_get(objects[1]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -55,7 +55,7 @@ namespace Scorpion
         public object mysqlget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Gets data from a Mysql table
-            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
+            //Table format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
             //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> *temp<<mysqlget::*con, *'test', *'/test', *'name', *'', *'token'
             
@@ -73,7 +73,7 @@ namespace Scorpion
         public void mysqlset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Inserts data into a MySql table
-            //Table format: [id:int] [path:string] [identifier(name, age...):string] [data:string], [token:string]
+            //Table format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
             //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlset::*con, *'test', *'/test', *'last name', *'Doe', *'token'
             

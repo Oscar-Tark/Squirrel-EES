@@ -38,7 +38,7 @@ namespace Scorpion
             wkp = new Workspaces.Workspaces(this);
             mem = new Memory();
             types = new Types(this);
-            sdh = new SESSION_DEPENDENT_HANDLERS(this);
+            sdh = new SessionDependentNetworkHandlers(this);
             sclog = new Scorpion_LOG.Scorpion_LOG(types.main_user_path);
             return;
         }
@@ -52,7 +52,7 @@ namespace Scorpion
         public Workspaces.Workspaces wkp;
         public Memory mem;
         public Types types;
-        public SESSION_DEPENDENT_HANDLERS sdh;
+        public SessionDependentNetworkHandlers sdh;
         public Scorpion_LOG.Scorpion_LOG sclog;
 
         private bool check_directory()

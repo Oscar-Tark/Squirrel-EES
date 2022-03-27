@@ -97,6 +97,24 @@ namespace Scorpion
             return var;
         }
 
+        public string replaceFormatCustomSourceDictionary(ref string var, ref Dictionary<string, string> source)
+        {
+            //f'Hi my name is {[[name]]}'
+            string to_change = "";
+            string[] vars = var.Split(new char[] { '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+            string temp_var = null;
+            for (int i = 0; i < vars.Length; i++)
+            {
+                if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
+                {
+                    to_change = vars[i].Replace("[[", "*").Replace("]]", "");
+                    source.TryGetValue(to_change, out temp_var);
+                    var = var.Replace("{" + vars[i] + "}", temp_var);
+                }
+            }
+            return var;
+        }
+
         public string remove_commented(ref string Scorp_Line)
         {
             //Removes comments denoted by '###' in a line of code or a comment line.
@@ -126,6 +144,7 @@ namespace Scorpion
             { "subtag", new string[] {"{&subtag}", "{&/subtag}" } },
             { "data", new string[] {"{&data}", "{&/data}" } },
             { "status", new string[] {"{&status}", "{&/status}" } },
+            { "session", new string[] {"{&session}", "{&/session}" } },
                 };
 
         public readonly Dictionary<string, string> api_requests = new Dictionary<string, string>
@@ -148,20 +167,21 @@ namespace Scorpion
             {
                 //Split other elements
                 //Get the app
-                string[] db, tag, subtag, type;
+                string[] db, tag, subtag, type, session;
                 type = Scorp_Line.Split(api["type"], StringSplitOptions.RemoveEmptyEntries);
                 db = Scorp_Line.Split(api["database"], StringSplitOptions.RemoveEmptyEntries);
                 tag = Scorp_Line.Split(api["tag"], StringSplitOptions.RemoveEmptyEntries);
                 subtag = Scorp_Line.Split(api["subtag"], StringSplitOptions.RemoveEmptyEntries);
-                return new Dictionary<string, string> { { "type", type[1] }, { "db", db[1] }, { "tag", tag[1] }, { "subtag", subtag[1] } };
+                session = Scorp_Line.Split(api["session"], StringSplitOptions.RemoveEmptyEntries);
+                return new Dictionary<string, string> { { "type", type[1] }, { "db", db[1] }, { "tag", tag[1] }, { "subtag", subtag[1] }, { "session", session[1] } };
             }
             return null;
         }
 
-        public string build_api(string data, bool error)
+        public string build_api(string data, string session, bool error)
         {
             if (!error)
-                return api["scorpion"][0] + api["type"][0] + api_requests["response"] + api["type"][1] + api["data"][0] + data + api["data"][1] + api["status"][0] + api_result["ok"] + api["status"][1] + api["scorpion"][1];
+                return api["scorpion"][0] + api["type"][0] + api_requests["response"] + api["type"][1] + api["session"][0] + session + api["session"][1] + api["data"][0] + data + api["data"][1] + api["status"][0] + api_result["ok"] + api["status"][1] + api["scorpion"][1];
             return api["scorpion"][0] + api["type"][0] + api_requests["response"] + api["type"][1] + api["data"][0] + data + api["data"][1] + api["status"][0] + api_result["error"] + api["status"][1] + api["scorpion"][1];
         }
 

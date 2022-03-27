@@ -130,6 +130,7 @@ namespace Scorpion
 
         public object dbgetall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
+            //*return<<::*path/name of database
             ArrayList result = Do_on.vds.Data_getDB_all_no_thread((string)var_get(objects[0]));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);

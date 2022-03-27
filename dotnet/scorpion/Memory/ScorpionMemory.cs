@@ -599,6 +599,27 @@ namespace Scorpion
             }
             return o;
         }
+
+        public bool varCheck(string reference)
+        {
+            return Do_on.mem.AL_CURR_VAR_REF.Contains(reference);
+        }
+
+        //memory get
+        public string varGetCustomFormattedOnlyDictionary(ref string Block, ref string reference)
+        {
+            //source: [reference, value]
+            string temp_var = Block;
+            Dictionary<string, string> dictionary_temp = (Dictionary<string, string>)var_get(ref reference);
+
+            Block = ef__.replaceFormatCustomSourceDictionary(ref Block, ref dictionary_temp).Remove(0, 1);
+
+            //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
+            temp_var = var_cut_str_symbol(var_cut_symbol(ref Block));
+
+            //Replace escape sequences
+            return ef__.replaceEscape(ref Do_on, (string)temp_var);
+        }
     }
 
     public partial class Librarian

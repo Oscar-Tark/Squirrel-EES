@@ -1,4 +1,19 @@
-//#
+/*  <Scorpion Server>
+    Copyright (C) <2022+>  <Oscar Arjun Singh Tark>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 using System;
 using System.Collections;
@@ -10,10 +25,10 @@ using System.Security;
 
 namespace Scorpion
 {
-    public class SESSION_DEPENDENT_HANDLERS
+    public class SessionDependentNetworkHandlers
     {
         Scorp HANDLE;
-        public SESSION_DEPENDENT_HANDLERS(Scorp HANDLE_PASS)
+        public SessionDependentNetworkHandlers(Scorp HANDLE_PASS)
         {
             HANDLE = HANDLE_PASS;
             return;
@@ -59,25 +74,24 @@ namespace Scorpion
             //Add RSA support
             //Removes delimiter 0x13 and executes
             /*
-            {&scorpion}{&type}type{&/type}{&database}db{&/database}{&tag}tag{&/tag}{&subtag}subtag{&/subtag}{&/scorpion}
-            */
+            {&scorpion}{&type}type{&/type}{&database}db{&/database}{&tag}tag{&/tag}{&subtag}subtag{&/subtag}{&session}session{&/session}{&/scorpion}
+            tag:project_folder*/
+            
             Enginefunctions ef__ = new Enginefunctions();
             NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
 
             int server_index = HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
+            string session = HANDLE.types.S_NULL;
 
             //Check if RSA
             if (HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
                 data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0]));
 
-            HANDLE.write_debug("OK");
             //Btyte->string, Parse string
             string s_data = HANDLE.crypto.To_String(data);
             string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
 
-            HANDLE.write_debug(command);
-            //HANDLE.sclog.log("Network command: " + command);
             Dictionary<string, string> processed = nef__.replace_api(command);
             string reply = null;
 
@@ -85,20 +99,35 @@ namespace Scorpion
             {
                 if (processed != null)
                 {
+                    session = processed["session"];
+                    //Console.WriteLine("GOT {0}", command);
+
+                    //Is there a session? if not create a session dictionary to contain session variables for the user
+                    if(!HANDLE.readr.lib_SCR.varCheck(session))
+                    {
+                        ArrayList temp = new ArrayList(){ session };
+                        HANDLE.readr.lib_SCR.vardictionary(ref session, ref temp);
+                    }
+
                     if (processed["type"] == nef__.api_requests["get"])
                     {
-                        //Get file
+                        //Get script and HTML/JS/CSS file
                         string page_file = File.ReadAllText(HANDLE.types.main_user_projects_path + "/" + processed["tag"] + "/" + processed["subtag"]);
-
-                        //Get php style processing commands and compile for response
+                        
+                        //GET GENERIC OBJECTS AND FILL:
                         ArrayList query_result = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
+
                         if (query_result.Count > 0)
                         {
-                            reply = nef__.build_api(page_file + Convert.ToString(query_result[0]), false);
-                            //reply = nef__.build_api(Convert.ToString(query_result[0]), false);
+                            page_file = (string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref page_file, ref session);
+
+                            //string res_tmp = "f\'" + Convert.ToString(query_result[0]) + "\'";
+                            //res_tmp = (string)HANDLE.readr.lib_SCR.var_get(ref res_tmp);
+
+                            reply = nef__.build_api(page_file/* + res_tmp*/, session, false);
                         }
                         else
-                            reply = nef__.build_api("Query resulted in 0 elements returned", true);
+                            reply = nef__.build_api("Query resulted in 0 elements returned", session, true);
                     }
                     else if (processed["type"] == nef__.api_requests["set"])
                     {
@@ -106,11 +135,11 @@ namespace Scorpion
                         string[] commands = command.Split(new char[] { '\n' });
                         foreach (string s_dat in commands)
                             HANDLE.readr.access_library(s_dat);
-                        reply = nef__.build_api("Command executed", false);
+                        reply = nef__.build_api("Command executed", session, false);
                     }
                 }
                 else
-                    reply = nef__.build_api("Command error. Incorrect syntax", true);
+                    reply = nef__.build_api("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send
                 if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)

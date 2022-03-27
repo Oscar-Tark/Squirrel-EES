@@ -43,7 +43,7 @@ namespace Scorpion
             //Start thread for the single line of interpretation code
             try
             {
-                Thread ths = new Thread(new ParameterizedThreadStart(scorpion_exec));
+                Thread ths = new Thread(new ParameterizedThreadStart(scorpionExec));
                 ths.IsBackground = true;
                 ths.Start(Scorp_Line);
             }
@@ -51,7 +51,7 @@ namespace Scorpion
             return;
         }
 
-        private void scorpion_exec(object Scorp_Line)
+        private void scorpionExec(object Scorp_Line)
         {
             //*return<<function::*vars ###comment
             //Start the timer to count how long it takes to execute this line of code
