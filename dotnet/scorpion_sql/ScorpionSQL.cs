@@ -1,6 +1,6 @@
 ﻿/*A class for storing and retrieving data from SQL
 * SQL sructure
-* [id:int] [path:string] [identifier(name, age...):string] [data:string]
+* [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
 */
 
 using System;
@@ -15,7 +15,7 @@ public class ScorpionSql:IDisposable
 {
     public object scfmtSqlGet(string connection_string, string table, string path, string identifier, string data, string token)
     {
-        //Get data from MySql in the generic format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
+        //Get data from MySql in the generic format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
 
         ArrayList returnable_data = new ArrayList();
 
@@ -24,10 +24,10 @@ public class ScorpionSql:IDisposable
         using (var connection = new MySqlConnection(connection_string))
         {
             connection.Open();
-            using (var command = new MySqlCommand(string.Format("SELECT * FROM {0} WHERE path=@path AND identifier=@identifier AND data LIKE @data AND token=@token;", table), connection))
+            using (var command = new MySqlCommand(string.Format("SELECT * FROM {0} WHERE tag=@path AND subtag=@identifier AND data LIKE @data AND token=@token;", table), connection))
             {
-                command.Parameters.AddWithValue("path", path);
-                command.Parameters.AddWithValue("identifier", identifier);
+                command.Parameters.AddWithValue("tag", path);
+                command.Parameters.AddWithValue("subtag", identifier);
                 command.Parameters.AddWithValue("data", string.Format("%{0}%", data));
                 command.Parameters.AddWithValue("token", token);
 
@@ -51,17 +51,17 @@ public class ScorpionSql:IDisposable
 
     public void scfmtSqlSet(string connection_string, string table, string path, string identifier, string data, string token)
     {
-        //Set data into MySql in the generic format: [id:int] [path:string] [identifier(name, age...):string] [data:string]
+        //Set data into MySql in the generic format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
         
         try
         {
         using (var connection = new MySqlConnection(connection_string))
         {
             connection.Open();
-            using (var command = new MySqlCommand(string.Format("INSERT INTO {0} values(DEFAULT, @path, @identifier, @data, @token)", table), connection))
+            using (var command = new MySqlCommand(string.Format("INSERT INTO {0} values(DEFAULT, @tag, @subtag, @data, @token)", table), connection))
             {
-                command.Parameters.AddWithValue("path", path);
-                command.Parameters.AddWithValue("identifier", identifier);
+                command.Parameters.AddWithValue("tag", path);
+                command.Parameters.AddWithValue("subtag", identifier);
                 command.Parameters.AddWithValue("data", data);
                 command.Parameters.AddWithValue("token", token);
 
@@ -80,17 +80,16 @@ public class ScorpionSql:IDisposable
         return;
     }
 
-    public void sqlnew(string connection_string, string table_name)
+    public void sqlfmtnew(string connection_string, string table_name)
     {
-        //Creates a new generic data table
-        //[id:int] [path:string] [identifier(name, age...):string] [data:string]
+        //Creates a new generic data table with the following default format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
         
         try
         {
         using (var connection = new MySqlConnection(connection_string))
         {
             connection.Open();
-            using (var command = new MySqlCommand(string.Format("CREATE TABLE {0} (id INT NOT NULL AUTO_INCREMENT, path VARCHAR(128) NOT NULL, identifier VARCHAR(32) NOT NULL, data VARCHAR(2048) NULL, token VARCHAR(256) NOT NULL, PRIMARY KEY (id))", table_name), connection))
+            using (var command = new MySqlCommand(string.Format("CREATE TABLE {0} (id INT NOT NULL AUTO_INCREMENT, tag VARCHAR(128) NOT NULL, subtag VARCHAR(32) NOT NULL, data VARCHAR(2048) NULL, token VARCHAR(256) NOT NULL, PRIMARY KEY (id))", table_name), connection))
             {
                 try
                 {
@@ -102,12 +101,6 @@ public class ScorpionSql:IDisposable
         }
         catch(Exception e){ Console.WriteLine(e.Message); }
         return;
-    }
-
-    //System functions
-    private static string sqlSanitize()
-    {
-        return null;
     }
 
     public void test(string connection_string)
