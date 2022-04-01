@@ -7,6 +7,7 @@
     <ProjectReference Include="..\scorpion_sql\scorpion_sql.csproj" />
     <ProjectReference Include="..\scorpion_aes\scorpion_aes.csproj" />
     <ProjectReference Include="..\scorpion_compiler\scorpion_compiler.csproj" />
+    <ProjectReference Include="..\..\..\scorpion_P2P\scorpion_p2p\scorpion_p2p.csproj" />
   </ItemGroup>
 
   <ItemGroup>

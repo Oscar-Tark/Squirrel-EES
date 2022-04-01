@@ -37,6 +37,8 @@ namespace Scorpion
         /*TCP server*/
         public void add_tcpserver(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
         {
+            //To be depreciated soon with scorpion_P2P use [DEPRECIATED] ontop of the function definition when done.
+
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
             sctl.ClientConnected += Sctl_ClientConnected;
             sctl.ClientDisconnected += Sctl_ClientDisconnected;
