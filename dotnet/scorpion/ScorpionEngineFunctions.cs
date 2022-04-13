@@ -103,11 +103,12 @@ namespace Scorpion
             string to_change = "";
             string[] vars = var.Split(new char[] { '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
             string temp_var = null;
+
             for (int i = 0; i < vars.Length; i++)
             {
                 if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
                 {
-                    to_change = vars[i].Replace("[[", "*").Replace("]]", "");
+                    to_change = vars[i].Replace("[[", "").Replace("]]", "");
                     source.TryGetValue(to_change, out temp_var);
                     var = var.Replace("{" + vars[i] + "}", temp_var);
                 }
@@ -145,14 +146,15 @@ namespace Scorpion
             { "data", new string[] {"{&data}", "{&/data}" } },
             { "status", new string[] {"{&status}", "{&/status}" } },
             { "session", new string[] {"{&session}", "{&/session}" } },
-                };
+        };
 
         public readonly Dictionary<string, string> api_requests = new Dictionary<string, string>
         {
             { "get", "get" },
             { "set", "set" },
+            { "delete", "delete" },
             { "response", "response" }
-                };
+        };
 
         private readonly Dictionary<string, string> api_result = new Dictionary<string, string>
         {

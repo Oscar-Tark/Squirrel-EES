@@ -183,12 +183,21 @@ namespace Scorpion
 
     public sealed partial class Librarian
     {
-        private void downloadFile(string url, string local_path)
+        private async Task downloadFile(string url, string local_path)
         {
-            WebClient web_client = new WebClient();
+            /*WebClient web_client = new WebClient();
             web_client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadFileDone);
             web_client.DownloadFile(@url, local_path);
-            Do_on.write_success("Done");
+            Do_on.write_success("Done");*/
+
+            using(HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(new Uri(@url));
+                using (var fs = File.Create(local_path))
+                {
+                    await response.Content.CopyToAsync(fs);
+                }
+            }
             return;
         }
 

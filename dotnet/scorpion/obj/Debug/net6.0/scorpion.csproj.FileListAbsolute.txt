@@ -35,3 +35,5 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_aes.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_compiler.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/EasyEncrypt.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_p2p.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_p2p.pdb

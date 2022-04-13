@@ -14,6 +14,7 @@
           "scorpion_authenticator": "1.0.0",
           "scorpion_compiler": "1.0.0",
           "scorpion_log": "1.0.0",
+          "scorpion_p2p": "1.0.0",
           "scorpion_rsa": "1.0.0",
           "scorpion_sql": "1.0.0"
         },
@@ -115,6 +116,14 @@
           "scorpion_log.dll": {}
         }
       },
+      "scorpion_p2p/1.0.0": {
+        "dependencies": {
+          "SimpleTCP.Net5": "1.0.25"
+        },
+        "runtime": {
+          "scorpion_p2p.dll": {}
+        }
+      },
       "scorpion_rsa/1.0.0": {
         "dependencies": {
           "Capgemini.Cauldron.Cryptography": "3.2.3"
@@ -209,6 +218,11 @@
       "sha512": ""
     },
     "scorpion_log/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_p2p/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

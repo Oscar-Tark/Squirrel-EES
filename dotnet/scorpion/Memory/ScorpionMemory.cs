@@ -402,7 +402,7 @@ namespace Scorpion
             //Check if variable exists if not create a new one
             if (Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString())) == -1)
                 var_new(Do_on.types.S_No, var_cut_symbol(objects[0].ToString()), null, null, Do_on.types.S_No);
-            //Change the variable into a Scorpion.Array
+            //Change the variable into a Scorpion.Dictionary
             var_manipulate((string)objects[0], new Dictionary<string, string>(), false, true, OPCODE_SET);
 
             var_arraylist_dispose(ref objects);
@@ -611,12 +611,10 @@ namespace Scorpion
             //source: [reference, value]
             string temp_var = Block;
             Dictionary<string, string> dictionary_temp = (Dictionary<string, string>)var_get(ref reference);
-
-            Block = ef__.replaceFormatCustomSourceDictionary(ref Block, ref dictionary_temp).Remove(0, 1);
-
+            Block = ef__.replaceFormatCustomSourceDictionary(ref Block, ref dictionary_temp);
+            
             //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
             temp_var = var_cut_str_symbol(var_cut_symbol(ref Block));
-
             //Replace escape sequences
             return ef__.replaceEscape(ref Do_on, (string)temp_var);
         }

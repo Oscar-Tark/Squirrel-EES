@@ -81,10 +81,11 @@ namespace Scorpion
             
             Enginefunctions ef__ = new Enginefunctions();
             NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
-
             int server_index = HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
-            string session = HANDLE.types.S_NULL;
+            //string session = HANDLE.types.S_NULL;
+            string reply = null;
+            IPEndPoint end_point = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
 
             //Check if RSA
             if (HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
@@ -93,18 +94,17 @@ namespace Scorpion
             //Btyte->string, Parse string
             string s_data = HANDLE.crypto.To_String(data);
             string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
-
             Dictionary<string, string> processed = nef__.replace_api(command);
-            string reply = null;
+
+            //Get session from parsed elements
+            string session = processed["session"];
+            string db_page = HANDLE.types.S_NULL;
 
             try
             {
                 if (processed != null)
                 {
-                    session = processed["session"];
-                    //Console.WriteLine("GOT {0}", command);
-
-                    //Is there a session? if not create a session dictionary to contain session variables for the user
+                    //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable
                     if(!HANDLE.readr.lib_SCR.varCheck(session))
                     {
                         ArrayList temp = new ArrayList(){ session };
@@ -113,20 +113,13 @@ namespace Scorpion
 
                     if (processed["type"] == nef__.api_requests["get"])
                     {
-                        //Get script and HTML/JS/CSS file
-                        string page_file = File.ReadAllText(HANDLE.types.main_user_projects_path + "/" + processed["tag"] + "/" + processed["subtag"]);
-                        
-                        //GET GENERIC OBJECTS AND FILL:
+                        //Get formattable page from XMLDB
                         ArrayList query_result = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
 
                         if (query_result.Count > 0)
                         {
-                            page_file = (string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref page_file, ref session);
-
-                            //string res_tmp = "f\'" + Convert.ToString(query_result[0]) + "\'";
-                            //res_tmp = (string)HANDLE.readr.lib_SCR.var_get(ref res_tmp);
-
-                            reply = nef__.build_api(page_file/* + res_tmp*/, session, false);
+                            db_page = (string)query_result[0];
+                            reply = nef__.build_api((string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
                         }
                         else
                             reply = nef__.build_api("Query resulted in 0 elements returned", session, true);
@@ -138,6 +131,11 @@ namespace Scorpion
                         foreach (string s_dat in commands)
                             HANDLE.readr.access_library(s_dat);
                         reply = nef__.build_api("Command executed", session, false);
+                    }
+                    else if (processed["type"] == nef__.api_requests["delete"])
+                    {
+
+                        //Delete a session on request from the HTTP server (Time based)
                     }
                 }
                 else
@@ -151,6 +149,7 @@ namespace Scorpion
                 if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] == null)
                     e.Reply(reply);
             }
+            catch(Exception er){ HANDLE.write_error(string.Format("Fatal Error for {0}. Closing connection", end_point)); HANDLE.write_error(er.StackTrace); HANDLE.write_error(er.Message); }
             finally
             {
                 e.TcpClient.Client.Disconnect(true);
