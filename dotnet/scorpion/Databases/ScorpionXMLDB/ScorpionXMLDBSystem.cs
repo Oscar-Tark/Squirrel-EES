@@ -27,7 +27,7 @@ namespace Scorpion_MDB
         public readonly int DEFAULT_SLOT_SIZE = 50000;
         private const int DEFAULT_STRT_SIZE = 0;
         private readonly string[] Field_Type_Data = { "dat", "num", "bin" };
-        private readonly ArrayList Query_Types = new ArrayList(4) { "data", "tag", "meta", "type" };
+        private readonly List<string> Query_Types = new List<string>(4) { "data", "tag", "meta", "type" };
         Scorpion.Scorp HANDLE;
 
         public Scorpion_Micro_DB(Scorpion.Scorp HANDLE_)

@@ -30,7 +30,7 @@ namespace Scorpion
         public void start_classes()
         {
             vds = new Scorpion_MDB.Scorpion_Micro_DB(this);
-            crypto = new Crypto.Cryptographer(this);
+            crypto = new Crypto.Cryptographer();
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
             tms = new Timer_(this);

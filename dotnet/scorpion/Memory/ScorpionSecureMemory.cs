@@ -142,7 +142,7 @@ namespace Scorpion.Memory_Security
         public void encrypt(ref string Reference)
         {
             //::*ref, var
-            byte[] b_e = Do_on.crypto.AES_ENCRYPT(Reference, Do_on.readr.lib_SCR.var_get(ref Reference), Cauldron.ExtensionsSecureString.GetBytes(password_secured));
+            byte[] b_e = Do_on.crypto.AES_ENCRYPT(Do_on.mmsec.get_pwd(), Do_on.readr.lib_SCR.var_get(ref Reference));
             var_set_encrypted(Reference, b_e);
             return;
         }
@@ -150,8 +150,8 @@ namespace Scorpion.Memory_Security
         public void decrypt(ref string Reference)
         {
             //::*ref
-            object s_d = Do_on.crypto.AES_DECRYPT(Reference, var_get_encrypted(ref Reference), Cauldron.ExtensionsSecureString.GetBytes(password_secured));
-            Do_on.readr.lib_SCR.varset("", new ArrayList() { Reference, s_d});
+            object s_d = Do_on.crypto.AES_DECRYPT(Do_on.mmsec.get_pwd(), var_get_encrypted(ref Reference));
+            Do_on.readr.lib_SCR.varset(Do_on.types.S_NULL, new ArrayList() { Reference, s_d});
             return;
         }
 
