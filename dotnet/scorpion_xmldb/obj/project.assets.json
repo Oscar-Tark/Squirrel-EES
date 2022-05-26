@@ -1,0 +1,211 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Capgemini.Cauldron.Cryptography/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Capgemini.Cauldron.Randomizer": "3.2.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Randomizer/3.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        }
+      },
+      "EasyEncrypt/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        }
+      },
+      "scorpion_aes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        }
+      },
+      "scorpion_cryptography/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_cryptography.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_cryptography.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Capgemini.Cauldron.Cryptography/3.2.3": {
+      "sha512": "cfIT95HcNw/KeWpxgZI2P1qzn07APwL+cLqwHt6iLPURiMuVopTTZeSnxa1DY8rFpZ5BJVOMuaeTwqvpICOMbQ==",
+      "type": "package",
+      "path": "capgemini.cauldron.cryptography/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.cryptography.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.cryptography.nuspec",
+        "lib/net45/Cauldron.Cryptography.dll",
+        "lib/net45/Cauldron.Cryptography.xml",
+        "lib/net451/Cauldron.Cryptography.dll",
+        "lib/net451/Cauldron.Cryptography.xml",
+        "lib/net452/Cauldron.Cryptography.dll",
+        "lib/net452/Cauldron.Cryptography.xml",
+        "lib/net46/Cauldron.Cryptography.dll",
+        "lib/net46/Cauldron.Cryptography.xml",
+        "lib/net461/Cauldron.Cryptography.dll",
+        "lib/net461/Cauldron.Cryptography.xml",
+        "lib/net462/Cauldron.Cryptography.dll",
+        "lib/net462/Cauldron.Cryptography.xml",
+        "lib/netstandard2.0/Cauldron.Cryptography.dll",
+        "lib/netstandard2.0/Cauldron.Cryptography.xml",
+        "lib/uap10.0/Cauldron.Cryptography.XML",
+        "lib/uap10.0/Cauldron.Cryptography.dll",
+        "lib/uap10.0/Cauldron.Cryptography.pri"
+      ]
+    },
+    "Capgemini.Cauldron.Randomizer/3.2.3": {
+      "sha512": "Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
+      "type": "package",
+      "path": "capgemini.cauldron.randomizer/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.randomizer.nuspec",
+        "lib/net45/Cauldron.Randomizer.dll",
+        "lib/net45/Cauldron.Randomizer.xml",
+        "lib/net451/Cauldron.Randomizer.dll",
+        "lib/net451/Cauldron.Randomizer.xml",
+        "lib/net452/Cauldron.Randomizer.dll",
+        "lib/net452/Cauldron.Randomizer.xml",
+        "lib/net46/Cauldron.Randomizer.dll",
+        "lib/net46/Cauldron.Randomizer.xml",
+        "lib/net461/Cauldron.Randomizer.dll",
+        "lib/net461/Cauldron.Randomizer.xml",
+        "lib/net462/Cauldron.Randomizer.dll",
+        "lib/net462/Cauldron.Randomizer.xml",
+        "lib/netstandard2.0/Cauldron.Randomizer.dll",
+        "lib/netstandard2.0/Cauldron.Randomizer.xml",
+        "lib/uap10.0/Cauldron.Randomizer.XML",
+        "lib/uap10.0/Cauldron.Randomizer.dll",
+        "lib/uap10.0/Cauldron.Randomizer.pri"
+      ]
+    },
+    "EasyEncrypt/2.2.1": {
+      "sha512": "Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "type": "package",
+      "path": "easyencrypt/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "easyencrypt.2.2.1.nupkg.sha512",
+        "easyencrypt.nuspec",
+        "lib/netstandard2.0/EasyEncrypt.dll"
+      ]
+    },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_aes/scorpion_aes.csproj",
+      "msbuildProject": "../scorpion_aes/scorpion_aes.csproj"
+    },
+    "scorpion_cryptography/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_cryptography/scorpion_cryptography.csproj",
+      "msbuildProject": "../scorpion_cryptography/scorpion_cryptography.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "scorpion_aes >= 1.0.0",
+      "scorpion_cryptography >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/ferret/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
+      "projectName": "scorpion_xmldb",
+      "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
+      "packagesPath": "/home/ferret/.nuget/packages/",
+      "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/ferret/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

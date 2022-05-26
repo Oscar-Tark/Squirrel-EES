@@ -49,7 +49,7 @@ namespace Scorpion
             string RSA_private_path = (string)var_get(objects[3]);
             string RSA_public_path = (string)var_get(objects[4]);
 
-            Do_on.sdh.add_tcpserver(name, ip, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
+            Do_on.sdh.AddTcpServer(name, ip, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
             write_to_console("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -67,7 +67,7 @@ namespace Scorpion
                     ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[index]).Stop();
                     ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[index]).DataReceived -= Do_on.sdh.Sctl_DataReceived;
                     Do_on.mem.AL_TCP_REF.RemoveAt(index);
-                    Do_on.mem.remove_tcp_key_path(ref index);
+                    Do_on.mem.RemoveTcpPath(ref index);
                     Do_on.mem.AL_TCP.RemoveAt(index);
                     write_to_console("TCP server stopped");
                 }
@@ -87,8 +87,8 @@ namespace Scorpion
                 ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Delimiter = 0x13;
 
                 //If there are no RSA keys, skip encryption
-                if (Do_on.mem.get_tcp_key_paths(server_index)[1] != null)
-                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.get_tcp_key_paths(server_index)[1]);
+                if (Do_on.mem.GetTcpKeyPath(server_index)[1] != null)
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.GetTcpKeyPath(server_index)[1]);
                 else
                     data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
 
@@ -130,9 +130,9 @@ namespace Scorpion
             //A function that allows you to start an RSA encryption supported TCP client or one with no encryption
             //::*name, *ip, *port, [*privatekey||BOOLEAN *false||*null], [*publicrsakey||BOOLEAN *false||*null]
             if((string)var_get(objects[3]) != Do_on.types.S_No && (string)var_get(objects[3]) != Do_on.types.S_NULL && (string)var_get(objects[4]) != Do_on.types.S_No && (string)var_get(objects[4]) != Do_on.types.S_NULL)
-                Do_on.sdh.add_tcpclient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), (string)var_get(objects[3]), (string)var_get(objects[4]));
+                Do_on.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), (string)var_get(objects[3]), (string)var_get(objects[4]));
             else
-                Do_on.sdh.add_tcpclient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), null, null);
+                Do_on.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), null, null);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -144,20 +144,16 @@ namespace Scorpion
             byte[] data = null;
             try
             {
-                int client_ndx = Do_on.sdh.get_index_tcpclient((string)var_get(objects[0]));
-                SimpleTCP.SimpleTcpClient tcl = Do_on.sdh.get_tcpclient(client_ndx);
+                int client_ndx = Do_on.sdh.GetIndexTcpClient((string)var_get(objects[0]));
+                SimpleTCP.SimpleTcpClient tcl = Do_on.sdh.GetClient(client_ndx);
                 tcl.StringEncoder = Encoding.UTF8;
                 tcl.Delimiter = 0x13;
 
                 //If there are no RSA keys, skip encryption
-                if (Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1] != null)
-                {
-                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.sdh.get_tcpclient_key_paths(client_ndx)[1]);
-                }
+                if (Do_on.sdh.GetClientKeyPaths(client_ndx)[1] != null)
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.sdh.GetClientKeyPaths(client_ndx)[1]);
                 else
-                {
                     data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
-                }
 
                 tcl.Write(data);
                 Do_on.write_success("Data sent");
@@ -174,7 +170,7 @@ namespace Scorpion
         public void tcpclientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            Do_on.sdh.remove_tcpclient(Do_on.sdh.get_index_tcpclient((string)var_get(objects[0])));
+            Do_on.sdh.RemoveTcpClient(Do_on.sdh.GetIndexTcpClient((string)var_get(objects[0])));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -183,13 +179,8 @@ namespace Scorpion
 
     public sealed partial class Librarian
     {
-        private async Task downloadFile(string url, string local_path)
+        internal async Task DownloadFile(string url, string local_path)
         {
-            /*WebClient web_client = new WebClient();
-            web_client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadFileDone);
-            web_client.DownloadFile(@url, local_path);
-            Do_on.write_success("Done");*/
-
             using(HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(new Uri(@url));
@@ -201,7 +192,7 @@ namespace Scorpion
             return;
         }
 
-        private static void DownloadFileDone(object sender, AsyncCompletedEventArgs e)
+        internal static void DownloadFileDone(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Cancelled)
                 Do_on.write_error("FAILED");

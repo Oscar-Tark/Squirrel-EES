@@ -102,9 +102,11 @@ namespace Scorpion
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            Do_on.write_to_cui("Loaded databases:\n-------------------------\n");
+            /*Do_on.write_to_cui("Loaded databases:\n-------------------------\n");
             foreach (string s_name in Do_on.mem.AL_TBLE_REF)
-                Do_on.write_to_cui("NAME: [" + s_name + "] CURRENT USED SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Count + "] MAXIMUM SYSTEM SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Capacity + "]");
+                Do_on.write_to_cui("NAME: [" + s_name + "] CURRENT USED SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Count + "] MAXIMUM SYSTEM SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Capacity + "]");*/
+
+            Do_on.vds.ViewDBS();
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return;

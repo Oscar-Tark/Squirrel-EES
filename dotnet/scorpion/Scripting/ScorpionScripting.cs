@@ -87,19 +87,5 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             return;
         }
-
-        /*public void scriptencrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //::*path, *key
-            FileStream fd = new FileStream((string)var_get(objects[0]), FileMode.Open);
-            StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-            byte[] b = Do_on.crypto.AES_ENCRYPT(sr.ReadToEnd(), (string)var_get(objects[1]));
-            File.WriteAllBytes((string)var_get(objects[0]), b);
-            sr.Close();
-            fd.Close();
-            Scorp_Line_Exec = null;
-            var_arraylist_dispose(ref objects);
-            return;
-        }*/
     }
 }

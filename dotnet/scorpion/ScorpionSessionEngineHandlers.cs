@@ -35,7 +35,7 @@ namespace Scorpion
         }
 
         /*TCP server*/
-        public void add_tcpserver(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
+        public void AddTcpServer(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
         {
             //To be depreciated soon with scorpion_P2P use [DEPRECIATED] ontop of the function definition when done.
 
@@ -46,7 +46,7 @@ namespace Scorpion
                 {
                     HANDLE.mem.AL_TCP.Add(sctl);
                     HANDLE.mem.AL_TCP_REF.Add(reference);
-                    HANDLE.mem.add_tcp_key_path(RSA_private_path, RSA_public_path);
+                    HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
 
                     if(RSA_public_path == null || RSA_private_path == null)
                         HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
@@ -88,8 +88,8 @@ namespace Scorpion
             IPEndPoint end_point = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
 
             //Check if RSA
-            if (HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
-                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0]));
+            if (HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
+                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.GetTcpKeyPath(server_index)[0]));
 
             //Btyte->string, Parse string
             string s_data = HANDLE.crypto.To_String(data);
@@ -119,7 +119,12 @@ namespace Scorpion
                         if (query_result.Count > 0)
                         {
                             db_page = (string)query_result[0];
-                            reply = nef__.build_api((string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+
+                            //Session allows us to return the page with user loaded session data
+                            if(HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
+                                reply = nef__.build_api((string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                            else
+                                reply = nef__.build_api((string)db_page, HANDLE.types.S_NULL, false);
                         }
                         else
                             reply = nef__.build_api("Query resulted in 0 elements returned", session, true);
@@ -142,11 +147,11 @@ namespace Scorpion
                     reply = nef__.build_api("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send
-                if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] != null)
-                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(HANDLE.mem.get_tcp_key_paths(server_index)[0])));
+                if (reply != null && HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
+                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(HANDLE.mem.GetTcpKeyPath(server_index)[0])));
 
                 //No RSA then just send
-                if (reply != null && HANDLE.mem.get_tcp_key_paths(server_index)[0] == null)
+                if (reply != null && HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
                     e.Reply(reply);
             }
             catch(Exception er){ HANDLE.write_error(string.Format("Fatal Error for {0}. Closing connection", end_point)); HANDLE.write_error(er.StackTrace); HANDLE.write_error(er.Message); }
@@ -161,27 +166,27 @@ namespace Scorpion
         }
 
         //TCP CLIENT
-        public SimpleTCP.SimpleTcpClient get_tcpclient(int ndx)
+        public SimpleTCP.SimpleTcpClient GetClient(int ndx)
         {
             return (SimpleTCP.SimpleTcpClient)HANDLE.mem.AL_TCP_CLIENTS[ndx];
         }
 
-        public int get_index_tcpclient(object client)
+        public int GetClientIndex(object client)
         {
             return HANDLE.mem.AL_TCP_CLIENTS.IndexOf(client);
         }
 
-        public int get_index_tcpclient(string client)
+        public int GetIndexTcpClient(string client)
         {
             return HANDLE.mem.AL_TCP_CLIENTS_REF.IndexOf(client);
         }
 
-        public string[] get_tcpclient_key_paths(int ndx)
+        public string[] GetClientKeyPaths(int ndx)
         {
             return (string[])HANDLE.mem.AL_TCP_CLIENTS_KY[ndx];
         }
 
-        public void remove_tcpclient(int ndx)
+        public void RemoveTcpClient(int ndx)
         {
             lock (HANDLE.mem.AL_TCP_CLIENTS) lock (HANDLE.mem.AL_TCP_CLIENTS_REF) lock (HANDLE.mem.AL_TCP_CLIENTS_KY)
                     {
@@ -194,7 +199,7 @@ namespace Scorpion
 
         //TCP client
         //FIX DISCREPANCIES
-        public void add_tcpclient(string reference, string ip, int port, string private_key_path, string public_key_path)
+        public void AddTcpClient(string reference, string ip, int port, string private_key_path, string public_key_path)
         {
             //::*name, *ip, *port, *private, *publicrsakey
             SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
@@ -214,8 +219,8 @@ namespace Scorpion
         void Sctl_clientDataReceived(object sender, SimpleTCP.Message e)
         {
             //get private key and decrypt
-            int client = get_index_tcpclient(sender);
-            string key_path = get_tcpclient_key_paths(client)[0];
+            int client = GetClientIndex(sender);
+            string key_path = GetClientKeyPaths(client)[0];
             SecureString key = Scorpion_RSA.Scorpion_RSA.get_private_key_file(key_path);
             byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, key);
             string s_data = HANDLE.crypto.To_String(data);

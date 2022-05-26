@@ -113,7 +113,7 @@ namespace Scorpion
             {
                 var downloadUrl = (string)file["download_url"];
                 Do_on.write_to_cui($"Downloading: {downloadUrl}");
-                downloadFile((string)file["download_url"], Do_on.types.main_user_manuals_path + "/" + (string)file["name"]);
+                DownloadFile((string)file["download_url"], Do_on.types.main_user_manuals_path + "/" + (string)file["name"]);
             }
             Do_on.write_success("Finished downloading manuals");
         }

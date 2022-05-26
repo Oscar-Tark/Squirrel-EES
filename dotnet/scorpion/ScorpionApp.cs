@@ -27,9 +27,9 @@ namespace Scorpion
     public class Scorp
     {
         public int instance;
-        public void start_classes()
+        public void Init()
         {
-            vds = new Scorpion_MDB.Scorpion_Micro_DB(this);
+            vds = new Scorpion_MDB.ScorpionMicroDB();
             crypto = new Crypto.Cryptographer();
             mmsec = new Memory_Security.Secure_Memory(this);
             san = new Memory_Security.Sanitizer(this);
@@ -44,7 +44,7 @@ namespace Scorpion
         }
 
         public reader readr;
-        public Scorpion_MDB.Scorpion_Micro_DB vds;
+        public Scorpion_MDB.ScorpionMicroDB vds;
         public Crypto.Cryptographer crypto;
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
@@ -71,12 +71,14 @@ namespace Scorpion
         {
             //Assign the session instance int:identifier for this instance
             instance = instance_descriptor;
-
+            
             //Initialization functions
-            start_classes();
+            Init();
+
+            //Check that the main data directory exists
             if (!check_directory())
             {
-                Console.WriteLine("Could create the main user folder for Scorpion at {0}", types.main_user_path);
+                Console.WriteLine("Could not create the main user folder for Scorpion at {0}", types.main_user_path);
                 return;
             }
 
@@ -85,7 +87,7 @@ namespace Scorpion
             byte[] pin = new byte[4];
             int tries = 1;
             const int max_tries = 2;
-            types.load_system_vars();
+            types.LoadSystemVars();
             Scorpion_Authenticator.Authenticator auth = new Scorpion_Authenticator.Authenticator();
 
             //Read passcode and pin
@@ -134,9 +136,9 @@ namespace Scorpion
         {
             //Implement in a better way
             //General Memory
-            mem.AL_CURR_VAR.TrimToSize();
-            mem.AL_CURR_VAR_REF.TrimToSize();
-            mem.AL_CURR_VAR_TAG.TrimToSize();
+            //mem.AL_CURR_VAR.TrimToSize();
+            //mem.AL_CURR_VAR_REF.TrimToSize();
+            //mem.AL_CURR_VAR_TAG.TrimToSize();
 
             //Invoke GC manually although not loved, with the number of stack frames and ref's used i'd like to keep things GC'd
             GC.Collect();

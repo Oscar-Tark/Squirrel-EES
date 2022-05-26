@@ -90,21 +90,11 @@ namespace Scorpion
             return p;
         }
 
-        public string[] cmdargs;
-        public enum list_type { db_list };
-
-        //Use as default maximum run for loops sizes of arrays etc
-        public readonly int max_value_type = 1024;
-
         //COMMAND LOG
         public int commands_point = 0;
         public string[] commands = new string[64];
 
-        //Ubearables
-        public readonly string[] AL_UNBEARABLE_CHARS = new string[1];// { /*","*/ };
-        public readonly string[] AL_WILDCARDS = new string[2] { "-", " " };
-
-        public void add_tcp_key_path(string private_s_RSA, string public_s_RSA)
+        public void AddTcpPath(string private_s_RSA, string public_s_RSA)
         {
             //Add as secure string?
             //No ref, we need actual value copied
@@ -112,7 +102,7 @@ namespace Scorpion
             return;
         }
 
-        public void remove_tcp_key_path(ref int ndx)
+        public void RemoveTcpPath(ref int ndx)
         {
             try
             {
@@ -123,7 +113,7 @@ namespace Scorpion
             return;
         }
 
-        public string[] get_tcp_key_paths(int ndx)
+        public string[] GetTcpKeyPath(int ndx)
         {
             return (string[])AL_TCP_KY[ndx];
         }
@@ -131,32 +121,24 @@ namespace Scorpion
         //<--
         //Could have used dictionaries, but meh
         //Variables
-        public ArrayList AL_CURR_VAR = new ArrayList();
-        public ArrayList AL_CURR_VAR_REF = new ArrayList();
-        public ArrayList AL_CURR_VAR_TAG = new ArrayList();
-        public ArrayList AL_CURR_VAR_NACESSED = new ArrayList();
+        internal List<object> AL_CURR_VAR = new List<object>();
+        internal List<string> AL_CURR_VAR_REF = new List<string>();
+        internal List<string> AL_CURR_VAR_TAG = new List<string>();
+        internal List<DateTime> AL_CURR_VAR_NACESSED = new List<DateTime>();
 
         //Tables DATA
-        public ArrayList AL_TBLE = new ArrayList();
-        public ArrayList AL_TBLE_REF = new ArrayList();
-        public ArrayList AL_TBLE_PATH = new ArrayList();
-
-        //Assemblies
-        public ArrayList AL_ASSEMB = new ArrayList();
-        public ArrayList AL_ASSEMB_REF = new ArrayList();
-
-        //Inatantiated Assemblies
-        public ArrayList AL_ASSEMB_INST = new ArrayList();
-        public ArrayList AL_ASSEMB_PROG = new ArrayList();
+        internal List<object> AL_TBLE = new List<object>();
+        internal List<string> AL_TBLE_REF = new List<string>();
+        internal List<string> AL_TBLE_PATH = new List<string>();
 
         //Tcpclients
-        public ArrayList AL_TCP_CLIENTS = new ArrayList(0xa);
-        public ArrayList AL_TCP_CLIENTS_REF = new ArrayList(0xa);
-        public ArrayList AL_TCP_CLIENTS_KY = new ArrayList(0xa);
+        internal List<object> AL_TCP_CLIENTS = new List<object>();
+        internal List<string> AL_TCP_CLIENTS_REF = new List<string>();
+        internal List<string[]> AL_TCP_CLIENTS_KY = new List<string[]>();
 
         //Tcpservers
-        public ArrayList AL_TCP = new ArrayList();
-        public ArrayList AL_TCP_REF = new ArrayList();
-        private ArrayList AL_TCP_KY = new ArrayList();
+        internal List<object> AL_TCP = new List<object>();
+        internal List<object> AL_TCP_REF = new List<object>();
+        internal List<string[]> AL_TCP_KY = new List<string[]>();
     }
 }

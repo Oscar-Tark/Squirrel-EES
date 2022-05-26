@@ -167,7 +167,7 @@ namespace Scorpion
             //In order to remove a tag set the tag value to *null/Scorpion.Types.S_NULL
             //::*var, *tag
             if (var_get(objects[1]) is string)
-                Do_on.mem.AL_CURR_VAR_TAG[Do_on.mem.AL_CURR_VAR_REF.IndexOf(objects[0])] = var_get(objects[1]);
+                Do_on.mem.AL_CURR_VAR_TAG[Do_on.mem.AL_CURR_VAR_REF.IndexOf((string)objects[0])] = (string)var_get(objects[1]);
             else
                 Do_on.write_error("Could not add tag to the specified variable. Tag is not an identifyable string but an object of another type");
 
@@ -195,7 +195,7 @@ namespace Scorpion
             int current_ndx = 0;
             foreach (string tag in Do_on.mem.AL_CURR_VAR_TAG)
             {
-                current_ndx = Do_on.mem.AL_CURR_VAR_TAG.IndexOf(var_get(objects[0]), current_ndx);
+                current_ndx = Do_on.mem.AL_CURR_VAR_TAG.IndexOf((string)var_get(objects[0]), current_ndx);
 
                 if (current_ndx == -1)
                     break;
@@ -722,10 +722,10 @@ namespace Scorpion
                                         Do_on.mem.AL_CURR_VAR_NACESSED.RemoveAt(ndx);
 
                                         //TRIM
-                                        Do_on.mem.AL_CURR_VAR.TrimToSize();
-                                        Do_on.mem.AL_CURR_VAR_REF.TrimToSize();
-                                        Do_on.mem.AL_CURR_VAR_TAG.TrimToSize();
-                                        Do_on.mem.AL_CURR_VAR_NACESSED.TrimToSize();
+                                        //Do_on.mem.AL_CURR_VAR.TrimToSize();
+                                        //Do_on.mem.AL_CURR_VAR_REF.TrimToSize();
+                                        //Do_on.mem.AL_CURR_VAR_TAG.TrimToSize();
+                                        //Do_on.mem.AL_CURR_VAR_NACESSED.TrimToSize();
                                     }
                                     else if(!is_array && is_dictionary)
                                         ((IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Remove(var_get(Variable));
@@ -788,7 +788,7 @@ namespace Scorpion
                                         Do_on.mem.AL_CURR_VAR.Add(new ArrayList(7) { "", Reference, Variable, Tag, RONLY, false, DateTime.UtcNow });
                                         Do_on.mem.AL_CURR_VAR_REF.Add(Reference);
                                         Do_on.mem.AL_CURR_VAR_TAG.Add(Tag);
-                                        Do_on.mem.AL_CURR_VAR_NACESSED.Add(0);
+                                        Do_on.mem.AL_CURR_VAR_NACESSED.Add(DateTime.UtcNow);
                                     }
                             }
             }

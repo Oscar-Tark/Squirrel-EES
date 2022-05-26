@@ -1,0 +1,11 @@
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_http_server.deps.json
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_http_server.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/ref/scorpion_http_server.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_http_server.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.AssemblyInfoInputs.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.AssemblyInfo.cs
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.csproj.CoreCompileInputs.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/ref/scorpion_http_server.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.pdb

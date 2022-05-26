@@ -17,7 +17,8 @@
           "scorpion_log": "1.0.0",
           "scorpion_p2p": "1.0.0",
           "scorpion_rsa": "1.0.0",
-          "scorpion_sql": "1.0.0"
+          "scorpion_sql": "1.0.0",
+          "scorpion_xmldb": "1.0.0"
         },
         "runtime": {
           "scorpion.dll": {}
@@ -148,6 +149,15 @@
         "runtime": {
           "scorpion_sql.dll": {}
         }
+      },
+      "scorpion_xmldb/1.0.0": {
+        "dependencies": {
+          "scorpion_aes": "1.0.0",
+          "scorpion_cryptography": "1.0.0"
+        },
+        "runtime": {
+          "scorpion_xmldb.dll": {}
+        }
       }
     }
   },
@@ -247,6 +257,11 @@
       "sha512": ""
     },
     "scorpion_sql/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_xmldb/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

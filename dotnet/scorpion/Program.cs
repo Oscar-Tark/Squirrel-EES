@@ -25,7 +25,7 @@ namespace Scorpion
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static int Main()
         {
             int current_session = 0;
             ArrayList sessions = new ArrayList();
@@ -72,7 +72,7 @@ namespace Scorpion
                     if (sessions.Count == 0)
                     {
                         Console.WriteLine("No sessions running. Exiting...\n");
-                        Environment.Exit(0);
+                        return 0; //Had Environment.Exit(0)
                     }
                     else if (current_session > 0)
                         current_session--;
@@ -86,6 +86,7 @@ namespace Scorpion
                     ((Scorp)sessions[current_session]).th_clean_strt();
                 }
             }
+            return 0; //Had Environment.Exit(0)
         }
 
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)

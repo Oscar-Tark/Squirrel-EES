@@ -1,0 +1,101 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "scorpion_xmldb/1.0.0": {
+        "dependencies": {
+          "scorpion_aes": "1.0.0",
+          "scorpion_cryptography": "1.0.0"
+        },
+        "runtime": {
+          "scorpion_xmldb.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Cryptography/3.2.3": {
+        "dependencies": {
+          "Capgemini.Cauldron.Randomizer": "3.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {
+            "assemblyVersion": "3.2.0.3",
+            "fileVersion": "3.2.0.3"
+          }
+        }
+      },
+      "Capgemini.Cauldron.Randomizer/3.2.3": {
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {
+            "assemblyVersion": "3.2.0.3",
+            "fileVersion": "3.2.0.3"
+          }
+        }
+      },
+      "EasyEncrypt/2.2.1": {
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "scorpion_aes/1.0.0": {
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "runtime": {
+          "scorpion_aes.dll": {}
+        }
+      },
+      "scorpion_cryptography/1.0.0": {
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "runtime": {
+          "scorpion_cryptography.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "scorpion_xmldb/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Capgemini.Cauldron.Cryptography/3.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cfIT95HcNw/KeWpxgZI2P1qzn07APwL+cLqwHt6iLPURiMuVopTTZeSnxa1DY8rFpZ5BJVOMuaeTwqvpICOMbQ==",
+      "path": "capgemini.cauldron.cryptography/3.2.3",
+      "hashPath": "capgemini.cauldron.cryptography.3.2.3.nupkg.sha512"
+    },
+    "Capgemini.Cauldron.Randomizer/3.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
+      "path": "capgemini.cauldron.randomizer/3.2.3",
+      "hashPath": "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512"
+    },
+    "EasyEncrypt/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "path": "easyencrypt/2.2.1",
+      "hashPath": "easyencrypt.2.2.1.nupkg.sha512"
+    },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_cryptography/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

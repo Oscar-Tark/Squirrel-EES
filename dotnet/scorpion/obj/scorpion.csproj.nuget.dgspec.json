@@ -569,7 +569,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+              },
+              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

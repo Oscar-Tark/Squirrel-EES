@@ -24,9 +24,10 @@ namespace Scorpion
     public class Types
     {
         //Available Scorpion.Hardtypes
-        public readonly string S_Yes = "true";
-        public readonly string S_No = "false";
+        public readonly string S_Yes = bool.TrueString.ToLower();
+        public readonly string S_No = bool.FalseString.ToLower();
         public readonly string S_NULL = "";
+        public readonly string C_S_NULL = "\0";
         public readonly string main_user_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion";
         public readonly string main_user_projects_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Projects";
         public readonly string main_user_manuals_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Manuals";
@@ -45,15 +46,16 @@ namespace Scorpion
             return;
         }
 
+        
+        [Obsolete] //Should be initialized immediately on memory structure creation, there is a major bug with S_YES
         //Initialize Scorpion.DefaultVariables
-        public void load_system_vars()
+        public void LoadSystemVars()
         {
             HANDLE.readr.lib_SCR.var("", new ArrayList(5) { S_Yes, S_No, "null", "yes", "no", "temp", "path" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { S_No, "'" + S_No + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "no", "'" + S_No + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "path", "'" + main_user_path + "'" });
-            //HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "projectspath", "'" + main_user_projects_path + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { S_Yes, "'" + S_Yes + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
             return;
