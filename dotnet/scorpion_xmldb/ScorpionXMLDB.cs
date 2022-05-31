@@ -29,35 +29,10 @@ namespace Scorpion_MDB
         private const int K_DEFAULT_STRT_SIZE = 0;
         private static readonly string[] Field_Type_Data = { "dat", "num", "bin" };
         private static readonly List<string> Query_Types = new List<string>(4) { "data", "tag", "meta", "type" };
-        internal ArrayList mem_db_ref;
-        internal ArrayList mem_db_path;
-        internal ArrayList mem_db;
-        Scorpion.Crypto.Cryptographer cryptographer = new Scorpion.Crypto.Cryptographer();
-
-        public ScorpionMicroDB()
-        {
-            mem_db = new ArrayList();
-            mem_db_path = new ArrayList();
-            mem_db_ref = new ArrayList();
-            return;
-        }
-
-        private void NULLIFY(ref ArrayList AL)
-        {
-            for (int i = 0; i < AL.Count; i++)
-                AL[i] = 0x00;
-            return;
-        }
-
-        private bool Field_Type_Ok(string FIELD_TYPE)
-        {
-            foreach(string val in Field_Type_Data)
-            {
-                if (FIELD_TYPE == val)
-                    return true;
-            }
-            return false;
-        }
+        private ArrayList mem_db_ref = ArrayList.Synchronized(new ArrayList());
+        private ArrayList mem_db_path = ArrayList.Synchronized(new ArrayList());
+        private ArrayList mem_db = ArrayList.Synchronized(new ArrayList());
+        private Scorpion.Crypto.Cryptographer cryptographer = new Scorpion.Crypto.Cryptographer();
 
         public bool checkLoaded(string dbname)
         {
@@ -66,7 +41,7 @@ namespace Scorpion_MDB
             return false;
         }
 
-        public void Create_DB(string path, bool spill, string password)
+        public void createDB(string path, bool spill, string password)
         {
             //A scorpion database is composed of three data fields:
             /*
@@ -95,55 +70,64 @@ namespace Scorpion_MDB
             return;
         }
 
-        public void Close_DB(string name)
+        public void closeDB(string name)
         {
             //Close and remove
-            ((ArrayList)mem_db[mem_db_ref.IndexOf(name)]).Clear();
-            ((ArrayList)mem_db[mem_db_ref.IndexOf(name)]).TrimToSize();
-            mem_db.RemoveAt(mem_db_ref.IndexOf(name));
-            mem_db.TrimToSize();
-            mem_db_path.RemoveAt(mem_db_ref.IndexOf(name));
-            mem_db_path.TrimToSize();
-            mem_db_ref.Remove(name);
-            mem_db_ref.TrimToSize();
+            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
+            {
+                ((ArrayList)mem_db[mem_db_ref.IndexOf(name)]).Clear();
+                ((ArrayList)mem_db[mem_db_ref.IndexOf(name)]).TrimToSize();
+                mem_db.RemoveAt(mem_db_ref.IndexOf(name));
+                mem_db.TrimToSize();
+                mem_db_path.RemoveAt(mem_db_ref.IndexOf(name));
+                mem_db_path.TrimToSize();
+                mem_db_ref.Remove(name);
+                mem_db_ref.TrimToSize();
+            }
             return;
         }
 
-        public void Load_DB(string path, string name, string password)
+        public void loadDB(string path, string name, string password)
         {
             //File.Decrypt(path);
             byte[] b = File.ReadAllBytes(path);
             string xml = ScorpionAES.ScorpionAES.decryptData(b, password);
             object db_object = cryptographer.String_To_Array(xml);
 
-            if (!mem_db_ref.Contains(name) && !mem_db_path.Contains(path))
+            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
             {
-                mem_db.Add(db_object);
-                mem_db_ref.Add(name);
-                mem_db_path.Add(path);
-                Console.WriteLine("Opened Database: [{0}] as [{0}]", path, name);
+                if (!mem_db_ref.Contains(name) && !mem_db_path.Contains(path))
+                {
+                    mem_db.Add(db_object);
+                    mem_db_ref.Add(name);
+                    mem_db_path.Add(path);
+                    Console.WriteLine("Opened Database: [{0}] as [{0}]", path, name);
+                }
+                else
+                    Console.Write("Database [{0}]/[{1}] already in memory", path, name);
             }
-            else
-                Console.Write("Database [{0}]/[{1}] already in memory", path, name);
             return;
         }
 
-        public void ReLoad_DB(string name, string password)
+        public void reloadDB(string name, string password)
         {
             int ndx = mem_db_ref.IndexOf(name);
             string path = (string)mem_db_path[ndx];
 
-            Close_DB(name);
-            Load_DB(path, name, password);
+            closeDB(name);
+            loadDB(path, name, password);
 
             Console.WriteLine("Reloaded Database: [{0}] as [{1}]", path, name);
             return;
         }
 
-        public void Save_DB(string name, string password)
+        public void saveDB(string name, string password)
         {
-            int ndx = mem_db_ref.IndexOf(name);
-            File.WriteAllBytes((string)mem_db_path[ndx], ScorpionAES.ScorpionAES.encryptData(cryptographer.Array_To_String((ArrayList)mem_db[ndx]), password));
+            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
+            {
+                int ndx = mem_db_ref.IndexOf(name);
+                File.WriteAllBytes((string)mem_db_path[ndx], ScorpionAES.ScorpionAES.encryptData(cryptographer.Array_To_String((ArrayList)mem_db[ndx]), password));
+            }
 
             name = null;
             password = null;
@@ -158,9 +142,9 @@ namespace Scorpion_MDB
             return;
         }
 
-        public bool Data_setDB(string name, object data, string tag, string subtag)
+        public bool setDB(string name, object data, string tag, string subtag)
         {
-            lock (mem_db)
+            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
             {
                 ArrayList al_tmp = (ArrayList)mem_db[mem_db_ref.IndexOf(name)];
                 ((ArrayList)al_tmp[0]).Add(data);
@@ -170,7 +154,7 @@ namespace Scorpion_MDB
             return true;
         }
 
-        public ArrayList Data_getDB_all_no_thread(string db)
+        public ArrayList getDBAllNoThread(string db)
         {
             ArrayList data_handle = (ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[0];
             return data_handle;
@@ -178,7 +162,7 @@ namespace Scorpion_MDB
 
         public readonly short OPCODE_GET = 0x00;
         public readonly short OPCODE_DELETE = 0x02;
-        public ArrayList Data_doDB_selective_no_thread(string db, object data, string tag, string subtag, short OPCODE)
+        public ArrayList doDBSelectiveNoThread(string db, object data, string tag, string subtag, short OPCODE)
         {
             ArrayList returnable = new ArrayList();
             ArrayList subtag_handle = (ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[2];
@@ -217,7 +201,8 @@ namespace Scorpion_MDB
                             returnable.Add(data_handle[current]);
                         else if (OPCODE == OPCODE_DELETE)
                         {
-                            lock (mem_db)
+                            
+                            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
                             {
                                 ((ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[0]).RemoveAt(current);
                                 ((ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[1]).RemoveAt(current);
@@ -259,7 +244,8 @@ namespace Scorpion_MDB
                         }
                         else if (OPCODE == OPCODE_DELETE)
                         {
-                            lock (mem_db)
+                            
+                            lock(mem_db) lock(mem_db_path) lock(mem_db_ref)
                             {
                                 ((ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[0]).RemoveAt(current_tag);
                                 ((ArrayList)((ArrayList)mem_db[mem_db_ref.IndexOf(db)])[1]).RemoveAt(current_tag);

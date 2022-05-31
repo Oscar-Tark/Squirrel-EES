@@ -19,6 +19,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Scorpion
 {
@@ -119,26 +120,21 @@ namespace Scorpion
         }
 
         //<--
-        //Could have used dictionaries, but meh
-        //Variables
-        internal List<object> AL_CURR_VAR = new List<object>();
-        internal List<string> AL_CURR_VAR_REF = new List<string>();
-        internal List<string> AL_CURR_VAR_TAG = new List<string>();
-        internal List<DateTime> AL_CURR_VAR_NACESSED = new List<DateTime>();
-
-        //Tables DATA
-        internal List<object> AL_TBLE = new List<object>();
-        internal List<string> AL_TBLE_REF = new List<string>();
-        internal List<string> AL_TBLE_PATH = new List<string>();
+        /*Could have used concurrentbag, but in this case the lock statement and synchronized arraylists even at degredation of performance, works.
+        Define Arraylist Synchronized wrappers for threadsafe Memory structures:*/
+        internal ArrayList AL_CURR_VAR = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_CURR_VAR_REF = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_CURR_VAR_TAG = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_CURR_VAR_NACESSED = ArrayList.Synchronized(new ArrayList());
 
         //Tcpclients
-        internal List<object> AL_TCP_CLIENTS = new List<object>();
-        internal List<string> AL_TCP_CLIENTS_REF = new List<string>();
-        internal List<string[]> AL_TCP_CLIENTS_KY = new List<string[]>();
+        internal ArrayList AL_TCP_CLIENTS = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_TCP_CLIENTS_REF = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_TCP_CLIENTS_KY = ArrayList.Synchronized(new ArrayList());
 
         //Tcpservers
-        internal List<object> AL_TCP = new List<object>();
-        internal List<object> AL_TCP_REF = new List<object>();
-        internal List<string[]> AL_TCP_KY = new List<string[]>();
+        internal ArrayList AL_TCP = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_TCP_REF = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_TCP_KY = ArrayList.Synchronized(new ArrayList());
     }
 }

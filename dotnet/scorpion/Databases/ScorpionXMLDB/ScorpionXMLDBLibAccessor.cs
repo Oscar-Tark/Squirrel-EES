@@ -39,7 +39,7 @@ namespace Scorpion
             string name = (string)var_get(objects[0]);
             string password = (string)var_get(objects[1]);
 
-            Do_on.vds.Create_DB(name, false, password);
+            Do_on.vds.createDB(name, false, password);
             Do_on.write_to_cui("Created Data File(to disk) : " + name + "]");
             name = null;
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -53,9 +53,8 @@ namespace Scorpion
             string name = (string)var_get(objects[0]);
             string path = (string)var_get(objects[1]);
             string password = (string)var_get(objects[2]);
-
-            lock (Do_on.mem.AL_TBLE) lock (Do_on.mem.AL_TBLE_REF) lock (Do_on.mem.AL_TBLE_PATH)
-                        Do_on.vds.Load_DB(path, name, password);
+            
+            Do_on.vds.loadDB(path, name, password);
             var_arraylist_dispose(ref objects);
             name = null;
             Scorp_Line_Exec = null;
@@ -65,10 +64,7 @@ namespace Scorpion
         public void dbclose(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            lock(Do_on.mem.AL_TBLE) lock(Do_on.mem.AL_TBLE_REF) lock(Do_on.mem.AL_TBLE_PATH)
-                {
-                    Do_on.vds.Close_DB((string)var_get(objects[0]));
-                }
+            Do_on.vds.closeDB((string)var_get(objects[0]));
             Do_on.write_to_cui("Database [" + var_get(objects[0]) + "] closed");
             return;
         }
@@ -79,7 +75,7 @@ namespace Scorpion
             string name = (string)var_get(objects[0]);
             string password = (string)var_get(objects[1]);
             
-            Do_on.vds.Save_DB(name, password);
+            Do_on.vds.saveDB(name, password);
             Do_on.write_success("Database [" + name + "] saved");
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -93,7 +89,7 @@ namespace Scorpion
             string name = (string)var_get(objects[0]);
             string password = (string)var_get(objects[1]);
 
-            Do_on.vds.ReLoad_DB(name, password);
+            Do_on.vds.reloadDB(name, password);
 
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
@@ -102,10 +98,6 @@ namespace Scorpion
 
         public void listdbs(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            /*Do_on.write_to_cui("Loaded databases:\n-------------------------\n");
-            foreach (string s_name in Do_on.mem.AL_TBLE_REF)
-                Do_on.write_to_cui("NAME: [" + s_name + "] CURRENT USED SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Count + "] MAXIMUM SYSTEM SLOT CAPACITY: [" + ((ArrayList)((ArrayList)Do_on.mem.AL_TBLE[Do_on.mem.AL_TBLE_REF.IndexOf(s_name)])[2]).Capacity + "]");*/
-
             Do_on.vds.ViewDBS();
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
@@ -121,7 +113,7 @@ namespace Scorpion
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *data, *tag|or *null, *subtag|or *null
-            if (Do_on.vds.Data_setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
+            if (Do_on.vds.setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
                 Do_on.write_to_cui("Value set to database");
             else
                 Do_on.write_error("Unable to set value to database");
@@ -133,7 +125,7 @@ namespace Scorpion
         public object dbgetall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*return<<::*path/name of database
-            ArrayList result = Do_on.vds.Data_getDB_all_no_thread((string)var_get(objects[0]));
+            ArrayList result = Do_on.vds.getDBAllNoThread((string)var_get(objects[0]));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref result);
@@ -150,7 +142,7 @@ namespace Scorpion
              * subtag = the specific subtag such as 'Name' that can be extracted from a tag cluster. If this is *'' then values are searched by tag, if tag is also empty then values are searched by *data
             */
 
-            ArrayList result = Do_on.vds.Data_doDB_selective_no_thread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_GET);
+            ArrayList result = Do_on.vds.doDBSelectiveNoThread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_GET);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref result);
@@ -167,7 +159,7 @@ namespace Scorpion
              * subtag = the specific subtag such as 'Name' that can be extracted for deletion from a tag cluster. If this is *'' then values are searched for deletion by tag, if tag is also empty then values are searched for deletion by *data
             */
 
-            Do_on.vds.Data_doDB_selective_no_thread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_DELETE);
+            Do_on.vds.doDBSelectiveNoThread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Do_on.vds.OPCODE_DELETE);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -193,11 +185,6 @@ namespace Scorpion
             sr.Close();
             fd.Close();
             return;
-        }
-
-        public int dbcapacity(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            return 0;
         }
     }
 }

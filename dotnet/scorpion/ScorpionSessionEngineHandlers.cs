@@ -27,7 +27,7 @@ namespace Scorpion
 {
     public class SessionDependentNetworkHandlers
     {
-        Scorp HANDLE;
+        private Scorp HANDLE;
         public SessionDependentNetworkHandlers(Scorp HANDLE_PASS)
         {
             HANDLE = HANDLE_PASS;
@@ -98,6 +98,7 @@ namespace Scorpion
 
             //Get session from parsed elements
             string session = processed["session"];
+            string destroyable = "\0";
             string db_page = HANDLE.types.S_NULL;
 
             try
@@ -108,13 +109,17 @@ namespace Scorpion
                     if(!HANDLE.readr.lib_SCR.varCheck(session))
                     {
                         ArrayList temp = new ArrayList(){ session };
-                        HANDLE.readr.lib_SCR.vardictionary(ref session, ref temp);
+                        HANDLE.readr.lib_SCR.vardictionary(ref destroyable, ref temp);
+                        temp = new ArrayList(){ session, "\'session\'", $"\'{session}\'" };
+                        HANDLE.readr.lib_SCR.vardictionaryappend(ref destroyable, ref temp);
+                        temp = new ArrayList(){ session, "\'project\'", "\'" + processed["tag"] + "\'" };
+                        HANDLE.readr.lib_SCR.vardictionaryappend(ref destroyable, ref temp);
                     }
 
                     if (processed["type"] == nef__.api_requests["get"])
                     {
                         //Get formattable page from XMLDB
-                        ArrayList query_result = HANDLE.vds.Data_doDB_selective_no_thread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
+                        ArrayList query_result = HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
 
                         if (query_result.Count > 0)
                         {
