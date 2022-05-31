@@ -10,7 +10,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            Do_on.write_debug(var_get((string)objects[0]).ToString() + var_get((string)objects[1]).ToString());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeDebug(var_get((string)objects[0]).ToString() + var_get((string)objects[1]).ToString());
             if ((string)var_get((string)objects[0]) == (string)var_get((string)objects[1]))
                 returnable = Do_on.types.S_Yes;
             else

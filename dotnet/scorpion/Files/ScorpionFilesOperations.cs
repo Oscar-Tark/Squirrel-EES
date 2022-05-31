@@ -111,7 +111,7 @@ namespace Scorpion
                 if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
                     al_ret.Add(dirs.Name);
                 else
-                    Do_on.write_to_cui(dirs.Name);
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(dirs.Name);
             }
 
             //clean
@@ -131,7 +131,7 @@ namespace Scorpion
                 if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
                     al_ret.Add(fils.Name);
                 else
-                    Do_on.write_to_cui(fils.Name);
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(fils.Name);
             }
 
             //clean

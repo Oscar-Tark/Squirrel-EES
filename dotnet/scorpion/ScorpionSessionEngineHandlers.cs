@@ -49,7 +49,7 @@ namespace Scorpion
                     HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
 
                     if(RSA_public_path == null || RSA_private_path == null)
-                        HANDLE.write_warning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     sctl.DataReceived += Sctl_DataReceived;
                     IPAddress ipa = IPAddress.Parse(ip == HANDLE.types.S_NULL ? "127.0.0.1" : ip);
@@ -61,13 +61,13 @@ namespace Scorpion
         /*TCP server : Events*/
         void Sctl_ClientConnected(object sender, TcpClient e)
         {
-            HANDLE.write_to_cui("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " connected");
             return;
         }
 
         void Sctl_ClientDisconnected(object sender, TcpClient e)
         {
-            HANDLE.write_to_cui("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("TCP >> Client " + (IPEndPoint)e.Client.RemoteEndPoint + " disconnected");
             return;
         }
 
@@ -159,7 +159,7 @@ namespace Scorpion
                 if (reply != null && HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
                     e.Reply(reply);
             }
-            catch(Exception er){ HANDLE.write_error(string.Format("Fatal Error for {0}. Closing connection", end_point)); HANDLE.write_error(er.StackTrace); HANDLE.write_error(er.Message); }
+            catch(Exception er){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Fatal Error for {0}. Closing connection", end_point)); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.StackTrace); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.Message); }
             finally
             {
                 e.TcpClient.Client.Disconnect(true);
@@ -216,7 +216,7 @@ namespace Scorpion
                         HANDLE.mem.AL_TCP_CLIENTS_REF.Add(reference);
                         HANDLE.mem.AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
                     }
-            HANDLE.write_success("Client " + reference + " connected to " + ip + ":" + port);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Client " + reference + " connected to " + ip + ":" + port);
             return;
         }
 

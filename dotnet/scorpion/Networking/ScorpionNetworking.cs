@@ -94,9 +94,9 @@ namespace Scorpion
 
                 //Broadcast the data
                 ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Broadcast(data);
-                Do_on.write_success("Data sent");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Data sent");
             }
-            catch (Exception e) { Do_on.write_error(e.Message); }
+            catch (Exception e) { ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message); }
             //var_dispose_internal(ref data);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -109,9 +109,9 @@ namespace Scorpion
             int n = 0;
             foreach (string server in Do_on.mem.AL_TCP_REF)
             {
-                Do_on.write_to_cui(server + ":\n");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(server + ":\n");
                 foreach (IPAddress ip in ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[n]).GetListeningIPs())
-                    Do_on.write_to_cui(ip.ToString());
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(ip.ToString());
                 n++;
             }
             var_arraylist_dispose(ref objects);
@@ -156,10 +156,10 @@ namespace Scorpion
                     data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
 
                 tcl.Write(data);
-                Do_on.write_success("Data sent");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Data sent");
                 //Do_on.sdh.remove_tcpclient(client_ndx);
             }
-            catch (Exception e) { Do_on.write_error(e.Message); };
+            catch (Exception e) { ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message); };
 
             var_dispose_internal(ref data);
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -195,9 +195,9 @@ namespace Scorpion
         internal static void DownloadFileDone(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Cancelled)
-                Do_on.write_error("FAILED");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("FAILED");
             if (e.Error != null)
-                Do_on.write_error(e.Error.ToString());
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Error.ToString());
             return;
         }
     }

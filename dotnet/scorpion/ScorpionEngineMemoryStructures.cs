@@ -53,10 +53,10 @@ namespace Scorpion
             {
                 AL_REC.Add(Object);
                 AL_REC_REF.Add(Name);
-                HANDLE.write_to_cui("Recursive functions by default will run every " + interval + "s. To run functions everyday use the recursivetime::*time function to store 86400000s");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Recursive functions by default will run every " + interval + "s. To run functions everyday use the recursivetime::*time function to store 86400000s");
             }
             else
-                HANDLE.write_to_cui("Name for recursive function already exists");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Name for recursive function already exists");
             return;
         }
 

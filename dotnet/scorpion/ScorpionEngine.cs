@@ -47,7 +47,7 @@ namespace Scorpion
                 ths.IsBackground = true;
                 ths.Start(Scorp_Line);
             }
-            catch { Do_on.write_error("Line could not be interpreted: " + Scorp_Line + ", Scorpion was unable to start a new engine thread"); }
+            catch { ScorpionConsoleReadWrite.ConsoleWrite.writeError("Line could not be interpreted: " + Scorp_Line + ", Scorpion was unable to start a new engine thread"); }
             return;
         }
 
@@ -100,7 +100,7 @@ namespace Scorpion
                     //Check if the current user has the required permissions to run this function
                     if (!Do_on.mmsec.authenticate_execution(ref function))
                     {
-                        Do_on.write_error("This user does not have enough privileges to execute this function");
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeError("This user does not have enough privileges to execute this function");
                         sp.Stop();
                         return;
                     }
@@ -113,7 +113,7 @@ namespace Scorpion
                         if (final.Length > 1)
                             ef__.process_return(ref retfun, ref final[0], this);
                         else
-                            Do_on.write_warning("This function requires a return variable");
+                            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("This function requires a return variable");
                     }
 
                     //Set used variables to null for GC
@@ -125,12 +125,12 @@ namespace Scorpion
             }
             catch (Exception erty)
             {
-                Do_on.write_error("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
                 showMan(function);
             }
             //End the timer to count how long it took to run the specific line of code
             sp.Stop();
-            Do_on.write_success("[Instance: " + Do_on.instance + "]-[Username: "+ Do_on.mmsec.get_uname() +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("[Instance: " + Do_on.instance + "]-[Username: "+ Do_on.mmsec.get_uname() +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
             sp.Reset();
 
             //Make sure objects are set to null and disposed

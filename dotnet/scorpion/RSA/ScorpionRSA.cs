@@ -9,7 +9,7 @@ namespace Scorpion
         public void rsakeys(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*publickeyfile, *privatekeyfile
-            Do_on.write_experimental("Generating RSA...");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeExperimental("Generating RSA...");
             Scorpion_RSA.Scorpion_RSA.generateRSAkeys((string)var_get(objects[0]), (string)var_get(objects[1]));
             return;
         }

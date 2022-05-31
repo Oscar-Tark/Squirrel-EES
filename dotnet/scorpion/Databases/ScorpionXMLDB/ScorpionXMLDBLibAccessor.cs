@@ -40,7 +40,7 @@ namespace Scorpion
             string password = (string)var_get(objects[1]);
 
             Do_on.vds.createDB(name, false, password);
-            Do_on.write_to_cui("Created Data File(to disk) : " + name + "]");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Created Data File(to disk) : " + name + "]");
             name = null;
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -65,7 +65,7 @@ namespace Scorpion
         {
             //::*name
             Do_on.vds.closeDB((string)var_get(objects[0]));
-            Do_on.write_to_cui("Database [" + var_get(objects[0]) + "] closed");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Database [" + var_get(objects[0]) + "] closed");
             return;
         }
 
@@ -76,7 +76,7 @@ namespace Scorpion
             string password = (string)var_get(objects[1]);
             
             Do_on.vds.saveDB(name, password);
-            Do_on.write_success("Database [" + name + "] saved");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Database [" + name + "] saved");
             var_arraylist_dispose(ref objects);
             Scorp_Line_Exec = null;
             name = null;
@@ -114,9 +114,9 @@ namespace Scorpion
         {
             //::*name, *data, *tag|or *null, *subtag|or *null
             if (Do_on.vds.setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
-                Do_on.write_to_cui("Value set to database");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Value set to database");
             else
-                Do_on.write_error("Unable to set value to database");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("Unable to set value to database");
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;

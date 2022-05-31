@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\scorpion_P2P\scorpion_p2p\scorpion_p2p.csproj" />
     <ProjectReference Include="..\scorpion_cryptography\scorpion_cryptography.csproj" />
     <ProjectReference Include="..\scorpion_xmldb\scorpion_xmldb.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-Console-Read-Write\consolereadwrite.csproj" />
   </ItemGroup>
 
   <ItemGroup>

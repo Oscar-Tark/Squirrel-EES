@@ -35,11 +35,11 @@ namespace Scorpion
                     {
                         al[i] = null;
                     }
-                    catch { write_to_cui("Memory Slot Dispose Fail: One Element"); }
+                    catch { ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Memory Slot Dispose Fail: One Element"); }
                 }
                 al = null;
             }
-            catch { write_to_cui("Memory Slot Dispose Fail: Segment"); }
+            catch { ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Memory Slot Dispose Fail: Segment"); }
             return;
         }
 
@@ -94,7 +94,7 @@ namespace Scorpion
 
         private object var_create_return(ref SecureString val, bool is_val)
         {
-            Do_on.write_warning("A secure string is being returned to a normal scorpion memory variable, this may compromise security");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("A secure string is being returned to a normal scorpion memory variable, this may compromise security");
             if (is_val)
                 return "\'" + val + "\'";
             return val;
@@ -169,7 +169,7 @@ namespace Scorpion
             if (var_get(objects[1]) is string)
                 Do_on.mem.AL_CURR_VAR_TAG[Do_on.mem.AL_CURR_VAR_REF.IndexOf((string)objects[0])] = (string)var_get(objects[1]);
             else
-                Do_on.write_error("Could not add tag to the specified variable. Tag is not an identifyable string but an object of another type");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("Could not add tag to the specified variable. Tag is not an identifyable string but an object of another type");
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
@@ -258,7 +258,7 @@ namespace Scorpion
             //Make sure values are of type bool
             if ((string)var_get(objects[1]) != Do_on.types.S_Yes && (string)var_get(objects[1]) != Do_on.types.S_No)
             {
-                Do_on.write_error("Could not set the variable's readonly status as the value passed was incorrect: The value '" + var_get(objects[1]) + "' is not boolean ('true', 'false')");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("Could not set the variable's readonly status as the value passed was incorrect: The value '" + var_get(objects[1]) + "' is not boolean ('true', 'false')");
                 return;
             }
             ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[4] = var_get(objects[1]);
@@ -471,7 +471,7 @@ namespace Scorpion
         public object vartype(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Gets the Scorpion.Type for a specific variable
-            Do_on.write_to_cui(var_get(objects[0]).GetType());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(var_get(objects[0]).GetType());
 
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -525,7 +525,7 @@ namespace Scorpion
         public void listvars(string Scorp_Line_Exec, ArrayList objects)
         {
             string STR_ = ""; object val = null; int index = -1;
-            Do_on.write_to_cui("Loaded GLOBAL variables:\n-------------------------\n");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Loaded GLOBAL variables:\n-------------------------\n");
             foreach (string s in Do_on.mem.AL_CURR_VAR_REF)
             {
                 index = Do_on.mem.AL_CURR_VAR_REF.IndexOf(s);
@@ -552,7 +552,7 @@ namespace Scorpion
                 STR_ += "*" + s + " [" + val + "] TAG: [" + (string)Do_on.mem.AL_CURR_VAR_TAG[index] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[5] + "]\n";
                 val = null;
             }
-            Do_on.write_to_cui(STR_);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
             //clean
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -747,7 +747,7 @@ namespace Scorpion
                                         if (is_number)
                                             ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Insert(ndx, var_get(((object[])Variable)[0]));
                                         else
-                                            Do_on.write_error("The specified index was not found: " + var_get(Variable));
+                                            ScorpionConsoleReadWrite.ConsoleWrite.writeError("The specified index was not found: " + var_get(Variable));
                                     }
                                     else if (!is_array && is_dictionary)
                                     {
@@ -765,7 +765,7 @@ namespace Scorpion
                                 }
                         }
                         else
-                            Do_on.write_error("Unable to write changes to the variable: *" + Reference + ", the variable is set to READONLY");
+                            ScorpionConsoleReadWrite.ConsoleWrite.writeError("Unable to write changes to the variable: *" + Reference + ", the variable is set to READONLY");
                     }
             return;
         }
@@ -792,7 +792,7 @@ namespace Scorpion
                                     }
                             }
             }
-            catch { Do_on.write_to_cui("Scorpion IEE Error : Unable to Allocate Memory (Variable : '" + Variable + "', Reference : '" + Reference + "')"); }
+            catch { ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Scorpion IEE Error : Unable to Allocate Memory (Variable : '" + Variable + "', Reference : '" + Reference + "')"); }
 
             //clean
             Variable = null;
@@ -804,7 +804,7 @@ namespace Scorpion
         private string check_readonly(string Reference)
         {
             string RONLY = (string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(Reference))])[4];
-            Do_on.write_warning("The varaible: " + Reference + " results as " + RONLY);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("The varaible: " + Reference + " results as " + RONLY);
             return RONLY;
         }
     }

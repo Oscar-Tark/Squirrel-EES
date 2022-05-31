@@ -66,12 +66,12 @@ namespace Scorpion
             checkManDir();
             if (File.Exists(Do_on.types.main_user_manuals_path + '/' + function + man_extension))
             {                                                       
-                Do_on.write_to_cui("MAN/READERS MANUAL Entry for '" + function + "':\n******************************************************\nFUNCTION: [" + function + "]\n");
-                Do_on.write_to_cui(read_file(Do_on.types.main_user_manuals_path + '/' + function + man_extension));
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("MAN/READERS MANUAL Entry for '" + function + "':\n******************************************************\nFUNCTION: [" + function + "]\n");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(read_file(Do_on.types.main_user_manuals_path + '/' + function + man_extension));
             }
             else
-                Do_on.write_warning("No man entry exists for '" + function + "'");
-            Do_on.write_to_cui("If you would like to refresh your manuals, run the command 'manualrefresh'");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("No man entry exists for '" + function + "'");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("If you would like to refresh your manuals, run the command 'manualrefresh'");
             function = null;
             return;
         }
@@ -79,11 +79,11 @@ namespace Scorpion
         private void showManDir()
         {
             //Enumerate and show the contents of the man pages directory
-            Do_on.write_to_cui("Available man pages:");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Available man pages:");
             checkManDir();
             DirectoryInfo df = new DirectoryInfo(Do_on.types.main_user_manuals_path);
             foreach (FileInfo man_fnf in df.EnumerateFiles("*.man"))
-                Do_on.write_special(man_fnf.Name.Replace(".man", ""));
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial(man_fnf.Name.Replace(".man", ""));
             return;
         }
 
@@ -91,7 +91,7 @@ namespace Scorpion
         {
             if (!Directory.Exists(Do_on.types.main_user_manuals_path))
             {
-                Do_on.write_warning("No manuals directory found. Creating...");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("No manuals directory found. Creating...");
                 Directory.CreateDirectory(Do_on.types.main_user_manuals_path);
                 downloadMan();
             }
@@ -100,7 +100,7 @@ namespace Scorpion
 
         private async void downloadMan()
         {
-            Do_on.write_warning("Downloading manuals...");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Downloading manuals...");
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.UserAgent.Add(
             new ProductInfoHeaderValue("Scorpion-IEE", "1"));
@@ -112,10 +112,10 @@ namespace Scorpion
             foreach(var file in contents)
             {
                 var downloadUrl = (string)file["download_url"];
-                Do_on.write_to_cui($"Downloading: {downloadUrl}");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Downloading: {downloadUrl}");
                 DownloadFile((string)file["download_url"], Do_on.types.main_user_manuals_path + "/" + (string)file["name"]);
             }
-            Do_on.write_success("Finished downloading manuals");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Finished downloading manuals");
         }
     }
 }

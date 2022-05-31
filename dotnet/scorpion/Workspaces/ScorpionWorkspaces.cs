@@ -85,14 +85,14 @@ namespace Workspaces
         public void set_stream_tcp()
         {
             Console.SetOut(ts_workspaces[1]);
-            Do_on.write_to_cui("Set workspace to: NETWORK");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Set workspace to: NETWORK");
             return;
         }
 
         public void set_stream_out()
         {
             Console.SetOut(ts_workspaces[0]);
-            Do_on.write_to_cui("Set workspace to: STANDARD_OUTPUT");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Set workspace to: STANDARD_OUTPUT");
             return;
         }
 

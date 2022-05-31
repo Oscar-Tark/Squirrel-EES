@@ -68,6 +68,16 @@
           "lib/net5.0/SimpleTCP.Net5.dll": {}
         }
       },
+      "consolereadwrite/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        }
+      },
       "scorpion_aes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -366,6 +376,11 @@
         "simpletcp.net5.nuspec"
       ]
     },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "path": "../../../Scorpion-Console-Read-Write/consolereadwrite.csproj",
+      "msbuildProject": "../../../Scorpion-Console-Read-Write/consolereadwrite.csproj"
+    },
     "scorpion_aes/1.0.0": {
       "type": "project",
       "path": "../scorpion_aes/scorpion_aes.csproj",
@@ -421,6 +436,7 @@
     "net6.0": [
       "Newtonsoft.Json >= 13.0.1",
       "SimpleTCP.Net5 >= 1.0.25",
+      "consolereadwrite >= 1.0.0",
       "scorpion_aes >= 1.0.0",
       "scorpion_authenticator >= 1.0.0",
       "scorpion_compiler >= 1.0.0",
@@ -457,6 +473,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj"
+            },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
             },

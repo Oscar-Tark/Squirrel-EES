@@ -41,3 +41,5 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_cryptography.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_xmldb.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_xmldb.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/consolereadwrite.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/consolereadwrite.pdb

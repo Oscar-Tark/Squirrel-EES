@@ -82,13 +82,13 @@ namespace Scorpion
 
         private void write_to_console(ref string STR_)
         {
-            Do_on.write_to_cui(STR_);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
             return;
         }
 
         private void write_to_console(string STR_)
         {
-            Do_on.write_to_cui(STR_);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
             return;
         }
 
@@ -96,7 +96,7 @@ namespace Scorpion
         {
             ArrayList al = cut_variables(ref Scorp_Line_Exec);
             foreach (object o in al)
-                Do_on.write_to_cui(var_get(o.ToString()) + "\n");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(var_get(o.ToString()) + "\n");
             var_arraylist_dispose(ref al);
             Scorp_Line_Exec = null;
             return;

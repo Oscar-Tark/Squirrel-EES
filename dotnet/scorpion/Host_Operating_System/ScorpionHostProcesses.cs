@@ -14,8 +14,8 @@ namespace Scorpion
             //Kills all processes controlled by Scorpion
             //::
 
-            Do_on.write_to_cui("Killing all proccesses");
-            Do_on.write_to_cui(scp.kill_processes());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Killing all proccesses");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(scp.kill_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -25,7 +25,7 @@ namespace Scorpion
         {
             //::*process_name
             scp.start_process((string)var_get(objects[0]));
-            //Do_on.write_success("Process '" + var_get(0) + "' started...");
+            //ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Process '" + var_get(0) + "' started...");
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -52,7 +52,7 @@ namespace Scorpion
             if (returned != null)
             {
                 foreach (KeyValuePair<string, string> kvp in returned)
-                    Do_on.write_to_cui(kvp.Key + " = " + kvp.Value);
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(kvp.Key + " = " + kvp.Value);
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -71,8 +71,8 @@ namespace Scorpion
 
             try
             {
-                Do_on.write_to_cui("Process created. Call processrun::*processname in order to start the process");
-                //Do_on.write_to_cui("Process is starting call 'processio::*name' to see output");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process created. Call processrun::*processname in order to start the process");
+                //ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process is starting call 'processio::*name' to see output");
                 Process pri_ = new Process();
                 ProcessStartInfo pri_s = new ProcessStartInfo((string)var_get(objects[0]), (string)var_get(objects[1]));
                 pri_.Exited += Pri__Exited;
@@ -95,7 +95,7 @@ namespace Scorpion
         private void Pri__Exited(object sender, EventArgs e)
         {
             Process p = (Process)sender;
-            Do_on.write_to_cui("Process Ended: [Status Code: " + p.ExitCode + "] " + p.ProcessName);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process Ended: [Status Code: " + p.ExitCode + "] " + p.ProcessName);
             return;
         }
 
@@ -105,7 +105,7 @@ namespace Scorpion
             //*return<<::*process_name
 
             string output_ = scp.get_std((string)var_get(objects[0]));
-            Do_on.write_to_cui(output_);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(output_);
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -154,7 +154,7 @@ namespace Scorpion
             //Lists all Scorpion controlled processes and their state
             //::
 
-            Do_on.write_to_cui(scp.list_processes());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(scp.list_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
         }

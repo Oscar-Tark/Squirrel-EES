@@ -31,7 +31,7 @@ namespace Scorpion
         //ACCESS ANY LIB
         public void access_library(string Scorp_Line)
         {
-            //fmm.write_to_cui("READER: DOING for: " + fmm.instance);
+            //fmm.ConsoleWrite.writeOutput("READER: DOING for: " + fmm.instance);
             lib_SCR.scorpioniee(Scorp_Line, fmm);
             Scorp_Line = null;
             return;

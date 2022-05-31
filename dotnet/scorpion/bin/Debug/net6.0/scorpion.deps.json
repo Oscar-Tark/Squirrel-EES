@@ -10,6 +10,7 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "SimpleTCP.Net5": "1.0.25",
+          "consolereadwrite": "1.0.0",
           "scorpion_aes": "1.0.0",
           "scorpion_authenticator": "1.0.0",
           "scorpion_compiler": "1.0.0",
@@ -81,6 +82,11 @@
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
+        }
+      },
+      "consolereadwrite/1.0.0": {
+        "runtime": {
+          "consolereadwrite.dll": {}
         }
       },
       "scorpion_aes/1.0.0": {
@@ -215,6 +221,11 @@
       "sha512": "sha512-TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
       "path": "simpletcp.net5/1.0.25",
       "hashPath": "simpletcp.net5.1.0.25.nupkg.sha512"
+    },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "scorpion_aes/1.0.0": {
       "type": "project",
