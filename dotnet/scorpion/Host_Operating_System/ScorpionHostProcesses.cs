@@ -14,8 +14,8 @@ namespace Scorpion
             //Kills all processes controlled by Scorpion
             //::
 
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Killing all proccesses");
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(scp.kill_processes());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Killing all proccesses..");
+            scp.kill_processes();
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -25,43 +25,12 @@ namespace Scorpion
         {
             //::*process_name
             scp.start_process((string)var_get(objects[0]));
-            //ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Process '" + var_get(0) + "' started...");
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
 
-        public void processoption(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //::*process_name, *options...
-            //All options for scorpion or SEHT programs must use the '=' delimiter, other programs may do as they want
-            //function is variadic
-            //scp.get_process((string)var_get(objects[0]));
-            scp.add_option((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]));
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-
-            return;
-        }
-
-        public void processlistoptions(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            var returned = scp.get_options((string)var_get(objects[0]));
-
-            if (returned != null)
-            {
-                foreach (KeyValuePair<string, string> kvp in returned)
-                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(kvp.Key + " = " + kvp.Value);
-            }
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-
-            return;
-        }
-
-        public void process(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void processdefine(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates a new Scorpion.Process. This is a standard process which can be any program. The program is partially controlled by scorpion
             //::*program, *arguments, *process_name, *foregroundoutput
@@ -75,7 +44,7 @@ namespace Scorpion
                 //ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process is starting call 'processio::*name' to see output");
                 Process pri_ = new Process();
                 ProcessStartInfo pri_s = new ProcessStartInfo((string)var_get(objects[0]), (string)var_get(objects[1]));
-                pri_.Exited += Pri__Exited;
+                pri_.Exited += scp.processExited;
                 if ((string)var_get(objects[3]) == Do_on.types.S_No)
                 {
                     pri_s.RedirectStandardOutput = true;
@@ -89,13 +58,6 @@ namespace Scorpion
             catch(Exception e) { Console.WriteLine(e.Message); }
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            return;
-        }
-
-        private void Pri__Exited(object sender, EventArgs e)
-        {
-            Process p = (Process)sender;
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process Ended: [Status Code: " + p.ExitCode + "] " + p.ProcessName);
             return;
         }
 
@@ -149,11 +111,16 @@ namespace Scorpion
             return;
         }
 
+        public void lp(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            listprocesses(ref Scorp_Line_Exec, ref objects);
+            return;
+        }
+
         public void listprocesses(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Lists all Scorpion controlled processes and their state
             //::
-
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(scp.list_processes());
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -165,11 +132,10 @@ namespace Scorpion
         //This class invokes the internal working of the Scorpion.Process system
 
         int processes = -1;
-        private Process[] pr_list = new Process[0x4];
-        private string[] pr_list_ref = new string[0x4];
-        private string[] pr_list_name = new string[0x4];
-        private string[] pr_output = new string[0x4];
-        private Dictionary<string, Dictionary<string, string>> pr_options = new Dictionary<string, Dictionary<string, string>>();
+        private Process[] pr_list = new Process[0xff];
+        private string[] pr_list_ref = new string[0xff];
+        private string[] pr_list_name = new string[0xff];
+        private string[] pr_output = new string[0xff];
 
         public void add_proccess(ref Process pri, string name)
         {
@@ -195,42 +161,30 @@ namespace Scorpion
 
         public void start_process(string name)
         {
-            //process options as arguments
-            var options = get_options(name);
-            if (options != null)
-            {
-                Console.WriteLine("IN");
-                foreach (KeyValuePair<string, string> kvp in options)
-                {
-                    Console.WriteLine("OPT");
-                    pr_list[get_process(name)].StartInfo.Arguments.Insert(0, kvp.Key + "=" + kvp.Value);
-                }
-            }
-
             pr_list[get_process(name)].Start();
-            Console.WriteLine("Process '{0}' started", name);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess($"Process '{name}' started");
             return;
         }
 
-        public string kill_processes()
+        public void kill_processes()
         {
-            //BUG: Remove all process elements!!!!!!
-
-            string out_ = "";
-            foreach (Process p in pr_list)
+            for(int i = 0; i <= processes; i++)
             {
                 try
                 {
-                    out_ = out_ + "[KILL] " + p.ProcessName + "\n";
-                    p.Kill();
-                    if (p.HasExited)
-                        out_ = out_ + "[KILLED] " + p.ProcessName + "\n";
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"[KILL] {pr_list_ref[i]}");
+
+                    pr_list[i].Exited -= processExited;
+                    pr_list[i].Kill();
+
+                    if (pr_list[i].HasExited)
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess($"[KILLED] {pr_list_ref[i]}");
                     else
-                        out_ = out_ + "[UNKILLED OR LOST] " + p.ProcessName + "\n";
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"[UNKILLED AND LOST] {pr_list_ref[i]}");
                 }
-                finally { }
+                finally{}
             }
-            return out_;
+            return;
         }
 
         public void set_stdin(string name, string input)
@@ -238,31 +192,6 @@ namespace Scorpion
             int proc = get_process(name);
             pr_list[proc].StandardInput.WriteLine(input);
             return;
-        }
-
-        public void add_option(string proc_name, string option_name, string option)
-        {
-            //Check if the process is running if so warn the user that options will not e applied unless the process is restarted
-            /*try
-            {
-                if (!pr_list[get_process(proc_name)].HasExited)
-                    Console.WriteLine("The process '{0}' is currently running. Any options cannot be applied to a running process, please restart the process to apply any options", proc_name);
-            }
-            finally
-            {*/
-                //check if process option entry exists
-                if (!pr_options.ContainsKey(proc_name))
-                    pr_options.Add(proc_name, new Dictionary<string, string>());
-
-                //Add the options to the process options dictionary
-                pr_options[proc_name].Add(option_name, option);
-            //}
-            return;
-        }
-
-        public Dictionary<string, string> get_options(string name)
-        {
-            return pr_options.ContainsKey(name) ? pr_options[name] : null;
         }
 
         public string get_std(string name)
@@ -285,7 +214,7 @@ namespace Scorpion
         static async Task Get_stdout_async_task(Process p)
         {
             string s = await p.StandardOutput.ReadLineAsync();
-            Console.WriteLine(s);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(s);
         }
 
         public int get_process(string name)
@@ -302,8 +231,21 @@ namespace Scorpion
         {
             string list = "Processes:\n";
             for (int i = 0; i <= processes; i++)
+            {
                 list = list + "\n[Name: " + pr_list_ref[i] + "] (" + pr_list_name[i] + ")\n" + "[Exited: " + pr_list[i].HasExited + "]\n" + "[Id: " + pr_list[i].Id + "]\n" + "[Priority: " + pr_list[i].BasePriority + "]\n" + "[Full process name: " + pr_list[i].ProcessName + "]\n";
+            }
             return list;
+        }
+
+        public void processExited(object sender, EventArgs e)
+        {
+            try
+            {
+                Process p = (Process)sender;
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process Ended: [Status Code: " + p.ExitCode + "] " + p.ProcessName);
+            }
+            finally{}
+            return;
         }
     }
 }

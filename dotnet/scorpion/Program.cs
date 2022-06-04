@@ -16,6 +16,7 @@
 */
 
 using System.Collections;
+using System;
 
 namespace Scorpion
 {
@@ -24,22 +25,28 @@ namespace Scorpion
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        private const double kversion = 0.9;
+        static Scorp sc = new Scorp(0, kversion);
         [STAThread]
         static int Main()
         {
-            int current_session = 0;
-            ArrayList sessions = new ArrayList();
-            sessions.Add(new Scorp(current_session));
+            //Uncomment commented to allow sessions. I am removing sessions until proper work is done to properly isolate outputs etc.
+            //int current_session = 0;
+            //ArrayList sessions = new ArrayList();
+            //sessions.Add(new Scorp(current_session));
+            sc.th_clean_strt();
 
             //Add an event to cleanup the system before exiting
             Console.CancelKeyPress += Console_CancelKeyPress;
 
-            string line = null;
+            //string line = null;
             //Create new session on demand
             while(true)
             {
-                line = Console.ReadLine();
-                if (line.ToLower() == "**new")
+                //line = Console.ReadLine();
+                sc.readr.access_library(Console.ReadLine());
+
+                /*if (line.ToLower() == "**new")
                 {
                     current_session++;
                     Console.WriteLine("Created new session");
@@ -84,15 +91,18 @@ namespace Scorpion
                 {
                     ((Scorp)sessions[current_session]).readr.access_library(line);
                     ((Scorp)sessions[current_session]).th_clean_strt();
-                }
+                }*/
             }
-            return 0; //Had Environment.Exit(0)
+            return 0;
         }
 
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
-            Console.WriteLine("Interrupt Signal. Exiting...");
-            Environment.Exit(0);
+            ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Interrupt Signal. Exiting..");
+            string temp = null;
+            ArrayList al_temp = new ArrayList();
+            sc.readr.lib_SCR.apkill(ref temp, ref al_temp);
+            sc.readr.lib_SCR.exit(ref temp, ref al_temp);
         }
     }
 }

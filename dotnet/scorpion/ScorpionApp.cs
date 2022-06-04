@@ -68,7 +68,7 @@ namespace Scorpion
             return true;
         }
 
-        public Scorp(int instance_descriptor)
+        public Scorp(int instance_descriptor, double version)
         {
             //Assign the session instance int:identifier for this instance
             instance = instance_descriptor;
@@ -94,7 +94,7 @@ namespace Scorpion
             //Read passcode and pin
             while (true)
             {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial("\nScorpion Enterprise Server V1.0b - Login - [0*0]__/ 'Robo Scorpio says: Hi! Who are you?'\n-----------------------------------------------------------------------\n");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial($"\nScorpion Enterprise Server V{version} - Login - [0*0]__/ 'Robo Scorpio says: Hi! Who are you?'\n-----------------------------------------------------------------------\n");
                 ConsoleWrite.writeOutput("Please enter your user login credentials [Try " + tries + "/" + max_tries + "]");
                 ConsoleWrite.writeOutput("Username >> ");
                 uname = Console.ReadLine();

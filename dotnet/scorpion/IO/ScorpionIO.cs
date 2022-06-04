@@ -23,12 +23,6 @@ namespace Scorpion
 {
     partial class Librarian
     {
-        public void exit(ref string Scorp_Line_Exec, ref ArrayList Objects)
-        {
-            Environment.Exit(0);
-            return;
-        }
-
         public void output(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*var, *var..
