@@ -95,6 +95,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "scorpion_aes": "1.0.0",
           "scorpion_hasher": "1.0.0"
         },
         "compile": {

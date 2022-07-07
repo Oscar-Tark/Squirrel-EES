@@ -26,31 +26,35 @@ namespace Scorpion
         /// The main entry point for the application.
         /// </summary>
         private const double kversion = 0.9;
-        static Scorp sc = new Scorp(0, kversion);
+        //static Scorp sc = new Scorp(0, kversion);
+        static ArrayList sessions = new ArrayList();
+
         [STAThread]
         static int Main()
         {
             //Uncomment commented to allow sessions. I am removing sessions until proper work is done to properly isolate outputs etc.
-            //int current_session = 0;
-            //ArrayList sessions = new ArrayList();
-            //sessions.Add(new Scorp(current_session));
-            sc.th_clean_strt();
+            int current_session = 0;
+            sessions.Add(new Scorp(current_session, kversion));
+
+            //sc.th_clean_strt();
 
             //Add an event to cleanup the system before exiting
             Console.CancelKeyPress += Console_CancelKeyPress;
 
-            //string line = null;
+            //while(true)
+            //    sc.readr.access_library(Console.ReadLine());
+
+            string line = null;
             //Create new session on demand
             while(true)
             {
-                //line = Console.ReadLine();
-                sc.readr.access_library(Console.ReadLine());
+                line = Console.ReadLine();
 
-                /*if (line.ToLower() == "**new")
+                if (line.ToLower() == "**new")
                 {
                     current_session++;
                     Console.WriteLine("Created new session");
-                    sessions.Add(new Scorp(current_session));
+                    sessions.Add(new Scorp(current_session, kversion));
                 }
                 else if (line.ToLower() == "**back")
                 {
@@ -91,7 +95,7 @@ namespace Scorpion
                 {
                     ((Scorp)sessions[current_session]).readr.access_library(line);
                     ((Scorp)sessions[current_session]).th_clean_strt();
-                }*/
+                }
             }
             return 0;
         }
@@ -101,8 +105,15 @@ namespace Scorpion
             ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Interrupt Signal. Exiting..");
             string temp = null;
             ArrayList al_temp = new ArrayList();
-            sc.readr.lib_SCR.apkill(ref temp, ref al_temp);
-            sc.readr.lib_SCR.exit(ref temp, ref al_temp);
+
+            foreach(Scorp session in sessions)
+            {
+                Console.WriteLine("Closing Instance [{0}]", session.instance);
+                session.readr.lib_SCR.apkill(ref temp, ref al_temp);
+                session.readr.lib_SCR.instancecleanup();
+            }
+
+            Environment.Exit(0);
         }
     }
 }

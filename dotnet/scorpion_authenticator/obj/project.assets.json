@@ -32,6 +32,28 @@
           "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
         }
       },
+      "EasyEncrypt/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        }
+      },
+      "scorpion_aes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_aes.dll": {}
+        }
+      },
       "scorpion_hasher/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -138,6 +160,23 @@
         "lib/uap10.0/Cauldron.Randomizer.pri"
       ]
     },
+    "EasyEncrypt/2.2.1": {
+      "sha512": "Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "type": "package",
+      "path": "easyencrypt/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "easyencrypt.2.2.1.nupkg.sha512",
+        "easyencrypt.nuspec",
+        "lib/netstandard2.0/EasyEncrypt.dll"
+      ]
+    },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_aes/scorpion_aes.csproj",
+      "msbuildProject": "../scorpion_aes/scorpion_aes.csproj"
+    },
     "scorpion_hasher/1.0.0": {
       "type": "project",
       "path": "../scorpion_hasher/scorpion_hasher.csproj",
@@ -146,6 +185,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "scorpion_aes >= 1.0.0",
       "scorpion_hasher >= 1.0.0"
     ]
   },
@@ -174,6 +214,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+            },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj"
             }

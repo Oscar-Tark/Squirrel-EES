@@ -15,6 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+//If sessions are allowed. this class allows functionality not to be shared between sessions that are crucial in being seperate from the main partial Librarian class
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Security;
+using System.Threading;
 
 namespace Scorpion
 {
@@ -73,11 +76,21 @@ namespace Scorpion
 
         public void Sctl_DataReceived(object sender, SimpleTCP.Message e)
         {
+            Thread ths = new Thread(new ParameterizedThreadStart(processServerRequest));
+            ths.IsBackground = true;
+            ths.Start(new object[2]{ sender, e });
+        }
+
+        private void processServerRequest(object param_thread_object)
+        {
             //Add RSA support
             //Removes delimiter 0x13 and executes
             /*
             {&scorpion}{&type}type{&/type}{&database}db{&/database}{&tag}tag{&/tag}{&subtag}subtag{&/subtag}{&session}session{&/session}{&/scorpion}
             tag:project_folder*/
+
+            object sender = ((object[])param_thread_object)[0];
+            SimpleTCP.Message e = (SimpleTCP.Message)((object[])param_thread_object)[1];
             
             Enginefunctions ef__ = new Enginefunctions();
             NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
@@ -124,6 +137,9 @@ namespace Scorpion
                         if (query_result.Count > 0)
                         {
                             db_page = (string)query_result[0];
+
+                            //Get mysql dat
+                            
 
                             //Session allows us to return the page with user loaded session data
                             if(HANDLE.mem.AL_CURR_VAR_REF.Contains(session))

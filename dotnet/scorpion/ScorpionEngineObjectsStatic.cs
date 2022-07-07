@@ -35,6 +35,9 @@ namespace Scorpion
         //Available Scorpion.EscapeSequences
         public readonly string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" }, new string[] { "{&u}", "," } };
 
+        //Unwanted characters in names
+        public char[] S_UNWANTED_CHAR_NAME = { '[', ']' };
+
         //Available Scorpion.Types
         public readonly Type[] S_TYPES = { new ArrayList().GetType() };
 
@@ -51,13 +54,14 @@ namespace Scorpion
         //Initialize Scorpion.DefaultVariables
         public void LoadSystemVars()
         {
+            //Set variables that should exist by default
             HANDLE.readr.lib_SCR.var("", new ArrayList(5) { S_Yes, S_No, "null", "yes", "no", "temp", "path" });
-            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { S_No, "'" + S_No + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "no", "'" + S_No + "'" });
+
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "null", "'" + S_NULL + "'" });
             HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "path", "'" + main_user_path + "'" });
-            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { S_Yes, "'" + S_Yes + "'" });
-            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "yes", "'" + S_Yes + "'" });
+            HANDLE.readr.lib_SCR.varset("", new ArrayList(5) { "true", "'" + S_Yes + "'" });
             return;
         }
     }

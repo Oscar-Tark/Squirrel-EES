@@ -100,6 +100,11 @@ namespace Scorpion
             return val;
         }
 
+        private ArrayList var_create_return(ref string[] val)
+        {
+            return new ArrayList(val);
+        }
+
         private void var_dispose_internal(ref object __object)
         {
             __object = null;
@@ -243,7 +248,9 @@ namespace Scorpion
             //Template:
             //::*var, *var, *var...
             foreach (string s in objects)
+            {
                 var_new(Do_on.types.S_No, s, null, null, Do_on.types.S_No);
+            }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
@@ -468,14 +475,14 @@ namespace Scorpion
             return var_create_return(ref len, true);
         }
 
-        public object vartype(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void vartype(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Gets the Scorpion.Type for a specific variable
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(var_get(objects[0]).GetType());
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(var_get(objects[0]).GetType().Name);
 
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
-            return 0;
+            return;
         }
 
         public void varset(string Scorp_Line_Exec, ArrayList objects)
@@ -508,6 +515,13 @@ namespace Scorpion
                                 end += var_get(obj);
                         }
             return var_create_return(ref end, true);
+        }
+
+        public ArrayList varsplit(ref string Scorp_Line_Exec, ArrayList objects)
+        {
+            //*return<<:: *splitwhat, *with
+            string[] s_temp = ((string)var_get(objects[0])).Split((string)var_get(objects[1]));
+            return var_create_return(ref s_temp);
         }
 
         public string varreplace(ref string Scorp_Line_Exec, ArrayList objects)
@@ -570,34 +584,89 @@ namespace Scorpion
             return;
         }
 
-        //memory get
-        public object var_get(ref string Block)
+        //Get a variable from the main memory block
+        public object var_get(ref string block)
         {
-            object o = Block;
+            object o = null;
+            string block_with_depth = block;
+            string block_without_depth = block;
+            bool contains_depth = false;
+
+            //If contains []
+            if(block.Contains(Do_on.types.S_UNWANTED_CHAR_NAME[0]) || block.Contains(Do_on.types.S_UNWANTED_CHAR_NAME[1]))
+            {
+                block_without_depth = block.Remove(block.IndexOf(Do_on.types.S_UNWANTED_CHAR_NAME[0]));
+                contains_depth = true;
+            }
+
             //IS OBJECT|IS BINARY|IS BIN
-            if (!((string)o).StartsWith("\'", StringComparison.CurrentCulture) && !((string)o).StartsWith("f\'", StringComparison.CurrentCulture))
+            if (!block_without_depth.StartsWith("\'", StringComparison.CurrentCulture) && !(block_without_depth).StartsWith("f\'", StringComparison.CurrentCulture))
             {
                 try
                 {
                     //Assign a raw C# object regardless of type
-                    o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(o.ToString().Replace(" ", "").Replace("*", ""))])[2];
+                    o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(block_without_depth.Replace(" ", "").Replace("*", ""))])[2];
+                    if(contains_depth)
+                        o = varCheckGetDepth(block_with_depth, o, Do_on.types.S_TYPES[0], true);
                 }
                 finally { }
             }
+        
             //IS STRING
             else
             {
                 //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between [{{, }}] are replaced by existing variables if one is found
-                if (Block.StartsWith("f\'", StringComparison.CurrentCulture))
-                    Block = ef__.replace_format(ref Do_on,ref Block).Remove(0, 1);
+                if (block_without_depth.StartsWith("f\'", StringComparison.CurrentCulture))
+                    block_without_depth= ef__.replace_format(ref Do_on, ref block_without_depth).Remove(0, 1);
 
                 //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
-                o = var_cut_str_symbol(var_cut_symbol(ref Block));
+                o = var_cut_str_symbol(var_cut_symbol(ref block_without_depth));
 
                 //Replace escape sequences
                 o = ef__.replaceEscape(ref Do_on, (string)o);
             }
             return o;
+        }
+
+        private object varCheckGetDepth(string block, object o_array, Type t_obj_type, bool containsdepth)
+        {
+            object returnable = o_array;
+            //If index must be array or dictionary
+            try
+            {
+                if(containsdepth)
+                {
+                    if(t_obj_type == Do_on.types.S_TYPES[0])
+                    {
+                        //Get the index at array point
+                        string[] indexes = block.Split(Do_on.types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                        if(indexes.Length > 0)
+                        {
+                            //Get the first index element
+                            returnable = ((ArrayList)o_array)[Convert.ToInt32(indexes[1])];
+                            //Single depth
+                            if(indexes.Length < 2)
+                                return returnable;
+                            //Multiple depths
+                            else
+                            {
+                                //Temporary array and dictionary
+                                Dictionary<string, string> temp_dict;
+                                ArrayList temp_array;
+
+                                //Get multiple depths with multitypes
+                                for(int i = 1; i < indexes.Length; i++)
+                                {
+                                    //Implement by type
+                                }
+                            }
+                        }
+                        //if(indexes)
+                    }
+                }
+            }
+            catch(Exception e){Console.WriteLine(e.StackTrace);}
+            return returnable;
         }
 
         public bool varCheck(string reference)
@@ -622,6 +691,17 @@ namespace Scorpion
 
     public partial class Librarian
     {
+        private bool varNameCheck(string name)
+        {
+            //Returns false if the name does not conform and contains unwanted characters. The opposite if it conforms
+            if(name.IndexOfAny(Do_on.types.S_UNWANTED_CHAR_NAME) != -1)
+            {
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Unwanted characters found in the name for a variable decleration. '{0}', '{1}' Found", Do_on.types.S_UNWANTED_CHAR_NAME[0], Do_on.types.S_UNWANTED_CHAR_NAME[1]));
+                return false;
+            }
+            return true;
+        }
+
         private object var_get(string Block)
         {
             return var_get(ref Block);
@@ -668,9 +748,10 @@ namespace Scorpion
 
         private string var_cut_str_symbol(string Var)
         {
-            if (Var.Contains("'") == true)
-                return Var.Replace("'", "");
-            return Var;
+            if (Var.Contains("'"))
+                return Var.Replace("'", String.Empty);
+            else
+                return Var;
         }
 
         //SET //DELETE
@@ -778,6 +859,11 @@ namespace Scorpion
             try
             {
                 Reference = Enginefunctions.CleanEscape(ref Do_on, Reference);
+
+                //Check if the name has unwanted characters
+                if(!varNameCheck(Reference))
+                    return;
+
                 lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
                             {
                                     if (Do_on.mem.AL_CURR_VAR_REF.Contains(Reference) == false)

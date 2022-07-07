@@ -229,6 +229,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+              },
               "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj": {
                 "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj"
               }

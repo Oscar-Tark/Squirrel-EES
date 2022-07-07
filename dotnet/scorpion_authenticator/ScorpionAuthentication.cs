@@ -2,6 +2,7 @@
 using System.Security;
 using System.Security.Principal;
 using Scorpion_Hasher_Library;
+using ScorpionAES;
 
 namespace Scorpion_Authenticator
 {
@@ -12,7 +13,7 @@ namespace Scorpion_Authenticator
         string full_directory_path;
         string[] Config_file_content;
 
-        const string scorpion_directory = ".scorpion";
+        const string scorpion_directory = "Scorpion/Users";
         const string scorpion_config = "scorpion_users.conf";
 
         public Authenticator()
@@ -37,12 +38,38 @@ namespace Scorpion_Authenticator
             return false;
         }
 
+        private bool checkExists(string User)
+        {
+            bool retval = false;
+            string[] elements;
+            string[] sep = { "@@@~" };
+
+            if (Config_file_content.Length == 0 || Config_file_content[0] == "")
+                return false;
+
+            foreach(string line in Config_file_content)
+            {
+                elements = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+                if (elements[0] == User)
+                    retval = true;
+            }
+            return retval;
+        }
+
         public void create_user(MethodInfo[] scorpion_functions)
         {
             Console.Write("New username >> ");
             string uname = Console.ReadLine();
             Console.Write("New password >> ");
             SecureString pwd = read_password();
+
+            //Does the user exist if so then return
+            if(checkExists(uname))
+            {
+                Console.WriteLine("User exists, please choose a different username");
+                return;
+            }
+
             write_config(ref uname, ref pwd);
             ExecutionPersmissions ep = new ExecutionPersmissions(ref uname);
             ep.create(ref uname, scorpion_functions);
@@ -141,8 +168,8 @@ namespace Scorpion_Authenticator
         string[] Config_file_content;
         string System_user, full_path, full_directory_path;
         protected string user = null;
-        const string scorpion_directory = ".scorpion";
-        const string scorpion_config = "_scorpion_users_permissions.conf";
+        const string scorpion_directory = "Scorpion/Users";
+        const string scorpion_config = "_perm.conf";
 
         public ExecutionPersmissions(ref string user_)
         {
@@ -216,9 +243,9 @@ namespace Scorpion_Authenticator
             read_config();
 
             //Crashes if the permissions file already exists!!!
-
             Scorpion_Hasher sch = new Scorpion_Hasher();
             StreamWriter sr = File.AppendText(full_path);
+
             //Hash is null if no permission, Hash is same name as function if exists
             Console.WriteLine("Grant all privileges to user? [y/n]");
             string s_ans = Console.ReadLine().ToLower();

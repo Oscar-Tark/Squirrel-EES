@@ -13,3 +13,5 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/obj/Debug/net6.0/scorpion_authenticator.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/obj/Debug/net6.0/ref/scorpion_authenticator.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/obj/Debug/net6.0/scorpion_authenticator.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/bin/Debug/net6.0/scorpion_aes.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/bin/Debug/net6.0/scorpion_aes.pdb

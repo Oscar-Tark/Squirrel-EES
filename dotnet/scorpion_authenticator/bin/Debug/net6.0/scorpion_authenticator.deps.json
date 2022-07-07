@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "scorpion_authenticator/1.0.0": {
         "dependencies": {
+          "scorpion_aes": "1.0.0",
           "scorpion_hasher": "1.0.0"
         },
         "runtime": {
@@ -39,6 +40,22 @@
             "assemblyVersion": "3.2.0.3",
             "fileVersion": "3.2.0.3"
           }
+        }
+      },
+      "EasyEncrypt/2.2.1": {
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "scorpion_aes/1.0.0": {
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "runtime": {
+          "scorpion_aes.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -78,6 +95,18 @@
       "sha512": "sha512-Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
       "path": "capgemini.cauldron.randomizer/3.2.3",
       "hashPath": "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512"
+    },
+    "EasyEncrypt/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "path": "easyencrypt/2.2.1",
+      "hashPath": "easyencrypt.2.2.1.nupkg.sha512"
+    },
+    "scorpion_aes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "scorpion_hasher/1.0.0": {
       "type": "project",

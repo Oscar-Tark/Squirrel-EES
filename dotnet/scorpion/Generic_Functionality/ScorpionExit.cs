@@ -25,6 +25,14 @@ namespace Scorpion
     {
         public void exit(ref string Scorp_Line_Exec, ref ArrayList Objects)
         {
+            instancecleanup();
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Exiting..");
+            Environment.Exit(0);
+            return;
+        }
+
+        public void instancecleanup()
+        {
             //Clean memory up
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Clearing GLOBAL memory..");
 
@@ -60,8 +68,6 @@ namespace Scorpion
             Do_on.mem.AL_TCP_CLIENTS_KY.Clear();
             Do_on.mem.AL_TCP_CLIENTS_REF.Clear();
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared TCP clients");
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Exiting..");
-            Environment.Exit(0);
             return;
         }
     }
