@@ -648,8 +648,6 @@ namespace Scorpion
                             //Get the first index element
                             returnable = ((ArrayList)o_array)[indexes[0]];
 
-                            Console.WriteLine("LEN: {0}", indexes.Length);
-
                             //Single depth
                             if(indexes.Length == 1)
                                 return returnable;
@@ -663,15 +661,11 @@ namespace Scorpion
                                 //Get multiple depths with multitypes
                                 for(int i = 0; i < indexes.Length - 1; i++)
                                 {
-                                    try
-                                    {
                                     //if not at end of indexes contiue as arraylists else take object
                                     if(i < (indexes.Length - 2))
                                         temp_array = (ArrayList)temp_array[Convert.ToInt32(indexes[i])];
                                     else
                                         returnable = temp_array[i];
-                                    }
-                                    catch(Exception e ){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.StackTrace + e.Message); }
                                 }
                             }
                         }
