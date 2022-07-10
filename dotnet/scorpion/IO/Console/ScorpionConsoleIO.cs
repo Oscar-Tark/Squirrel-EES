@@ -54,7 +54,9 @@ namespace Scorpion
                 else
                     writable += var_get(reference);
             }
-            write_to_console(ref writable);
+
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(writable);
+
             var_arraylist_dispose(ref Objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;

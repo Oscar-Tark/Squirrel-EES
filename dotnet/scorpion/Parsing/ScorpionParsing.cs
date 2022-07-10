@@ -17,15 +17,11 @@ namespace Scorpion
             return value;
         }
 
-        public ArrayList cut_variables(string Scorp_Line_Exec)
-        {
-            return split_vars(ref Scorp_Line_Exec);
-        }
+        public ArrayList cut_variables(string Scorp_Line_Exec) =>
+            split_vars(ref Scorp_Line_Exec);
 
-        public ArrayList cut_variables(ref string Scorp_Line_Exec)
-        {
-            return split_vars(ref Scorp_Line_Exec);
-        }
+        public ArrayList cut_variables(ref string Scorp_Line_Exec) =>
+            split_vars(ref Scorp_Line_Exec);
 
         private ArrayList split_vars(ref string Scorp)
         {
@@ -83,6 +79,24 @@ namespace Scorpion
 
             Scorp_Line_Exec = Scorp_Line_Exec.Remove(Scorp_Line_Exec.IndexOf(Last_Del));
             return Scorp_Line_Exec = Scorp_Line_Exec.Remove(0, index);
+        }
+
+        public int[] toIntArray(object[] array)
+        {
+            int hold = -1, ndx = 0;
+            int[] returnable = new int[array.Length];
+            foreach(object o in array)
+            {
+                if(Int32.TryParse(o.ToString(), out hold))
+                {
+                    returnable[ndx] = hold;
+                    ndx++;
+                }
+            }
+
+            //Resize the array to eliminate empty entries
+            Array.Resize<int>(ref returnable, ndx);
+            return returnable;
         }
     }
 }

@@ -97,7 +97,6 @@ namespace Scorpion
                     ((Scorp)sessions[current_session]).th_clean_strt();
                 }
             }
-            return 0;
         }
 
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)

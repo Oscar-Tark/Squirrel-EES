@@ -630,6 +630,7 @@ namespace Scorpion
 
         private object varCheckGetDepth(string block, object o_array, Type t_obj_type, bool containsdepth)
         {
+            //Only for arrays not dictionaries. Implement depth for mixed types in the future
             object returnable = o_array;
             //If index must be array or dictionary
             try
@@ -639,29 +640,41 @@ namespace Scorpion
                     if(t_obj_type == Do_on.types.S_TYPES[0])
                     {
                         //Get the index at array point
-                        string[] indexes = block.Split(Do_on.types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                        string[] s_indexes = block.Split(Do_on.types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                        int[] indexes = toIntArray(s_indexes);
+
                         if(indexes.Length > 0)
                         {
                             //Get the first index element
-                            returnable = ((ArrayList)o_array)[Convert.ToInt32(indexes[1])];
+                            returnable = ((ArrayList)o_array)[indexes[0]];
+
+                            Console.WriteLine("LEN: {0}", indexes.Length);
+
                             //Single depth
-                            if(indexes.Length < 2)
+                            if(indexes.Length == 1)
                                 return returnable;
+
                             //Multiple depths
                             else
                             {
                                 //Temporary array and dictionary
-                                Dictionary<string, string> temp_dict;
-                                ArrayList temp_array;
+                                ArrayList temp_array = (ArrayList)returnable;
 
                                 //Get multiple depths with multitypes
-                                for(int i = 1; i < indexes.Length; i++)
+                                for(int i = 0; i < indexes.Length - 1; i++)
                                 {
-                                    //Implement by type
+                                    try
+                                    {
+                                    //if not at end of indexes contiue as arraylists else take object
+                                    if(i < (indexes.Length - 2))
+                                        temp_array = (ArrayList)temp_array[Convert.ToInt32(indexes[i])];
+                                    else
+                                        returnable = temp_array[i];
+                                    }
+                                    catch(Exception e ){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.StackTrace + e.Message); }
                                 }
                             }
                         }
-                        //if(indexes)
                     }
                 }
             }
