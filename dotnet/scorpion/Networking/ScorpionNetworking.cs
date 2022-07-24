@@ -49,7 +49,7 @@ namespace Scorpion
             string RSA_private_path = (string)var_get(objects[3]);
             string RSA_public_path = (string)var_get(objects[4]);
 
-            Do_on.sdh.AddTcpServer(name, ip, port, RSA_private_path == Do_on.types.S_NULL ? null : RSA_private_path, RSA_public_path == Do_on.types.S_NULL ? null : RSA_public_path);
+            Types.HANDLE.sdh.AddTcpServer(name, ip, port, RSA_private_path == Types.S_NULL ? null : RSA_private_path, RSA_public_path == Types.S_NULL ? null : RSA_public_path);
             write_to_console("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -61,14 +61,14 @@ namespace Scorpion
         public void serverstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            lock (Do_on.mem.AL_TCP) lock (Do_on.mem.AL_TCP_REF)
+            lock (Types.HANDLE.mem.AL_TCP) lock (Types.HANDLE.mem.AL_TCP_REF)
                 {
-                    int index = Do_on.mem.AL_TCP_REF.IndexOf(var_get(objects[0]));
-                    ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[index]).Stop();
-                    ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[index]).DataReceived -= Do_on.sdh.Sctl_DataReceived;
-                    Do_on.mem.AL_TCP_REF.RemoveAt(index);
-                    Do_on.mem.RemoveTcpPath(ref index);
-                    Do_on.mem.AL_TCP.RemoveAt(index);
+                    int index = Types.HANDLE.mem.AL_TCP_REF.IndexOf(var_get(objects[0]));
+                    ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).Stop();
+                    ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).DataReceived -= Types.HANDLE.sdh.Sctl_DataReceived;
+                    Types.HANDLE.mem.AL_TCP_REF.RemoveAt(index);
+                    Types.HANDLE.mem.RemoveTcpPath(ref index);
+                    Types.HANDLE.mem.AL_TCP.RemoveAt(index);
                     write_to_console("TCP server stopped");
                 }
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -82,18 +82,18 @@ namespace Scorpion
             byte[] data = null;
             try
             {
-                int server_index = Do_on.mem.AL_TCP_REF.IndexOf(var_get(objects[0]));
-                ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).StringEncoder = Encoding.UTF8;
-                ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Delimiter = 0x13;
+                int server_index = Types.HANDLE.mem.AL_TCP_REF.IndexOf(var_get(objects[0]));
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[server_index]).StringEncoder = Encoding.UTF8;
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[server_index]).Delimiter = 0x13;
 
                 //If there are no RSA keys, skip encryption
-                if (Do_on.mem.GetTcpKeyPath(server_index)[1] != null)
-                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.mem.GetTcpKeyPath(server_index)[1]);
+                if (Types.HANDLE.mem.GetTcpKeyPath(server_index)[1] != null)
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Types.HANDLE.mem.GetTcpKeyPath(server_index)[1]);
                 else
-                    data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
+                    data = Types.HANDLE.crypto.To_Byte((string)var_get(objects[1]));
 
                 //Broadcast the data
-                ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[server_index]).Broadcast(data);
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[server_index]).Broadcast(data);
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Data sent");
             }
             catch (Exception e) { ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message); }
@@ -107,10 +107,10 @@ namespace Scorpion
         {
             //::
             int n = 0;
-            foreach (string server in Do_on.mem.AL_TCP_REF)
+            foreach (string server in Types.HANDLE.mem.AL_TCP_REF)
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(server + ":\n");
-                foreach (IPAddress ip in ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[n]).GetListeningIPs())
+                foreach (IPAddress ip in ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[n]).GetListeningIPs())
                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(ip.ToString());
                 n++;
             }
@@ -129,10 +129,10 @@ namespace Scorpion
         {
             //A function that allows you to start an RSA encryption supported TCP client or one with no encryption
             //::*name, *ip, *port, [*privatekey||BOOLEAN *false||*null], [*publicrsakey||BOOLEAN *false||*null]
-            if((string)var_get(objects[3]) != Do_on.types.S_No && (string)var_get(objects[3]) != Do_on.types.S_NULL && (string)var_get(objects[4]) != Do_on.types.S_No && (string)var_get(objects[4]) != Do_on.types.S_NULL)
-                Do_on.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), (string)var_get(objects[3]), (string)var_get(objects[4]));
+            if((string)var_get(objects[3]) != Types.S_No && (string)var_get(objects[3]) != Types.S_NULL && (string)var_get(objects[4]) != Types.S_No && (string)var_get(objects[4]) != Types.S_NULL)
+                Types.HANDLE.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), (string)var_get(objects[3]), (string)var_get(objects[4]));
             else
-                Do_on.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), null, null);
+                Types.HANDLE.sdh.AddTcpClient((string)var_get(objects[0]), (string)var_get(objects[1]), Convert.ToInt32(var_get(objects[2])), null, null);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
@@ -144,20 +144,20 @@ namespace Scorpion
             byte[] data = null;
             try
             {
-                int client_ndx = Do_on.sdh.GetIndexTcpClient((string)var_get(objects[0]));
-                SimpleTCP.SimpleTcpClient tcl = Do_on.sdh.GetClient(client_ndx);
+                int client_ndx = Types.HANDLE.sdh.GetIndexTcpClient((string)var_get(objects[0]));
+                SimpleTCP.SimpleTcpClient tcl = Types.HANDLE.sdh.GetClient(client_ndx);
                 tcl.StringEncoder = Encoding.UTF8;
                 tcl.Delimiter = 0x13;
 
                 //If there are no RSA keys, skip encryption
-                if (Do_on.sdh.GetClientKeyPaths(client_ndx)[1] != null)
-                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Do_on.sdh.GetClientKeyPaths(client_ndx)[1]);
+                if (Types.HANDLE.sdh.GetClientKeyPaths(client_ndx)[1] != null)
+                    data = Scorpion_RSA.Scorpion_RSA.encrypt_data((string)var_get(objects[1]), Types.HANDLE.sdh.GetClientKeyPaths(client_ndx)[1]);
                 else
-                    data = Do_on.crypto.To_Byte((string)var_get(objects[1]));
+                    data = Types.HANDLE.crypto.To_Byte((string)var_get(objects[1]));
 
                 tcl.Write(data);
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Data sent");
-                //Do_on.sdh.remove_tcpclient(client_ndx);
+                //Types.HANDLE.sdh.remove_tcpclient(client_ndx);
             }
             catch (Exception e) { ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message); };
 
@@ -170,7 +170,7 @@ namespace Scorpion
         public void tcpclientstop(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            Do_on.sdh.RemoveTcpClient(Do_on.sdh.GetIndexTcpClient((string)var_get(objects[0])));
+            Types.HANDLE.sdh.RemoveTcpClient(Types.HANDLE.sdh.GetIndexTcpClient((string)var_get(objects[0])));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;

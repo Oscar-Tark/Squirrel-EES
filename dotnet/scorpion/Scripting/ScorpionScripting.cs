@@ -28,7 +28,7 @@ namespace Scorpion
             //All files must be UTF8
             //::*if, *is, *Path, *result_must_be_equal
 
-            if ((string)var_get(objects[3]) == Do_on.types.S_Yes)
+            if ((string)var_get(objects[3]) == Types.S_Yes)
             {
                 if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
                 {
@@ -45,7 +45,7 @@ namespace Scorpion
                     var_dispose_internal(ref line);
                 }
             }
-            else if ((string)var_get(objects[3]) == Do_on.types.S_Yes)
+            else if ((string)var_get(objects[3]) == Types.S_Yes)
             {
                 if ((string)var_get(objects[0]) != (string)var_get(objects[1]))
                 {

@@ -10,3 +10,15 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/ref/scorpion_aes.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.csproj.AssemblyReference.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/bin/Debug/net6.0/scorpion_aes.deps.json
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/bin/Debug/net6.0/scorpion_aes.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/bin/Debug/net6.0/ref/scorpion_aes.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/bin/Debug/net6.0/scorpion_aes.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.csproj.AssemblyReference.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.GeneratedMSBuildEditorConfig.editorconfig
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.AssemblyInfoInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.AssemblyInfo.cs
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.csproj.CoreCompileInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/ref/scorpion_aes.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/Debug/net6.0/scorpion_aes.pdb

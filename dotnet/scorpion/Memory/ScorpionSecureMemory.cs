@@ -41,13 +41,6 @@ namespace Scorpion.Memory_Security
 
     public class Sanitizer
     {
-        Scorp Do_on;
-        public Sanitizer(Scorp fm1)
-        {
-            Do_on = fm1;
-            return;
-        }
-
         public string sanitize(ref string string_)
         {
             if (check_len(ref string_))
@@ -74,7 +67,7 @@ namespace Scorpion.Memory_Security
 
         private bool check_len(ref string string_)
         {
-            if(string_.Length > Do_on.readr.lib_SCR.get_limit())
+            if(string_.Length > Types.HANDLE.librarian_instance.librarian.get_limit())
                 return false;
             return true;
         }
@@ -82,13 +75,6 @@ namespace Scorpion.Memory_Security
 
     public class Secure_Memory
     {
-        Scorp Do_on;
-        public Secure_Memory(Scorp fm1)
-        {
-            Do_on = fm1;
-            return;
-        }
-
         private string uname = null;
         private SecureString password = null;
         private SecureString password_secured = null;
@@ -113,14 +99,14 @@ namespace Scorpion.Memory_Security
         public bool authenticate_execution(ref string function)
         {
             //Scorpion database is used for this
-            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Do_on.mmsec.uname);
-            return ep.check_authentication(ref Do_on.mmsec.uname, ref function);
+            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Types.HANDLE.mmsec.uname);
+            return ep.check_authentication(ref Types.HANDLE.mmsec.uname, ref function);
         }
 
         public void write_permissions()
         {
             //Scorpion database is used for this
-            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Do_on.mmsec.uname);
+            Scorpion_Authenticator.ExecutionPersmissions ep = new Scorpion_Authenticator.ExecutionPersmissions(ref Types.HANDLE.mmsec.uname);
             ep.write_permissions();
             return;
         }
@@ -142,7 +128,7 @@ namespace Scorpion.Memory_Security
         public void encrypt(ref string Reference)
         {
             //::*ref, var
-            byte[] b_e = Do_on.crypto.AES_ENCRYPT(Do_on.mmsec.get_pwd(), Do_on.readr.lib_SCR.var_get(ref Reference));
+            byte[] b_e = Types.HANDLE.crypto.AES_ENCRYPT(Types.HANDLE.mmsec.get_pwd(), Types.HANDLE.librarian_instance.librarian.var_get(ref Reference));
             var_set_encrypted(Reference, b_e);
             return;
         }
@@ -150,20 +136,20 @@ namespace Scorpion.Memory_Security
         public void decrypt(ref string Reference)
         {
             //::*ref
-            object s_d = Do_on.crypto.AES_DECRYPT(Do_on.mmsec.get_pwd(), var_get_encrypted(ref Reference));
-            Do_on.readr.lib_SCR.varset(Do_on.types.S_NULL, new ArrayList() { Reference, s_d});
+            object s_d = Types.HANDLE.crypto.AES_DECRYPT(Types.HANDLE.mmsec.get_pwd(), var_get_encrypted(ref Reference));
+            Types.HANDLE.librarian_instance.librarian.varset(Types.S_NULL, new ArrayList() { Reference, s_d});
             return;
         }
 
         private void var_set_encrypted(string Reference, byte[] block_)
         {
-            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;
+            ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;
             return;
         }
 
         private byte[] var_get_encrypted(ref string Reference)
         {
-            return (byte[])((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
+            return (byte[])((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]; ;
         }
     }
 

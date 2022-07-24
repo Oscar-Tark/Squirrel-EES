@@ -10,3 +10,15 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/ref/scorpion_hasher.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/bin/Debug/net6.0/scorpion_hasher.deps.json
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/bin/Debug/net6.0/scorpion_hasher.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/bin/Debug/net6.0/ref/scorpion_hasher.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/bin/Debug/net6.0/scorpion_hasher.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.csproj.AssemblyReference.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.GeneratedMSBuildEditorConfig.editorconfig
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.AssemblyInfoInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.AssemblyInfo.cs
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.csproj.CoreCompileInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/ref/scorpion_hasher.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_hasher/obj/Debug/net6.0/scorpion_hasher.pdb

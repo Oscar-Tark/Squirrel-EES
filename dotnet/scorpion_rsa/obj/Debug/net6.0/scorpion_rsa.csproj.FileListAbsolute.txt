@@ -10,3 +10,15 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/ref/scorpion_rsa.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/bin/Debug/net6.0/scorpion_rsa.deps.json
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/bin/Debug/net6.0/scorpion_rsa.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/bin/Debug/net6.0/ref/scorpion_rsa.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/bin/Debug/net6.0/scorpion_rsa.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.GeneratedMSBuildEditorConfig.editorconfig
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.AssemblyInfoInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.AssemblyInfo.cs
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.csproj.CoreCompileInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/ref/scorpion_rsa.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_rsa/obj/Debug/net6.0/scorpion_rsa.csproj.AssemblyReference.cache

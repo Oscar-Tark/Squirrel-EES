@@ -17,24 +17,8 @@
 */
 namespace Scorpion
 {
-    public class reader
+    public class LibrarianInstance
     {
-        Scorp fmm;
-        public Librarian lib_SCR;
-        public reader(Scorp Form_Handle)
-        {
-           fmm = Form_Handle;
-           lib_SCR = new Librarian(Form_Handle);
-           return;
-        }
-
-        //ACCESS ANY LIB
-        public void access_library(string Scorp_Line)
-        {
-            //fmm.ConsoleWrite.writeOutput("READER: DOING for: " + fmm.instance);
-            lib_SCR.scorpioniee(Scorp_Line, fmm);
-            Scorp_Line = null;
-            return;
-        }
+        public Librarian librarian = new Librarian();
     }
 }

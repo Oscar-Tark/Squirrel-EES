@@ -45,8 +45,8 @@ namespace Scorpion
 
         public void manualrefresh(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            if(Directory.Exists(Do_on.types.main_user_manuals_path))
-                Directory.Delete(Do_on.types.main_user_manuals_path, true);
+            if(Directory.Exists(Types.main_user_manuals_path))
+                Directory.Delete(Types.main_user_manuals_path, true);
 
             checkManDir();
 
@@ -64,10 +64,10 @@ namespace Scorpion
         {
             //Show a manual file
             checkManDir();
-            if (File.Exists(Do_on.types.main_user_manuals_path + '/' + function + man_extension))
+            if (File.Exists(Types.main_user_manuals_path + '/' + function + man_extension))
             {                                                       
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("MAN/READERS MANUAL Entry for '" + function + "':\n******************************************************\nFUNCTION: [" + function + "]\n");
-                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(read_file(Do_on.types.main_user_manuals_path + '/' + function + man_extension));
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(read_file(Types.main_user_manuals_path + '/' + function + man_extension));
             }
             else
                 ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("No man entry exists for '" + function + "'");
@@ -81,7 +81,7 @@ namespace Scorpion
             //Enumerate and show the contents of the man pages directory
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Available man pages:");
             checkManDir();
-            DirectoryInfo df = new DirectoryInfo(Do_on.types.main_user_manuals_path);
+            DirectoryInfo df = new DirectoryInfo(Types.main_user_manuals_path);
             foreach (FileInfo man_fnf in df.EnumerateFiles("*.man"))
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial(man_fnf.Name.Replace(".man", ""));
             return;
@@ -89,10 +89,10 @@ namespace Scorpion
 
         private void checkManDir()
         {
-            if (!Directory.Exists(Do_on.types.main_user_manuals_path))
+            if (!Directory.Exists(Types.main_user_manuals_path))
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("No manuals directory found. Creating...");
-                Directory.CreateDirectory(Do_on.types.main_user_manuals_path);
+                Directory.CreateDirectory(Types.main_user_manuals_path);
                 downloadMan();
             }
             return;
@@ -108,12 +108,12 @@ namespace Scorpion
             var contentsUrl = $"https://api.github.com/repos/{repo}/contents";
             var contentsJson = await httpClient.GetStringAsync(contentsUrl);
             var contents = (JArray)JsonConvert.DeserializeObject(contentsJson);
-            //Do_on.write_special(contents);
+            //Types.HANDLE.write_special(contents);
             foreach(var file in contents)
             {
                 var downloadUrl = (string)file["download_url"];
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Downloading: {downloadUrl}");
-                DownloadFile((string)file["download_url"], Do_on.types.main_user_manuals_path + "/" + (string)file["name"]);
+                DownloadFile((string)file["download_url"], Types.main_user_manuals_path + "/" + (string)file["name"]);
             }
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Finished downloading manuals");
         }

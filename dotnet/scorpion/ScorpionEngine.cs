@@ -26,20 +26,10 @@ namespace Scorpion
         private Enginefunctions ef__ = new Enginefunctions();
         System.Diagnostics.Stopwatch sp = new System.Diagnostics.Stopwatch();
 
-        public Librarian(Scorp Form_Handle)
-        {
-            //Start the class and add the main instance handle so that class.Librarian can access elements or cross elements from class.Scorp
-            Do_on = Form_Handle;
-            return;
-        }
-
-        public void scorpioniee(object Scorp_Line, Scorp Handle)
+        public void scorpioniee(object Scorp_Line)
         {
             //This function is not used internally from class.Librarian but rather from an external class such as class.Scorp. This helps thread execution
             //*****
-            //The class.Scorp handle is checked to see weather it has an instance associeted to it
-            Do_on = Handle == null ? null : Handle;
-
             //Start thread for the single line of interpretation code
             try
             {
@@ -89,7 +79,6 @@ namespace Scorpion
 
                     //Remove all value based variables temporarily
 
-
                     //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
                     //Seperates all commands that may be in one function and makes them executable sequentially
                     function = ef__.getFunction(ref exec_);
@@ -98,7 +87,7 @@ namespace Scorpion
                     object[] paramse = { exec_, cut_variables(ref exec_) };
 
                     //Check if the current user has the required permissions to run this function
-                    if (!Do_on.mmsec.authenticate_execution(ref function))
+                    if (!Types.HANDLE.mmsec.authenticate_execution(ref function))
                     {
                         ScorpionConsoleReadWrite.ConsoleWrite.writeError("This user does not have enough privileges to execute this function");
                         sp.Stop();
@@ -130,7 +119,7 @@ namespace Scorpion
             }
             //End the timer to count how long it took to run the specific line of code
             sp.Stop();
-            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("[Instance: " + Do_on.instance + "]-[Username: "+ Do_on.mmsec.get_uname() +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
+            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("[Instance: " + Types.HANDLE.instance + "]-[Username: "+ Types.HANDLE.mmsec.get_uname() +"] --> Executed >> " + Scorp_Line_Exec + " in " + (sp.ElapsedMilliseconds / 1000) + "s/" + sp.ElapsedMilliseconds + "ms");
             sp.Reset();
 
             //Make sure objects are set to null and disposed

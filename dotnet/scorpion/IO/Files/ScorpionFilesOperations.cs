@@ -56,7 +56,7 @@ namespace Scorpion
             //Write a UTF8 Encoded file to disk
             //::*path, *append<true>, *text
             FileMode fm = FileMode.OpenOrCreate;
-            if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
+            if ((string)var_get(objects[1]) == Types.S_Yes)
                 fm = FileMode.Append;
 
             FileStream fs = new FileStream((string)var_get(objects[0]), fm, FileAccess.Write, FileShare.Write);
@@ -78,7 +78,7 @@ namespace Scorpion
         {
             //Write a raw binary file to disk
             //::*path, *byteobject
-            byte[] bytew = Do_on.crypto.To_Byte(var_get(objects[1]));
+            byte[] bytew = Types.HANDLE.crypto.To_Byte(var_get(objects[1]));
             File.WriteAllBytes((string)var_get(objects[0]), bytew);
 
             //clean
@@ -108,7 +108,7 @@ namespace Scorpion
             ArrayList al_ret = new ArrayList();
             foreach (DirectoryInfo dirs in df.GetDirectories())
             {
-                if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
+                if ((string)var_get(objects[1]) == Types.S_Yes)
                     al_ret.Add(dirs.Name);
                 else
                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(dirs.Name);
@@ -128,7 +128,7 @@ namespace Scorpion
             ArrayList al_ret = new ArrayList();
             foreach (FileInfo fils in df.GetFiles())
             {
-                if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
+                if ((string)var_get(objects[1]) == Types.S_Yes)
                     al_ret.Add(fils.Name);
                 else
                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(fils.Name);

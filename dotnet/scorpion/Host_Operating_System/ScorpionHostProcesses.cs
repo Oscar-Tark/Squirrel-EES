@@ -45,7 +45,7 @@ namespace Scorpion
                 Process pri_ = new Process();
                 ProcessStartInfo pri_s = new ProcessStartInfo((string)var_get(objects[0]), (string)var_get(objects[1]));
                 pri_.Exited += scp.processExited;
-                if ((string)var_get(objects[3]) == Do_on.types.S_No)
+                if ((string)var_get(objects[3]) == Types.S_No)
                 {
                     pri_s.RedirectStandardOutput = true;
                     pri_s.RedirectStandardInput = true;

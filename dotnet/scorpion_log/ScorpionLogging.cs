@@ -11,7 +11,7 @@ namespace Scorpion_LOG
         private string log_path = "";
         private readonly string logfile_name = "/scorpion.log";
 
-        public Scorpion_LOG(string path)
+        public void startLoggingPath(string path)
         {
             log_path = path + logfile_name;
             if (!File.Exists(log_path))

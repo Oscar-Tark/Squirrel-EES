@@ -36,37 +36,37 @@ namespace Scorpion
             //Clean memory up
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Clearing GLOBAL memory..");
 
-            Do_on.mem.AL_CURR_VAR.Clear();
-            Do_on.mem.AL_CURR_VAR_NACESSED.Clear();
-            Do_on.mem.AL_CURR_VAR_REF.Clear();
-            Do_on.mem.AL_CURR_VAR_TAG.Clear();
+            Types.HANDLE.mem.AL_CURR_VAR.Clear();
+            Types.HANDLE.mem.AL_CURR_VAR_NACESSED.Clear();
+            Types.HANDLE.mem.AL_CURR_VAR_REF.Clear();
+            Types.HANDLE.mem.AL_CURR_VAR_TAG.Clear();
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared GLOBAL memory");
 
             //Delete all TCP servers
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Clearing {Do_on.mem.AL_TCP.Count} TCP servers..");
-            for(int i = Do_on.mem.AL_TCP.Count-1; i >= 0; i--)
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Clearing {Types.HANDLE.mem.AL_TCP.Count} TCP servers..");
+            for(int i = Types.HANDLE.mem.AL_TCP.Count-1; i >= 0; i--)
             {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp server {Do_on.mem.AL_TCP_REF[i]}");
-                ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[i]).Stop();
-                ((SimpleTCP.SimpleTcpServer)Do_on.mem.AL_TCP[i]).DataReceived -= Do_on.sdh.Sctl_DataReceived;
-                ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess($"Closed tcp server {Do_on.mem.AL_TCP_REF[i]}");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp server {Types.HANDLE.mem.AL_TCP_REF[i]}");
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[i]).Stop();
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[i]).DataReceived -= Types.HANDLE.sdh.Sctl_DataReceived;
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess($"Closed tcp server {Types.HANDLE.mem.AL_TCP_REF[i]}");
             }
-            Do_on.mem.AL_TCP.Clear();
-            Do_on.mem.AL_TCP_KY.Clear();
-            Do_on.mem.AL_TCP_REF.Clear();
+            Types.HANDLE.mem.AL_TCP.Clear();
+            Types.HANDLE.mem.AL_TCP_KY.Clear();
+            Types.HANDLE.mem.AL_TCP_REF.Clear();
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared TCP servers");
 
             //Clean TCP clients
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Clearing {Do_on.mem.AL_TCP_CLIENTS.Count} TCP clients..");
-            for(int i = Do_on.mem.AL_TCP_CLIENTS.Count-1; i >= 0; i--)
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Clearing {Types.HANDLE.mem.AL_TCP_CLIENTS.Count} TCP clients..");
+            for(int i = Types.HANDLE.mem.AL_TCP_CLIENTS.Count-1; i >= 0; i--)
             {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp client connection {Do_on.mem.AL_TCP_CLIENTS[i]}");
-                Do_on.sdh.RemoveTcpClient(i);
-                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closed tcp client connection {Do_on.mem.AL_TCP_CLIENTS[i]}");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp client connection {Types.HANDLE.mem.AL_TCP_CLIENTS[i]}");
+                Types.HANDLE.sdh.RemoveTcpClient(i);
+                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closed tcp client connection {Types.HANDLE.mem.AL_TCP_CLIENTS[i]}");
             }
-            Do_on.mem.AL_TCP_CLIENTS.Clear();
-            Do_on.mem.AL_TCP_CLIENTS_KY.Clear();
-            Do_on.mem.AL_TCP_CLIENTS_REF.Clear();
+            Types.HANDLE.mem.AL_TCP_CLIENTS.Clear();
+            Types.HANDLE.mem.AL_TCP_CLIENTS_KY.Clear();
+            Types.HANDLE.mem.AL_TCP_CLIENTS_REF.Clear();
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared TCP clients");
             return;
         }

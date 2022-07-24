@@ -10,3 +10,15 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/ref/scorpion_sql.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/bin/Debug/net6.0/scorpion_sql.deps.json
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/bin/Debug/net6.0/scorpion_sql.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/bin/Debug/net6.0/ref/scorpion_sql.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/bin/Debug/net6.0/scorpion_sql.pdb
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.csproj.AssemblyReference.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.GeneratedMSBuildEditorConfig.editorconfig
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.AssemblyInfoInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.AssemblyInfo.cs
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.csproj.CoreCompileInputs.cache
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/ref/scorpion_sql.dll
+/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/Debug/net6.0/scorpion_sql.pdb

@@ -66,7 +66,7 @@ namespace Scorpion
         {
             //::*var
             object obj = var_get(Objects[0]);
-            byte[] bytes = Do_on.crypto.To_Byte(obj);
+            byte[] bytes = Types.HANDLE.crypto.To_Byte(obj);
             Console.WriteLine("Byte sequence for [" + Objects[0] + "]:\n");
             foreach (byte __byte in bytes)
                 Console.Write($"0x{__byte,0:X} ", __byte);

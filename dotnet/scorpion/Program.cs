@@ -26,91 +26,26 @@ namespace Scorpion
         /// The main entry point for the application.
         /// </summary>
         private const double kversion = 0.9;
-        //static Scorp sc = new Scorp(0, kversion);
-        static ArrayList sessions = new ArrayList();
+        static Scorp running_instance;
 
         [STAThread]
         static int Main()
         {
-            //Uncomment commented to allow sessions. I am removing sessions until proper work is done to properly isolate outputs etc.
-            int current_session = 0;
-            sessions.Add(new Scorp(current_session, kversion));
-
-            //sc.th_clean_strt();
-
-            //Add an event to cleanup the system before exiting
+            running_instance = new Scorp(0, kversion);
             Console.CancelKeyPress += Console_CancelKeyPress;
-
-            //while(true)
-            //    sc.readr.access_library(Console.ReadLine());
-
-            string line = null;
-            //Create new session on demand
             while(true)
-            {
-                line = Console.ReadLine();
-
-                if (line.ToLower() == "**new")
-                {
-                    current_session++;
-                    Console.WriteLine("Created new session");
-                    sessions.Add(new Scorp(current_session, kversion));
-                }
-                else if (line.ToLower() == "**back")
-                {
-                    if (current_session > 0)
-                    {
-                        current_session--;
-                        Console.WriteLine("Session: [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
-                    }
-                    else
-                        Console.WriteLine("No previous session available");
-                }
-                else if (line.ToLower() == "**next")
-                {
-                    if (current_session != sessions.Count - 1)
-                    {
-                        current_session++;
-                        Console.WriteLine("Session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
-                    }
-                    else
-                        Console.WriteLine("No next session available");
-                }
-                else if (line.ToLower() == "**exit")
-                {
-                    Console.WriteLine("Removing session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
-                    sessions.RemoveAt(current_session);
-                    if (sessions.Count == 0)
-                    {
-                        Console.WriteLine("No sessions running. Exiting...\n");
-                        return 0; //Had Environment.Exit(0)
-                    }
-                    else if (current_session > 0)
-                        current_session--;
-                    else if (current_session != sessions.Count - 1)
-                        current_session++;
-                    Console.WriteLine("Switched to session [{0}]-[{1}]\n", current_session, ((Scorp)sessions[current_session]).mmsec.get_uname());
-                }
-                else
-                {
-                    ((Scorp)sessions[current_session]).readr.access_library(line);
-                    ((Scorp)sessions[current_session]).th_clean_strt();
-                }
-            }
+                running_instance.librarian_instance.librarian.scorpioniee(Console.ReadLine());
         }
 
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
             ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Interrupt Signal. Exiting..");
-            string temp = null;
+
+            string temp = default;
             ArrayList al_temp = new ArrayList();
 
-            foreach(Scorp session in sessions)
-            {
-                Console.WriteLine("Closing Instance [{0}]", session.instance);
-                session.readr.lib_SCR.apkill(ref temp, ref al_temp);
-                session.readr.lib_SCR.instancecleanup();
-            }
+            running_instance.librarian_instance.librarian.apkill(ref temp, ref al_temp);
+            running_instance.librarian_instance.librarian.instancecleanup();
 
             Environment.Exit(0);
         }

@@ -88,7 +88,7 @@ namespace Scorpion
         private object var_create_return(ref byte[] val, bool is_val)
         {
             if (is_val)
-                return "\'" + Do_on.crypto.To_Object(val) + "\'";
+                return "\'" + Types.HANDLE.crypto.To_Object(val) + "\'";
             return val;
         }
 
@@ -142,7 +142,7 @@ namespace Scorpion
             //Replaces a string with values which cannot be properly parsed by scorpion into an escaped string
             //Ex: "Hi my name is 'Oscar'" to: "Hi my name is &qOscar&q"
             //*return<::*vartoescape
-            string escaped = ef__.toEscape(ref Do_on, (string)var_get(objects[0]));
+            string escaped = ef__.toEscape((string)var_get(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -154,7 +154,7 @@ namespace Scorpion
             //Replaces a string's escaped values into unescaped values
             //Ex: "Hi my name is &qOscar&q" to: "Hi my name is 'Oscar'"
             //*return<::*vartounescape
-            string unescaped = ef__.replaceEscape(ref Do_on, (string)var_get(objects[0]));
+            string unescaped = ef__.replaceEscape((string)var_get(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -172,7 +172,7 @@ namespace Scorpion
             //In order to remove a tag set the tag value to *null/Scorpion.Types.S_NULL
             //::*var, *tag
             if (var_get(objects[1]) is string)
-                Do_on.mem.AL_CURR_VAR_TAG[Do_on.mem.AL_CURR_VAR_REF.IndexOf((string)objects[0])] = (string)var_get(objects[1]);
+                Types.HANDLE.mem.AL_CURR_VAR_TAG[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf((string)objects[0])] = (string)var_get(objects[1]);
             else
                 ScorpionConsoleReadWrite.ConsoleWrite.writeError("Could not add tag to the specified variable. Tag is not an identifyable string but an object of another type");
 
@@ -186,9 +186,9 @@ namespace Scorpion
             //Resurns a Scorpion.BOOLEAN describing whether a tag already exists
             //*result<<::*tag
 
-            if (Do_on.mem.AL_CURR_VAR_TAG.Contains(var_get(objects[0])))
-                return Do_on.types.S_Yes;
-            return Do_on.types.S_No;
+            if (Types.HANDLE.mem.AL_CURR_VAR_TAG.Contains(var_get(objects[0])))
+                return Types.S_Yes;
+            return Types.S_No;
         }
 
         public object vartagget(ref string Scorp_Line_Exec, ref ArrayList objects)
@@ -198,14 +198,14 @@ namespace Scorpion
 
             Dictionary<object, object> result = new Dictionary<object, object>();
             int current_ndx = 0;
-            foreach (string tag in Do_on.mem.AL_CURR_VAR_TAG)
+            foreach (string tag in Types.HANDLE.mem.AL_CURR_VAR_TAG)
             {
-                current_ndx = Do_on.mem.AL_CURR_VAR_TAG.IndexOf((string)var_get(objects[0]), current_ndx);
+                current_ndx = Types.HANDLE.mem.AL_CURR_VAR_TAG.IndexOf((string)var_get(objects[0]), current_ndx);
 
                 if (current_ndx == -1)
                     break;
 
-                result.Add((string)Do_on.mem.AL_CURR_VAR_REF[current_ndx], (string)((ArrayList)(Do_on.mem.AL_CURR_VAR[current_ndx]))[2]);
+                result.Add((string)Types.HANDLE.mem.AL_CURR_VAR_REF[current_ndx], (string)((ArrayList)(Types.HANDLE.mem.AL_CURR_VAR[current_ndx]))[2]);
                 current_ndx++;
             }
             Scorp_Line_Exec = null;
@@ -222,7 +222,7 @@ namespace Scorpion
             //::*var, *var..
             string ref_ = (string)objects[0];
             //Allows us to get pin by going through mmsec
-            Do_on.mmsec.encrypt(ref ref_);
+            Types.HANDLE.mmsec.encrypt(ref ref_);
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -232,7 +232,7 @@ namespace Scorpion
         public void decrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             string ref_ = (string)objects[0];
-            Do_on.mmsec.decrypt(ref ref_);
+            Types.HANDLE.mmsec.decrypt(ref ref_);
 
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
@@ -249,7 +249,7 @@ namespace Scorpion
             //::*var, *var, *var...
             foreach (string s in objects)
             {
-                var_new(Do_on.types.S_No, s, null, null, Do_on.types.S_No);
+                var_new(Types.S_No, s, null, null, Types.S_No);
             }
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -263,12 +263,12 @@ namespace Scorpion
             //::*to_set_as_ro, *[BOOL]
 
             //Make sure values are of type bool
-            if ((string)var_get(objects[1]) != Do_on.types.S_Yes && (string)var_get(objects[1]) != Do_on.types.S_No)
+            if ((string)var_get(objects[1]) != Types.S_Yes && (string)var_get(objects[1]) != Types.S_No)
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeError("Could not set the variable's readonly status as the value passed was incorrect: The value '" + var_get(objects[1]) + "' is not boolean ('true', 'false')");
                 return;
             }
-            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[4] = var_get(objects[1]);
+            ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString()))])[4] = var_get(objects[1]);
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
@@ -284,11 +284,11 @@ namespace Scorpion
             //::*var, *maintain_contents[BOOL]
 
             //Check if variable exists if not create a new one
-            if (Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString())) == -1)
-                var_new(Do_on.types.S_No, var_cut_symbol(objects[0].ToString()), null, null, Do_on.types.S_No);
+            if (Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString())) == -1)
+                var_new(Types.S_No, var_cut_symbol(objects[0].ToString()), null, null, Types.S_No);
 
             //Change the variable into a Scorpion.Array
-            if ((string)var_get(objects[1]) == Do_on.types.S_Yes)
+            if ((string)var_get(objects[1]) == Types.S_Yes)
                 var_manipulate((string)objects[0], new ArrayList { var_get(objects[0]) }, false, false, OPCODE_SET );
             else
                 var_manipulate((string)objects[0], new ArrayList { }, false, false, OPCODE_SET);
@@ -340,13 +340,13 @@ namespace Scorpion
             //*array: the array variable to get from
             //*index: the value at index in the array we would like to access
             //*asobject: (BOOL:true)get the value as it's original object form, (BOOL:false)get the value as a string
-            object ret = Do_on.types.S_No;
-            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+            object ret = Types.S_No;
+            lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG)
                     {
                         int ndx = Convert.ToInt32((string)var_get(objects[1]));
-                        ret = ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol((string)objects[0]))])[2])[ndx];
+                        ret = ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol((string)objects[0]))])[2])[ndx];
                     }
-            if ((string)var_get(objects[2]) == Do_on.types.S_No)
+            if ((string)var_get(objects[2]) == Types.S_No)
                 return var_create_return((string)ret, true);
             return var_create_return(ref ret);
         }
@@ -407,8 +407,8 @@ namespace Scorpion
             //::*var
 
             //Check if variable exists if not create a new one
-            if (Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString())) == -1)
-                var_new(Do_on.types.S_No, var_cut_symbol(objects[0].ToString()), null, null, Do_on.types.S_No);
+            if (Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(objects[0].ToString())) == -1)
+                var_new(Types.S_No, var_cut_symbol(objects[0].ToString()), null, null, Types.S_No);
             //Change the variable into a Scorpion.Dictionary
             var_manipulate((string)objects[0], new Dictionary<string, string>(), false, true, OPCODE_SET);
 
@@ -433,13 +433,13 @@ namespace Scorpion
             //Gets a value from a Scorpion.Dictionary using a Scorpion.Dictionary.Key
             //*return<<::*dictionary, *key, *asobject
 
-            object ret = Do_on.types.S_No;
-            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+            object ret = Types.S_No;
+            lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG)
                     {
                         string key = (string)var_get(objects[1]);
-                        ret = ((IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol((string)objects[0]))])[2])[key];
+                        ret = ((IDictionary)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol((string)objects[0]))])[2])[key];
                     }
-            if ((string)var_get(objects[2]) == Do_on.types.S_No)
+            if ((string)var_get(objects[2]) == Types.S_No)
                 return var_create_return((string)ret, true);
             return var_create_return(ref ret);
         }
@@ -509,7 +509,7 @@ namespace Scorpion
         {
             /*returns<<:: *arg, *arg...*/
             string end = "";
-            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG)
+            lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG)
                         {
                             foreach (object obj in objects)
                                 end += var_get(obj);
@@ -540,10 +540,10 @@ namespace Scorpion
         {
             string STR_ = ""; object val = null; int index = -1;
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Loaded GLOBAL variables:\n-------------------------\n");
-            foreach (string s in Do_on.mem.AL_CURR_VAR_REF)
+            foreach (string s in Types.HANDLE.mem.AL_CURR_VAR_REF)
             {
-                index = Do_on.mem.AL_CURR_VAR_REF.IndexOf(s);
-                val = ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[2];
+                index = Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(s);
+                val = ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[2];
                 if (val is string)
                 {
                     if (((string)val).Length > 256)
@@ -552,18 +552,18 @@ namespace Scorpion
                 else if(val is ArrayList)
                 {
                     val = "Array: [(";
-                    foreach (object o in (ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[2])
+                    foreach (object o in (ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[2])
                         val += " '" + o + "' ";
                     val += ")]";
                 }
                 else if(val is IDictionary)
                 {
                     val = "Dictionary: [(";
-                    foreach(DictionaryEntry de in (IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[2])
+                    foreach(DictionaryEntry de in (IDictionary)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[2])
                         val += " '" + de.Key + "' : '" + de.Value + "', ";
                     val += ")]";
                 }
-                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)Do_on.mem.AL_CURR_VAR_TAG[index] + "] READONLY: [" + (string)((ArrayList)Do_on.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Do_on.mem.AL_CURR_VAR[index])[5] + "]\n";
+                STR_ += "*" + s + " [" + val + "] TAG: [" + (string)Types.HANDLE.mem.AL_CURR_VAR_TAG[index] + "] READONLY: [" + (string)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[4] + "] CREATION TIME (UTC) [" + ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[6].ToString() + "] CACHED [" + ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[index])[5] + "]\n";
                 val = null;
             }
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
@@ -593,9 +593,9 @@ namespace Scorpion
             bool contains_depth = false;
 
             //If contains []
-            if(block.Contains(Do_on.types.S_UNWANTED_CHAR_NAME[0]) || block.Contains(Do_on.types.S_UNWANTED_CHAR_NAME[1]))
+            if(block.Contains(Types.S_UNWANTED_CHAR_NAME[0]) || block.Contains(Types.S_UNWANTED_CHAR_NAME[1]))
             {
-                block_without_depth = block.Remove(block.IndexOf(Do_on.types.S_UNWANTED_CHAR_NAME[0]));
+                block_without_depth = block.Remove(block.IndexOf(Types.S_UNWANTED_CHAR_NAME[0]));
                 contains_depth = true;
             }
 
@@ -605,9 +605,9 @@ namespace Scorpion
                 try
                 {
                     //Assign a raw C# object regardless of type
-                    o = ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(block_without_depth.Replace(" ", "").Replace("*", ""))])[2];
+                    o = ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(block_without_depth.Replace(" ", "").Replace("*", ""))])[2];
                     if(contains_depth)
-                        o = varCheckGetDepth(block_with_depth, o, Do_on.types.S_TYPES[0], true);
+                        o = varCheckGetDepth(block_with_depth, o, Types.S_TYPES[0], true);
                 }
                 finally { }
             }
@@ -617,13 +617,13 @@ namespace Scorpion
             {
                 //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between [{{, }}] are replaced by existing variables if one is found
                 if (block_without_depth.StartsWith("f\'", StringComparison.CurrentCulture))
-                    block_without_depth= ef__.replace_format(ref Do_on, ref block_without_depth).Remove(0, 1);
+                    block_without_depth= ef__.replace_format(ref block_without_depth).Remove(0, 1);
 
                 //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
                 o = var_cut_str_symbol(var_cut_symbol(ref block_without_depth));
 
                 //Replace escape sequences
-                o = ef__.replaceEscape(ref Do_on, (string)o);
+                o = ef__.replaceEscape((string)o);
             }
             return o;
         }
@@ -637,10 +637,10 @@ namespace Scorpion
             {
                 if(containsdepth)
                 {
-                    if(t_obj_type == Do_on.types.S_TYPES[0])
+                    if(t_obj_type == Types.S_TYPES[0])
                     {
                         //Get the index at array point
-                        string[] s_indexes = block.Split(Do_on.types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
                         int[] indexes = toIntArray(s_indexes);
 
                         if(indexes.Length > 0)
@@ -678,7 +678,7 @@ namespace Scorpion
 
         public bool varCheck(string reference)
         {
-            return Do_on.mem.AL_CURR_VAR_REF.Contains(reference);
+            return Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(reference);
         }
 
         //memory get
@@ -692,7 +692,7 @@ namespace Scorpion
             //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
             temp_var = var_cut_str_symbol(var_cut_symbol(ref Block));
             //Replace escape sequences
-            return ef__.replaceEscape(ref Do_on, (string)temp_var);
+            return ef__.replaceEscape((string)temp_var);
         }
     }
 
@@ -701,9 +701,9 @@ namespace Scorpion
         private bool varNameCheck(string name)
         {
             //Returns false if the name does not conform and contains unwanted characters. The opposite if it conforms
-            if(name.IndexOfAny(Do_on.types.S_UNWANTED_CHAR_NAME) != -1)
+            if(name.IndexOfAny(Types.S_UNWANTED_CHAR_NAME) != -1)
             {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Unwanted characters found in the name for a variable decleration. '{0}', '{1}' Found", Do_on.types.S_UNWANTED_CHAR_NAME[0], Do_on.types.S_UNWANTED_CHAR_NAME[1]));
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Unwanted characters found in the name for a variable decleration. '{0}', '{1}' Found", Types.S_UNWANTED_CHAR_NAME[0], Types.S_UNWANTED_CHAR_NAME[1]));
                 return false;
             }
             return true;
@@ -768,9 +768,9 @@ namespace Scorpion
         private void var_manipulate(string Reference, object Variable, bool is_array, bool is_dictionary, ushort OPCODE)
         {
             Reference = var_cut_symbol(Reference);
-            lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
+            lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG) lock(Types.HANDLE.mem.AL_CURR_VAR_NACESSED)
                     {
-                        if ((string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[4] == Do_on.types.S_No)
+                        if ((string)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[4] == Types.S_No)
                         {
                                 if (OPCODE == OPCODE_SET)
                                 {
@@ -778,24 +778,24 @@ namespace Scorpion
                                     {
                                         try
                                         {
-                                            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = var_get(Variable);
+                                            ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = var_get(Variable);
                                         }
                                         catch
                                         {
-                                            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = Variable;
+                                            ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = Variable;
                                         }
                                     }
                                     else if (!is_array && is_dictionary)
-                                            ((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = Variable;
+                                            ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = Variable;
                                     else
                                     {
                                         try
                                         {
-                                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(var_get(Variable));
+                                            ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(var_get(Variable));
                                         }
                                         catch
                                         {
-                                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(Variable);
+                                            ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(Variable);
                                         }
                                     }
                                 }
@@ -803,28 +803,28 @@ namespace Scorpion
                                 {
                                     if (!is_array && !is_dictionary)
                                     {
-                                        int ndx = Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference);
-                                        Do_on.mem.AL_CURR_VAR.RemoveAt(ndx);
-                                        Do_on.mem.AL_CURR_VAR_REF.RemoveAt(ndx);
-                                        Do_on.mem.AL_CURR_VAR_TAG.RemoveAt(ndx);
-                                        Do_on.mem.AL_CURR_VAR_NACESSED.RemoveAt(ndx);
+                                        int ndx = Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference);
+                                        Types.HANDLE.mem.AL_CURR_VAR.RemoveAt(ndx);
+                                        Types.HANDLE.mem.AL_CURR_VAR_REF.RemoveAt(ndx);
+                                        Types.HANDLE.mem.AL_CURR_VAR_TAG.RemoveAt(ndx);
+                                        Types.HANDLE.mem.AL_CURR_VAR_NACESSED.RemoveAt(ndx);
 
                                         //TRIM
-                                        //Do_on.mem.AL_CURR_VAR.TrimToSize();
-                                        //Do_on.mem.AL_CURR_VAR_REF.TrimToSize();
-                                        //Do_on.mem.AL_CURR_VAR_TAG.TrimToSize();
-                                        //Do_on.mem.AL_CURR_VAR_NACESSED.TrimToSize();
+                                        //Types.HANDLE.mem.AL_CURR_VAR.TrimToSize();
+                                        //Types.HANDLE.mem.AL_CURR_VAR_REF.TrimToSize();
+                                        //Types.HANDLE.mem.AL_CURR_VAR_TAG.TrimToSize();
+                                        //Types.HANDLE.mem.AL_CURR_VAR_NACESSED.TrimToSize();
                                     }
                                     else if(!is_array && is_dictionary)
-                                        ((IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Remove(var_get(Variable));
+                                        ((IDictionary)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Remove(var_get(Variable));
                                     else
                                     {
                                         int ndx;
                                         bool is_number = int.TryParse((string)var_get(Variable), out ndx);
                                         if (!is_number)
-                                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Remove(var_get(Variable));
+                                            ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Remove(var_get(Variable));
                                         else
-                                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).RemoveAt(ndx);
+                                            ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).RemoveAt(ndx);
                                     }
                                 }
                                 else if (OPCODE == OPCODE_INSERT)
@@ -833,7 +833,7 @@ namespace Scorpion
                                     {
                                         bool is_number = int.TryParse((string)var_get(((object[])Variable)[1]), out int ndx);
                                         if (is_number)
-                                            ((ArrayList)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Insert(ndx, var_get(((object[])Variable)[0]));
+                                            ((ArrayList)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Insert(ndx, var_get(((object[])Variable)[0]));
                                         else
                                             ScorpionConsoleReadWrite.ConsoleWrite.writeError("The specified index was not found: " + var_get(Variable));
                                     }
@@ -843,11 +843,11 @@ namespace Scorpion
                                         object value = ((object[])Variable)[1];
                                         try
                                         {
-                                            ((IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(key, var_get(value));
+                                            ((IDictionary)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(key, var_get(value));
                                         }
                                         catch
                                         {
-                                            ((IDictionary)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(key, value);
+                                            ((IDictionary)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]).Add(key, value);
                                         }
                                     }
                                 }
@@ -865,23 +865,23 @@ namespace Scorpion
             //(*,*,*,*,...)
             try
             {
-                Reference = Enginefunctions.CleanEscape(ref Do_on, Reference);
+                Reference = Enginefunctions.CleanEscape(Reference);
 
                 //Check if the name has unwanted characters
                 if(!varNameCheck(Reference))
                     return;
 
-                lock (Do_on.mem.AL_CURR_VAR) lock (Do_on.mem.AL_CURR_VAR_REF) lock (Do_on.mem.AL_CURR_VAR_TAG) lock(Do_on.mem.AL_CURR_VAR_NACESSED)
+                lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG) lock(Types.HANDLE.mem.AL_CURR_VAR_NACESSED)
                             {
-                                    if (Do_on.mem.AL_CURR_VAR_REF.Contains(Reference) == false)
+                                    if (Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(Reference) == false)
                                     {
                                         //Variable = var_get(Variable.ToString());
                                         //{??, ref, val, tag, is_readonly, cached, created}
                                         var_cut_symbol(ref Reference);
-                                        Do_on.mem.AL_CURR_VAR.Add(new ArrayList(7) { "", Reference, Variable, Tag, RONLY, false, DateTime.UtcNow });
-                                        Do_on.mem.AL_CURR_VAR_REF.Add(Reference);
-                                        Do_on.mem.AL_CURR_VAR_TAG.Add(Tag);
-                                        Do_on.mem.AL_CURR_VAR_NACESSED.Add(DateTime.UtcNow);
+                                        Types.HANDLE.mem.AL_CURR_VAR.Add(new ArrayList(7) { "", Reference, Variable, Tag, RONLY, false, DateTime.UtcNow });
+                                        Types.HANDLE.mem.AL_CURR_VAR_REF.Add(Reference);
+                                        Types.HANDLE.mem.AL_CURR_VAR_TAG.Add(Tag);
+                                        Types.HANDLE.mem.AL_CURR_VAR_NACESSED.Add(DateTime.UtcNow);
                                     }
                             }
             }
@@ -896,7 +896,7 @@ namespace Scorpion
 
         private string check_readonly(string Reference)
         {
-            string RONLY = (string)((ArrayList)Do_on.mem.AL_CURR_VAR[Do_on.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(Reference))])[4];
+            string RONLY = (string)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(Reference))])[4];
             ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("The varaible: " + Reference + " results as " + RONLY);
             return RONLY;
         }

@@ -30,13 +30,6 @@ namespace Scorpion
 {
     public class SessionDependentNetworkHandlers
     {
-        private Scorp HANDLE;
-        public SessionDependentNetworkHandlers(Scorp HANDLE_PASS)
-        {
-            HANDLE = HANDLE_PASS;
-            return;
-        }
-
         /*TCP server*/
         public void AddTcpServer(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
         {
@@ -45,17 +38,17 @@ namespace Scorpion
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
             sctl.ClientConnected += Sctl_ClientConnected;
             sctl.ClientDisconnected += Sctl_ClientDisconnected;
-            lock (HANDLE.mem.AL_TCP) lock (HANDLE.mem.AL_TCP_REF)
+            lock (Types.HANDLE.mem.AL_TCP) lock (Types.HANDLE.mem.AL_TCP_REF)
                 {
-                    HANDLE.mem.AL_TCP.Add(sctl);
-                    HANDLE.mem.AL_TCP_REF.Add(reference);
-                    HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
+                    Types.HANDLE.mem.AL_TCP.Add(sctl);
+                    Types.HANDLE.mem.AL_TCP_REF.Add(reference);
+                    Types.HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
 
                     if(RSA_public_path == null || RSA_private_path == null)
                         ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     sctl.DataReceived += Sctl_DataReceived;
-                    IPAddress ipa = IPAddress.Parse(ip == HANDLE.types.S_NULL ? "127.0.0.1" : ip);
+                    IPAddress ipa = IPAddress.Parse(ip == Types.S_NULL ? "127.0.0.1" : ip);
                     sctl.Start(ipa, port);//(port, true);
                 }
             return;
@@ -94,45 +87,45 @@ namespace Scorpion
             
             Enginefunctions ef__ = new Enginefunctions();
             NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
-            int server_index = HANDLE.mem.AL_TCP.IndexOf(sender);
+            int server_index = Types.HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
-            //string session = HANDLE.types.S_NULL;
+            //string session = Types.S_NULL;
             string reply = null;
             IPEndPoint end_point = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
 
             //Check if RSA
-            if (HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(HANDLE.mem.GetTcpKeyPath(server_index)[0]));
+            if (Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
+                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(Types.HANDLE.mem.GetTcpKeyPath(server_index)[0]));
 
             //Btyte->string, Parse string
-            string s_data = HANDLE.crypto.To_String(data);
+            string s_data = Types.HANDLE.crypto.To_String(data);
             string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
             Dictionary<string, string> processed = nef__.replace_api(command);
 
             //Get session from parsed elements
             string session = processed["session"];
             string destroyable = "\0";
-            string db_page = HANDLE.types.S_NULL;
+            string db_page = Types.S_NULL;
 
             try
             {
                 if (processed != null)
                 {
                     //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable
-                    if(!HANDLE.readr.lib_SCR.varCheck(session))
+                    if(!Types.HANDLE.librarian_instance.librarian.varCheck(session))
                     {
                         ArrayList temp = new ArrayList(){ session };
-                        HANDLE.readr.lib_SCR.vardictionary(ref destroyable, ref temp);
+                        Types.HANDLE.librarian_instance.librarian.vardictionary(ref destroyable, ref temp);
                         temp = new ArrayList(){ session, "\'session\'", $"\'{session}\'" };
-                        HANDLE.readr.lib_SCR.vardictionaryappend(ref destroyable, ref temp);
+                        Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
                         temp = new ArrayList(){ session, "\'project\'", "\'" + processed["tag"] + "\'" };
-                        HANDLE.readr.lib_SCR.vardictionaryappend(ref destroyable, ref temp);
+                        Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
                     }
 
                     if (processed["type"] == nef__.api_requests["get"])
                     {
                         //Get formattable page from XMLDB
-                        ArrayList query_result = HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], HANDLE.vds.OPCODE_GET);
+                        ArrayList query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
 
                         if (query_result.Count > 0)
                         {
@@ -142,10 +135,10 @@ namespace Scorpion
                             
 
                             //Session allows us to return the page with user loaded session data
-                            if(HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
-                                reply = nef__.build_api((string)HANDLE.readr.lib_SCR.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                            if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
+                                reply = nef__.build_api((string)Types.HANDLE.librarian_instance.librarian.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
                             else
-                                reply = nef__.build_api((string)db_page, HANDLE.types.S_NULL, false);
+                                reply = nef__.build_api((string)db_page, Types.S_NULL, false);
                         }
                         else
                             reply = nef__.build_api("Query resulted in 0 elements returned", session, true);
@@ -155,7 +148,7 @@ namespace Scorpion
                         command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
                         string[] commands = command.Split(new char[] { '\n' });
                         foreach (string s_dat in commands)
-                            HANDLE.readr.access_library(s_dat);
+                            Types.HANDLE.librarian_instance.librarian.scorpioniee(s_dat);
                         reply = nef__.build_api("Command executed", session, false);
                     }
                     else if (processed["type"] == nef__.api_requests["delete"])
@@ -168,11 +161,11 @@ namespace Scorpion
                     reply = nef__.build_api("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send
-                if (reply != null && HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(HANDLE.mem.GetTcpKeyPath(server_index)[0])));
+                if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
+                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(Types.HANDLE.mem.GetTcpKeyPath(server_index)[0])));
 
                 //No RSA then just send
-                if (reply != null && HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
+                if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
                     e.Reply(reply);
             }
             catch(Exception er){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Fatal Error for {0}. Closing connection", end_point)); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.StackTrace); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.Message); }
@@ -189,31 +182,31 @@ namespace Scorpion
         //TCP CLIENT
         public SimpleTCP.SimpleTcpClient GetClient(int ndx)
         {
-            return (SimpleTCP.SimpleTcpClient)HANDLE.mem.AL_TCP_CLIENTS[ndx];
+            return (SimpleTCP.SimpleTcpClient)Types.HANDLE.mem.AL_TCP_CLIENTS[ndx];
         }
 
         public int GetClientIndex(object client)
         {
-            return HANDLE.mem.AL_TCP_CLIENTS.IndexOf(client);
+            return Types.HANDLE.mem.AL_TCP_CLIENTS.IndexOf(client);
         }
 
         public int GetIndexTcpClient(string client)
         {
-            return HANDLE.mem.AL_TCP_CLIENTS_REF.IndexOf(client);
+            return Types.HANDLE.mem.AL_TCP_CLIENTS_REF.IndexOf(client);
         }
 
         public string[] GetClientKeyPaths(int ndx)
         {
-            return (string[])HANDLE.mem.AL_TCP_CLIENTS_KY[ndx];
+            return (string[])Types.HANDLE.mem.AL_TCP_CLIENTS_KY[ndx];
         }
 
         public void RemoveTcpClient(int ndx)
         {
-            lock (HANDLE.mem.AL_TCP_CLIENTS) lock (HANDLE.mem.AL_TCP_CLIENTS_REF) lock (HANDLE.mem.AL_TCP_CLIENTS_KY)
+            lock (Types.HANDLE.mem.AL_TCP_CLIENTS) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_REF) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_KY)
                     {
-                        HANDLE.mem.AL_TCP_CLIENTS.RemoveAt(ndx);
-                        HANDLE.mem.AL_TCP_CLIENTS_KY.RemoveAt(ndx);
-                        HANDLE.mem.AL_TCP_CLIENTS_REF.RemoveAt(ndx);
+                        Types.HANDLE.mem.AL_TCP_CLIENTS.RemoveAt(ndx);
+                        Types.HANDLE.mem.AL_TCP_CLIENTS_KY.RemoveAt(ndx);
+                        Types.HANDLE.mem.AL_TCP_CLIENTS_REF.RemoveAt(ndx);
                     }
             return;
         }
@@ -226,11 +219,11 @@ namespace Scorpion
             SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
             sctl.Connect(ip, port);
             sctl.DataReceived += Sctl_clientDataReceived;
-            lock (HANDLE.mem.AL_TCP_CLIENTS) lock (HANDLE.mem.AL_TCP_CLIENTS_REF) lock (HANDLE.mem.AL_TCP_CLIENTS_KY)
+            lock (Types.HANDLE.mem.AL_TCP_CLIENTS) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_REF) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_KY)
                     {
-                        HANDLE.mem.AL_TCP_CLIENTS.Add(sctl);
-                        HANDLE.mem.AL_TCP_CLIENTS_REF.Add(reference);
-                        HANDLE.mem.AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
+                        Types.HANDLE.mem.AL_TCP_CLIENTS.Add(sctl);
+                        Types.HANDLE.mem.AL_TCP_CLIENTS_REF.Add(reference);
+                        Types.HANDLE.mem.AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
                     }
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Client " + reference + " connected to " + ip + ":" + port);
             return;
@@ -244,13 +237,14 @@ namespace Scorpion
             string key_path = GetClientKeyPaths(client)[0];
             SecureString key = Scorpion_RSA.Scorpion_RSA.get_private_key_file(key_path);
             byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, key);
-            string s_data = HANDLE.crypto.To_String(data);
+            string s_data = Types.HANDLE.crypto.To_String(data);
 
             //Removes delimiter 0x13 and executes
             NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
             Enginefunctions ef__ = new Enginefunctions();
             string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
-            HANDLE.readr.access_library(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
+            Types.HANDLE.librarian_instance.librarian.scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
+            
             ef__ = null;
             nef__ = null;
             return;

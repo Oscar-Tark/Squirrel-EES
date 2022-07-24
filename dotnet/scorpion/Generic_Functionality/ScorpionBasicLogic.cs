@@ -12,9 +12,9 @@ namespace Scorpion
             string returnable = null;
             ScorpionConsoleReadWrite.ConsoleWrite.writeDebug(var_get((string)objects[0]).ToString() + var_get((string)objects[1]).ToString());
             if ((string)var_get((string)objects[0]) == (string)var_get((string)objects[1]))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
             //clean
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -26,9 +26,9 @@ namespace Scorpion
             //*return<<::*compare, *with
             string returnable = "";
             if ((string)var_get((string)objects[0]) != (string)var_get((string)objects[1]))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
             //clean
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -40,9 +40,9 @@ namespace Scorpion
             //*return<<::*compare, *with
             string returnable = null;
             if (Convert.ToInt32(var_get(objects[0])) > Convert.ToInt32(var_get(objects[1])))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -54,9 +54,9 @@ namespace Scorpion
             //*return<<::*compare, *with
             string returnable = null;
             if (Convert.ToInt32(var_get(objects[0])) >= Convert.ToInt32(var_get(objects[1])))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref returnable, true);
@@ -67,9 +67,9 @@ namespace Scorpion
             //*return<<::*compare, *with
             string returnable = null;
             if (Convert.ToInt32(var_get(objects[0])) < Convert.ToInt32(var_get(objects[1])))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref returnable, true);
@@ -80,9 +80,9 @@ namespace Scorpion
             //*return<<::*compare, *with
             string returnable = null;
             if (Convert.ToInt32(var_get(objects[0])) <= Convert.ToInt32(var_get(objects[1])))
-                returnable = Do_on.types.S_Yes;
+                returnable = Types.S_Yes;
             else
-                returnable = Do_on.types.S_No;
+                returnable = Types.S_No;
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref returnable, true);

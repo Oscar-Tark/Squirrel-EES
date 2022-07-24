@@ -59,7 +59,7 @@ namespace Scorpion
             //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> *temp<<mysqlget::*con, *'test', *'/test', *'name', *'', *'token'
             
-            object returnable = Do_on.types.S_NULL;
+            object returnable = Types.S_NULL;
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
                 returnable = mysql.scfmtSqlGet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[5]));

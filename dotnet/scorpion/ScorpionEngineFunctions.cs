@@ -59,29 +59,29 @@ namespace Scorpion
             return Scorp.Replace("*", "{&v}").Replace("'", "{&q}").Replace(">>", "{&r}").Replace("<<", "{&l}").Replace("::", "{&c}").Replace(",", "{&u}");
         }
 
-        public string replaceEscape(ref Scorp HANDLE, string paramse)
+        public string replaceEscape(string paramse)
         {
-            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+            foreach (string[] esc_arr in Types.S_ESCAPE_SEQUENCES)
                 paramse = paramse.Replace(esc_arr[0], esc_arr[1]);
             return paramse;
         }
 
-        public string toEscape(ref Scorp HANDLE, string Scorp)
+        public string toEscape(string Scorp)
         {
-            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+            foreach (string[] esc_arr in Types.S_ESCAPE_SEQUENCES)
                 Scorp = Scorp.Replace(esc_arr[1], esc_arr[0]);
             return Scorp;
         }
 
-        public static string CleanEscape(ref Scorp HANDLE, string Scorp)
+        public static string CleanEscape(string Scorp)
         {
-            foreach (string[] esc_arr in HANDLE.types.S_ESCAPE_SEQUENCES)
+            foreach (string[] esc_arr in Types.S_ESCAPE_SEQUENCES)
                 Scorp = Scorp.Replace(esc_arr[1], "");
             return Scorp;
         }
 
         //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly
-        public string replace_format(ref Scorp HANDLE, ref string var)
+        public string replace_format(ref string var)
         {
             //f'Hi my name is {[[name]]}'
             string to_change = "";
@@ -91,7 +91,7 @@ namespace Scorpion
                 if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
                 {
                     to_change = vars[i].Replace("[[", "*").Replace("]]", "");
-                    var = var.Replace("{" + vars[i] + "}", (string)HANDLE.readr.lib_SCR.var_get(ref to_change));
+                    var = var.Replace("{" + vars[i] + "}", (string)Types.HANDLE.librarian_instance.librarian.var_get(ref to_change));
                 }
             }
             return var;

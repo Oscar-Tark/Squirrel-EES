@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {}
+    "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {}
   },
   "projects": {
-    "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {
+    "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj",
+        "projectUniqueName": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj",
         "projectName": "scorpion_sql",
-        "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj",
-        "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/",
+        "projectPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj",
+        "packagesPath": "/home/chipmunk/.nuget/packages/",
+        "outputPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_sql/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ferret/.nuget/NuGet/NuGet.Config"
+          "/home/chipmunk/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -53,12 +53,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.6, 6.0.6]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.106/RuntimeIdentifierGraph.json"
         }
       }
     }

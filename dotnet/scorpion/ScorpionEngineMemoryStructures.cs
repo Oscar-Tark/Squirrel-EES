@@ -23,18 +23,16 @@ using System.Collections.Concurrent;
 
 namespace Scorpion
 {
-    public class Timer_
+    public class ScorpionTimer
     {
-        Scorp HANDLE = default;
         public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
         Enginefunctions ef__ = new Enginefunctions();
         int interval = 100000;
 
-        public Timer_(Scorp HANDLE_)
+        public ScorpionTimer()
         {
-            HANDLE = HANDLE_;
             tms = new Timer(tms_call, null, 0, interval);
             return;
         }
@@ -70,7 +68,7 @@ namespace Scorpion
         public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
-                HANDLE.readr.lib_SCR.scorpioniee(ef__.replace_fakes(command), HANDLE);
+                Types.HANDLE.librarian_instance.librarian.scorpioniee(ef__.replace_fakes(command));
             obj = null;
             GC.Collect();
             return;
@@ -117,6 +115,22 @@ namespace Scorpion
         public string[] GetTcpKeyPath(int ndx)
         {
             return (string[])AL_TCP_KY[ndx];
+        }
+
+        //Loads system/default variables to the scorpion memory structure
+        [Obsolete] //Should be initialized immediately on memory structure creation, there is a major bug with S_YES
+        //Initialize Scorpion.DefaultVariables
+        public void LoadSystemVars()
+        {
+            //Set variables that should exist by default
+            Types.HANDLE.librarian_instance.librarian.var("", new ArrayList(5) { Types.S_Yes, Types.S_No, "null", "yes", "no", "temp", "path" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "yes", "'" + Types.S_Yes + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "no", "'" + Types.S_No + "'" });
+
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "null", "'" + Types.S_NULL + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "path", "'" + Types.main_user_path + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "true", "'" + Types.S_Yes + "'" });
+            return;
         }
 
         //<--
