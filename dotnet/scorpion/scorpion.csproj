@@ -9,6 +9,7 @@
     <ProjectReference Include="..\scorpion_compiler\scorpion_compiler.csproj" />
     <ProjectReference Include="..\scorpion_cryptography\scorpion_cryptography.csproj" />
     <ProjectReference Include="..\scorpion_xmldb\scorpion_xmldb.csproj" />
+    <ProjectReference Include="..\scorpion_processes\scorpion_processes.csproj" />
     <ProjectReference Include="..\..\..\Scorpion-Console-Read-Write\consolereadwrite.csproj" />
   </ItemGroup>
 

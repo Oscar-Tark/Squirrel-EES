@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "scorpion_processes/1.0.0": {
+        "dependencies": {
+          "consolereadwrite": "1.0.0"
+        },
+        "runtime": {
+          "scorpion_processes.dll": {}
+        }
+      },
+      "consolereadwrite/1.0.0": {
+        "runtime": {
+          "consolereadwrite.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "scorpion_processes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

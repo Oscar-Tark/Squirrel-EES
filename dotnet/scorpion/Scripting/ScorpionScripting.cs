@@ -62,7 +62,7 @@ namespace Scorpion
                     var_dispose_internal(ref line);
                 }
             }
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;
         }
@@ -82,10 +82,32 @@ namespace Scorpion
             fd.Flush();
             sr.Close();
             fd.Close();
-            Scorp_Line_Exec = null;
+            var_dispose_internal(ref Scorp_Line_Exec);
             var_dispose_internal(ref line);
             var_arraylist_dispose(ref objects);
             return;
+        }
+
+        public void scriptrundb(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path, *subtag==*tag
+            //::*path, *subtag
+
+            //Query the database
+            //string db, object data, string tag, string subtag, short OPCODE
+            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)var_get(objects[0]), Types.S_NULL, (string)var_get(objects[1]), (string)var_get(objects[1]), Types.HANDLE.vds.OPCODE_GET);
+            Enginefunctions ef__ = new Enginefunctions();
+            string script = default;
+
+            foreach(object o_script in result)
+            {
+                script = ef__.replaceEscape((string)o_script);
+                ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial("Running XMLDB script: ", script);
+                scorpioniee(script);
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
         }
     }
 }

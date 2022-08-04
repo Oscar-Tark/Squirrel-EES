@@ -35,8 +35,6 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_aes.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_compiler.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/EasyEncrypt.dll
-/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_p2p.dll
-/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_p2p.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_cryptography.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_cryptography.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_xmldb.dll
@@ -86,3 +84,5 @@
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_hasher.pdb
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.csproj.CopyComplete
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.genruntimeconfig.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_processes.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_processes.pdb

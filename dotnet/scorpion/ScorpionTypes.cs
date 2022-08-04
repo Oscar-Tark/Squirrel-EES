@@ -33,14 +33,19 @@ namespace Scorpion
         public static string main_user_manuals_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Manuals";
 
         public static Scorp HANDLE;
+        public static short READ_SIGNAL_OFF = 0x00;
+        public static short READ_SIGNAL_ON  = 0x01;
+        public static short READ_SIGNAL_CURRENT = READ_SIGNAL_ON;
 
-        //Available Scorpion.EscapeSequences
-        public static string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{[[" } , new string[] { "{&fr}", "]]}" }, new string[] { "{&u}", "," } };
+        //Available Scorpion.EscapeSequences !DO NOT INSERT ONLY APPEND
+        public static string[][] S_ESCAPE_SEQUENCES = { new string[] { "{&c}", "," }, new string[] { "{&v}", "*" }, new string[] { "{&q}", "'" }, new string[] { "{&r}", ">>" }, new string[] { "{&l}", "<<" }, new string[] { "{&d}", "::" }, new string[] { "{&fl}", "{((" } , new string[] { "{&fr}", "))}" }, new string[] { "{&u}", "," } };
 
         //Unwanted characters in names
         public static char[] S_UNWANTED_CHAR_NAME = { '[', ']' };
 
         //Available Scorpion.Types
         public static Type[] S_TYPES = { new ArrayList().GetType() };
+
+        public static string S_ROOT_LINUX = "sudo";
     }
 }

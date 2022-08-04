@@ -147,19 +147,19 @@
     ]
   },
   "packageFolders": {
-    "/home/chipmunk/.nuget/packages/": {}
+    "/home/ferret/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
+      "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
       "projectName": "scorpion_xmldb",
-      "projectPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
-      "packagesPath": "/home/chipmunk/.nuget/packages/",
-      "outputPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/obj/",
+      "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj",
+      "packagesPath": "/home/ferret/.nuget/packages/",
+      "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/chipmunk/.nuget/NuGet/NuGet.Config"
+        "/home/ferret/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -171,11 +171,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-              "projectPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
             },
-            "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
-              "projectPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"
+            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"
             }
           }
         }
@@ -199,18 +199,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.6, 6.0.6]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.106/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

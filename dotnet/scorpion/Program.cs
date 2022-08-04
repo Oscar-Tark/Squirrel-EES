@@ -33,8 +33,9 @@ namespace Scorpion
         {
             running_instance = new Scorp(0, kversion);
             Console.CancelKeyPress += Console_CancelKeyPress;
-            while(true)
-                running_instance.librarian_instance.librarian.scorpioniee(Console.ReadLine());
+            lineFeed.lineReader();
+            //running_instance.lineReader();
+            return 0;
         }
 
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)

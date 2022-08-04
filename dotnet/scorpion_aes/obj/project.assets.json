@@ -33,19 +33,19 @@
     ]
   },
   "packageFolders": {
-    "/home/chipmunk/.nuget/packages/": {}
+    "/home/ferret/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
+      "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
       "projectName": "scorpion_aes",
-      "projectPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
-      "packagesPath": "/home/chipmunk/.nuget/packages/",
-      "outputPath": "/home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/",
+      "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
+      "packagesPath": "/home/ferret/.nuget/packages/",
+      "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/chipmunk/.nuget/NuGet/NuGet.Config"
+        "/home/ferret/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -84,18 +84,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.6, 6.0.6]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.106/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

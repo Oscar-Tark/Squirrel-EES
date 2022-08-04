@@ -16,6 +16,7 @@
           "scorpion_compiler": "1.0.0",
           "scorpion_cryptography": "1.0.0",
           "scorpion_log": "1.0.0",
+          "scorpion_processes": "1.0.0",
           "scorpion_rsa": "1.0.0",
           "scorpion_sql": "1.0.0",
           "scorpion_xmldb": "1.0.0"
@@ -132,6 +133,14 @@
           "scorpion_log.dll": {}
         }
       },
+      "scorpion_processes/1.0.0": {
+        "dependencies": {
+          "consolereadwrite": "1.0.0"
+        },
+        "runtime": {
+          "scorpion_processes.dll": {}
+        }
+      },
       "scorpion_rsa/1.0.0": {
         "dependencies": {
           "Capgemini.Cauldron.Cryptography": "3.2.3"
@@ -245,6 +254,11 @@
       "sha512": ""
     },
     "scorpion_log/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_processes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -42,6 +42,7 @@ namespace Scorpion
             mem = new Memory();
             sdh = new SessionDependentNetworkHandlers();
             sclog = new Scorpion_LOG.Scorpion_LOG();
+            scp = new ScorpionProcesses.ScorpionProcessHandler();
             return;
         }
 
@@ -55,6 +56,7 @@ namespace Scorpion
         public Memory mem;
         public SessionDependentNetworkHandlers sdh;
         public Scorpion_LOG.Scorpion_LOG sclog;
+        public ScorpionProcesses.ScorpionProcessHandler scp;
 
         public Scorp(int instance_descriptor, double version)
         {

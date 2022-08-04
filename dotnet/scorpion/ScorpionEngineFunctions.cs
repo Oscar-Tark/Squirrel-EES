@@ -18,6 +18,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScorpionConsoleReadWrite;
 
 namespace Scorpion
 {
@@ -83,14 +84,14 @@ namespace Scorpion
         //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly
         public string replace_format(ref string var)
         {
-            //f'Hi my name is {[[name]]}'
+            //f'Hi my name is {((name))}'
             string to_change = "";
             string[] vars = var.Split(new char[] { '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < vars.Length; i++)
             {
-                if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
+                if (vars[i].StartsWith("((", StringComparison.CurrentCulture) && vars[i].EndsWith("))", StringComparison.CurrentCulture))
                 {
-                    to_change = vars[i].Replace("[[", "*").Replace("]]", "");
+                    to_change = vars[i].Replace("((", "*").Replace("))", "");
                     var = var.Replace("{" + vars[i] + "}", (string)Types.HANDLE.librarian_instance.librarian.var_get(ref to_change));
                 }
             }
@@ -106,9 +107,9 @@ namespace Scorpion
 
             for (int i = 0; i < vars.Length; i++)
             {
-                if (vars[i].StartsWith("[[", StringComparison.CurrentCulture) && vars[i].EndsWith("]]", StringComparison.CurrentCulture))
+                if (vars[i].StartsWith("((", StringComparison.CurrentCulture) && vars[i].EndsWith("))", StringComparison.CurrentCulture))
                 {
-                    to_change = vars[i].Replace("[[", "").Replace("]]", "");
+                    to_change = vars[i].Replace("((", "").Replace("))", "");
                     source.TryGetValue(to_change, out temp_var);
                     var = var.Replace("{" + vars[i] + "}", temp_var);
                 }

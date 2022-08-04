@@ -2,7 +2,6 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/bin/Debug/net6.0/scorpion_log.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/bin/Debug/net6.0/ref/scorpion_log.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/bin/Debug/net6.0/scorpion_log.pdb
-/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.csproj.AssemblyReference.cache
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.GeneratedMSBuildEditorConfig.editorconfig
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.AssemblyInfoInputs.cache
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.AssemblyInfo.cs
@@ -22,3 +21,4 @@
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.dll
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/ref/scorpion_log.dll
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/obj/Debug/net6.0/scorpion_log.csproj.AssemblyReference.cache
