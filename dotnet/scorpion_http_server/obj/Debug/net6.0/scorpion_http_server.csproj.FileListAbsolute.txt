@@ -9,3 +9,13 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/ref/scorpion_http_server.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.csproj.AssemblyReference.cache
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/consolereadwrite.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/consolereadwrite.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/obj/Debug/net6.0/scorpion_http_server.csproj.CopyComplete
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_aes.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_cryptography.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_xmldb.dll
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_xmldb.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_aes.pdb
+/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_http_server/bin/Debug/net6.0/scorpion_cryptography.pdb
