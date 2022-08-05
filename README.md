@@ -16,13 +16,13 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 `*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
 
-`*f''` = Denotes a value variable which can be formatted. You may insert other variables into the current formatted value variable with the {[[ ]]} denotations.
+`*f''` = Denotes a value variable which can be formatted. You may insert other variables into the current formatted value variable with the {(( ))} denotations.
 
 (Example):
 
 `var::*store >> varset::*store, *'My computer store'`
 
-`output::*f'Hello {[[store]]}!`
+`output::*f'Hello {((store))}!`
 
 **Arrays**
 
@@ -75,7 +75,7 @@ The first variable is a return variable. Any variable that the function returns 
 
 Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right. To shift execution right use the >> symbol.
 
-`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {[[name]]}!. Let us play the GNU SONG!' >> exit`
+`var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {((name))}!. Let us play the GNU SONG!' >> exit`
 
 [Scripts]
 ---------------
@@ -167,7 +167,7 @@ Syntax:
 
 Example:
 
-`dbcreate::*f'{[[path]]}/Databases/database.db'`
+`dbcreate::*f'{((path))}/Databases/database.db'`
 
 **Opening a database:XMLDB**
 
@@ -179,7 +179,7 @@ Syntax:
 
 Example:
 
-`dbopen::*'mydatabase', *f'{[[path]]}/Databases/database.db', *'12345'`
+`dbopen::*'mydatabase', *f'{((path))}/Databases/database.db', *'12345'`
 
 **Closing a database:XMLDB**
 
