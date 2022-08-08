@@ -211,64 +211,6 @@
         }
       }
     },
-    "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
-        "projectName": "scorpion_aes",
-        "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
-        "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/ferret/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "EasyEncrypt": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -291,8 +233,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
               },
               "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj": {
                 "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj"
@@ -750,8 +692,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
               },
               "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
                 "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"

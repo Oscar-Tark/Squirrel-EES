@@ -32,17 +32,17 @@
           "lib/netstandard2.0/EasyEncrypt.dll": {}
         }
       },
-      "scorpion_aes/1.0.0": {
+      "Scorpion_Aes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "EasyEncrypt": "2.2.1"
         },
         "compile": {
-          "bin/placeholder/scorpion_aes.dll": {}
+          "bin/placeholder/Scorpion_Aes.dll": {}
         },
         "runtime": {
-          "bin/placeholder/scorpion_aes.dll": {}
+          "bin/placeholder/Scorpion_Aes.dll": {}
         }
       },
       "scorpion_cryptography/1.0.0": {
@@ -129,10 +129,10 @@
         "lib/netstandard2.0/EasyEncrypt.dll"
       ]
     },
-    "scorpion_aes/1.0.0": {
+    "Scorpion_Aes/1.0.0": {
       "type": "project",
-      "path": "../scorpion_aes/scorpion_aes.csproj",
-      "msbuildProject": "../scorpion_aes/scorpion_aes.csproj"
+      "path": "../../../Scorpion-AES/Scorpion_Aes.csproj",
+      "msbuildProject": "../../../Scorpion-AES/Scorpion_Aes.csproj"
     },
     "scorpion_cryptography/1.0.0": {
       "type": "project",
@@ -142,7 +142,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "scorpion_aes >= 1.0.0",
+      "Scorpion_Aes >= 1.0.0",
       "scorpion_cryptography >= 1.0.0"
     ]
   },
@@ -171,8 +171,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+            "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
             },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"

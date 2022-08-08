@@ -72,7 +72,7 @@ namespace Scorpion_RSA
 
         private static KeyPair create_keypair()
         {
-            return Rsa.CreateKeyPair(RSAKeySizes.Size1024);
+            return Rsa.CreateKeyPair(RSAKeySizes.Size2048);
         }
 
         private static void save_publickey_tofile(string key, string file)

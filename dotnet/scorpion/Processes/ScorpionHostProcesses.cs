@@ -35,7 +35,7 @@ namespace Scorpion
         public void processdefine(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Creates a new Scorpion.Process. This is a standard process which can be any program. The program is partially controlled by scorpion
-            //::*program, *arguments, *process_name, *foregroundoutput, as_super
+            //::*program, *arguments, *process_name, *foregroundoutput, *as_super
             //*status<<
             //*foregroundoutput: shows output in standard console and not by calling processio
             //*arguments is a unique string, function is not variadic in nature

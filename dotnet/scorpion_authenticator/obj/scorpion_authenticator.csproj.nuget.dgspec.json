@@ -4,14 +4,14 @@
     "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj": {}
   },
   "projects": {
-    "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
+    "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
-        "projectName": "scorpion_aes",
-        "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj",
+        "projectName": "Scorpion_Aes",
+        "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/obj/",
+        "outputPath": "/home/ferret/GIT/Scorpion-AES/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -84,8 +84,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj": {
-                "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_aes/scorpion_aes.csproj"
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
               },
               "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj": {
                 "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_hasher/scorpion_hasher.csproj"

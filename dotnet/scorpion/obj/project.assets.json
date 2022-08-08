@@ -122,7 +122,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "scorpion_aes": "1.0.0",
+          "Scorpion_Aes": "1.0.0",
           "scorpion_hasher": "1.0.0"
         },
         "compile": {
@@ -223,7 +223,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "scorpion_aes": "1.0.0",
+          "Scorpion_Aes": "1.0.0",
           "scorpion_cryptography": "1.0.0"
         },
         "compile": {

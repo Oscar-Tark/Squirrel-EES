@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\scorpion_cryptography\scorpion_cryptography.csproj" />
-    <ProjectReference Include="..\scorpion_aes\scorpion_aes.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-AES\Scorpion_Aes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

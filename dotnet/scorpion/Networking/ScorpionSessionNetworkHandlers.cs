@@ -26,6 +26,8 @@ using System.Net.Sockets;
 using System.Security;
 using System.Threading;
 using System.Text;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace Scorpion
 {
@@ -163,8 +165,21 @@ namespace Scorpion
 
                 //RSA then encrypt and send as byte[]... CHANGE TO AES
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                    e.Reply(ScorpionAES.ScorpionAES.encryptData(reply, "test"));
+                {
+                    using (Aes myAes = Aes.Create())
+                    {
+                        //!!!!!!!!!!!For testing, read from file otherwise
+                        byte[] key =
+                        {
+                            0xff, 0x0a, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+                            0x09, 0xda, 0x11, 0x12, 0x13, 0xca, 0x15, 0x16
+                        };
+                        myAes.Key = key;
+                        e.Reply(ScorpionAES.ScorpionAESInHouse.encrypt(reply, myAes.Key, myAes.IV));
+                    }
+                    //e.Reply(ScorpionAES.ScorpionAES.encryptData(reply, "test"));
                     //e.Reply(Scorpion_RSA.ScorpionRSAMin.encrypt(Encoding.ASCII.GetBytes(reply), Types.HANDLE.mem.GetTcpKeyPath(server_index)[1]));
+                }
 
                 //No RSA then just send as string
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)

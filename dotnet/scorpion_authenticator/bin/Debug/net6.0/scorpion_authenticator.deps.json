@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "scorpion_authenticator/1.0.0": {
         "dependencies": {
-          "scorpion_aes": "1.0.0",
+          "Scorpion_Aes": "1.0.0",
           "scorpion_hasher": "1.0.0"
         },
         "runtime": {
@@ -50,12 +50,12 @@
           }
         }
       },
-      "scorpion_aes/1.0.0": {
+      "Scorpion_Aes/1.0.0": {
         "dependencies": {
           "EasyEncrypt": "2.2.1"
         },
         "runtime": {
-          "scorpion_aes.dll": {}
+          "Scorpion_Aes.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -103,7 +103,7 @@
       "path": "easyencrypt/2.2.1",
       "hashPath": "easyencrypt.2.2.1.nupkg.sha512"
     },
-    "scorpion_aes/1.0.0": {
+    "Scorpion_Aes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

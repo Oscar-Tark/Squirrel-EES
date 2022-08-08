@@ -1,0 +1,2 @@
+processdefine::*'openssl', *f'rsa -in {((path))}/RSA/private-key.pem -pubout -out {((path))}/RSA/public-key.pem', *'genrsapub', *false, *false
+processrun::*'genrsapub'

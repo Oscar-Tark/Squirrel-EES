@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\scorpion_hasher\scorpion_hasher.csproj" />
-    <ProjectReference Include="..\scorpion_aes\scorpion_aes.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-AES\Scorpion_Aes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
