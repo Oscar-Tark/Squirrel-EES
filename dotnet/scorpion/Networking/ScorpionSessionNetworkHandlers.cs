@@ -25,6 +25,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Security;
 using System.Threading;
+using System.Text;
 
 namespace Scorpion
 {
@@ -95,7 +96,7 @@ namespace Scorpion
 
             //Check if RSA
             if (Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, Scorpion_RSA.Scorpion_RSA.get_private_key_file(Types.HANDLE.mem.GetTcpKeyPath(server_index)[0]));
+                data = Scorpion_RSA.ScorpionRSAMin.decrypt(e.Data, Types.HANDLE.mem.GetTcpKeyPath(server_index)[0]);
 
             //Btyte->string, Parse string
             string s_data = Types.HANDLE.crypto.To_String(data);
@@ -160,11 +161,12 @@ namespace Scorpion
                 else
                     reply = nef__.build_api("Command error. Incorrect syntax", "", true);
 
-                //RSA then encrypt and send
+                //RSA then encrypt and send as byte[]... CHANGE TO AES
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                    e.Reply(Scorpion_RSA.Scorpion_RSA.encrypt_data(reply, Scorpion_RSA.Scorpion_RSA.get_public_key_file(Types.HANDLE.mem.GetTcpKeyPath(server_index)[0])));
+                    e.Reply(ScorpionAES.ScorpionAES.encryptData(reply, "test"));
+                    //e.Reply(Scorpion_RSA.ScorpionRSAMin.encrypt(Encoding.ASCII.GetBytes(reply), Types.HANDLE.mem.GetTcpKeyPath(server_index)[1]));
 
-                //No RSA then just send
+                //No RSA then just send as string
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
                     e.Reply(reply);
             }

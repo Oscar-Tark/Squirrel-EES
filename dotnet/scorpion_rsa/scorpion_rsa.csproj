@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Capgemini.Cauldron.Cryptography" Version="3.2.3" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

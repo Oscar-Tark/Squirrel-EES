@@ -41,6 +41,10 @@
             "Capgemini.Cauldron.Cryptography": {
               "target": "Package",
               "version": "[3.2.3, )"
+            },
+            "System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

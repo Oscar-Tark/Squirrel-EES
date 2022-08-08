@@ -2,10 +2,34 @@
 using System.Security;
 using System.IO;
 using Cauldron.Cryptography;
+using System.Security.Cryptography;
 
 //A library to load and create RSA keys
 namespace Scorpion_RSA
 {
+    public static class ScorpionRSAMin
+    {
+        public static byte[] decrypt(byte[] data, string path)
+        {
+            //return Rsa.Decrypt(private_key_path, data);
+            using(var rsa = RSAOpenSsl.Create())
+            {
+              rsa.ImportFromPem(File.ReadAllText(path));
+              return rsa.Decrypt(data, RSAEncryptionPadding.Pkcs1);
+            }
+        }
+
+        public static byte[] encrypt(byte[] data, string path)
+        {
+            using(var rsa = RSAOpenSsl.Create())
+            {
+              rsa.ImportFromPem(File.ReadAllText(path));
+              return rsa.Encrypt(data, RSAEncryptionPadding.Pkcs1);
+            }
+        }
+    }
+
+    //BELOW ALL DEPRECIATED
     public static class Scorpion_RSA
     {
         public static void generateRSAkeys(string public_key_file, string private_key_file)

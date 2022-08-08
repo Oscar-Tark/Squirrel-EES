@@ -86,5 +86,3 @@
 /home/chipmunk/GIT/Scorpion-IEE/dotnet/scorpion/obj/Debug/net6.0/scorpion.genruntimeconfig.cache
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_processes.dll
 /home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_processes.pdb
-/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_http_server.dll
-/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion/bin/Debug/net6.0/scorpion_http_server.pdb
