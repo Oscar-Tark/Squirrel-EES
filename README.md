@@ -52,8 +52,8 @@ Here they are:
 - {&r} = >>
 - {&l} = <<
 - {&d} = ::
-- {&fl} = {[[
-- {&fr} = ]]}
+- {&fl} = {((
+- {&fr} = ))}
 
 **Function calls:**
 
