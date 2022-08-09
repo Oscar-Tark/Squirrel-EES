@@ -168,17 +168,11 @@ namespace Scorpion
                 {
                     using (Aes myAes = Aes.Create())
                     {
-                        //!!!!!!!!!!!For testing, read from file otherwise
-                        byte[] key =
-                        {
-                            0xff, 0x0a, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
-                            0x09, 0xda, 0x11, 0x12, 0x13, 0xca, 0x15, 0x16
-                        };
+                        //Must be a 16 byte key
+                        byte[] key = ScorpionAES.ScorpionAESInHouse.importKey(Types.main_user_aes_path_file);
                         myAes.Key = key;
                         e.Reply(ScorpionAES.ScorpionAESInHouse.encrypt(reply, myAes.Key, myAes.IV));
                     }
-                    //e.Reply(ScorpionAES.ScorpionAES.encryptData(reply, "test"));
-                    //e.Reply(Scorpion_RSA.ScorpionRSAMin.encrypt(Encoding.ASCII.GetBytes(reply), Types.HANDLE.mem.GetTcpKeyPath(server_index)[1]));
                 }
 
                 //No RSA then just send as string

@@ -31,6 +31,9 @@ namespace Scorpion
         public static string main_user_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion";
         public static string main_user_projects_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Projects";
         public static string main_user_manuals_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/Manuals";
+        public static string main_user_aes_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/AES";
+        public static string main_user_aes_path_file = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/AES/aes.ky";
+        public static string main_user_rsa_path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Scorpion/RSA";
 
         public static Scorp HANDLE;
         public static short READ_SIGNAL_OFF = 0x00;

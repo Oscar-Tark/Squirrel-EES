@@ -20,6 +20,7 @@ using System.Text;
 using System.Collections;
 using System.Net;
 using System.ComponentModel;
+using ScorpionConsoleReadWrite;
 
 namespace Scorpion
 {
@@ -48,6 +49,20 @@ namespace Scorpion
             int port = Convert.ToInt32(var_get(objects[2]));
             string RSA_private_path = (string)var_get(objects[3]);
             string RSA_public_path = (string)var_get(objects[4]);
+
+            //Check if the AES encryption key exists
+            if(!File.Exists(Types.main_user_aes_path_file))
+            {
+                ConsoleWrite.writeError("No AES key found at: ", Types.main_user_aes_path_file, ". Use the command 'generateaeskey' to generate one");
+                return;
+            }
+
+            //Check if the RSA encryption keys exist
+            if(!File.Exists(RSA_private_path) || !File.Exists(RSA_public_path))
+            {
+                ConsoleWrite.writeError("The provided RSA public key: ", RSA_public_path, ", or private key: ", RSA_private_path, " could not be found");
+                return;
+            }
 
             Types.HANDLE.sdh.AddTcpServer(name, ip, port, RSA_private_path == Types.S_NULL ? null : RSA_private_path, RSA_public_path == Types.S_NULL ? null : RSA_public_path);
             write_to_console("TCP server started, Please remember to configure your firewall appropriately");

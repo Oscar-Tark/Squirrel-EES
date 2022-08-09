@@ -128,8 +128,14 @@ namespace Scorpion
                 return false;
             
             //Main directory created then continue
-            Directory.CreateDirectory(Types.main_user_manuals_path);
-            Directory.CreateDirectory(Types.main_user_projects_path);
+            if (!Directory.Exists(Types.main_user_manuals_path))
+                Directory.CreateDirectory(Types.main_user_manuals_path);
+            if (!Directory.Exists(Types.main_user_projects_path))
+                Directory.CreateDirectory(Types.main_user_projects_path);
+            if (!Directory.Exists(Types.main_user_aes_path))
+                Directory.CreateDirectory(Types.main_user_aes_path);
+            if (!Directory.Exists(Types.main_user_rsa_path))
+                Directory.CreateDirectory(Types.main_user_rsa_path);
 
             return true;
         }

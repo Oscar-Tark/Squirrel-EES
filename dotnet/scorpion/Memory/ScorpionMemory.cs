@@ -385,8 +385,7 @@ namespace Scorpion
 
         public void vararraysort(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //Sorts a Scorpion.Array. Values are ASCII sorted
-
+            //Sorts a Scorpion.Array.
             //::*array
 
             ((ArrayList)var_get(objects[0])).Sort();

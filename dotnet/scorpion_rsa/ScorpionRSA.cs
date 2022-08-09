@@ -3,6 +3,7 @@ using System.Security;
 using System.IO;
 using Cauldron.Cryptography;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 //A library to load and create RSA keys
 namespace Scorpion_RSA
@@ -32,6 +33,7 @@ namespace Scorpion_RSA
     //BELOW ALL DEPRECIATED
     public static class Scorpion_RSA
     {
+        //[Obsolete]
         public static void generateRSAkeys(string public_key_file, string private_key_file)
         {
             Console.WriteLine("Generating keys (This might take a while)...");
