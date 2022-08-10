@@ -10,17 +10,17 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "Scorpion_Aes": "1.0.0",
+          "Scorpion_Cryptography": "1.0.0",
+          "Scorpion_XMLDB": "1.0.0",
           "SimpleTCP.Net5": "1.0.25",
           "System.Security.Cryptography.OpenSsl": "5.0.0",
           "consolereadwrite": "1.0.0",
           "scorpion_authenticator": "1.0.0",
           "scorpion_compiler": "1.0.0",
-          "scorpion_cryptography": "1.0.0",
           "scorpion_log": "1.0.0",
           "scorpion_processes": "1.0.0",
           "scorpion_rsa": "1.0.0",
-          "scorpion_sql": "1.0.0",
-          "scorpion_xmldb": "1.0.0"
+          "scorpion_sql": "1.0.0"
         },
         "runtime": {
           "scorpion.dll": {}
@@ -118,12 +118,12 @@
           "scorpion_compiler.dll": {}
         }
       },
-      "scorpion_cryptography/1.0.0": {
+      "Scorpion_Cryptography/1.0.0": {
         "dependencies": {
           "Capgemini.Cauldron.Cryptography": "3.2.3"
         },
         "runtime": {
-          "scorpion_cryptography.dll": {}
+          "Scorpion_Cryptography.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -165,13 +165,13 @@
           "scorpion_sql.dll": {}
         }
       },
-      "scorpion_xmldb/1.0.0": {
+      "Scorpion_XMLDB/1.0.0": {
         "dependencies": {
           "Scorpion_Aes": "1.0.0",
-          "scorpion_cryptography": "1.0.0"
+          "Scorpion_Cryptography": "1.0.0"
         },
         "runtime": {
-          "scorpion_xmldb.dll": {}
+          "Scorpion_XMLDB.dll": {}
         }
       }
     }
@@ -265,7 +265,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "scorpion_cryptography/1.0.0": {
+    "Scorpion_Cryptography/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -295,7 +295,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "scorpion_xmldb/1.0.0": {
+    "Scorpion_XMLDB/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

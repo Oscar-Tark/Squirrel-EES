@@ -142,17 +142,17 @@
           "bin/placeholder/scorpion_compiler.dll": {}
         }
       },
-      "scorpion_cryptography/1.0.0": {
+      "Scorpion_Cryptography/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Capgemini.Cauldron.Cryptography": "3.2.3"
         },
         "compile": {
-          "bin/placeholder/scorpion_cryptography.dll": {}
+          "bin/placeholder/Scorpion_Cryptography.dll": {}
         },
         "runtime": {
-          "bin/placeholder/scorpion_cryptography.dll": {}
+          "bin/placeholder/Scorpion_Cryptography.dll": {}
         }
       },
       "scorpion_hasher/1.0.0": {
@@ -219,18 +219,18 @@
           "bin/placeholder/scorpion_sql.dll": {}
         }
       },
-      "scorpion_xmldb/1.0.0": {
+      "Scorpion_XMLDB/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Scorpion_Aes": "1.0.0",
-          "scorpion_cryptography": "1.0.0"
+          "Scorpion_Cryptography": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/scorpion_xmldb.dll": {}
+          "bin/placeholder/Scorpion_XMLDB.dll": {}
         },
         "runtime": {
-          "bin/placeholder/scorpion_xmldb.dll": {}
+          "bin/placeholder/Scorpion_XMLDB.dll": {}
         }
       }
     }
@@ -485,10 +485,10 @@
       "path": "../scorpion_compiler/scorpion_compiler.csproj",
       "msbuildProject": "../scorpion_compiler/scorpion_compiler.csproj"
     },
-    "scorpion_cryptography/1.0.0": {
+    "Scorpion_Cryptography/1.0.0": {
       "type": "project",
-      "path": "../scorpion_cryptography/scorpion_cryptography.csproj",
-      "msbuildProject": "../scorpion_cryptography/scorpion_cryptography.csproj"
+      "path": "../../../Scorpion-Cryptography/Scorpion_Cryptography.csproj",
+      "msbuildProject": "../../../Scorpion-Cryptography/Scorpion_Cryptography.csproj"
     },
     "scorpion_hasher/1.0.0": {
       "type": "project",
@@ -515,27 +515,27 @@
       "path": "../scorpion_sql/scorpion_sql.csproj",
       "msbuildProject": "../scorpion_sql/scorpion_sql.csproj"
     },
-    "scorpion_xmldb/1.0.0": {
+    "Scorpion_XMLDB/1.0.0": {
       "type": "project",
-      "path": "../scorpion_xmldb/scorpion_xmldb.csproj",
-      "msbuildProject": "../scorpion_xmldb/scorpion_xmldb.csproj"
+      "path": "../../../Scorpion-XMLDB/Scorpion_XMLDB.csproj",
+      "msbuildProject": "../../../Scorpion-XMLDB/Scorpion_XMLDB.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Newtonsoft.Json >= 13.0.1",
       "Scorpion_Aes >= 1.0.0",
+      "Scorpion_Cryptography >= 1.0.0",
+      "Scorpion_XMLDB >= 1.0.0",
       "SimpleTCP.Net5 >= 1.0.25",
       "System.Security.Cryptography.OpenSsl >= 5.0.0",
       "consolereadwrite >= 1.0.0",
       "scorpion_authenticator >= 1.0.0",
       "scorpion_compiler >= 1.0.0",
-      "scorpion_cryptography >= 1.0.0",
       "scorpion_log >= 1.0.0",
       "scorpion_processes >= 1.0.0",
       "scorpion_rsa >= 1.0.0",
-      "scorpion_sql >= 1.0.0",
-      "scorpion_xmldb >= 1.0.0"
+      "scorpion_sql >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -569,14 +569,14 @@
             "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj"
             },
+            "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj"
+            },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_authenticator/scorpion_authenticator.csproj"
             },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/scorpion_compiler.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_compiler/scorpion_compiler.csproj"
-            },
-            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj": {
-              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_cryptography/scorpion_cryptography.csproj"
             },
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_log/scorpion_log.csproj"
@@ -590,8 +590,8 @@
             "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_sql/scorpion_sql.csproj"
             },
-            "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj": {
-              "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/scorpion_xmldb/scorpion_xmldb.csproj"
+            "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj"
             }
           }
         }
