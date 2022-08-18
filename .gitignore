@@ -6,4 +6,4 @@
 *.cache
 *.dll
 *.pdb
-vs/
+.vs/
