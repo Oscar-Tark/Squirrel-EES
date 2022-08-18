@@ -62,15 +62,28 @@ namespace Scorpion
                     }
                     else if(cki.Key == ConsoleKey.UpArrow && history_current < history.Count)
                     {
+                        if(history_current == -1)
+                            history_current = 0;
+
                         Console.Write("\r{0}", history[history_current]);
                         line = history[history_current];
                         history_current++;
                     }
-                    else if(cki.Key == ConsoleKey.DownArrow && history_current > 0)
+                    else if(cki.Key == ConsoleKey.DownArrow && history_current > -1)
                     {
-                        Console.Write("\r{0}", history[history_current]);
-                        line = history[history_current];
                         history_current--;
+                        if(history_current == -1)
+                        {
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(new string(' ', Console.BufferWidth)); 
+                            Console.Write("\r{0}", "");
+                            line = "";
+                        }
+                        else
+                        {
+                            Console.Write("\r{0}", history[history_current]);
+                            line = history[history_current];
+                        }
                     }
                     else if(cki.Key == ConsoleKey.PageUp)
                     {
