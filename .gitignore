@@ -6,5 +6,4 @@
 *.cache
 *.dll
 *.pdb
-*.json
 vs/
