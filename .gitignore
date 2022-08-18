@@ -6,9 +6,17 @@ vs/
 *.lock
 *.exe
 *.cache
+*.dll
+*.pub
 !spec/*.exe
 !spec/**/*.exe
 !spec/**/**/*.exe
+!spec/*.pub
+!spec/**/*.pub
+!spec/**/**/*.pub
+!spec/*.dll
+!spec/**/*.dll
+!spec/**/**/*.dll
 !spec/*.cache
 !spec/**/*.cache
 !spec/**/**/*.cache
