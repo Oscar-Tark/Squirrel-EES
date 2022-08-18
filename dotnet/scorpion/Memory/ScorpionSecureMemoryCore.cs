@@ -128,7 +128,7 @@ namespace Scorpion.Memory_Security
         public void encrypt(ref string Reference)
         {
             //::*ref, var
-            byte[] b_e = Types.HANDLE.crypto.AES_ENCRYPT(Types.HANDLE.mmsec.get_pwd(), Types.HANDLE.librarian_instance.librarian.var_get(ref Reference));
+            byte[] b_e = Types.HANDLE.crypto.AES_ENCRYPT(Types.HANDLE.mmsec.get_pwd(), MemoryCore.varGet(ref Reference));
             var_set_encrypted(Reference, b_e);
             return;
         }

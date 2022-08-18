@@ -87,9 +87,6 @@ namespace Scorpion
 
             object sender = ((object[])param_thread_object)[0];
             SimpleTCP.Message e = (SimpleTCP.Message)((object[])param_thread_object)[1];
-            
-            Enginefunctions ef__ = new Enginefunctions();
-            NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
             int server_index = Types.HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
             //string session = Types.S_NULL;
@@ -102,8 +99,8 @@ namespace Scorpion
 
             //Btyte->string, Parse string
             string s_data = Types.HANDLE.crypto.To_String(data);
-            string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
-            Dictionary<string, string> processed = nef__.replace_api(command);
+            string command = Enginefunctions.replace_fakes(NetworkEngineFunctions.replace_telnet(s_data));
+            Dictionary<string, string> processed = NetworkEngineFunctions.replace_api(command);
 
             //Get session from parsed elements
             string session = processed["session"];
@@ -115,7 +112,7 @@ namespace Scorpion
                 if (processed != null)
                 {
                     //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable
-                    if(!Types.HANDLE.librarian_instance.librarian.varCheck(session))
+                    if(!MemoryCore.varCheck(session))
                     {
                         ArrayList temp = new ArrayList(){ session };
                         Types.HANDLE.librarian_instance.librarian.vardictionary(ref destroyable, ref temp);
@@ -125,7 +122,7 @@ namespace Scorpion
                         Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
                     }
 
-                    if (processed["type"] == nef__.api_requests["get"])
+                    if (processed["type"] == NetworkEngineFunctions.api_requests["get"])
                     {
                         //Get formattable page from XMLDB
                         ArrayList query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
@@ -139,29 +136,29 @@ namespace Scorpion
 
                             //Session allows us to return the page with user loaded session data
                             if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
-                                reply = nef__.build_api((string)Types.HANDLE.librarian_instance.librarian.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                                reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
                             else
-                                reply = nef__.build_api((string)db_page, Types.S_NULL, false);
+                                reply = NetworkEngineFunctions.build_api((string)db_page, Types.S_NULL, false);
                         }
                         else
-                            reply = nef__.build_api("Query resulted in 0 elements returned", session, true);
+                            reply = NetworkEngineFunctions.build_api("Query resulted in 0 elements returned", session, true);
                     }
-                    else if (processed["type"] == nef__.api_requests["set"])
+                    else if (processed["type"] == NetworkEngineFunctions.api_requests["set"])
                     {
                         command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
                         string[] commands = command.Split(new char[] { '\n' });
                         foreach (string s_dat in commands)
                             Types.HANDLE.librarian_instance.librarian.scorpioniee(s_dat);
-                        reply = nef__.build_api("Command executed", session, false);
+                        reply = NetworkEngineFunctions.build_api("Command executed", session, false);
                     }
-                    else if (processed["type"] == nef__.api_requests["delete"])
+                    else if (processed["type"] == NetworkEngineFunctions.api_requests["delete"])
                     {
 
                         //Delete a session on request from the HTTP server (Time based)
                     }
                 }
                 else
-                    reply = nef__.build_api("Command error. Incorrect syntax", "", true);
+                    reply = NetworkEngineFunctions.build_api("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send as byte[]... CHANGE TO AES
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
@@ -184,9 +181,6 @@ namespace Scorpion
             {
                 e.TcpClient.Client.Disconnect(true);
             }
-
-            ef__ = null;
-            nef__ = null;
             return;
         }
 
@@ -251,13 +245,8 @@ namespace Scorpion
             string s_data = Types.HANDLE.crypto.To_String(data);
 
             //Removes delimiter 0x13 and executes
-            NetworkEngineFunctions nef__ = new NetworkEngineFunctions();
-            Enginefunctions ef__ = new Enginefunctions();
-            string command = ef__.replace_fakes(nef__.replace_telnet(s_data));
+            string command = Enginefunctions.replace_fakes(NetworkEngineFunctions.replace_telnet(s_data));
             Types.HANDLE.librarian_instance.librarian.scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
-            
-            ef__ = null;
-            nef__ = null;
             return;
         }
     }

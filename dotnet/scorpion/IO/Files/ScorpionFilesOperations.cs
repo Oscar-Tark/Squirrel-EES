@@ -26,7 +26,7 @@ namespace Scorpion
         {
             //Read a UTF8 Encoded file from disk
             //*returnable<<::*path
-            FileStream fs = new FileStream((string)var_get(objects[0]), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream((string)MemoryCore.varGet(objects[0]), FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs, true);
             string RSA = sr.ReadToEnd();
             fs.Flush();
@@ -43,7 +43,7 @@ namespace Scorpion
         {
             //Read a raw binary file
             //*returnable<<::*path
-            byte[] byter = File.ReadAllBytes((string)var_get(objects[0]));
+            byte[] byter = File.ReadAllBytes((string)MemoryCore.varGet(objects[0]));
 
             //claen
             var_arraylist_dispose(ref objects);
@@ -56,12 +56,12 @@ namespace Scorpion
             //Write a UTF8 Encoded file to disk
             //::*path, *append<true>, *text
             FileMode fm = FileMode.OpenOrCreate;
-            if ((string)var_get(objects[1]) == Types.S_Yes)
+            if ((string)MemoryCore.varGet(objects[1]) == Types.S_Yes)
                 fm = FileMode.Append;
 
-            FileStream fs = new FileStream((string)var_get(objects[0]), fm, FileAccess.Write, FileShare.Write);
+            FileStream fs = new FileStream((string)MemoryCore.varGet(objects[0]), fm, FileAccess.Write, FileShare.Write);
             StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8);
-            sw.Write(var_get(objects[2]));
+            sw.Write(MemoryCore.varGet(objects[2]));
             sw.Flush();
             fs.Flush();
             sw.Close();
@@ -78,8 +78,8 @@ namespace Scorpion
         {
             //Write a raw binary file to disk
             //::*path, *byteobject
-            byte[] bytew = Types.HANDLE.crypto.To_Byte(var_get(objects[1]));
-            File.WriteAllBytes((string)var_get(objects[0]), bytew);
+            byte[] bytew = Types.HANDLE.crypto.To_Byte(MemoryCore.varGet(objects[1]));
+            File.WriteAllBytes((string)MemoryCore.varGet(objects[0]), bytew);
 
             //clean
             var_arraylist_dispose(ref objects);
@@ -92,7 +92,7 @@ namespace Scorpion
         {
             //Get a files folder
             //RETURNABLE<<::*file
-            FileInfo fnf = new FileInfo((string)var_get(objects[0]));
+            FileInfo fnf = new FileInfo((string)MemoryCore.varGet(objects[0]));
 
             //clean
             var_arraylist_dispose(ref objects);
@@ -104,11 +104,11 @@ namespace Scorpion
         {
             //Get directories within folder
             //RETURNABLE<<::*path, *[tolist:BOOLEAN]
-            DirectoryInfo df = new DirectoryInfo((string)var_get(objects[0]));
+            DirectoryInfo df = new DirectoryInfo((string)MemoryCore.varGet(objects[0]));
             ArrayList al_ret = new ArrayList();
             foreach (DirectoryInfo dirs in df.GetDirectories())
             {
-                if ((string)var_get(objects[1]) == Types.S_Yes)
+                if ((string)MemoryCore.varGet(objects[1]) == Types.S_Yes)
                     al_ret.Add(dirs.Name);
                 else
                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(dirs.Name);
@@ -124,11 +124,11 @@ namespace Scorpion
         {
             //Get files within a folder
             //RETURNABLE<<::*path, *[tolist:BOOLEAN]
-            DirectoryInfo df = new DirectoryInfo((string)var_get(objects[0]));
+            DirectoryInfo df = new DirectoryInfo((string)MemoryCore.varGet(objects[0]));
             ArrayList al_ret = new ArrayList();
             foreach (FileInfo fils in df.GetFiles())
             {
-                if ((string)var_get(objects[1]) == Types.S_Yes)
+                if ((string)MemoryCore.varGet(objects[1]) == Types.S_Yes)
                     al_ret.Add(fils.Name);
                 else
                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(fils.Name);
@@ -139,20 +139,15 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             return var_create_return(ref al_ret);
         }
-    }
 
-    partial class Librarian
-    {
-        private string read_file(string path)
+        public void createDirectory(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            FileStream fd = new FileStream(path, FileMode.Open);
-            StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-            string s_read = sr.ReadToEnd();
-            sr.Close();
-            fd.Close();
+            Directory.CreateDirectory((string)MemoryCore.varGet(objects[0]));
 
-            path = null;
-            return s_read;
+            //clean
+            var_arraylist_dispose(ref objects);
+            var_dispose_internal(ref Scorp_Line_Exec);
+            return;
         }
     }
 }

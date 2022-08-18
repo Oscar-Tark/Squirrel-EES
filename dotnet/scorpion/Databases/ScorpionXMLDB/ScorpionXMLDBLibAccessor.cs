@@ -37,8 +37,8 @@ namespace Scorpion
         {
             //::*File_Name_w_path, *pwd
             //{val}
-            string name = (string)var_get(objects[0]);
-            string password = (string)var_get(objects[1]);
+            string name = (string)MemoryCore.varGet(objects[0]);
+            string password = (string)MemoryCore.varGet(objects[1]);
 
             Types.HANDLE.vds.createDB(name, false, password);
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Created Data File(to disk) : " + name + "]");
@@ -51,9 +51,9 @@ namespace Scorpion
         public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *path, *password
-            string name = (string)var_get(objects[0]);
-            string path = (string)var_get(objects[1]);
-            string password = (string)var_get(objects[2]);
+            string name = (string)MemoryCore.varGet(objects[0]);
+            string path = (string)MemoryCore.varGet(objects[1]);
+            string password = (string)MemoryCore.varGet(objects[2]);
             
             Types.HANDLE.vds.loadDB(path, name, password);
             var_arraylist_dispose(ref objects);
@@ -65,16 +65,16 @@ namespace Scorpion
         public void dbclose(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name
-            Types.HANDLE.vds.closeDB((string)var_get(objects[0]));
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Database [" + var_get(objects[0]) + "] closed");
+            Types.HANDLE.vds.closeDB((string)MemoryCore.varGet(objects[0]));
+            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Database [" + MemoryCore.varGet(objects[0]) + "] closed");
             return;
         }
 
         public void dbsave(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *password
-            string name = (string)var_get(objects[0]);
-            string password = (string)var_get(objects[1]);
+            string name = (string)MemoryCore.varGet(objects[0]);
+            string password = (string)MemoryCore.varGet(objects[1]);
             
             Types.HANDLE.vds.saveDB(name, password);
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Database [" + name + "] saved");
@@ -87,8 +87,8 @@ namespace Scorpion
         public void dbreload(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*dbname, *password
-            string name = (string)var_get(objects[0]);
-            string password = (string)var_get(objects[1]);
+            string name = (string)MemoryCore.varGet(objects[0]);
+            string password = (string)MemoryCore.varGet(objects[1]);
 
             Types.HANDLE.vds.reloadDB(name, password);
 
@@ -114,7 +114,7 @@ namespace Scorpion
         public void dbset(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *data, *tag|or *null, *subtag|or *null
-            if (Types.HANDLE.vds.setDB((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3])))
+            if (Types.HANDLE.vds.setDB((string)MemoryCore.varGet(objects[0]), MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3])))
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Value set to database");
             else
                 ScorpionConsoleReadWrite.ConsoleWrite.writeError("Unable to set value to database");
@@ -126,7 +126,7 @@ namespace Scorpion
         public object dbgetall(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*return<<::*path/name of database
-            ArrayList result = Types.HANDLE.vds.getDBAllNoThread((string)var_get(objects[0]));
+            ArrayList result = Types.HANDLE.vds.getDBAllNoThread((string)MemoryCore.varGet(objects[0]));
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref result);
@@ -143,7 +143,7 @@ namespace Scorpion
              * subtag = the specific subtag such as 'Name' that can be extracted from a tag cluster. If this is *'' then values are searched by tag, if tag is also empty then values are searched by *data
             */
 
-            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Types.HANDLE.vds.OPCODE_GET);
+            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), Types.HANDLE.vds.OPCODE_GET);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(ref result);
@@ -160,7 +160,7 @@ namespace Scorpion
              * subtag = the specific subtag such as 'Name' that can be extracted for deletion from a tag cluster. If this is *'' then values are searched for deletion by tag, if tag is also empty then values are searched for deletion by *data
             */
 
-            Types.HANDLE.vds.doDBSelectiveNoThread((string)var_get(objects[0]), var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), Types.HANDLE.vds.OPCODE_DELETE);
+            Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), Types.HANDLE.vds.OPCODE_DELETE);
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return;

@@ -5,7 +5,7 @@ using System.Collections;
 //Static Library
 namespace Scorpion
 {
-    partial class Librarian
+    public static class ParsingCore
     {
         static T DirectCast<T>(object o, Type type) where T : class
         {
@@ -17,13 +17,13 @@ namespace Scorpion
             return value;
         }
 
-        public ArrayList cut_variables(string Scorp_Line_Exec) =>
+        public static ArrayList cut_variables(string Scorp_Line_Exec) =>
             split_vars(ref Scorp_Line_Exec);
 
-        public ArrayList cut_variables(ref string Scorp_Line_Exec) =>
+        public static ArrayList cut_variables(ref string Scorp_Line_Exec) =>
             split_vars(ref Scorp_Line_Exec);
 
-        private ArrayList split_vars(ref string Scorp)
+        private static ArrayList split_vars(ref string Scorp)
         {
             string[] vars = Scorp.Split('*', ',');
             //Allow value variables with ubearables
@@ -38,7 +38,7 @@ namespace Scorpion
             return vars_;
         }
 
-        public ArrayList cut_commands(ref string Scorp_Line_Exec, ref ArrayList append, int index)
+        public static ArrayList cut_commands(ref string Scorp_Line_Exec, ref ArrayList append, int index)
         {
             //(''),(,''),[''],['',],['' ]
             int ndx = 0; int ndx2 = 0;// ArrayList al = new ArrayList();
@@ -54,19 +54,17 @@ namespace Scorpion
 
                 ndx++;
             }
-
-
             return append;
         }
 
-        public ArrayList cut_symbol(ref ArrayList al)
+        public static ArrayList cut_symbol(ref ArrayList al)
         {
             for (int i = 0; i < al.Count; i++)
-                al[i] = var_get(al[i].ToString());
+                al[i] = MemoryCore.varGet(al[i].ToString());
             return al;
         }
 
-        public string cut_square_parenth_LEADING_TRACE(ref string Scorp_Line_Exec, int Trail, char Last_Del)
+        public static string cut_square_parenth_LEADING_TRACE(ref string Scorp_Line_Exec, int Trail, char Last_Del)
         {
             int index = -1;
             for (int i = 0; i < Trail; i++)
@@ -81,7 +79,7 @@ namespace Scorpion
             return Scorp_Line_Exec = Scorp_Line_Exec.Remove(0, index);
         }
 
-        public int[] toIntArray(object[] array)
+        public static int[] toIntArray(object[] array)
         {
             int hold = -1, ndx = 0;
             int[] returnable = new int[array.Length];

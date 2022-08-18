@@ -14,7 +14,7 @@ namespace Scorpion
         public string jsonfromdictionary(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //*return<<::*Scorpion.Dictionary
-            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(var_get((string)objects[0]), Newtonsoft.Json.Formatting.Indented);
+            string JSON = Newtonsoft.Json.JsonConvert.SerializeObject(MemoryCore.varGet((string)objects[0]), Newtonsoft.Json.Formatting.Indented);
             Console.WriteLine(JSON);
             return "["+JSON+"]";
         }
@@ -27,7 +27,7 @@ namespace Scorpion
             Dictionary<string, object> dictObj = null;
             try
             {
-                JArray Jarr = JArray.Parse((string)var_get(objects[0]));
+                JArray Jarr = JArray.Parse((string)MemoryCore.varGet(objects[0]));
                 foreach (JObject Jobj in Jarr)
                     dictObj = Jobj.ToObject<Dictionary<string, object>>();
             }
@@ -82,10 +82,10 @@ namespace Scorpion
             //Workaround objects[1] gets cancelled after hhtp response message
             string ret = (string)objects[1];
 
-            System.Console.WriteLine((string)var_get(objects[0]));
+            System.Console.WriteLine((string)MemoryCore.varGet(objects[0]));
 
             // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)var_get(objects[0]));
+            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
 
             // Get the response content.
             HttpContent responseContent = response.Content;
@@ -121,14 +121,14 @@ namespace Scorpion
             // Create the HttpContent for the form to be posted.
             /*StringContent requestContent;
             if (objects.Count > 4)
-                requestContent = new StringContent((string)var_get(objects[4]));
+                requestContent = new StringContent((string)MemoryCore.varGet(objects[4]));
             //requestContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("HTTP/1.1", "GET"),});
             else
                 requestContent = new StringContent("");
             requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");*/
 
             // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)var_get(objects[0]));
+            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
 
             // Get the response content.
             HttpContent responseContent = response.Content;
@@ -156,7 +156,7 @@ namespace Scorpion
             string ret = (string)objects[1];
 
             // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)var_get(objects[0]));
+            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
 
             // Get the response content.
             HttpContent responseContent = response.Content;

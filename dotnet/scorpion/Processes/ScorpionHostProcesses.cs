@@ -25,7 +25,7 @@ namespace Scorpion
         {
             //::*process_name
             //Types.READ_SIGNAL_CURRENT = Types.READ_SIGNAL_OFF;
-            Types.HANDLE.scp.startProcess((string)var_get(objects[0]));
+            Types.HANDLE.scp.startProcess((string)MemoryCore.varGet(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -48,18 +48,18 @@ namespace Scorpion
                 ProcessStartInfo pri_s;
                 bool is_sudo = false;
 
-                if(var_get(objects[4]) == Types.S_No)
+                if(MemoryCore.varGet(objects[4]) == Types.S_No)
                 {
-                    pri_s = new ProcessStartInfo((string)var_get(objects[0]), (string)var_get(objects[1]));
+                    pri_s = new ProcessStartInfo((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
                 }
                 else
                 {
-                    pri_s = new ProcessStartInfo(Types.S_ROOT_LINUX, String.Format("{0} {1}", (string)var_get(objects[0]), (string)var_get(objects[1])));
+                    pri_s = new ProcessStartInfo(Types.S_ROOT_LINUX, String.Format("{0} {1}", (string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1])));
                     is_sudo = true;
                 }
 
                 pri_.Exited += Types.HANDLE.scp.processExited;
-                if ((string)var_get(objects[3]) == Types.S_No)
+                if ((string)MemoryCore.varGet(objects[3]) == Types.S_No)
                 {
                     pri_s.RedirectStandardOutput = true;
                     pri_s.RedirectStandardInput = true;
@@ -67,7 +67,7 @@ namespace Scorpion
                 }
 
                 pri_.StartInfo = pri_s;
-                Types.HANDLE.scp.addProcess(ref pri_, (string)var_get(objects[2]), is_sudo);
+                Types.HANDLE.scp.addProcess(ref pri_, (string)MemoryCore.varGet(objects[2]), is_sudo);
             }
             catch(Exception e) { Console.WriteLine(e.Message); }
 
@@ -81,7 +81,7 @@ namespace Scorpion
             //Show output for a process
             //*return<<::*process_name
 
-            string output_ = Types.HANDLE.scp.getStdOut((string)var_get(objects[0]));
+            string output_ = Types.HANDLE.scp.getStdOut((string)MemoryCore.varGet(objects[0]));
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(output_);
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -94,7 +94,7 @@ namespace Scorpion
             //Show C#.Async output for a process
             //::*process_name
 
-            Types.HANDLE.scp.get_stdout_async((string)var_get(objects[0]));
+            Types.HANDLE.scp.get_stdout_async((string)MemoryCore.varGet(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -106,7 +106,7 @@ namespace Scorpion
             //Sends input from a variable to a process
             //::*process_name, *input
 
-            Types.HANDLE.scp.setStdIn((string)var_get(objects[0]), (string)var_get(objects[1]));
+            Types.HANDLE.scp.setStdIn((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -119,7 +119,7 @@ namespace Scorpion
             //Stops an closes a process and deletes it from Scorpions control
             //::*process_name
 
-            Types.HANDLE.scp.killProcess((string)var_get(objects[0]));
+            Types.HANDLE.scp.killProcess((string)MemoryCore.varGet(objects[0]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);

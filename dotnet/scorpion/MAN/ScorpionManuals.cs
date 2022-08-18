@@ -34,7 +34,7 @@ namespace Scorpion
             //::*page
             //STD path for all MAN is ./man
             if (objects.Count != 0)
-                showMan((string)var_get(objects[0]));
+                showMan((string)MemoryCore.varGet(objects[0]));
             else
                 showManDir();
 
@@ -67,7 +67,7 @@ namespace Scorpion
             if (File.Exists(Types.main_user_manuals_path + '/' + function + man_extension))
             {                                                       
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("MAN/READERS MANUAL Entry for '" + function + "':\n******************************************************\nFUNCTION: [" + function + "]\n");
-                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(read_file(Types.main_user_manuals_path + '/' + function + man_extension));
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(ScorpionFilesOperationsCore.readFile(Types.main_user_manuals_path + '/' + function + man_extension));
             }
             else
                 ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("No man entry exists for '" + function + "'");

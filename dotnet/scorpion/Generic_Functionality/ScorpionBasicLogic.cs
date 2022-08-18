@@ -10,8 +10,8 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            ScorpionConsoleReadWrite.ConsoleWrite.writeDebug(var_get((string)objects[0]).ToString() + var_get((string)objects[1]).ToString());
-            if ((string)var_get((string)objects[0]) == (string)var_get((string)objects[1]))
+            ScorpionConsoleReadWrite.ConsoleWrite.writeDebug(MemoryCore.varGet((string)objects[0]).ToString() + MemoryCore.varGet((string)objects[1]).ToString());
+            if ((string)MemoryCore.varGet((string)objects[0]) == (string)MemoryCore.varGet((string)objects[1]))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;
@@ -25,7 +25,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = "";
-            if ((string)var_get((string)objects[0]) != (string)var_get((string)objects[1]))
+            if ((string)MemoryCore.varGet((string)objects[0]) != (string)MemoryCore.varGet((string)objects[1]))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;
@@ -39,7 +39,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            if (Convert.ToInt32(var_get(objects[0])) > Convert.ToInt32(var_get(objects[1])))
+            if (Convert.ToInt32(MemoryCore.varGet(objects[0])) > Convert.ToInt32(MemoryCore.varGet(objects[1])))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;
@@ -53,7 +53,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            if (Convert.ToInt32(var_get(objects[0])) >= Convert.ToInt32(var_get(objects[1])))
+            if (Convert.ToInt32(MemoryCore.varGet(objects[0])) >= Convert.ToInt32(MemoryCore.varGet(objects[1])))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;
@@ -66,7 +66,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            if (Convert.ToInt32(var_get(objects[0])) < Convert.ToInt32(var_get(objects[1])))
+            if (Convert.ToInt32(MemoryCore.varGet(objects[0])) < Convert.ToInt32(MemoryCore.varGet(objects[1])))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;
@@ -79,7 +79,7 @@ namespace Scorpion
         {
             //*return<<::*compare, *with
             string returnable = null;
-            if (Convert.ToInt32(var_get(objects[0])) <= Convert.ToInt32(var_get(objects[1])))
+            if (Convert.ToInt32(MemoryCore.varGet(objects[0])) <= Convert.ToInt32(MemoryCore.varGet(objects[1])))
                 returnable = Types.S_Yes;
             else
                 returnable = Types.S_No;

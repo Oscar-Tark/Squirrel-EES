@@ -28,12 +28,12 @@ namespace Scorpion
             //All files must be UTF8
             //::*if, *is, *Path, *result_must_be_equal
 
-            if ((string)var_get(objects[3]) == Types.S_Yes)
+            if ((string)MemoryCore.varGet(objects[3]) == Types.S_Yes)
             {
-                if ((string)var_get(objects[0]) == (string)var_get(objects[1]))
+                if ((string)MemoryCore.varGet(objects[0]) == (string)MemoryCore.varGet(objects[1]))
                 {
                     string line;
-                    FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
+                    FileStream fd = new FileStream((string)MemoryCore.varGet((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
                         scorpionExec(line);
@@ -45,12 +45,12 @@ namespace Scorpion
                     var_dispose_internal(ref line);
                 }
             }
-            else if ((string)var_get(objects[3]) == Types.S_Yes)
+            else if ((string)MemoryCore.varGet(objects[3]) == Types.S_Yes)
             {
-                if ((string)var_get(objects[0]) != (string)var_get(objects[1]))
+                if ((string)MemoryCore.varGet(objects[0]) != (string)MemoryCore.varGet(objects[1]))
                 {
                     string line;
-                    FileStream fd = new FileStream((string)var_get((string)objects[2]), FileMode.Open);
+                    FileStream fd = new FileStream((string)MemoryCore.varGet((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
                     while ((line = sr.ReadLine()) != null)
                         scorpionExec(line);
@@ -74,7 +74,7 @@ namespace Scorpion
 
             string line;
             //Run Script
-            FileStream fd = new FileStream((string)var_get((string)objects[0]), FileMode.Open);
+            FileStream fd = new FileStream((string)MemoryCore.varGet((string)objects[0]), FileMode.Open);
             StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
             while ((line = sr.ReadLine()) != null)
                 scorpionExec(line);
@@ -95,13 +95,12 @@ namespace Scorpion
 
             //Query the database
             //string db, object data, string tag, string subtag, short OPCODE
-            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)var_get(objects[0]), Types.S_NULL, (string)var_get(objects[1]), (string)var_get(objects[1]), Types.HANDLE.vds.OPCODE_GET);
-            Enginefunctions ef__ = new Enginefunctions();
+            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), Types.S_NULL, (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[1]), Types.HANDLE.vds.OPCODE_GET);
             string script = default;
 
             foreach(object o_script in result)
             {
-                script = ef__.replaceEscape((string)o_script);
+                script = Enginefunctions.replaceEscape((string)o_script);
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial("Running XMLDB script: ", script);
                 scorpioniee(script);
             }

@@ -29,7 +29,7 @@ namespace Scorpion
             string writable = ""; object temp;
             foreach (string reference in Objects)
             {
-                if ((temp = var_get(reference)) is ArrayList)
+                if ((temp = MemoryCore.varGet(reference)) is ArrayList)
                 {
                     try
                     {
@@ -40,7 +40,7 @@ namespace Scorpion
                     }
                     catch (Exception e) { Console.WriteLine(e.Message); }
                 }
-                else if ((temp = var_get(reference)) is IDictionary)
+                else if ((temp = MemoryCore.varGet(reference)) is IDictionary)
                 {
                     try
                     {
@@ -52,7 +52,7 @@ namespace Scorpion
                     catch (Exception e) { Console.WriteLine(e.Message); }
                 }
                 else
-                    writable += var_get(reference);
+                    writable += MemoryCore.varGet(reference);
             }
 
             ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(writable);
@@ -65,35 +65,13 @@ namespace Scorpion
         public void outputbytes(ref string Scorp_Line_Exec, ArrayList Objects)
         {
             //::*var
-            object obj = var_get(Objects[0]);
+            object obj = MemoryCore.varGet(Objects[0]);
             byte[] bytes = Types.HANDLE.crypto.To_Byte(obj);
             Console.WriteLine("Byte sequence for [" + Objects[0] + "]:\n");
             foreach (byte __byte in bytes)
                 Console.Write($"0x{__byte,0:X} ", __byte);
             Console.Write('\n');
             var_arraylist_dispose(ref Objects);
-            Scorp_Line_Exec = null;
-            return;
-        }
-
-        private void write_to_console(ref string STR_)
-        {
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
-            return;
-        }
-
-        private void write_to_console(string STR_)
-        {
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(STR_);
-            return;
-        }
-
-        private void write_to_cui(string Scorp_Line_Exec)
-        {
-            ArrayList al = cut_variables(ref Scorp_Line_Exec);
-            foreach (object o in al)
-                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput(var_get(o.ToString()) + "\n");
-            var_arraylist_dispose(ref al);
             Scorp_Line_Exec = null;
             return;
         }

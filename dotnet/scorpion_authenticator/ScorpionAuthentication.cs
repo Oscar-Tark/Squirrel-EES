@@ -302,4 +302,12 @@ namespace Scorpion_Authenticator
             return false;
         }
     }
+
+    public static class ToLines
+    {
+        public static string[] stringToLines(string str)
+        {
+            return str.Split(new [] { '\r', '\n' });
+        }
+    }
 }

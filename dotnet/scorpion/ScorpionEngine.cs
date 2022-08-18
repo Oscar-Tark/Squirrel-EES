@@ -23,7 +23,6 @@ namespace Scorpion
 {
     public partial class Librarian
     {
-        private Enginefunctions ef__ = new Enginefunctions();
         System.Diagnostics.Stopwatch sp = new System.Diagnostics.Stopwatch();
 
         public void scorpioniee(object Scorp_Line)
@@ -59,7 +58,7 @@ namespace Scorpion
                 if (Scorp_Line_Exec.Contains("###"))
                 {
                     //If a comment line do not waste resources and return else well waste a few more resources in order to make sure :P
-                    if ((Scorp_Line_Exec = ef__.remove_commented(ref Scorp_Line_Exec)).Replace(" ", "").Length == 0)
+                    if ((Scorp_Line_Exec = Enginefunctions.remove_commented(ref Scorp_Line_Exec)).Replace(" ", "").Length == 0)
                     {
                         sp.Stop();
                         return;
@@ -67,13 +66,13 @@ namespace Scorpion
                 }
 
                 //You can add multiple functions to an execution with the >> symbol. >> means execute rightwards
-                string[] commands = ef__.execution_seperation(ref Scorp_Line_Exec);
+                string[] commands = Enginefunctions.execution_seperation(ref Scorp_Line_Exec);
 
                 string exec_ = null;
                 foreach (string command in commands)
                 {
                     exec_ = command;
-                    string[] final = ef__.get_return(ref exec_);
+                    string[] final = Enginefunctions.get_return(ref exec_);
                     if (final.Length > 1)
                         exec_ = final[1];
 
@@ -81,10 +80,10 @@ namespace Scorpion
 
                     //Gets the function to call. This function is a C# function which is instantiated and is publically accessible in class.Librarian
                     //Seperates all commands that may be in one function and makes them executable sequentially
-                    function = ef__.getFunction(ref exec_);
+                    function = Enginefunctions.getFunction(ref exec_);
 
                     //Set variables that will be sent to the invoked C# function with the default parameters of {string:Line_of_code, Arraylist:Variable_names}
-                    object[] paramse = { exec_, cut_variables(ref exec_) };
+                    object[] paramse = { exec_, ParsingCore.cut_variables(ref exec_) };
 
                     //Check if the current user has the required permissions to run this function
                     if (!Types.HANDLE.mmsec.authenticate_execution(ref function))
@@ -93,6 +92,7 @@ namespace Scorpion
                         sp.Stop();
                         return;
                     }
+                    
                     //Invoke the C# function and get a return value if any as an object
                     object retfun = GetType().GetMethod(function, BindingFlags.Public | BindingFlags.Instance).Invoke(this, paramse);
 
@@ -100,7 +100,7 @@ namespace Scorpion
                     if (retfun != null)
                     {
                         if (final.Length > 1)
-                            ef__.process_return(ref retfun, ref final[0], this);
+                            Enginefunctions.process_return(ref retfun, ref final[0], this);
                         else
                             ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("This function requires a return variable");
                     }

@@ -28,7 +28,6 @@ namespace Scorpion
         public ArrayList AL_REC = new ArrayList { };
         public ArrayList AL_REC_REF = new ArrayList();
         Timer tms;
-        Enginefunctions ef__ = new Enginefunctions();
         int interval = 100000;
 
         public ScorpionTimer()
@@ -68,7 +67,7 @@ namespace Scorpion
         public void tms_call(object obj)
         {
             foreach (string command in AL_REC)
-                Types.HANDLE.librarian_instance.librarian.scorpioniee(ef__.replace_fakes(command));
+                Types.HANDLE.librarian_instance.librarian.scorpioniee(Enginefunctions.replace_fakes(command));
             obj = null;
             GC.Collect();
             return;

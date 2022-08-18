@@ -31,7 +31,7 @@ namespace Scorpion
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlnew::*con, *'test'
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                mysql.sqlfmtnew((string)var_get(objects[0]), (string)var_get(objects[1]));
+                mysql.sqlfmtnew((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -45,7 +45,7 @@ namespace Scorpion
             //*connectionstringvar<<::*'host', *'port', *'db', *'uname', *'password'
             //Creates a connection string to the specified variable
 
-            string returnable = string.Format("server={0};port={1};userid={2};password={3};database={4}", (string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[2]));
+            string returnable = string.Format("server={0};port={1};userid={2};password={3};database={4}", (string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[2]));
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -62,7 +62,7 @@ namespace Scorpion
             object returnable = Types.S_NULL;
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                returnable = mysql.scfmtSqlGet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[5]));
+                returnable = mysql.scfmtSqlGet((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[5]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -79,7 +79,7 @@ namespace Scorpion
             
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                mysql.scfmtSqlSet((string)var_get(objects[0]), (string)var_get(objects[1]), (string)var_get(objects[2]), (string)var_get(objects[3]), (string)var_get(objects[4]), (string)var_get(objects[5]));
+                mysql.scfmtSqlSet((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[5]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -94,7 +94,7 @@ namespace Scorpion
         {
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                mysql.test((string)var_get(objects[0]));
+                mysql.test((string)MemoryCore.varGet(objects[0]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);

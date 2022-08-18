@@ -22,9 +22,9 @@ using ScorpionConsoleReadWrite;
 
 namespace Scorpion
 {
-    public class Enginefunctions
+    public static class Enginefunctions
     {
-        public string[] execution_seperation(ref string Scorp)
+        public static string[] execution_seperation(ref string Scorp)
         {
             //You can add multiple functions to an execution with the <<< or >>> symbols. >>> means execute rightwards <<< means execute leftwards
             string[] delimiterChars = { ">>" };
@@ -35,39 +35,39 @@ namespace Scorpion
             return commands;
         }
 
-        public string getFunction(ref string Scorp)
+        public static string getFunction(ref string Scorp)
         {
             string[] delimiterChars = { "::" };
             return Scorp.ToLower().Replace(" ", "").Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries)[0];
         }
 
-        public string[] get_return(ref string Scorp)
+        public static string[] get_return(ref string Scorp)
         {
             string[] delimiterChars = { "<<" };
             return Scorp.Split(delimiterChars, StringSplitOptions.None);
         }
 
         //OLD DEPRECIATE TO: replace_escape
-        public string replace_fakes(string Scorp_Line)
+        public static string replace_fakes(string Scorp_Line)
         {
             return Scorp_Line.Replace("{&v}", "*").Replace("{&q}", "'").Replace("{&r}", ">>").Replace("{&l}", "<<").Replace("{&c}", "::").Replace("{&u}", ",");
         }
 
         //OLD DEPRECIATE TO: toEscape()
-        public string create_fakes(string Scorp)
+        public static string create_fakes(string Scorp)
         {
             //return Scorp.Replace();
             return Scorp.Replace("*", "{&v}").Replace("'", "{&q}").Replace(">>", "{&r}").Replace("<<", "{&l}").Replace("::", "{&c}").Replace(",", "{&u}");
         }
 
-        public string replaceEscape(string paramse)
+        public static string replaceEscape(string paramse)
         {
             foreach (string[] esc_arr in Types.S_ESCAPE_SEQUENCES)
                 paramse = paramse.Replace(esc_arr[0], esc_arr[1]);
             return paramse;
         }
 
-        public string toEscape(string Scorp)
+        public static string toEscape(string Scorp)
         {
             foreach (string[] esc_arr in Types.S_ESCAPE_SEQUENCES)
                 Scorp = Scorp.Replace(esc_arr[1], esc_arr[0]);
@@ -82,7 +82,7 @@ namespace Scorpion
         }
 
         //Acts as a Python style formatted string, works by scanning variables themselves for formats and replaces variables instantly
-        public string replace_format(ref string var)
+        public static string replace_format(ref string var)
         {
             //f'Hi my name is {((name))}'
             string to_change = "";
@@ -92,13 +92,13 @@ namespace Scorpion
                 if (vars[i].StartsWith("((", StringComparison.CurrentCulture) && vars[i].EndsWith("))", StringComparison.CurrentCulture))
                 {
                     to_change = vars[i].Replace("((", "*").Replace("))", "");
-                    var = var.Replace("{" + vars[i] + "}", (string)Types.HANDLE.librarian_instance.librarian.var_get(ref to_change));
+                    var = var.Replace("{" + vars[i] + "}", (string)MemoryCore.varGet(ref to_change));
                 }
             }
             return var;
         }
 
-        public string replaceFormatCustomSourceDictionary(ref string var, ref Dictionary<string, string> source)
+        public static string replaceFormatCustomSourceDictionary(ref string var, ref Dictionary<string, string> source)
         {
             //f'Hi my name is {[[name]]}'
             string to_change = "";
@@ -117,25 +117,25 @@ namespace Scorpion
             return var;
         }
 
-        public string remove_commented(ref string Scorp_Line)
+        public static string remove_commented(ref string Scorp_Line)
         {
             //Removes comments denoted by '###' in a line of code or a comment line.
             return Scorp_Line.Remove(Scorp_Line.IndexOf("###", 0, StringComparison.CurrentCulture));
         }
 
-        public string line_check(ref Scorp HANDLE, ref string Scorp)
+        public static string line_check(ref Scorp HANDLE, ref string Scorp)
         {
             return HANDLE.san.sanitize(ref Scorp);
         }
 
-        public bool process_return(ref object return_object, ref string var, Librarian lib)
+        public static bool process_return(ref object return_object, ref string var, Librarian lib)
         {
             lib.varset("", new ArrayList { var.Replace("*", ""), return_object });
             return true;
         }
     }
 
-    public class NetworkEngineFunctions
+    public static class NetworkEngineFunctions
     {
         private static readonly Dictionary<string, string[]> api = new Dictionary<string, string[]> 
         {
@@ -149,7 +149,7 @@ namespace Scorpion
             { "session", new string[] {"{&session}", "{&/session}" } },
         };
 
-        public readonly Dictionary<string, string> api_requests = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> api_requests = new Dictionary<string, string>
         {
             { "get", "get" },
             { "set", "set" },
@@ -157,13 +157,13 @@ namespace Scorpion
             { "response", "response" }
         };
 
-        private readonly Dictionary<string, string> api_result = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> api_result = new Dictionary<string, string>
         {
             { "ok", "ok" },
             { "error", "error" }
         };
 
-        public Dictionary<string, string> replace_api(string Scorp_Line)
+        public static Dictionary<string, string> replace_api(string Scorp_Line)
         {
             Scorp_Line = Scorp_Line.Remove(0, Scorp_Line.IndexOf(api["scorpion"][0], StringComparison.CurrentCulture));
             if (Scorp_Line.Contains(api["scorpion"][0]) && Scorp_Line.Contains(api["scorpion"][1]))
@@ -181,14 +181,14 @@ namespace Scorpion
             return null;
         }
 
-        public string build_api(string data, string session, bool error)
+        public static string build_api(string data, string session, bool error)
         {
             if (!error)
                 return api["scorpion"][0] + api["type"][0] + api_requests["response"] + api["type"][1] + api["session"][0] + session + api["session"][1] + api["data"][0] + data + api["data"][1] + api["status"][0] + api_result["ok"] + api["status"][1] + api["scorpion"][1];
             return api["scorpion"][0] + api["type"][0] + api_requests["response"] + api["type"][1] + api["data"][0] + data + api["data"][1] + api["status"][0] + api_result["error"] + api["status"][1] + api["scorpion"][1];
         }
 
-        public string replace_telnet(string Scorp_Line)
+        public static string replace_telnet(string Scorp_Line)
         {
             return Scorp_Line.Replace("\r\n", "").Replace("959;1R", "");
         }

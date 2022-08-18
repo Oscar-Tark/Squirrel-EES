@@ -18,7 +18,7 @@ namespace Scorpion
                 int rubbish;
                 foreach(string val in objects)
                 {
-                    if (!int.TryParse((string)var_get(val), out rubbish))
+                    if (!int.TryParse((string)MemoryCore.varGet(val), out rubbish))
                         numeric = false;
                 }
 
@@ -26,13 +26,13 @@ namespace Scorpion
                 if (numeric)
                 {  
                     foreach (object val in objects)
-                        total += Convert.ToDouble(var_get(val));
+                        total += Convert.ToDouble(MemoryCore.varGet(val));
                     returnable = Convert.ToString(total);
                 }
                 else
                 {
                     foreach (object val in objects)
-                        returnable = returnable + (string)var_get(val);
+                        returnable = returnable + (string)MemoryCore.varGet(val);
                 }
             }
 
@@ -47,9 +47,9 @@ namespace Scorpion
             double total = 0;
             checked
             {
-                total = Convert.ToDouble(var_get(objects[0]));
+                total = Convert.ToDouble(MemoryCore.varGet(objects[0]));
                 for (int i = 1; i < objects.Count; i++)
-                    total -= Convert.ToDouble(var_get(objects[i]));
+                    total -= Convert.ToDouble(MemoryCore.varGet(objects[i]));
             }
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -63,9 +63,9 @@ namespace Scorpion
             double total = 0;
             checked
             {
-                total = Convert.ToDouble(var_get(objects[0]));
+                total = Convert.ToDouble(MemoryCore.varGet(objects[0]));
                 for (int i = 1; i < objects.Count; i++)
-                    total *= Convert.ToDouble(var_get(objects[i]));
+                    total *= Convert.ToDouble(MemoryCore.varGet(objects[i]));
             }
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
@@ -78,9 +78,9 @@ namespace Scorpion
             double total = 0;
             checked
             {
-                total = Convert.ToDouble(var_get(objects[0]));
+                total = Convert.ToDouble(MemoryCore.varGet(objects[0]));
                 for (int i = 1; i < objects.Count; i++)
-                    total /= Convert.ToDouble(var_get(objects[i]));
+                    total /= Convert.ToDouble(MemoryCore.varGet(objects[i]));
             }
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
