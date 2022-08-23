@@ -124,6 +124,7 @@ namespace Scorpion
 
                     if (processed["type"] == NetworkEngineFunctions.api_requests["get"])
                     {
+                        //ArrayList query_result = new ArrayList() { File.ReadAllText(string.Format("{0}/{1}/{2}", Types.main_user_projects_path, processed["db"], processed["subtag"])) };
                         //Get formattable page from XMLDB
                         ArrayList query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
 
