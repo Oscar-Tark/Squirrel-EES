@@ -1,20 +1,20 @@
 ![IMG](/dotnet/img/Cropped.png)
 
-[Scorpion IEE [Intelligent Execution Environment]:Quickstart Guide]
+[Squirrel:Quickstart Guide]
 -------------------------------------------------------------------
 
-Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to scorpion with functions you created in order to call them. Scorpion contains its own memory and database system. Each function call is done on an isolated thread.
+Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to squirrel with functions you created in order to call them. Squirrel contains its own memory and database system. Each function call is done on an isolated thread.
 
-!NOTE: Call the `manual` function in order to view all available manuals and runnable functions for scorpion. You may use the `manual::*manual_name` function to view a manual.
+!NOTE: Call the `manual` function in order to view all available manuals and runnable functions for squirrel. You may use the `manual::*manual_name` function to view a manual.
 
 [General syntax]
 ---------------
 
 **Variables:**
 
-`\*`   = Asterisk denotes a variable this refers to a defined variable that exists in the scorpion memory pool.
+`\*`   = Asterisk denotes a variable this refers to a defined variable that exists in the squirrel memory pool.
 
-`*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the scorpion memory pool such as something that is temporary.
+`*''` = Denotes a value to use as a variable, This allows you to use values without adding them to the squirrel memory pool such as something that is temporary.
 
 `*f''` = Denotes a value variable which can be formatted. You may insert other variables into the current formatted value variable with the {(( ))} denotations.
 
@@ -38,7 +38,7 @@ Dictionaries act equally to arrays, except that they are arrays with key:value i
 
 **String escape sequences**
 
-Since certain symbols may be used for command execution, we have come up with some escape sequences that allow you to use those symbols within your strings of data similar to escape sequences in C such as \' for a single quote. Scorpion's escape sequences are abit different but the principal is the same. All escape sequences use the following format:
+Since certain symbols may be used for command execution, we have come up with some escape sequences that allow you to use those symbols within your strings of data similar to escape sequences in C such as \' for a single quote. Squirrel's escape sequences are abit different but the principal is the same. All escape sequences use the following format:
 
 `{&escapee}`
 
@@ -69,20 +69,20 @@ The first variable is a return variable. Any variable that the function returns 
 
 `var::*var1`
 
-`varset::*var1, *'Scorpions are SO misunderstood..'`
+`varset::*var1, *'Squirrels are SO misunderstood..'`
 
 **One line multiple function calls:**
 
-Scorpion allows you to run multiple functions in one line. Unlike other languages scorpions execution is left to right. To shift execution right use the >> symbol.
+Squirrel allows you to run multiple functions in one line. Unlike other languages squirrels execution is left to right. To shift execution right use the >> symbol.
 
 `var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {((name))}!. Let us play the GNU SONG!' >> exit`
 
 [Scripts]
 ---------------
 
-**Running Scorpion syntax scripts:**
+**Running Squirrel syntax scripts:**
 
-You may run external files as scripts which contain various scorpion function calls delimited by newlines. You may call a script by sending a path argument to the function 'scriptrun', it is reccomended to not use an extension for filenames:
+You may run external files as scripts which contain various squirrel function calls delimited by newlines. You may call a script by sending a path argument to the function 'scriptrun', it is reccomended to not use an extension for filenames:
 
 `scriptrun::*'/home/user/myscript'`
 
@@ -92,7 +92,7 @@ You can also put other runscript calls inside of a script.
 
 **Compiling C# scripts (mono_legacy only):**
 
-You may compile a C# script and load it into scorpion by namespace and class. Be warned that Scorpion only supports loading one class at a time for each assembly load.
+You may compile a C# script and load it into squirrel by namespace and class. Be warned that Squirrel only supports loading one class at a time for each assembly load.
 
 Syntax:
 
@@ -105,7 +105,7 @@ Example:
 [Loading C# scripts (mono_legacy only)]
 ---------------
 
-In order to use any compiled C# script we must load them into Scorpion. This will allow us to call any function within a class. Please note that loading a C# library only supports loading one class at a time from all assemblies, this means that in order to load multiple classes from one assembly is currently not possible.
+In order to use any compiled C# script we must load them into Squirrel. This will allow us to call any function within a class. Please note that loading a C# library only supports loading one class at a time from all assemblies, this means that in order to load multiple classes from one assembly is currently not possible.
 
 Syntax:
 
@@ -128,7 +128,7 @@ Syntax:
 
 **Running external processes**
 
-Running and controlling external processes is important for various use cases. You cannot control a process that is already running. You may create a process, view its output, kill a process or kill all running processes. Processes can run fully controlled by Scorpion or can be started as a new seperate process outsode of Scorpion Input insertion is coming soon!
+Running and controlling external processes is important for various use cases. You cannot control a process that is already running. You may create a process, view its output, kill a process or kill all running processes. Processes can run fully controlled by Squirrel or can be started as a new seperate process outsode of Squirrel Input insertion is coming soon!
 
 **Starting an external process**
 
@@ -140,7 +140,7 @@ Example:
 
 `process::*'ping', *'127.0.0.1', *'mypingprocess', *false`
 
-This example will run a ping process with the argument of '127.0.0.1'. false denotes that you would like the process to be controlled by Scorpion.
+This example will run a ping process with the argument of '127.0.0.1'. false denotes that you would like the process to be controlled by Squirrel.
 
 **Viewing process output**
 
@@ -157,7 +157,7 @@ Example
 [Databases:XMLDB]
 ---------------
 
-Databases are based of the XML standard and are simple encrypted files on your hard drive for storing static data. Scorpion's XMLDB allows you to get, set and query data.
+Databases are based of the XML standard and are simple encrypted files on your hard drive for storing static data. Squirrel's XMLDB allows you to get, set and query data.
 
 **Creating a database:XMLDB**
 
@@ -279,11 +279,11 @@ You may view a list of all open databases by using the following commands:
 [Databases:MYSQL]
 ---------------
 
-It is imperative that you have already set up a database and a user for your MYSQL instance in order to use Scorpion with it. Scorpion has a limited number of functionalities it can perform with MYSQL at the moment. This will be expanded in future releases to include fullscale MYSQL integration.
+It is imperative that you have already set up a database and a user for your MYSQL instance in order to use Squirrel with it. Squirrel has a limited number of functionalities it can perform with MYSQL at the moment. This will be expanded in future releases to include fullscale MYSQL integration.
 
 **Creating a new MYSQL connection string**
 
-You may create a mysql connection string on your own and store it in a variable, type it out as a value variable. Scorpion allows you to automatically create a new mysql connection string and store it within a Scorpion variable as a returnable variable.
+You may create a mysql connection string on your own and store it in a variable, type it out as a value variable. Squirrel allows you to automatically create a new mysql connection string and store it within a Squirrel variable as a returnable variable.
 
 Syntax:
 
@@ -295,10 +295,10 @@ Example:
 
 **Creating a new mysql table in the default format**
 
-You may create a new mysql table from scorpion in it's default format or so in the XMLDB format. In order to simplify the way scorpion databases store data scorpion will automatically generate specific columns:
+You may create a new mysql table from squirrel in it's default format or so in the XMLDB format. In order to simplify the way squirrel databases store data squirrel will automatically generate specific columns:
 
 - id : An identifier for every row
 - tag : A group to which many data elements can belong to (Example: you as a person, a car or any class or classification of data)
 - subtag : What does your data represent within the tag or classification of data (Example: your name or age)
 - data : Contained data
-- token : Contains a scorpion based token for creating user based applications. The token can be used to verify that the user belongs to a specific user
+- token : Contains a squirrel based token for creating user based applications. The token can be used to verify that the user belongs to a specific user
