@@ -1,6 +1,6 @@
 ![IMG](/dotnet/img/Cropped.png)
 
-[Squirrel:Quickstart Guide]
+[Squirrel EES:Quickstart Guide]
 -------------------------------------------------------------------
 
 Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to squirrel with functions you created in order to call them. Squirrel contains its own memory and database system. Each function call is done on an isolated thread.
