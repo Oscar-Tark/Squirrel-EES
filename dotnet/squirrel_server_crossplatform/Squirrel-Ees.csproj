@@ -7,9 +7,9 @@
     <ProjectReference Include="..\..\..\Squirrel-MYSQL\Squirrel-MYSQL.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Processes\squirrel_processes.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Console-Read-Write\consolereadwrite.csproj" />
-    <ProjectReference Include="..\..\..\Scorpion-AES\Scorpion_Aes.csproj" />
-    <ProjectReference Include="..\..\..\Scorpion-XMLDB\Scorpion_XMLDB.csproj" />
-    <ProjectReference Include="..\..\..\Scorpion-Cryptography\Scorpion_Cryptography.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-AES\Squirrel-AES.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-XMLDB\Squirrel-XMLDB.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Cryptography\Squirrel-Cryptography.csproj" />
   </ItemGroup>
 
   <ItemGroup>

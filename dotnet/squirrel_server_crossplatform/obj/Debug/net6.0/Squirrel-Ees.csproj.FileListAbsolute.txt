@@ -41,3 +41,8 @@
 /home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.pdb
 /home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.genruntimeconfig.cache
 /home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.csproj.AssemblyReference.cache
+/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.csproj.AssemblyReference.cache
+/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.AssemblyInfoInputs.cache
+/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.AssemblyInfo.cs
+/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.csproj.CoreCompileInputs.cache
