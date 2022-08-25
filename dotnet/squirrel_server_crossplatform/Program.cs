@@ -1,18 +1,14 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using System;
 
 namespace Scorpion
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         private const double kversion = 0.9;
         static Scorp running_instance;
 
+        //Entry point!!!!
         [STAThread]
         static int Main()
         {
