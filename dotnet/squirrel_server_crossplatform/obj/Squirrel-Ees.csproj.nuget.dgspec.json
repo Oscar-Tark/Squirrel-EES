@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {}
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {}
   },
   "projects": {
-    "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj",
         "projectName": "Squirrel-AES",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-AES/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -62,14 +62,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/squirrel_authenticator.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj",
         "projectName": "squirrel_authenticator",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/squirrel_authenticator.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -84,11 +84,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Hasher/squirrel_hasher.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Hasher/squirrel_hasher.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
+              },
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/squirrel_hasher.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/squirrel_hasher.csproj"
               }
             }
           }
@@ -121,14 +124,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj",
         "projectName": "consolereadwrite",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -173,14 +176,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj",
         "projectName": "Squirrel-Cryptography",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -231,14 +234,66 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
-        "projectName": "Squirrel-Ees",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj",
+        "projectName": "Scorpion-Default-Paths",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+        "projectName": "Squirrel-Ees",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -253,32 +308,35 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-AES/Squirrel-AES.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/squirrel_authenticator.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Authenticator/squirrel_authenticator.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Logging/Squirrel-Logging.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Logging/Squirrel-Logging.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-Processes/squirrel_processes.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Processes/squirrel_processes.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-RSA/squirrel_rsa.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-RSA/squirrel_rsa.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj"
               },
-              "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/Squirrel-XMLDB.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj"
+              },
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj"
               }
             }
           }
@@ -325,14 +383,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Hasher/squirrel_hasher.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/squirrel_hasher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Hasher/squirrel_hasher.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/squirrel_hasher.csproj",
         "projectName": "squirrel_hasher",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Hasher/squirrel_hasher.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/squirrel_hasher.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Hasher/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Hasher/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -387,14 +445,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Logging/Squirrel-Logging.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Logging/Squirrel-Logging.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj",
         "projectName": "Squirrel-Logging",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Logging/Squirrel-Logging.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Logging/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -439,14 +497,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
         "projectName": "Squirrel-MYSQL",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-MYSQL/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -497,14 +555,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-Processes/squirrel_processes.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-Processes/squirrel_processes.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj",
         "projectName": "squirrel_processes",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Processes/squirrel_processes.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-Processes/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -519,8 +577,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj"
               }
             }
           }
@@ -553,14 +611,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-RSA/squirrel_rsa.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-RSA/squirrel_rsa.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj",
         "projectName": "squirrel_rsa",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-RSA/squirrel_rsa.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-RSA/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -615,14 +673,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/Squirrel-XMLDB.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj",
         "projectName": "Squirrel-XMLDB",
-        "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/Squirrel-XMLDB.csproj",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel/Squirrel-XMLDB/obj/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -637,8 +695,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj"
+              },
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
               }
             }
           }

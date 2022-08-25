@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\Squirrel-AES\Squirrel-AES.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-XMLDB\Squirrel-XMLDB.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Cryptography\Squirrel-Cryptography.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Default-Paths\Scorpion-Default-Paths.csproj" />
   </ItemGroup>
 
   <ItemGroup>

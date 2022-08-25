@@ -9,12 +9,13 @@
       "Squirrel-Ees/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
-          "Scorpion_Aes": "1.0.0",
-          "Scorpion_Cryptography": "1.0.0",
-          "Scorpion_XMLDB": "1.0.0",
+          "Scorpion-Default-Paths": "1.0.0",
           "SimpleTCP.Net5": "1.0.25",
+          "Squirrel-AES": "1.0.0",
+          "Squirrel-Cryptography": "1.0.0",
           "Squirrel-Logging": "1.0.0",
           "Squirrel-MYSQL": "1.0.0",
+          "Squirrel-XMLDB": "1.0.0",
           "System.Security.Cryptography.OpenSsl": "5.0.0",
           "consolereadwrite": "1.0.0",
           "squirrel_authenticator": "1.0.0",
@@ -95,29 +96,25 @@
           "consolereadwrite.dll": {}
         }
       },
-      "Scorpion_Aes/1.0.0": {
+      "Scorpion-Default-Paths/1.0.0": {
+        "runtime": {
+          "Scorpion-Default-Paths.dll": {}
+        }
+      },
+      "Squirrel-AES/1.0.0": {
         "dependencies": {
           "EasyEncrypt": "2.2.1"
         },
         "runtime": {
-          "Scorpion_Aes.dll": {}
+          "Squirrel-AES.dll": {}
         }
       },
-      "Scorpion_Cryptography/1.0.0": {
+      "Squirrel-Cryptography/1.0.0": {
         "dependencies": {
           "Capgemini.Cauldron.Cryptography": "3.2.3"
         },
         "runtime": {
-          "Scorpion_Cryptography.dll": {}
-        }
-      },
-      "Scorpion_XMLDB/1.0.0": {
-        "dependencies": {
-          "Scorpion_Aes": "1.0.0",
-          "Scorpion_Cryptography": "1.0.0"
-        },
-        "runtime": {
-          "Scorpion_XMLDB.dll": {}
+          "Squirrel-Cryptography.dll": {}
         }
       },
       "Squirrel-Logging/1.0.0": {
@@ -133,9 +130,19 @@
           "Squirrel-MYSQL.dll": {}
         }
       },
+      "Squirrel-XMLDB/1.0.0": {
+        "dependencies": {
+          "Squirrel-AES": "1.0.0",
+          "Squirrel-Cryptography": "1.0.0"
+        },
+        "runtime": {
+          "Squirrel-XMLDB.dll": {}
+        }
+      },
       "squirrel_authenticator/1.0.0": {
         "dependencies": {
-          "Scorpion_Aes": "1.0.0",
+          "Scorpion-Default-Paths": "1.0.0",
+          "Squirrel-AES": "1.0.0",
           "squirrel_hasher": "1.0.0"
         },
         "runtime": {
@@ -244,17 +251,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Scorpion_Aes/1.0.0": {
+    "Scorpion-Default-Paths/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Scorpion_Cryptography/1.0.0": {
+    "Squirrel-AES/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Scorpion_XMLDB/1.0.0": {
+    "Squirrel-Cryptography/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -265,6 +272,11 @@
       "sha512": ""
     },
     "Squirrel-MYSQL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Squirrel-XMLDB/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
