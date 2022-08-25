@@ -1,0 +1,678 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {}
+  },
+  "projects": {
+    "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj",
+        "projectName": "Scorpion_Aes",
+        "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Scorpion-AES/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "EasyEncrypt": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj",
+        "projectName": "Scorpion_Cryptography",
+        "projectPath": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Scorpion-Cryptography/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Capgemini.Cauldron.Cryptography": {
+              "target": "Package",
+              "version": "[3.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+        "projectName": "Squirrel-Ees",
+        "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
+              },
+              "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj"
+              },
+              "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "SimpleTCP.Net5": {
+              "target": "Package",
+              "version": "[1.0.25, )"
+            },
+            "System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj",
+        "projectName": "Scorpion_XMLDB",
+        "projectPath": "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Scorpion-XMLDB/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
+              },
+              "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj",
+        "projectName": "squirrel_authenticator",
+        "projectPath": "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-Authenticator/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
+              },
+              "/home/ferret/GIT/Squirrel-Hasher/squirrel_hasher.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Hasher/squirrel_hasher.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj",
+        "projectName": "consolereadwrite",
+        "projectPath": "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-Console-Read-Write/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-Hasher/squirrel_hasher.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-Hasher/squirrel_hasher.csproj",
+        "projectName": "squirrel_hasher",
+        "projectPath": "/home/ferret/GIT/Squirrel-Hasher/squirrel_hasher.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-Hasher/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "Capgemini.Cauldron.Cryptography": {
+              "target": "Package",
+              "version": "[3.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj",
+        "projectName": "Squirrel-Logging",
+        "projectPath": "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-Logging/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
+        "projectName": "Squirrel-MYSQL",
+        "projectPath": "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-MYSQL/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.1.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj",
+        "projectName": "squirrel_processes",
+        "projectPath": "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-Processes/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj",
+        "projectName": "squirrel_rsa",
+        "projectPath": "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel-RSA/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Capgemini.Cauldron.Cryptography": {
+              "target": "Package",
+              "version": "[3.2.3, )"
+            },
+            "System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

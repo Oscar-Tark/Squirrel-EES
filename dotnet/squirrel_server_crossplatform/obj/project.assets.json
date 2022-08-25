@@ -1,0 +1,622 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "BCrypt.Net-Next/4.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Cryptography/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Capgemini.Cauldron.Randomizer": "3.2.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+        }
+      },
+      "Capgemini.Cauldron.Randomizer/3.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+        }
+      },
+      "EasyEncrypt/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {}
+        }
+      },
+      "MySqlConnector/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SimpleTCP.Net5/1.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        }
+      },
+      "System.Formats.Asn1/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Formats.Asn1.dll": {}
+        }
+      },
+      "System.Security.Cryptography.OpenSsl/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Formats.Asn1": "5.0.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          }
+        }
+      },
+      "consolereadwrite/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        }
+      },
+      "Scorpion_Aes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "compile": {
+          "bin/placeholder/Scorpion_Aes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Scorpion_Aes.dll": {}
+        }
+      },
+      "Scorpion_Cryptography/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "compile": {
+          "bin/placeholder/Scorpion_Cryptography.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Scorpion_Cryptography.dll": {}
+        }
+      },
+      "Scorpion_XMLDB/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Scorpion_Aes": "1.0.0",
+          "Scorpion_Cryptography": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Scorpion_XMLDB.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Scorpion_XMLDB.dll": {}
+        }
+      },
+      "Squirrel-Logging/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Squirrel-Logging.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Squirrel-Logging.dll": {}
+        }
+      },
+      "Squirrel-MYSQL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MySqlConnector": "2.1.8"
+        },
+        "compile": {
+          "bin/placeholder/Squirrel-MYSQL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Squirrel-MYSQL.dll": {}
+        }
+      },
+      "squirrel_authenticator/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Scorpion_Aes": "1.0.0",
+          "squirrel_hasher": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/squirrel_authenticator.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/squirrel_authenticator.dll": {}
+        }
+      },
+      "squirrel_hasher/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.2",
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "compile": {
+          "bin/placeholder/squirrel_hasher.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/squirrel_hasher.dll": {}
+        }
+      },
+      "squirrel_processes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "consolereadwrite": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/squirrel_processes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/squirrel_processes.dll": {}
+        }
+      },
+      "squirrel_rsa/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3",
+          "System.Security.Cryptography.OpenSsl": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/squirrel_rsa.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/squirrel_rsa.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BCrypt.Net-Next/4.0.2": {
+      "sha512": "LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.2.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net40/BCrypt.Net-Next.dll",
+        "lib/net40/BCrypt.Net-Next.xml",
+        "lib/net452/BCrypt.Net-Next.dll",
+        "lib/net452/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.dll",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml"
+      ]
+    },
+    "Capgemini.Cauldron.Cryptography/3.2.3": {
+      "sha512": "cfIT95HcNw/KeWpxgZI2P1qzn07APwL+cLqwHt6iLPURiMuVopTTZeSnxa1DY8rFpZ5BJVOMuaeTwqvpICOMbQ==",
+      "type": "package",
+      "path": "capgemini.cauldron.cryptography/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.cryptography.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.cryptography.nuspec",
+        "lib/net45/Cauldron.Cryptography.dll",
+        "lib/net45/Cauldron.Cryptography.xml",
+        "lib/net451/Cauldron.Cryptography.dll",
+        "lib/net451/Cauldron.Cryptography.xml",
+        "lib/net452/Cauldron.Cryptography.dll",
+        "lib/net452/Cauldron.Cryptography.xml",
+        "lib/net46/Cauldron.Cryptography.dll",
+        "lib/net46/Cauldron.Cryptography.xml",
+        "lib/net461/Cauldron.Cryptography.dll",
+        "lib/net461/Cauldron.Cryptography.xml",
+        "lib/net462/Cauldron.Cryptography.dll",
+        "lib/net462/Cauldron.Cryptography.xml",
+        "lib/netstandard2.0/Cauldron.Cryptography.dll",
+        "lib/netstandard2.0/Cauldron.Cryptography.xml",
+        "lib/uap10.0/Cauldron.Cryptography.XML",
+        "lib/uap10.0/Cauldron.Cryptography.dll",
+        "lib/uap10.0/Cauldron.Cryptography.pri"
+      ]
+    },
+    "Capgemini.Cauldron.Randomizer/3.2.3": {
+      "sha512": "Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
+      "type": "package",
+      "path": "capgemini.cauldron.randomizer/3.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512",
+        "capgemini.cauldron.randomizer.nuspec",
+        "lib/net45/Cauldron.Randomizer.dll",
+        "lib/net45/Cauldron.Randomizer.xml",
+        "lib/net451/Cauldron.Randomizer.dll",
+        "lib/net451/Cauldron.Randomizer.xml",
+        "lib/net452/Cauldron.Randomizer.dll",
+        "lib/net452/Cauldron.Randomizer.xml",
+        "lib/net46/Cauldron.Randomizer.dll",
+        "lib/net46/Cauldron.Randomizer.xml",
+        "lib/net461/Cauldron.Randomizer.dll",
+        "lib/net461/Cauldron.Randomizer.xml",
+        "lib/net462/Cauldron.Randomizer.dll",
+        "lib/net462/Cauldron.Randomizer.xml",
+        "lib/netstandard2.0/Cauldron.Randomizer.dll",
+        "lib/netstandard2.0/Cauldron.Randomizer.xml",
+        "lib/uap10.0/Cauldron.Randomizer.XML",
+        "lib/uap10.0/Cauldron.Randomizer.dll",
+        "lib/uap10.0/Cauldron.Randomizer.pri"
+      ]
+    },
+    "EasyEncrypt/2.2.1": {
+      "sha512": "Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "type": "package",
+      "path": "easyencrypt/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "easyencrypt.2.2.1.nupkg.sha512",
+        "easyencrypt.nuspec",
+        "lib/netstandard2.0/EasyEncrypt.dll"
+      ]
+    },
+    "MySqlConnector/2.1.8": {
+      "sha512": "CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
+      "type": "package",
+      "path": "mysqlconnector/2.1.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.1.8.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "SimpleTCP.Net5/1.0.25": {
+      "sha512": "TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
+      "type": "package",
+      "path": "simpletcp.net5/1.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/SimpleTCP.Net5.dll",
+        "simpletcp.net5.1.0.25.nupkg.sha512",
+        "simpletcp.net5.nuspec"
+      ]
+    },
+    "System.Formats.Asn1/5.0.0": {
+      "sha512": "MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w==",
+      "type": "package",
+      "path": "system.formats.asn1/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Formats.Asn1.dll",
+        "lib/net461/System.Formats.Asn1.xml",
+        "lib/netstandard2.0/System.Formats.Asn1.dll",
+        "lib/netstandard2.0/System.Formats.Asn1.xml",
+        "system.formats.asn1.5.0.0.nupkg.sha512",
+        "system.formats.asn1.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Cryptography.OpenSsl/5.0.0": {
+      "sha512": "D3aDrPOPBORUl6V/WJ2AtN3Ae48aSH0W7yChBIecvu1lyoAhopPORmMpNTjv5/Kay7Z+h3KXpfbvteIm7x7miA==",
+      "type": "package",
+      "path": "system.security.cryptography.openssl/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Security.Cryptography.OpenSsl.dll",
+        "lib/net461/System.Security.Cryptography.OpenSsl.xml",
+        "lib/netcoreapp2.1/System.Security.Cryptography.OpenSsl.dll",
+        "lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll",
+        "lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.xml",
+        "lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.OpenSsl.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.OpenSsl.xml",
+        "ref/net461/System.Security.Cryptography.OpenSsl.dll",
+        "ref/net461/System.Security.Cryptography.OpenSsl.xml",
+        "ref/netcoreapp2.0/System.Security.Cryptography.OpenSsl.dll",
+        "ref/netcoreapp2.0/System.Security.Cryptography.OpenSsl.xml",
+        "ref/netcoreapp2.1/System.Security.Cryptography.OpenSsl.dll",
+        "ref/netcoreapp2.1/System.Security.Cryptography.OpenSsl.xml",
+        "ref/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll",
+        "ref/netcoreapp3.0/System.Security.Cryptography.OpenSsl.xml",
+        "ref/netstandard1.6/System.Security.Cryptography.OpenSsl.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.OpenSsl.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.OpenSsl.xml",
+        "runtimes/unix/lib/netcoreapp2.0/System.Security.Cryptography.OpenSsl.dll",
+        "runtimes/unix/lib/netcoreapp2.1/System.Security.Cryptography.OpenSsl.dll",
+        "runtimes/unix/lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll",
+        "runtimes/unix/lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.xml",
+        "runtimes/unix/lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll",
+        "system.security.cryptography.openssl.5.0.0.nupkg.sha512",
+        "system.security.cryptography.openssl.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Console-Read-Write/consolereadwrite.csproj",
+      "msbuildProject": "../../../Squirrel-Console-Read-Write/consolereadwrite.csproj"
+    },
+    "Scorpion_Aes/1.0.0": {
+      "type": "project",
+      "path": "../../../Scorpion-AES/Scorpion_Aes.csproj",
+      "msbuildProject": "../../../Scorpion-AES/Scorpion_Aes.csproj"
+    },
+    "Scorpion_Cryptography/1.0.0": {
+      "type": "project",
+      "path": "../../../Scorpion-Cryptography/Scorpion_Cryptography.csproj",
+      "msbuildProject": "../../../Scorpion-Cryptography/Scorpion_Cryptography.csproj"
+    },
+    "Scorpion_XMLDB/1.0.0": {
+      "type": "project",
+      "path": "../../../Scorpion-XMLDB/Scorpion_XMLDB.csproj",
+      "msbuildProject": "../../../Scorpion-XMLDB/Scorpion_XMLDB.csproj"
+    },
+    "Squirrel-Logging/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Logging/Squirrel-Logging.csproj",
+      "msbuildProject": "../../../Squirrel-Logging/Squirrel-Logging.csproj"
+    },
+    "Squirrel-MYSQL/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-MYSQL/Squirrel-MYSQL.csproj",
+      "msbuildProject": "../../../Squirrel-MYSQL/Squirrel-MYSQL.csproj"
+    },
+    "squirrel_authenticator/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Authenticator/squirrel_authenticator.csproj",
+      "msbuildProject": "../../../Squirrel-Authenticator/squirrel_authenticator.csproj"
+    },
+    "squirrel_hasher/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Hasher/squirrel_hasher.csproj",
+      "msbuildProject": "../../../Squirrel-Hasher/squirrel_hasher.csproj"
+    },
+    "squirrel_processes/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Processes/squirrel_processes.csproj",
+      "msbuildProject": "../../../Squirrel-Processes/squirrel_processes.csproj"
+    },
+    "squirrel_rsa/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-RSA/squirrel_rsa.csproj",
+      "msbuildProject": "../../../Squirrel-RSA/squirrel_rsa.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Newtonsoft.Json >= 13.0.1",
+      "Scorpion_Aes >= 1.0.0",
+      "Scorpion_Cryptography >= 1.0.0",
+      "Scorpion_XMLDB >= 1.0.0",
+      "SimpleTCP.Net5 >= 1.0.25",
+      "Squirrel-Logging >= 1.0.0",
+      "Squirrel-MYSQL >= 1.0.0",
+      "System.Security.Cryptography.OpenSsl >= 5.0.0",
+      "consolereadwrite >= 1.0.0",
+      "squirrel_authenticator >= 1.0.0",
+      "squirrel_processes >= 1.0.0",
+      "squirrel_rsa >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/ferret/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+      "projectName": "Squirrel-Ees",
+      "projectPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+      "packagesPath": "/home/ferret/.nuget/packages/",
+      "outputPath": "/home/ferret/GIT/Scorpion-IEE/dotnet/squirrel_server_crossplatform/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/ferret/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-AES/Scorpion_Aes.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Cryptography/Scorpion_Cryptography.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-XMLDB/Scorpion_XMLDB.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-Logging/Squirrel-Logging.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-Processes/squirrel_processes.csproj"
+            },
+            "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel-RSA/squirrel_rsa.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
+          "SimpleTCP.Net5": {
+            "target": "Package",
+            "version": "[1.0.25, )"
+          },
+          "System.Security.Cryptography.OpenSsl": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

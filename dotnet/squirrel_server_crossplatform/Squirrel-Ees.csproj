@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Squirrel-Authenticator\squirrel_authenticator.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Logging\Squirrel-Logging.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-RSA\squirrel_rsa.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-MYSQL\Squirrel-MYSQL.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Processes\squirrel_processes.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Console-Read-Write\consolereadwrite.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-AES\Scorpion_Aes.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-XMLDB\Scorpion_XMLDB.csproj" />
+    <ProjectReference Include="..\..\..\Scorpion-Cryptography\Scorpion_Cryptography.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SimpleTCP.Net5" Version="1.0.25" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+</Project>

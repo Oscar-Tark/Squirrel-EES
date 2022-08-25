@@ -1,0 +1,293 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Squirrel-Ees/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "Scorpion_Aes": "1.0.0",
+          "Scorpion_Cryptography": "1.0.0",
+          "Scorpion_XMLDB": "1.0.0",
+          "SimpleTCP.Net5": "1.0.25",
+          "Squirrel-Logging": "1.0.0",
+          "Squirrel-MYSQL": "1.0.0",
+          "System.Security.Cryptography.OpenSsl": "5.0.0",
+          "consolereadwrite": "1.0.0",
+          "squirrel_authenticator": "1.0.0",
+          "squirrel_processes": "1.0.0",
+          "squirrel_rsa": "1.0.0"
+        },
+        "runtime": {
+          "Squirrel-Ees.dll": {}
+        }
+      },
+      "BCrypt.Net-Next/4.0.2": {
+        "runtime": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.0.2.0"
+          }
+        }
+      },
+      "Capgemini.Cauldron.Cryptography/3.2.3": {
+        "dependencies": {
+          "Capgemini.Cauldron.Randomizer": "3.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {
+            "assemblyVersion": "3.2.0.3",
+            "fileVersion": "3.2.0.3"
+          }
+        }
+      },
+      "Capgemini.Cauldron.Randomizer/3.2.3": {
+        "runtime": {
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {
+            "assemblyVersion": "3.2.0.3",
+            "fileVersion": "3.2.0.3"
+          }
+        }
+      },
+      "EasyEncrypt/2.2.1": {
+        "runtime": {
+          "lib/netstandard2.0/EasyEncrypt.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "MySqlConnector/2.1.8": {
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.8.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "SimpleTCP.Net5/1.0.25": {
+        "runtime": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "System.Formats.Asn1/5.0.0": {},
+      "System.Security.Cryptography.OpenSsl/5.0.0": {
+        "dependencies": {
+          "System.Formats.Asn1": "5.0.0"
+        }
+      },
+      "consolereadwrite/1.0.0": {
+        "runtime": {
+          "consolereadwrite.dll": {}
+        }
+      },
+      "Scorpion_Aes/1.0.0": {
+        "dependencies": {
+          "EasyEncrypt": "2.2.1"
+        },
+        "runtime": {
+          "Scorpion_Aes.dll": {}
+        }
+      },
+      "Scorpion_Cryptography/1.0.0": {
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "runtime": {
+          "Scorpion_Cryptography.dll": {}
+        }
+      },
+      "Scorpion_XMLDB/1.0.0": {
+        "dependencies": {
+          "Scorpion_Aes": "1.0.0",
+          "Scorpion_Cryptography": "1.0.0"
+        },
+        "runtime": {
+          "Scorpion_XMLDB.dll": {}
+        }
+      },
+      "Squirrel-Logging/1.0.0": {
+        "runtime": {
+          "Squirrel-Logging.dll": {}
+        }
+      },
+      "Squirrel-MYSQL/1.0.0": {
+        "dependencies": {
+          "MySqlConnector": "2.1.8"
+        },
+        "runtime": {
+          "Squirrel-MYSQL.dll": {}
+        }
+      },
+      "squirrel_authenticator/1.0.0": {
+        "dependencies": {
+          "Scorpion_Aes": "1.0.0",
+          "squirrel_hasher": "1.0.0"
+        },
+        "runtime": {
+          "squirrel_authenticator.dll": {}
+        }
+      },
+      "squirrel_hasher/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.2",
+          "Capgemini.Cauldron.Cryptography": "3.2.3"
+        },
+        "runtime": {
+          "squirrel_hasher.dll": {}
+        }
+      },
+      "squirrel_processes/1.0.0": {
+        "dependencies": {
+          "consolereadwrite": "1.0.0"
+        },
+        "runtime": {
+          "squirrel_processes.dll": {}
+        }
+      },
+      "squirrel_rsa/1.0.0": {
+        "dependencies": {
+          "Capgemini.Cauldron.Cryptography": "3.2.3",
+          "System.Security.Cryptography.OpenSsl": "5.0.0"
+        },
+        "runtime": {
+          "squirrel_rsa.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Squirrel-Ees/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BCrypt.Net-Next/4.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
+      "path": "bcrypt.net-next/4.0.2",
+      "hashPath": "bcrypt.net-next.4.0.2.nupkg.sha512"
+    },
+    "Capgemini.Cauldron.Cryptography/3.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cfIT95HcNw/KeWpxgZI2P1qzn07APwL+cLqwHt6iLPURiMuVopTTZeSnxa1DY8rFpZ5BJVOMuaeTwqvpICOMbQ==",
+      "path": "capgemini.cauldron.cryptography/3.2.3",
+      "hashPath": "capgemini.cauldron.cryptography.3.2.3.nupkg.sha512"
+    },
+    "Capgemini.Cauldron.Randomizer/3.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Cu8XU1wxJwgkeO/lkxzcJHWT/FznDqsj4VIKRgaJXFmXn3IcBpYPgbdPmlQATkM2/e83Pmxp5UPUjqIzyQ9veA==",
+      "path": "capgemini.cauldron.randomizer/3.2.3",
+      "hashPath": "capgemini.cauldron.randomizer.3.2.3.nupkg.sha512"
+    },
+    "EasyEncrypt/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dq7ofkt2CoKPnazhDWB7nEsLWdy0i3NsH9bykH85pp+U1k3j9cpqjIcBFgEDF1/qvO3HtTj+E9zMjhq+CPlNKg==",
+      "path": "easyencrypt/2.2.1",
+      "hashPath": "easyencrypt.2.2.1.nupkg.sha512"
+    },
+    "MySqlConnector/2.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
+      "path": "mysqlconnector/2.1.8",
+      "hashPath": "mysqlconnector.2.1.8.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "SimpleTCP.Net5/1.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
+      "path": "simpletcp.net5/1.0.25",
+      "hashPath": "simpletcp.net5.1.0.25.nupkg.sha512"
+    },
+    "System.Formats.Asn1/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w==",
+      "path": "system.formats.asn1/5.0.0",
+      "hashPath": "system.formats.asn1.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.OpenSsl/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D3aDrPOPBORUl6V/WJ2AtN3Ae48aSH0W7yChBIecvu1lyoAhopPORmMpNTjv5/Kay7Z+h3KXpfbvteIm7x7miA==",
+      "path": "system.security.cryptography.openssl/5.0.0",
+      "hashPath": "system.security.cryptography.openssl.5.0.0.nupkg.sha512"
+    },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scorpion_Aes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scorpion_Cryptography/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scorpion_XMLDB/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Squirrel-Logging/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Squirrel-MYSQL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "squirrel_authenticator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "squirrel_hasher/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "squirrel_processes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "squirrel_rsa/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
