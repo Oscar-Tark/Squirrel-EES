@@ -48,7 +48,7 @@ namespace Scorpion
                 ProcessStartInfo pri_s;
                 bool is_sudo = false;
 
-                if(MemoryCore.varGet(objects[4]) == Types.S_No)
+                if((string)MemoryCore.varGet(objects[4]) == Types.S_No)
                 {
                     pri_s = new ProcessStartInfo((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
                 }

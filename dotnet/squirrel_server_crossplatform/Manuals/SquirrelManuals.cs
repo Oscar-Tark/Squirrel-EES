@@ -98,7 +98,7 @@ namespace Scorpion
             {
                 var downloadUrl = (string)file["download_url"];
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Downloading: {downloadUrl}");
-                DownloadFile((string)file["download_url"], Types.main_user_manuals_path + "/" + (string)file["name"]);
+                await DownloadFile((string)file["download_url"], Types.main_user_manuals_path + "/" + (string)file["name"]);
             }
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Finished downloading manuals");
         }
