@@ -115,7 +115,7 @@ namespace Scorpion
 
                         if (query_result.Count > 0)
                         {
-                            db_page = (string)query_result[0];
+                            db_page = (string)((ArrayList)query_result[0])[0];
 
                             //Get mysql dat
                             

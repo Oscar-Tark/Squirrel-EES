@@ -10,6 +10,7 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "Scorpion-Default-Paths": "1.0.0",
+          "Scorpion-XMLDB-Editor": "1.0.0",
           "SimpleTCP.Net5": "1.0.25",
           "Squirrel-AES": "1.0.0",
           "Squirrel-Cryptography": "1.0.0",
@@ -99,6 +100,16 @@
       "Scorpion-Default-Paths/1.0.0": {
         "runtime": {
           "Scorpion-Default-Paths.dll": {}
+        }
+      },
+      "Scorpion-XMLDB-Editor/1.0.0": {
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0",
+          "Squirrel-XMLDB": "1.0.0",
+          "consolereadwrite": "1.0.0"
+        },
+        "runtime": {
+          "Scorpion-XMLDB-Editor.dll": {}
         }
       },
       "Squirrel-AES/1.0.0": {
@@ -252,6 +263,11 @@
       "sha512": ""
     },
     "Scorpion-Default-Paths/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scorpion-XMLDB-Editor/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

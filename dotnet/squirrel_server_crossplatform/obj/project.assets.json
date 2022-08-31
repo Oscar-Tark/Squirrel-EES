@@ -115,6 +115,21 @@
           "bin/placeholder/Scorpion-Default-Paths.dll": {}
         }
       },
+      "Scorpion-XMLDB-Editor/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0",
+          "Squirrel-XMLDB": "1.0.0",
+          "consolereadwrite": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Scorpion-XMLDB-Editor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Scorpion-XMLDB-Editor.dll": {}
+        }
+      },
       "Squirrel-AES/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -476,6 +491,11 @@
       "path": "../../../Squirrel-Default-Paths/Scorpion-Default-Paths.csproj",
       "msbuildProject": "../../../Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
     },
+    "Scorpion-XMLDB-Editor/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj",
+      "msbuildProject": "../../../Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj"
+    },
     "Squirrel-AES/1.0.0": {
       "type": "project",
       "path": "../../../Squirrel-AES/Squirrel-AES.csproj",
@@ -526,6 +546,7 @@
     "net6.0": [
       "Newtonsoft.Json >= 13.0.1",
       "Scorpion-Default-Paths >= 1.0.0",
+      "Scorpion-XMLDB-Editor >= 1.0.0",
       "SimpleTCP.Net5 >= 1.0.25",
       "Squirrel-AES >= 1.0.0",
       "Squirrel-Cryptography >= 1.0.0",
@@ -590,6 +611,9 @@
             },
             "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj": {
               "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj"
+            },
+            "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj": {
+              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj"
             },
             "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
               "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj"

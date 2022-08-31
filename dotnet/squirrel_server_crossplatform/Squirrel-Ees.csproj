@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\..\Squirrel-XMLDB\Squirrel-XMLDB.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Cryptography\Squirrel-Cryptography.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Default-Paths\Scorpion-Default-Paths.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-XMLDB-Editor\Scorpion-XMLDB-Editor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

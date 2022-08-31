@@ -91,3 +91,5 @@
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/Debug/net6.0/Squirrel-Ees.genruntimeconfig.cache
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Scorpion-Default-Paths.dll
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Scorpion-Default-Paths.pdb
+/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Scorpion-XMLDB-Editor.dll
+/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Scorpion-XMLDB-Editor.pdb

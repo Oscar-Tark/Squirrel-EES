@@ -11,11 +11,17 @@ namespace Scorpion
 {
     static class lineFeed
     {
+        static bool read_signal_off_already_set;
+        static bool message_shown;
 
         public static void lineReader()
         {
             List<string> history = new List<string>(0x0f); int history_current = 0;
-            bool message_shown = false;
+
+            //Input signal Bools
+            message_shown = false;
+            read_signal_off_already_set = false;
+
             string line = default;
             ConsoleKeyInfo cki;
 
@@ -29,6 +35,7 @@ namespace Scorpion
                     if((cki.Modifiers & ConsoleModifiers.Control) != 0 && cki.Key == ConsoleKey.A)
                     {
                         Types.READ_SIGNAL_CURRENT = Types.READ_SIGNAL_OFF;
+                        read_signal_off_already_set = true;
                         break;
                     }
                     //Backspace
@@ -89,12 +96,12 @@ namespace Scorpion
                         line = line + cki.KeyChar;
                 }
 
-                if(Types.READ_SIGNAL_CURRENT == Types.READ_SIGNAL_OFF)
+                if(Types.READ_SIGNAL_CURRENT == Types.READ_SIGNAL_OFF && read_signal_off_already_set == true)
                 {
                     if(message_shown == false)
                     {
                         ConsoleWrite.writeSpecial("\n", "Exited input stream, input stream will be reinstated in 10 seconds");
-                        Task.Delay(10000).ContinueWith(t=> setReadSignalOn());
+                        Task.Delay(10000).ContinueWith(t => setReadSignalOn());
                         message_shown = true;
                     }
                 }
@@ -105,6 +112,8 @@ namespace Scorpion
         {
             ConsoleWrite.writeSpecial("\n", "Entered input stream, press CRTL+A to leave it");
             Types.READ_SIGNAL_CURRENT = Types.READ_SIGNAL_ON;
+            read_signal_off_already_set = false;
+            message_shown = false;
             return;
         }
     }
