@@ -125,22 +125,6 @@ namespace Scorpion.Memory_Security
             return ssv.create_secure_string(ref element);
         }
 
-        public void encrypt(ref string Reference)
-        {
-            //::*ref, var
-            byte[] b_e = Types.HANDLE.crypto.AES_ENCRYPT(Types.HANDLE.mmsec.get_pwd(), MemoryCore.varGet(ref Reference));
-            var_set_encrypted(Reference, b_e);
-            return;
-        }
-
-        public void decrypt(ref string Reference)
-        {
-            //::*ref
-            object s_d = Types.HANDLE.crypto.AES_DECRYPT(Types.HANDLE.mmsec.get_pwd(), var_get_encrypted(ref Reference));
-            Types.HANDLE.librarian_instance.librarian.varset(Types.S_NULL, new ArrayList() { Reference, s_d});
-            return;
-        }
-
         private void var_set_encrypted(string Reference, byte[] block_)
         {
             ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = block_;

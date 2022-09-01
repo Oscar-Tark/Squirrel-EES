@@ -40,19 +40,6 @@ namespace Scorpion
             Types.HANDLE.mem.AL_TCP_KY.Clear();
             Types.HANDLE.mem.AL_TCP_REF.Clear();
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared TCP servers");
-
-            //Clean TCP clients
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput($"Clearing {Types.HANDLE.mem.AL_TCP_CLIENTS.Count} TCP clients..");
-            for(int i = Types.HANDLE.mem.AL_TCP_CLIENTS.Count-1; i >= 0; i--)
-            {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp client connection {Types.HANDLE.mem.AL_TCP_CLIENTS[i]}");
-                Types.HANDLE.sdh.RemoveTcpClient(i);
-                ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closed tcp client connection {Types.HANDLE.mem.AL_TCP_CLIENTS[i]}");
-            }
-            Types.HANDLE.mem.AL_TCP_CLIENTS.Clear();
-            Types.HANDLE.mem.AL_TCP_CLIENTS_KY.Clear();
-            Types.HANDLE.mem.AL_TCP_CLIENTS_REF.Clear();
-            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Cleared TCP clients");
             return;
         }
     }

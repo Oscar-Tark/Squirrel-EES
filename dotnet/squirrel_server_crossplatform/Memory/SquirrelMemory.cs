@@ -70,13 +70,6 @@ namespace Scorpion
             return val;
         }
 
-        private object var_create_return(ref byte[] val, bool is_val)
-        {
-            if (is_val)
-                return "\'" + Types.HANDLE.crypto.To_Object(val) + "\'";
-            return val;
-        }
-
         private object var_create_return(ref SecureString val, bool is_val)
         {
             ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("A secure string is being returned to a normal scorpion memory variable, this may compromise security");
@@ -196,31 +189,6 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             return var_create_return(ref result);
-        }
-    }
-
-    //MEMORY SECURITY
-    partial class Librarian
-    { 
-        public void encrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //::*var, *var..
-            string ref_ = (string)objects[0];
-            //Allows us to get pin by going through mmsec
-            Types.HANDLE.mmsec.encrypt(ref ref_);
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            return;
-        }
-
-        public void decrypt(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            string ref_ = (string)objects[0];
-            Types.HANDLE.mmsec.decrypt(ref ref_);
-
-            Scorp_Line_Exec = null;
-            var_arraylist_dispose(ref objects);
         }
     }
 

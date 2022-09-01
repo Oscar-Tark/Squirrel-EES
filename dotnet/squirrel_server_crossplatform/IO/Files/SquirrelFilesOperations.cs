@@ -24,18 +24,6 @@ namespace Scorpion
             return var_create_return(ref RSA, true);
         }
 
-        public object readfilebinary(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //Read a raw binary file
-            //*returnable<<::*path
-            byte[] byter = File.ReadAllBytes((string)MemoryCore.varGet(objects[0]));
-
-            //claen
-            var_arraylist_dispose(ref objects);
-            var_dispose_internal(ref Scorp_Line_Exec);
-            return var_create_return(ref byter, true);
-        }
-
         public void writefile(string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Write a UTF8 Encoded file to disk
@@ -56,20 +44,6 @@ namespace Scorpion
             Scorp_Line_Exec = null;
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
-            return;
-        }
-
-        public void writefilebinary(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //Write a raw binary file to disk
-            //::*path, *byteobject
-            byte[] bytew = Types.HANDLE.crypto.To_Byte(MemoryCore.varGet(objects[1]));
-            File.WriteAllBytes((string)MemoryCore.varGet(objects[0]), bytew);
-
-            //clean
-            var_arraylist_dispose(ref objects);
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_dispose_internal(ref bytew);
             return;
         }
 

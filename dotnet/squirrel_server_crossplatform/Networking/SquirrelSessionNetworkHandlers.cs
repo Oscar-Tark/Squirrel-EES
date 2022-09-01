@@ -108,9 +108,7 @@ namespace Scorpion
                     }
 
                     if (processed["type"] == NetworkEngineFunctions.api_requests["get"])
-                    {
-                        //ArrayList query_result = new ArrayList() { File.ReadAllText(string.Format("{0}/{1}/{2}", Types.main_user_projects_path, processed["db"], processed["subtag"])) };
-                        //Get formattable page from XMLDB
+                    {//Get formattable page from XMLDB
                         ArrayList query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
 
                         if (query_result.Count > 0)
@@ -139,7 +137,6 @@ namespace Scorpion
                     }
                     else if (processed["type"] == NetworkEngineFunctions.api_requests["delete"])
                     {
-
                         //Delete a session on request from the HTTP server (Time based)
                     }
                 }
@@ -167,72 +164,6 @@ namespace Scorpion
             {
                 e.TcpClient.Client.Disconnect(true);
             }
-            return;
-        }
-
-        //TCP CLIENT
-        public SimpleTCP.SimpleTcpClient GetClient(int ndx)
-        {
-            return (SimpleTCP.SimpleTcpClient)Types.HANDLE.mem.AL_TCP_CLIENTS[ndx];
-        }
-
-        public int GetClientIndex(object client)
-        {
-            return Types.HANDLE.mem.AL_TCP_CLIENTS.IndexOf(client);
-        }
-
-        public int GetIndexTcpClient(string client)
-        {
-            return Types.HANDLE.mem.AL_TCP_CLIENTS_REF.IndexOf(client);
-        }
-
-        public string[] GetClientKeyPaths(int ndx)
-        {
-            return (string[])Types.HANDLE.mem.AL_TCP_CLIENTS_KY[ndx];
-        }
-
-        public void RemoveTcpClient(int ndx)
-        {
-            lock (Types.HANDLE.mem.AL_TCP_CLIENTS) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_REF) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_KY)
-                    {
-                        Types.HANDLE.mem.AL_TCP_CLIENTS.RemoveAt(ndx);
-                        Types.HANDLE.mem.AL_TCP_CLIENTS_KY.RemoveAt(ndx);
-                        Types.HANDLE.mem.AL_TCP_CLIENTS_REF.RemoveAt(ndx);
-                    }
-            return;
-        }
-
-        //TCP client
-        //FIX DISCREPANCIES
-        public void AddTcpClient(string reference, string ip, int port, string private_key_path, string public_key_path)
-        {
-            //::*name, *ip, *port, *private, *publicrsakey
-            SimpleTCP.SimpleTcpClient sctl = new SimpleTCP.SimpleTcpClient();
-            sctl.Connect(ip, port);
-            sctl.DataReceived += Sctl_clientDataReceived;
-            lock (Types.HANDLE.mem.AL_TCP_CLIENTS) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_REF) lock (Types.HANDLE.mem.AL_TCP_CLIENTS_KY)
-                    {
-                        Types.HANDLE.mem.AL_TCP_CLIENTS.Add(sctl);
-                        Types.HANDLE.mem.AL_TCP_CLIENTS_REF.Add(reference);
-                        Types.HANDLE.mem.AL_TCP_CLIENTS_KY.Add(new string[] { private_key_path, public_key_path });
-                    }
-            ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("Client " + reference + " connected to " + ip + ":" + port);
-            return;
-        }
-
-        //CLIENT
-        void Sctl_clientDataReceived(object sender, SimpleTCP.Message e)
-        {
-            //get private key and decrypt
-            int client = GetClientIndex(sender);
-            string key_path = GetClientKeyPaths(client)[0];
-            SecureString key = Scorpion_RSA.Scorpion_RSA.get_private_key_file(key_path);
-            byte[] data = Scorpion_RSA.Scorpion_RSA.decrypt_data(e.Data, key);
-            string s_data = Types.HANDLE.crypto.To_String(data);
-
-            //Removes delimiter 0x13 and executes
-            string command = Enginefunctions.replace_fakes(NetworkEngineFunctions.replace_telnet(s_data));
-            Types.HANDLE.librarian_instance.librarian.scorpioniee(command.TrimEnd(new char[] { Convert.ToChar(0x13) }));
             return;
         }
     }

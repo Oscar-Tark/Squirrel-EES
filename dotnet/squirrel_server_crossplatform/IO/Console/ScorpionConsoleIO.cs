@@ -46,19 +46,5 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
-
-        public void outputbytes(ref string Scorp_Line_Exec, ArrayList Objects)
-        {
-            //::*var
-            object obj = MemoryCore.varGet(Objects[0]);
-            byte[] bytes = Types.HANDLE.crypto.To_Byte(obj);
-            Console.WriteLine("Byte sequence for [" + Objects[0] + "]:\n");
-            foreach (byte __byte in bytes)
-                Console.Write($"0x{__byte,0:X} ", __byte);
-            Console.Write('\n');
-            var_arraylist_dispose(ref Objects);
-            Scorp_Line_Exec = null;
-            return;
-        }
     }
 }
