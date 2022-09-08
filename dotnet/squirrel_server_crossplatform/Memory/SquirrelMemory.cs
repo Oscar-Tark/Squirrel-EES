@@ -273,7 +273,7 @@ namespace Scorpion
 
         public void vararrayinsert(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //This function allows you to insert a value into an array using an index
+            //This function allows you to insert a value into an array using an index, to refresh a 2d or 3d array set the new array in a pyramid method to the elements
 
             //Template:
             //::*destination_array_variable, *object, *index

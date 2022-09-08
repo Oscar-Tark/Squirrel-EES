@@ -284,9 +284,9 @@ namespace Scorpion
                                 {
                                     //if not at end of indexes contiue as arraylists else take object
                                     if(i < (indexes.Length - 2))
-                                        temp_array = (ArrayList)temp_array[Convert.ToInt32(indexes[i])];
+                                        temp_array = (ArrayList)temp_array[Convert.ToInt32(indexes[i+1])];
                                     else
-                                        returnable = temp_array[i];
+                                        returnable = temp_array[indexes[i+1]];
                                 }
                             }
                         }

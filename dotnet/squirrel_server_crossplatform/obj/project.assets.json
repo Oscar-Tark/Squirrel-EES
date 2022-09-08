@@ -5,10 +5,14 @@
       "BCrypt.Net-Next/4.0.2": {
         "type": "package",
         "compile": {
-          "lib/net5.0/BCrypt.Net-Next.dll": {}
+          "lib/net5.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/BCrypt.Net-Next.dll": {}
+          "lib/net5.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Capgemini.Cauldron.Cryptography/3.2.3": {
@@ -17,19 +21,27 @@
           "Capgemini.Cauldron.Randomizer": "3.2.3"
         },
         "compile": {
-          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Cauldron.Cryptography.dll": {}
+          "lib/netstandard2.0/Cauldron.Cryptography.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Capgemini.Cauldron.Randomizer/3.2.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Cauldron.Randomizer.dll": {}
+          "lib/netstandard2.0/Cauldron.Randomizer.dll": {
+            "related": ".xml"
+          }
         }
       },
       "EasyEncrypt/2.2.1": {
@@ -44,19 +56,27 @@
       "MySqlConnector/2.1.8": {
         "type": "package",
         "compile": {
-          "lib/net6.0/MySqlConnector.dll": {}
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/MySqlConnector.dll": {}
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "SimpleTCP.Net5/1.0.25": {
@@ -71,10 +91,14 @@
       "System.Formats.Asn1/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/_._": {}
+          "lib/netstandard2.0/_._": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Formats.Asn1.dll": {}
+          "lib/netstandard2.0/System.Formats.Asn1.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Security.Cryptography.OpenSsl/5.0.0": {
@@ -83,10 +107,14 @@
           "System.Formats.Asn1": "5.0.0"
         },
         "compile": {
-          "ref/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {}
+          "ref/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {}
+          "lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {
+            "related": ".xml"
+          }
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netcoreapp3.0/System.Security.Cryptography.OpenSsl.dll": {
@@ -650,7 +678,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -659,7 +688,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/ferret/.dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }

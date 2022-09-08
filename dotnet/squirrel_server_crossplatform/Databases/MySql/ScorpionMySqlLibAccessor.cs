@@ -79,7 +79,7 @@ namespace Scorpion
         {
             using(var mysql = new ScorpionMySql.ScorpionSql())
             {
-                mysql.test((string)MemoryCore.varGet(objects[0]));
+                mysql.scfmtmySqlTest((string)MemoryCore.varGet(objects[0]));
             }
 
             var_dispose_internal(ref Scorp_Line_Exec);
