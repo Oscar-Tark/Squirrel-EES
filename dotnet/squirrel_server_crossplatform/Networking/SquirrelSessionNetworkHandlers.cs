@@ -1,35 +1,27 @@
-
-
 //If sessions are allowed. this class allows functionality not to be shared between sessions that are crucial in being seperate from the main partial Librarian class
-
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Security;
-using System.Threading;
-using System.Text;
 using System.Security.Cryptography;
-using System.IO;
+using ScorpionMySql;
 
 namespace Scorpion
 {
     public class SessionDependentNetworkHandlers
     {
         /*TCP server*/
-        public void AddTcpServer(string reference, string ip, int port, string RSA_private_path, string RSA_public_path)
+        public void AddTcpServer(string reference, string ip, int port, string RSA_private_path, string RSA_public_path, string maria_db_connection_string)
         {
             //To be depreciated soon with scorpion_P2P use [DEPRECIATED] ontop of the function definition when done.
 
             SimpleTCP.SimpleTcpServer sctl = new SimpleTCP.SimpleTcpServer();
             sctl.ClientConnected += Sctl_ClientConnected;
             sctl.ClientDisconnected += Sctl_ClientDisconnected;
-            lock (Types.HANDLE.mem.AL_TCP) lock (Types.HANDLE.mem.AL_TCP_REF)
+            lock (Types.HANDLE.mem.AL_TCP) lock (Types.HANDLE.mem.AL_TCP_REF) lock(Types.HANDLE.mem.AL_TCP_CONNECTION_STRING)
                 {
                     Types.HANDLE.mem.AL_TCP.Add(sctl);
                     Types.HANDLE.mem.AL_TCP_REF.Add(reference);
+                    Types.HANDLE.mem.AL_TCP_CONNECTION_STRING.Add(maria_db_connection_string);
                     Types.HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
 
                     if(RSA_public_path == null || RSA_private_path == null)
@@ -74,6 +66,7 @@ namespace Scorpion
             SimpleTCP.Message e = (SimpleTCP.Message)((object[])param_thread_object)[1];
             int server_index = Types.HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
+            string maria_db_connection_string = (string)Types.HANDLE.mem.AL_TCP_CONNECTION_STRING[server_index];
             //string session = Types.S_NULL;
             string reply = null;
             IPEndPoint end_point = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
@@ -116,7 +109,12 @@ namespace Scorpion
                             db_page = (string)((ArrayList)query_result[0])[0];
 
                             //Get mysql dat
-                            
+                            using(ScorpionSql sql = new ScorpionSql())
+                            {
+                                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
+                                sql.scfmtSqlGet(maria_db_connection_string, "datasquirrel", "/test", "last name", "Flicky", "token");
+                                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
+                            }
 
                             //Session allows us to return the page with user loaded session data
                             if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))

@@ -125,9 +125,10 @@ namespace Scorpion
         internal ArrayList AL_CURR_VAR_TAG = ArrayList.Synchronized(new ArrayList());
         internal ArrayList AL_CURR_VAR_NACESSED = ArrayList.Synchronized(new ArrayList());
 
-        //Tcpservers
+        //Scorpion Formatted Tcpservers
         internal ArrayList AL_TCP = ArrayList.Synchronized(new ArrayList());
         internal ArrayList AL_TCP_REF = ArrayList.Synchronized(new ArrayList());
         internal ArrayList AL_TCP_KY = ArrayList.Synchronized(new ArrayList());
+        internal ArrayList AL_TCP_CONNECTION_STRING = ArrayList.Synchronized(new ArrayList());
     }
 }

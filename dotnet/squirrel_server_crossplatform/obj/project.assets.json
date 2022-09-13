@@ -198,7 +198,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "MySqlConnector": "2.1.8"
+          "MySqlConnector": "2.1.8",
+          "consolereadwrite": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Squirrel-MYSQL.dll": {}

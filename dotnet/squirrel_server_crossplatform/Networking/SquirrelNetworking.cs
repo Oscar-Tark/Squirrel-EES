@@ -30,6 +30,7 @@ namespace Scorpion
             int port = Convert.ToInt32(MemoryCore.varGet(objects[2]));
             string RSA_private_path = (string)MemoryCore.varGet(objects[3]);
             string RSA_public_path = (string)MemoryCore.varGet(objects[4]);
+            string maria_db_connection_string = (string)MemoryCore.varGet(objects[5]);
 
             //Check if the AES encryption key exists
             if(!File.Exists(Types.main_user_aes_path_file))
@@ -45,7 +46,7 @@ namespace Scorpion
                 return;
             }
 
-            Types.HANDLE.sdh.AddTcpServer(name, ip, port, RSA_private_path == Types.S_NULL ? null : RSA_private_path, RSA_public_path == Types.S_NULL ? null : RSA_public_path);
+            Types.HANDLE.sdh.AddTcpServer(name, ip, port, RSA_private_path == Types.S_NULL ? null : RSA_private_path, RSA_public_path == Types.S_NULL ? null : RSA_public_path, maria_db_connection_string);
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);

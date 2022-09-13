@@ -1,29 +1,9 @@
-
-
-using System;
-using System.IO;
 using System.Collections;
 
 namespace Scorpion
 {
     public partial class Librarian
     {
-        public void mysqlnew(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //Creates a new generic data table
-            //Table format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
-            //::*connectionstringvar, *tablename
-            //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlnew::*con, *'test'
-            using(var mysql = new ScorpionMySql.ScorpionSql())
-            {
-                mysql.sqlfmtnew((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
-            }
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            return;
-        }
-
         public string mysqlcreatestring(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqltest::*con
@@ -35,6 +15,35 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
             return var_create_return(returnable, true);
+        }
+
+        public void mysqlcreateschema(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*connection_string, *dbname
+            using(var mysql = new ScorpionMySql.ScorpionSql())
+            {
+                mysql.scfmtMariaDbCreateSchema((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
+        public void mysqlnew(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //Creates a new generic data table
+            //Table format: [id:int] [tag|path:string] [subtag|identifier(name, age...):string] [data:string]
+            //::*connectionstringvar, *tablename
+            //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> mysqlnew::*con, *'test'
+            using(var mysql = new ScorpionMySql.ScorpionSql())
+            {
+                mysql.sqlfmtNew((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]));
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
         }
 
         public object mysqlget(ref string Scorp_Line_Exec, ref ArrayList objects)
@@ -72,8 +81,17 @@ namespace Scorpion
             return;
         }
 
-        public void mysqlupdate()
-        {}
+        public void mysqlupdate(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            using (var mysql = new ScorpionMySql.ScorpionSql())
+            {
+                mysql.sqlfmtUpdate((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[5]));
+            }
+
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
 
         public void mysqltest(ref string Scorp_Line_Exec, ref ArrayList objects)
         {

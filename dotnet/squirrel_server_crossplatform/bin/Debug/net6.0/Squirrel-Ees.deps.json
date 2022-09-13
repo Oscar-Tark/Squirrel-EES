@@ -135,7 +135,8 @@
       },
       "Squirrel-MYSQL/1.0.0": {
         "dependencies": {
-          "MySqlConnector": "2.1.8"
+          "MySqlConnector": "2.1.8",
+          "consolereadwrite": "1.0.0"
         },
         "runtime": {
           "Squirrel-MYSQL.dll": {}
