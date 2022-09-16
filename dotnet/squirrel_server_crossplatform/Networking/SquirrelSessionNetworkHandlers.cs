@@ -67,7 +67,6 @@ namespace Scorpion
             int server_index = Types.HANDLE.mem.AL_TCP.IndexOf(sender);
             byte[] data = e.Data;
             string maria_db_connection_string = (string)Types.HANDLE.mem.AL_TCP_CONNECTION_STRING[server_index];
-            //string session = Types.S_NULL;
             string reply = null;
             IPEndPoint end_point = (IPEndPoint)e.TcpClient.Client.RemoteEndPoint;
 
@@ -82,23 +81,16 @@ namespace Scorpion
 
             //Get session from parsed elements
             string session = processed["session"];
-            string destroyable = "\0";
+            bool includedata = Convert.ToBoolean(processed["includedata"]);
             string db_page = Types.S_NULL;
 
             try
             {
                 if (processed != null)
                 {
-                    //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable
+                    //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable.
                     if(!MemoryCore.varCheck(session))
-                    {
-                        ArrayList temp = new ArrayList(){ session };
-                        Types.HANDLE.librarian_instance.librarian.vardictionary(ref destroyable, ref temp);
-                        temp = new ArrayList(){ session, "\'session\'", $"\'{session}\'" };
-                        Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
-                        temp = new ArrayList(){ session, "\'project\'", "\'" + processed["tag"] + "\'" };
-                        Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
-                    }
+                        sessionMemory(session, processed["tag"]);
 
                     if (processed["type"] == NetworkEngineFunctions.api_requests["get"])
                     {//Get formattable page from XMLDB
@@ -108,12 +100,21 @@ namespace Scorpion
                         {
                             db_page = (string)((ArrayList)query_result[0])[0];
 
-                            //Get mysql dat
-                            using(ScorpionSql sql = new ScorpionSql())
+                            //Get mysql data for specified page if data has been requested embedded in the page
+                            if(includedata)
                             {
-                                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
-                                sql.scfmtSqlGet(maria_db_connection_string, "datasquirrel", "/test", "last name", "Flicky", "token");
-                                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
+                                using(ScorpionSql sql = new ScorpionSql())
+                                {
+                                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
+                                    Dictionary<string, string> mysql_result = sql.scfmtSqlGet(maria_db_connection_string, processed["tag"], processed["subtag"], "", "", session);
+                                
+                                    //Assign result as users dictionary in the global variables
+                                    //WARNING!!!!: IMPLEMENT: We must get rid of the previous session variables!!!
+
+                                    MemoryCore.var_manipulate(session, mysql_result, false, true, MemoryCore.OPCODE_MERGE);
+
+                                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
+                                }
                             }
 
                             //Session allows us to return the page with user loaded session data
@@ -124,9 +125,15 @@ namespace Scorpion
                         }
                         else
                             reply = NetworkEngineFunctions.build_api("Query resulted in 0 elements returned", session, true);
+
+                        //Clear out all MariaDB memory used to populate the page and set to defaults.
+                        if(MemoryCore.varCheck(session))
+                            sessionMemory(session, processed["tag"]);
                     }
                     else if (processed["type"] == NetworkEngineFunctions.api_requests["set"])
                     {
+                        //On a login set, the session is replaced with the database token and the new session is sent as a reply to the HTTP server
+
                         command = command.TrimEnd(new char[] { Convert.ToChar(0x13) });
                         string[] commands = command.Split(new char[] { '\n' });
                         foreach (string s_dat in commands)
@@ -162,6 +169,18 @@ namespace Scorpion
             {
                 e.TcpClient.Client.Disconnect(true);
             }
+            return;
+        }
+
+        private void sessionMemory(string session, string project)
+        {
+            string destroyable = "\0";
+            ArrayList temp = new ArrayList(){ session, false };
+            Types.HANDLE.librarian_instance.librarian.vardictionary(ref destroyable, ref temp);
+            temp = new ArrayList(){ session, "\'session\'", $"\'{session}\'" };
+            Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
+            temp = new ArrayList(){ session, "\'project\'", $"\'{project}\'" };
+            Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
             return;
         }
     }

@@ -132,6 +132,7 @@ namespace Scorpion
             { "data", new string[] {"{&data}", "{&/data}" } },
             { "status", new string[] {"{&status}", "{&/status}" } },
             { "session", new string[] {"{&session}", "{&/session}" } },
+            { "includedata", new string[] {"{&includedata}", "{&/includedata}" } },
         };
 
         public static readonly Dictionary<string, string> api_requests = new Dictionary<string, string>
@@ -155,13 +156,14 @@ namespace Scorpion
             {
                 //Split other elements
                 //Get the app
-                string[] db, tag, subtag, type, session;
+                string[] db, tag, subtag, type, session, inlcudedata;
                 type = Scorp_Line.Split(api["type"], StringSplitOptions.RemoveEmptyEntries);
                 db = Scorp_Line.Split(api["database"], StringSplitOptions.RemoveEmptyEntries);
                 tag = Scorp_Line.Split(api["tag"], StringSplitOptions.RemoveEmptyEntries);
                 subtag = Scorp_Line.Split(api["subtag"], StringSplitOptions.RemoveEmptyEntries);
                 session = Scorp_Line.Split(api["session"], StringSplitOptions.RemoveEmptyEntries);
-                return new Dictionary<string, string> { { "type", type[1] }, { "db", db[1] }, { "tag", tag[1] }, { "subtag", subtag[1] }, { "session", session[1] } };
+                inlcudedata = Scorp_Line.Split(api["includedata"], StringSplitOptions.RemoveEmptyEntries);
+                return new Dictionary<string, string> { { "type", type[1] }, { "db", db[1] }, { "tag", tag[1] }, { "subtag", subtag[1] }, { "session", session[1] }, { "includedata", inlcudedata[1] } };
             }
             return null;
         }

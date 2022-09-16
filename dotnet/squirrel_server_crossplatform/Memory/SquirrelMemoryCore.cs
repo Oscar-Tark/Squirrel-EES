@@ -19,19 +19,19 @@ namespace Scorpion
             return true;
         }
 
-        internal static object varGet(string Block)
+        internal static object varGet(string name)
         {
-            return varGet(ref Block);
+            return varGet(ref name);
         }
 
-        internal static object varGet(object Block)
+        internal static object varGet(object name)
         {
-            return varGet((string)Block);
+            return varGet((string)name);
         }
 
-        internal static object varGet(ref object Block)
+        internal static object varGet(ref object name)
         {
-            return varGet((string)Block);
+            return varGet((string)name);
         }
 
         //Actions
@@ -72,9 +72,10 @@ namespace Scorpion
         }
 
         //SET //DELETE
-        public static ushort OPCODE_SET =       0x01;
-        public static ushort OPCODE_DELETE =    0x02;
-        public static ushort OPCODE_INSERT =    0x03;
+        public static ushort OPCODE_SET     =   0x01;
+        public static ushort OPCODE_DELETE  =   0x02;
+        public static ushort OPCODE_INSERT  =   0x03;
+        public static ushort OPCODE_MERGE   =   0x04;
         internal static void var_manipulate(string Reference, object Variable, bool is_array, bool is_dictionary, ushort OPCODE)
         {
             Reference = var_cut_symbol(Reference);
@@ -155,6 +156,13 @@ namespace Scorpion
                                         }
                                     }
                                 }
+                                else if (OPCODE == OPCODE_MERGE)
+                                {
+                                    if(is_dictionary)
+                                    {
+                                        ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2] = mergeDictionaries(((Dictionary<string, string>)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(Reference)])[2]), (Dictionary<string, string>)Variable);
+                                    }
+                                }
                         }
                         else
                             ScorpionConsoleReadWrite.ConsoleWrite.writeError("Unable to write changes to the variable: *" + Reference + ", the variable is set to READONLY");
@@ -198,6 +206,17 @@ namespace Scorpion
             return;
         }
 
+        //Dictionaries
+        public static Dictionary<string, string> mergeDictionaries(Dictionary<string, string> dictionary_1, Dictionary<string, string> dictionary_2)
+        {
+            foreach(KeyValuePair<string, string> kvp in dictionary_2)
+            {
+                if(!dictionary_1.ContainsKey(kvp.Key))
+                    dictionary_1.Add(kvp.Key, kvp.Value);
+            }
+            return dictionary_1;
+        }
+
         private static string check_readonly(string Reference)
         {
             string RONLY = (string)((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(var_cut_symbol(Reference))])[4];
@@ -206,17 +225,17 @@ namespace Scorpion
         }
 
         //Get a variable from the main memory block
-        internal static object varGet(ref string block)
+        internal static object varGet(ref string name)
         {
             object o = null;
-            string block_with_depth = block;
-            string block_without_depth = block;
+            string block_with_depth = name;
+            string block_without_depth = name;
             bool contains_depth = false;
 
             //If contains []
-            if(block.Contains(Types.S_UNWANTED_CHAR_NAME[0]) || block.Contains(Types.S_UNWANTED_CHAR_NAME[1]))
+            if(name.Contains(Types.S_UNWANTED_CHAR_NAME[0]) || name.Contains(Types.S_UNWANTED_CHAR_NAME[1]))
             {
-                block_without_depth = block.Remove(block.IndexOf(Types.S_UNWANTED_CHAR_NAME[0]));
+                block_without_depth = name.Remove(name.IndexOf(Types.S_UNWANTED_CHAR_NAME[0]));
                 contains_depth = true;
             }
 
