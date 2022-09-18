@@ -1,8 +1,4 @@
-
-
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Scorpion
 {
@@ -33,7 +29,7 @@ namespace Scorpion
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeWarning($"Closing tcp server {Types.HANDLE.mem.AL_TCP_REF[i]}");
                 ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[i]).Stop();
-                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[i]).DataReceived -= Types.HANDLE.sdh.Sctl_DataReceived;
+                ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[i]).DataReceived -= Types.HANDLE.sdh.ServerDataReceivedEvent;
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess($"Closed tcp server {Types.HANDLE.mem.AL_TCP_REF[i]}");
             }
             Types.HANDLE.mem.AL_TCP.Clear();

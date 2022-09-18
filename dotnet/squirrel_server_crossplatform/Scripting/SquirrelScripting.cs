@@ -80,10 +80,10 @@ namespace Scorpion
 
             //Query the database
             //string db, object data, string tag, string subtag, short OPCODE
-            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), Types.S_NULL, (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[1]), Types.HANDLE.vds.OPCODE_GET);
+            /*ArrayList result*/Scorpion_MDB.ScorpionMicroDB.XMLDBResult result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), Types.S_NULL, (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[1]), Types.HANDLE.vds.OPCODE_GET);
             string script = default;
 
-            foreach(object o_script in result)
+            foreach(object o_script in result.getAllDataAsArray())
             {
                 script = Enginefunctions.replaceEscape((string)o_script);
                 ScorpionConsoleReadWrite.ConsoleWrite.writeSpecial("Running XMLDB script: ", script);

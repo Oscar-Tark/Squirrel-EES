@@ -126,10 +126,13 @@ namespace Scorpion
              * subtag = the specific subtag such as 'Name' that can be extracted from a tag cluster. If this is *'' then values are searched by tag, if tag is also empty then values are searched by *data
             */
 
-            ArrayList result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), Types.HANDLE.vds.OPCODE_GET);
+            Scorpion_MDB.ScorpionMicroDB.XMLDBResult result;
+            result = Types.HANDLE.vds.doDBSelectiveNoThread((string)MemoryCore.varGet(objects[0]), MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), Types.HANDLE.vds.OPCODE_GET);
+            ArrayList returnable = result.getAllDataAsArray();
+            
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);
-            return var_create_return(ref result);
+            return var_create_return(ref returnable);
         }
 
         public void dbdelete(ref string Scorp_Line_Exec, ref ArrayList objects)

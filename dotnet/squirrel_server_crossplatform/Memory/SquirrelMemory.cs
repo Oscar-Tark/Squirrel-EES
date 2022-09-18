@@ -44,6 +44,12 @@ namespace Scorpion
             return val;
         }
 
+        private object var_create_return(ref Dictionary<string, string> val)
+        {
+            return val;
+        }
+
+
         private object var_create_return(ref object[] val)
         {
             return val;

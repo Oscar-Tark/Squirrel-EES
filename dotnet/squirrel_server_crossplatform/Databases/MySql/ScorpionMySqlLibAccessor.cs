@@ -53,11 +53,9 @@ namespace Scorpion
             //*returnable<<*connectionstringvar, *table, *[path], *[identifier], *conditional_[data]_parameter
             //var::*con >> *con<<mysqlcreatestring::*'localhost', *'3306', *'scorpion_iee', *'root', *'' >> *temp<<mysqlget::*con, *'test', *'/test', *'name', *'', *'token'
             
-            object returnable = Types.S_NULL;
-            using(var mysql = new ScorpionMySql.ScorpionSql())
-            {
-                returnable = mysql.scfmtSqlGet((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[5]));
-            }
+            ScorpionMySql.ScorpionSql mysql = new ScorpionMySql.ScorpionSql();
+            mysql.scfmtSqlGet((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]), (string)MemoryCore.varGet(objects[4]), (string)MemoryCore.varGet(objects[5]), out Dictionary<string, string> returnable);
+            mysql.Dispose();
 
             var_dispose_internal(ref Scorp_Line_Exec);
             var_arraylist_dispose(ref objects);

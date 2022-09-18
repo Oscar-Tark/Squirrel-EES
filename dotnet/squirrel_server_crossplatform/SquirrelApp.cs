@@ -14,19 +14,18 @@ namespace Scorpion
         public int instance;
 
         //Initialize classes
-        public void InitClasses()
+        public void InitClasses(out LibrarianInstance lib_instance, out Memory mem_instance, out Scorpion_MDB.ScorpionMicroDB xmldb_instance, out Memory_Security.Secure_Memory mmsec_instance, out Memory_Security.Sanitizer memsan_instance, out Crypto.Cryptographer crypto_instance, out ScorpionProcesses.ScorpionProcessHandler proc_instance, out Scorpion_LOG.Scorpion_LOG sclog_instance, out SessionDependentNetworkHandlers sdh_instance, out ScorpionTimer sctme_instance)
         {
-            vds = new Scorpion_MDB.ScorpionMicroDB();
-            crypto = new Crypto.Cryptographer();
-            mmsec = new Memory_Security.Secure_Memory();
-            san = new Memory_Security.Sanitizer();
-            tms = new ScorpionTimer();
-            librarian_instance = new LibrarianInstance();
-            mem = new Memory();
-            sdh = new SessionDependentNetworkHandlers();
-            sclog = new Scorpion_LOG.Scorpion_LOG();
-            scp = new ScorpionProcesses.ScorpionProcessHandler();
-            return;
+            lib_instance = new LibrarianInstance();
+            mem_instance = new Memory();
+            xmldb_instance = new Scorpion_MDB.ScorpionMicroDB();
+            mmsec_instance = new Memory_Security.Secure_Memory();
+            memsan_instance = new Memory_Security.Sanitizer();
+            crypto_instance = new Crypto.Cryptographer();
+            proc_instance = new ScorpionProcesses.ScorpionProcessHandler();
+            sclog_instance = new Scorpion_LOG.Scorpion_LOG();
+            sdh_instance = new SessionDependentNetworkHandlers();
+            sctme_instance = new ScorpionTimer();
         }
 
         //Classes used by scorpion
@@ -49,7 +48,7 @@ namespace Scorpion
             instance = instance_descriptor;
 
             //Initialization functions
-            InitClasses();
+            InitClasses(out librarian_instance, out mem, out vds, out mmsec, out san, out crypto, out scp, out sclog, out sdh, out tms);
 
             //Check that the main data directory exists
             if (!checkDirectories())

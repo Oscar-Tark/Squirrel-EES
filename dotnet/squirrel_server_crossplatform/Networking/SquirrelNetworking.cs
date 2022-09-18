@@ -1,4 +1,3 @@
-using System.Text;
 using System.Collections;
 using System.Net;
 using System.ComponentModel;
@@ -62,7 +61,7 @@ namespace Scorpion
                 {
                     int index = Types.HANDLE.mem.AL_TCP_REF.IndexOf(MemoryCore.varGet(objects[0]));
                     ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).Stop();
-                    ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).DataReceived -= Types.HANDLE.sdh.Sctl_DataReceived;
+                    ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).DataReceived -= Types.HANDLE.sdh.ServerDataReceivedEvent;
                     Types.HANDLE.mem.AL_TCP_REF.RemoveAt(index);
                     Types.HANDLE.mem.RemoveTcpPath(ref index);
                     Types.HANDLE.mem.AL_TCP.RemoveAt(index);
