@@ -158,6 +158,21 @@
           "bin/placeholder/Scorpion-XMLDB-Editor.dll": {}
         }
       },
+      "scorpion_network_driver/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0",
+          "Squirrel-AES": "1.0.0",
+          "consolereadwrite": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_network_driver.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_network_driver.dll": {}
+        }
+      },
       "Squirrel-AES/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -525,6 +540,11 @@
       "path": "../../../Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj",
       "msbuildProject": "../../../Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj"
     },
+    "scorpion_network_driver/1.0.0": {
+      "type": "project",
+      "path": "../../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
+      "msbuildProject": "../../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
+    },
     "Squirrel-AES/1.0.0": {
       "type": "project",
       "path": "../../../Squirrel-AES/Squirrel-AES.csproj",
@@ -584,6 +604,7 @@
       "Squirrel-XMLDB >= 1.0.0",
       "System.Security.Cryptography.OpenSsl >= 5.0.0",
       "consolereadwrite >= 1.0.0",
+      "scorpion_network_driver >= 1.0.0",
       "squirrel_authenticator >= 1.0.0",
       "squirrel_processes >= 1.0.0",
       "squirrel_rsa >= 1.0.0"
@@ -614,6 +635,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
+            },
             "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
               "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj"
             },

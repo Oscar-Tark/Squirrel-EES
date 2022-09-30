@@ -57,7 +57,6 @@ namespace Scorpion
 
     public partial class SessionDependentNetworkHandlers
     {
-
         private void XMLDBProcessTcpRequest(object param_thread_object)
         {
             //Add RSA support
@@ -84,8 +83,8 @@ namespace Scorpion
             string s_data = Types.HANDLE.crypto.To_String(data);
 
             //Replace TELNET and API elements
-            string command = Enginefunctions.replace_fakes(NetworkEngineFunctions.replace_telnet(s_data));
-            Dictionary<string, string> processed = NetworkEngineFunctions.replace_api(command);
+            string command = Enginefunctions.replace_fakes(ScorpionNetworkDriver.NetworkEngineFunctions.replaceTelnet(s_data));
+            Dictionary<string, string> processed = ScorpionNetworkDriver.NetworkEngineFunctions.replaceApi(command);
 
             //Get the requests session
             string session = processed["session"];
@@ -94,25 +93,25 @@ namespace Scorpion
 
             try
             {
-                if (processed != null)
-                {
-                    //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable.
-                    if(!MemoryCore.varCheck(session))
-                        sessionMemory(session, processed["tag"]);
-
-                    //Process a GET scorpion request
-                    if (processed["type"] == NetworkEngineFunctions.api_requests["get"])
-                        reply = XMLDBProcessTcpGetRequest(ref session, ref processed, ref maria_db_connection_string, ref includedata, ref XMLDB_result);
-                    else if (processed["type"] == NetworkEngineFunctions.api_requests["set"])
-                        //On a login set, the session is replaced with the database token and the new session is sent as a reply to the HTTP server
-                        reply = XMLDBProcessTcpSetRequest(session, command);
-                    else if (processed["type"] == NetworkEngineFunctions.api_requests["delete"])
+                    if (processed != null)
                     {
-                        //Delete a session on request from the HTTP server (Time based!)
+                        //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable.
+                        if(!MemoryCore.varCheck(session))
+                            sessionMemory(session, processed["tag"]);
+
+                        //Process a GET scorpion request
+                        if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["get"])
+                            reply = XMLDBProcessTcpGetRequest(ref session, ref processed, ref maria_db_connection_string, ref includedata, ref XMLDB_result);
+                        else if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["set"])
+                            //On    a login set, the session is replaced with the database token and the new session is sent as a reply to the HTTP server
+                            reply = XMLDBProcessTcpSetRequest(session, command);
+                        else if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["delete"])
+                        {
+                            //Delete a session on request from the HTTP server (Time based!)
+                        }
                     }
-                }
-                else
-                    reply = NetworkEngineFunctions.build_api("Command error. Incorrect syntax", "", true);
+                    else
+                        reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send as byte[]... CHANGE TO AES
                 if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
@@ -156,29 +155,29 @@ namespace Scorpion
                                 {
                                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
                                     sql.scfmtSqlGet(maria_db_connection_string, processed["tag"], processed["subtag"], "", "", session, out Dictionary<string, string> mysql_result);
-                                
-                                    //Assign result as users dictionary in the global variables
-                                    //WARNING!!!!: IMPLEMENT: We must get rid of the previous session variables!!!
-
+                            
                                     MemoryCore.var_manipulate(session, mysql_result, false, true, MemoryCore.OPCODE_MERGE);
-
                                     ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
                                 }
                             }
 
                             //Session allows us to return the page with user loaded session data
-                            if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
-                                reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
-                            else
-                                reply = NetworkEngineFunctions.build_api((string)db_page, Types.S_NULL, false);
+                                if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
+                                {
+                                    //reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                                    reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                                    ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Reply: ", reply);
+                                }
+                                else
+                                    reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)db_page, Types.S_NULL, false);
+                            
                         }
                         else
-                            reply = NetworkEngineFunctions.build_api("Query resulted in 0 elements returned", session, true);
+                            reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Internal retrieval error: 500", session, true);
 
                         //Clear out all MariaDB memory used to populate the page and set to defaults.
                         if(MemoryCore.varCheck(session))
                             sessionMemory(session, processed["tag"]);
-
             return reply;
         }
 
@@ -188,7 +187,7 @@ namespace Scorpion
             string[] commands = command.Split(new char[] { '\n' });
             foreach (string s_dat in commands)
             Types.HANDLE.librarian_instance.librarian.scorpioniee(s_dat);
-            return NetworkEngineFunctions.build_api("Command executed", session, false);
+            return ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Command executed", session, false);
         }
 
         private void XMLDBGetClientEndPointData(object tcp_client_objects, out SimpleTCP.Message message, out int server_index, out IPEndPoint end_point)

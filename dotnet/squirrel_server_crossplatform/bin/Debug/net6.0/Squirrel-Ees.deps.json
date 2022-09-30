@@ -19,6 +19,7 @@
           "Squirrel-XMLDB": "1.0.0",
           "System.Security.Cryptography.OpenSsl": "5.0.0",
           "consolereadwrite": "1.0.0",
+          "scorpion_network_driver": "1.0.0",
           "squirrel_authenticator": "1.0.0",
           "squirrel_processes": "1.0.0",
           "squirrel_rsa": "1.0.0"
@@ -110,6 +111,16 @@
         },
         "runtime": {
           "Scorpion-XMLDB-Editor.dll": {}
+        }
+      },
+      "scorpion_network_driver/1.0.0": {
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0",
+          "Squirrel-AES": "1.0.0",
+          "consolereadwrite": "1.0.0"
+        },
+        "runtime": {
+          "scorpion_network_driver.dll": {}
         }
       },
       "Squirrel-AES/1.0.0": {
@@ -269,6 +280,11 @@
       "sha512": ""
     },
     "Scorpion-XMLDB-Editor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_network_driver/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
