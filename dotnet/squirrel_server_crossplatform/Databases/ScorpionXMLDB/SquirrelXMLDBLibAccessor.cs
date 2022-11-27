@@ -152,6 +152,17 @@ namespace Scorpion
             return;
         }
 
+        public void dbupdate(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //::*path, *tag, *subtag, *new_data
+
+            Types.HANDLE.vds.updateDB((string)MemoryCore.varGet(objects[0]), (string)MemoryCore.varGet(objects[1]), (string)MemoryCore.varGet(objects[2]), (string)MemoryCore.varGet(objects[3]));
+            
+            var_dispose_internal(ref Scorp_Line_Exec);
+            var_arraylist_dispose(ref objects);
+            return;
+        }
+
         public void stress_test(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             FileStream fd = new FileStream("/home/ferret/Scorpion/Databases/stress.script", FileMode.OpenOrCreate);

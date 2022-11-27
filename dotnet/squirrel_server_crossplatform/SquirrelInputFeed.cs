@@ -1,10 +1,3 @@
-
-
-using System;
-using System.Reflection;
-using System.Threading;
-using System.IO;
-using System.Security;
 using ScorpionConsoleReadWrite;
 
 namespace Scorpion

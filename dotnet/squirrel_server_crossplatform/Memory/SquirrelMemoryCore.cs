@@ -1,7 +1,8 @@
-using System;
+/*
+In Ver 2.0 Replace Arraylist with a custom object type for variables
+*/
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Security;
 
 namespace Scorpion
 {

@@ -1,8 +1,5 @@
-using System;
 using System.Diagnostics;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Scorpion
 { 
@@ -43,7 +40,6 @@ namespace Scorpion
             try
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process created. Call processrun::*processname in order to start the process");
-                //ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Process is starting call 'processio::*name' to see output");
                 Process pri_ = new Process();
                 ProcessStartInfo pri_s;
                 bool is_sudo = false;

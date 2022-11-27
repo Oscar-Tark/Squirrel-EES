@@ -1,7 +1,4 @@
-using System;
 using System.Reflection;
-using System.Threading;
-using System.IO;
 using System.Security;
 using ScorpionConsoleReadWrite;
 
@@ -14,11 +11,12 @@ namespace Scorpion
         public int instance;
 
         //Initialize classes
-        public void InitClasses(out LibrarianInstance lib_instance, out Memory mem_instance, out Scorpion_MDB.ScorpionMicroDB xmldb_instance, out Memory_Security.Secure_Memory mmsec_instance, out Memory_Security.Sanitizer memsan_instance, out Crypto.Cryptographer crypto_instance, out ScorpionProcesses.ScorpionProcessHandler proc_instance, out Scorpion_LOG.Scorpion_LOG sclog_instance, out SessionDependentNetworkHandlers sdh_instance, out ScorpionTimer sctme_instance)
+        public void InitClasses(out LibrarianInstance lib_instance, out Memory mem_instance, out Scorpion_MDB.ScorpionMicroDB xmldb_instance, out Memory_Security.Secure_Memory mmsec_instance, out Memory_Security.Sanitizer memsan_instance, out Crypto.Cryptographer crypto_instance, out ScorpionProcesses.ScorpionProcessHandler proc_instance, out Scorpion_LOG.Scorpion_LOG sclog_instance, out SessionDependentNetworkHandlers sdh_instance, out ScorpionTimer sctme_instance, out XMLDBEditor.XMLDBEditorRun xmldbeditor)
         {
             lib_instance = new LibrarianInstance();
             mem_instance = new Memory();
             xmldb_instance = new Scorpion_MDB.ScorpionMicroDB();
+            xmldbeditor = new XMLDBEditor.XMLDBEditorRun();
             mmsec_instance = new Memory_Security.Secure_Memory();
             memsan_instance = new Memory_Security.Sanitizer();
             crypto_instance = new Crypto.Cryptographer();
@@ -31,6 +29,7 @@ namespace Scorpion
         //Classes used by scorpion
         public LibrarianInstance librarian_instance;
         public Scorpion_MDB.ScorpionMicroDB vds;
+        public XMLDBEditor.XMLDBEditorRun xmldbeditor;
         public Crypto.Cryptographer crypto;
         public Memory_Security.Secure_Memory mmsec;
         public Memory_Security.Sanitizer san;
@@ -48,7 +47,7 @@ namespace Scorpion
             instance = instance_descriptor;
 
             //Initialization functions
-            InitClasses(out librarian_instance, out mem, out vds, out mmsec, out san, out crypto, out scp, out sclog, out sdh, out tms);
+            InitClasses(out librarian_instance, out mem, out vds, out mmsec, out san, out crypto, out scp, out sclog, out sdh, out tms, out xmldbeditor);
 
             //Check that the main data directory exists
             if (!checkDirectories())

@@ -46,5 +46,11 @@ namespace Scorpion
             var_dispose_internal(ref Scorp_Line_Exec);
             return;
         }
+        public string input(ref string Scorp_Line_Exec, ArrayList Objects)
+        {
+            //*returnable
+            lineFeed.setReadSignalOn();
+            return var_create_return(Console.ReadLine(), true);
+        }
     }
 }
