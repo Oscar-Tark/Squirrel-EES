@@ -46,7 +46,7 @@ namespace Scorpion
                     }
                 }
 
-                //You can add multiple functions to an execution with the >> symbol. >> means execute rightwards
+                //You can add multiple functions to an execution with the >> symbol. >> means execute rightwards on the SAME THREAD!
                 string[] commands = Enginefunctions.execution_seperation(ref Scorp_Line_Exec);
 
                 string exec_ = null;

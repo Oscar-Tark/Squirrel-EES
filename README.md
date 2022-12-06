@@ -55,7 +55,7 @@ Here they are:
 - {&fl} = {((
 - {&fr} = ))}
 
-**Function calls:**
+**Multithread function calls:**
 
 Are made with the following syntax:
 
@@ -71,11 +71,13 @@ The first variable is a return variable. Any variable that the function returns 
 
 `varset::*var1, *'Squirrels are SO misunderstood..'`
 
-**One line multiple function calls:**
+**Same thread function calls:**
 
-Squirrel allows you to run multiple functions in one line. Unlike other languages squirrels execution is left to right. To shift execution right use the >> symbol.
+Squirrel allows you to run multiple functions in one single thread. Squirrels execution is always left to right. To shift execution right on the same thread consecutively use the >> symbol.
 
 `var::*name >> varset::*name, *'Richard Stallman' >> output::*f'Hi {((name))}!. Let us play the GNU SONG!' >> exit`
+
+All of the above functions will be executed one after the other. Without using >> functions are executed on seperate threads.
 
 [Scripts]
 ---------------

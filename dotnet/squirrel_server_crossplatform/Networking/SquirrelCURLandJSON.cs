@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json.Linq;
 
 namespace Scorpion
@@ -27,7 +22,11 @@ namespace Scorpion
             Dictionary<string, object> dictObj = null;
             try
             {
-                JArray Jarr = JArray.Parse((string)MemoryCore.varGet(objects[0]));
+                string json = (string)MemoryCore.varGet(objects[0]);
+                if(!json.Replace(" ", "").StartsWith("[") && !json.Replace(" ", "").EndsWith("]"))
+                    json = "[" + json + "]";
+
+                JArray Jarr = JArray.Parse(json);
                 foreach (JObject Jobj in Jarr)
                     dictObj = Jobj.ToObject<Dictionary<string, object>>();
             }
@@ -37,139 +36,95 @@ namespace Scorpion
             return dictObj;
         }
 
-        public void jsonget(string Scorp_Line_Exec, ArrayList objects)
+        //POST
+        public string curlpost(string Scorp_Line_Exec, ArrayList objects)
         {
-            //GET WITHOUT HEADERS
-            //(*"URL", *returnvariable)
-            //Since this function uses ASYNC the return value is deliberated in function rather than an actual normal return variable
-            Task ts = curlAsync(Scorp_Line_Exec, objects);
-            return;
+            return curlPost(Scorp_Line_Exec, objects).Result;
         }
 
-        public void jsongetauth(string Scorp_Line_Exec, ArrayList objects, bool has_body, string body)
+        private async Task<string> curlPost(string Scorp_Line_Exec, ArrayList objects)
         {
-            //GET WITH HEADERS
-            //(*"URL", *returnvariable)
-            //Since this function uses ASYNC the return value is deliberated in function rather than an actual normal return variable
-            Task ts = curlauthAsync(Scorp_Line_Exec, objects, has_body, body);
-            return;
-        }
+            //Not TESTED!
+            //*returns<<::*URL, *headers_dictionary, *content_format, *content
 
-        public void jsonpostauth(string Scorp_Line_Exec, ArrayList objects)
-        {
-            Task ts = curlpostauthAsync(Scorp_Line_Exec, objects);
-            return;
-        }
+            string response = string.Empty;
 
-        private async Task curlpostauthAsync(string Scorp_Line_Exec, ArrayList objects)
-        {
-            //::*URL, *ret, *auth_nme, *auth_key, *content
-
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add((string)objects[2], (string)objects[3]);
-            //System.Console.WriteLine((string)objects[4] + ", " + objects[5]);
-            //client.DefaultRequestHeaders.Add((string)objects[4], (string)objects[5]);
-
-            /*for (int i = 4; i < objects.Count; i++)
+            try
             {
-                client.DefaultRequestHeaders.Add((string)objects[i], (string)objects[i + 1]);
-                System.Console.WriteLine("Adding {0}", objects[i]);
-            }*/
+                string url          = (string)MemoryCore.varGet(objects[0]);
+                Dictionary<string, string> headers = (Dictionary<string, string>)MemoryCore.varGet(objects[1]);
+                string content_format = (string)MemoryCore.varGet(objects[2]);
+                StringContent string_content = new StringContent((string)MemoryCore.varGet(objects[3]), System.Text.Encoding.UTF8, content_format);
 
-            //Workaround objects[1] gets cancelled after hhtp response message
-            string ret = (string)objects[1];
+                var URL = new UriBuilder(url);
+                var queryString = HttpUtility.ParseQueryString(string.Empty);
 
-            System.Console.WriteLine((string)MemoryCore.varGet(objects[0]));
+                URL.Query = queryString.ToString();
 
-            // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
+                var client = new HttpClient();
 
-            // Get the response content.
-            HttpContent responseContent = response.Content;
+                foreach(KeyValuePair<string, string> header in headers)
+                {
+                    client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
 
-            // Get the stream of the content.
-            using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
-            {
-                // Write the output.
-                string ret__ = await reader.ReadToEndAsync();
-                ret__ = var_create_return(ref ret__, true);
-                varset("", new ArrayList() { ret, ret__ });
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running Curl request: ", URL.ToString());
+                var post_response = await client.PostAsync(URL.ToString(), string_content);
+                response = await post_response.Content.ReadAsStringAsync();
             }
-            return;
+            catch(Exception e)
+            {
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message, " : ", e.StackTrace);
+            }
+
+            return var_create_return(ref response, true);
         }
 
-        //GET REQUEST WITH AUTH
-        private async Task curlauthAsync(string Scorp_Line_Exec, ArrayList objects, bool has_body, string body)
+        //GET REQUEST
+        public string curlget(string Scorp_Line_Exec, ArrayList objects)
         {
-            //::*URL, *ret, *auth_nme, *auth_key, *content
-
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add((string)objects[2], (string)objects[3]);
-
-            for (int i = 4; i < objects.Count; i++)
-                client.DefaultRequestHeaders.Add((string)objects[i], (string)objects[i+1]);
-
-            //Workaround objects[1] gets cancelled after hhtp response message
-            string ret = (string)objects[1];
-
-            // Create the HttpContent for the form to be posted.
-            /*StringContent requestContent;
-            if (objects.Count > 4)
-                requestContent = new StringContent((string)MemoryCore.varGet(objects[4]));
-            //requestContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("HTTP/1.1", "GET"),});
-            else
-                requestContent = new StringContent("");
-            requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");*/
-
-            // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
-
-            // Get the response content.
-            HttpContent responseContent = response.Content;
-
-            // Get the stream of the content.
-            using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
-            {
-                // Write the output.
-                string ret__ = await reader.ReadToEndAsync();
-                ret__ = var_create_return(ref ret__, true);
-                varset("", new ArrayList() { ret, ret__ });
-            }
-            return;
+            return curlGet(Scorp_Line_Exec, objects).Result;
         }
 
-        private async Task curlAsync(string Scorp_Line_Exec, ArrayList objects)
+        private async Task<string> curlGet(string Scorp_Line_Exec, ArrayList objects)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            StringContent requestContent = new StringContent("");
-            requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+            //*returns<<::*URL, *headers_dictionary, *params_dictionary
 
-            //Workaround objects[1] gets cancelled after hhtp response message
-            string ret = (string)objects[1];
+            string response = string.Empty;
 
-            // Get the response.
-            HttpResponseMessage response = await client.GetAsync((string)MemoryCore.varGet(objects[0]));
-
-            // Get the response content.
-            HttpContent responseContent = response.Content;
-
-            // Get the stream of the content.
-            using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+            try
             {
-                // Write the output.
-                string ret__ = await reader.ReadToEndAsync();
-                ret__ = var_create_return(ref ret__, true);
-                varset("", new ArrayList() { ret, ret__ });
+                string url          = (string)MemoryCore.varGet(objects[0]);
+                Dictionary<string, string> headers = (Dictionary<string, string>)MemoryCore.varGet(objects[1]);
+                Dictionary<string, string> parameters = (Dictionary<string, string>)MemoryCore.varGet(objects[2]);
+
+                var URL = new UriBuilder(url);
+                var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+                foreach(KeyValuePair<string, string> parameter in parameters)
+                {
+                    queryString[parameter.Key] = parameter.Value;
+                }
+
+                URL.Query = queryString.ToString();
+
+                var client = new HttpClient();
+
+                foreach(KeyValuePair<string, string> header in headers)
+                {
+                    client.DefaultRequestHeaders./*Headers.*/Add(header.Key, header.Value);
+                }
+
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running Curl request: ", URL.ToString());
+                response = await client.GetStringAsync(URL.ToString());
+
             }
-            return;
+            catch(Exception e)
+            {
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message, " : ", e.StackTrace);
+            }
+
+            return var_create_return(ref response, true);
         }
     }
 }
