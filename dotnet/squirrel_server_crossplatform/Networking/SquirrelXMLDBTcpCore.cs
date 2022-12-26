@@ -99,6 +99,11 @@ namespace Scorpion
                         if(!MemoryCore.varCheck(session))
                             sessionMemory(session, processed["tag"]);
 
+                        //FUTURE!: Check if the session belongs to said project
+                        //string passable = String.Empty;
+                        //ArrayList to_get_dict = new ArrayList(){ session, "*project", "*true" };
+                        //if(processed["tag"] == Types.HANDLE.librarian_instance.librarian.vardictionaryget())
+
                         //Process a GET scorpion request
                         if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["get"])
                             reply = XMLDBProcessTcpGetRequest(ref session, ref processed, ref maria_db_connection_string, ref includedata, ref XMLDB_result);

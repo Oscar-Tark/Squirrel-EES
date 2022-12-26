@@ -31,6 +31,14 @@ namespace Scorpion
             return;
         }
 
+        public string dbexists(ref string Scorp_Line_Exec, ref ArrayList objects)
+        {
+            //*returns<<::*path
+            if(File.Exists((string)MemoryCore.varGet(objects[0])))
+                return var_create_return(ref Types.S_Yes, true);
+            return var_create_return(ref Types.S_No, true);
+        }
+
         public void dbopen(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //::*name, *path, *password

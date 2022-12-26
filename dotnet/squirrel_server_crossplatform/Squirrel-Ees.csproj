@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\..\Squirrel-Default-Paths\Scorpion-Default-Paths.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-XMLDB-Editor\Scorpion-XMLDB-Editor.csproj" />
     <ProjectReference Include="..\..\..\..\Scorpion-Network-Driver\scorpion_network_driver\scorpion_network_driver.csproj" />
+    <ProjectReference Include="..\..\..\Squirrel-Python\squirrel-python.csproj" />
   </ItemGroup>
 
   <ItemGroup>

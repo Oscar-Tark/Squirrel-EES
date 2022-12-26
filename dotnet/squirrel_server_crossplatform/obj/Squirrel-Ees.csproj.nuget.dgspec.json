@@ -403,6 +403,9 @@
               "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj"
               },
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj"
+              },
               "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj"
               },
@@ -674,6 +677,69 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ferret/.dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj",
+        "projectName": "squirrel-python",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "IronPython": {
+              "target": "Package",
+              "version": "[3.4.0-beta1, )"
+            },
+            "IronPython.StdLib": {
+              "target": "Package",
+              "version": "[3.4.0-beta1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

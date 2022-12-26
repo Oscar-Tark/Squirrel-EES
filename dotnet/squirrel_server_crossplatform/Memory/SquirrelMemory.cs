@@ -385,7 +385,7 @@ namespace Scorpion
         public object vardictionaryget(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             //Gets a value from a Scorpion.Dictionary using a Scorpion.Dictionary.Key
-            //*return<<::*dictionary, *key, *asobject
+            //*return<<::*dictionary, *key, *asobj
 
             object ret = Types.S_No;
             lock (Types.HANDLE.mem.AL_CURR_VAR) lock (Types.HANDLE.mem.AL_CURR_VAR_REF) lock (Types.HANDLE.mem.AL_CURR_VAR_TAG)

@@ -22,15 +22,26 @@ namespace Scorpion
             Dictionary<string, object> dictObj = null;
             try
             {
-                string json = (string)MemoryCore.varGet(objects[0]);
-                if(!json.Replace(" ", "").StartsWith("[") && !json.Replace(" ", "").EndsWith("]"))
-                    json = "[" + json + "]";
+                //Gt raw JSON obj as string or as Jobj
+                var raw_json = MemoryCore.varGet(objects[0]);
+                string s_json = String.Empty;
 
-                JArray Jarr = JArray.Parse(json);
+                if(raw_json.GetType() == typeof(string))
+                    s_json = (string)raw_json;//(string)MemoryCore.varGet(objects[0]);
+                else
+                    s_json = ((JObject)raw_json).ToString();
+
+                //ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Converting json: ", s_json);
+
+                if(!s_json.Replace(" ", "").StartsWith("[") && !s_json.Replace(" ", "").EndsWith("]"))
+                    s_json = "[" + s_json + "]";
+
+                JArray Jarr = JArray.Parse(s_json);
                 foreach (JObject Jobj in Jarr)
                     dictObj = Jobj.ToObject<Dictionary<string, object>>();
             }
             catch(Exception e) { Console.WriteLine(e.Message); }
+
             var_arraylist_dispose(ref objects);
             var_dispose_internal(ref Scorp_Line_Exec);
             return dictObj;
@@ -117,14 +128,14 @@ namespace Scorpion
 
                 ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running Curl request: ", URL.ToString());
                 response = await client.GetStringAsync(URL.ToString());
-
+                ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Curl Response: ", response);
             }
             catch(Exception e)
             {
                 ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.Message, " : ", e.StackTrace);
             }
 
-            return var_create_return(ref response, true);
+            return response;
         }
     }
 }
