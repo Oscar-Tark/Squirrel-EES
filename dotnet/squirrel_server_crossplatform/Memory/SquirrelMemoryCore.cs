@@ -247,8 +247,9 @@ namespace Scorpion
                 {
                     //Assign a raw C# object regardless of type
                     o = ((ArrayList)Types.HANDLE.mem.AL_CURR_VAR[Types.HANDLE.mem.AL_CURR_VAR_REF.IndexOf(block_without_depth.Replace(" ", "").Replace("*", ""))])[2];
+
                     if(contains_depth)
-                        o = varCheckGetDepth(block_with_depth, o, Types.S_TYPES[0], true);
+                        o = varCheckGetDepth(block_with_depth, o, o.GetType(), true);
                 }
                 finally { }
             }
@@ -278,6 +279,7 @@ namespace Scorpion
             {
                 if(containsdepth)
                 {
+                    //if array[n]
                     if(t_obj_type == Types.S_TYPES[0])
                     {
                         //Get the index at array point
@@ -311,9 +313,37 @@ namespace Scorpion
                             }
                         }
                     }
+                    //If Dict<string, string>
+                    else if(t_obj_type == Types.S_TYPES[1])
+                    {
+                        //Get the key at dictionary point
+                        block = block.Remove(0, block.IndexOf('[', 0));
+                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+
+                        if(s_indexes.Length > 0)
+                        {
+                            //Get the first index element
+                            string tryget_temp = string.Empty;
+                            ((Dictionary<string, string>)o_array).TryGetValue(s_indexes[0], out tryget_temp);
+                            returnable = ((string)tryget_temp);
+
+                            //Single depth
+                            if(s_indexes.Length == 1)
+                                return returnable;
+                            else
+                                ScorpionConsoleReadWrite.ConsoleWrite.writeExperimental("Not implemented, feel free to implement!");
+                        }
+                    }
+                    else //Assume string
+                    {
+                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                        int[] indexes = ParsingCore.toIntArray(s_indexes);
+
+                        return ((string)o_array)[indexes[0]];
+                    }
                 }
             }
-            catch(Exception e){Console.WriteLine(e.StackTrace);}
+            catch(Exception e){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.StackTrace); }
             return returnable;
         }
 

@@ -6,6 +6,7 @@ namespace Scorpion
     {
         static bool read_signal_off_already_set;
         static bool message_shown;
+        static string line = string.Empty;
 
         public static void lineReader()
         {
@@ -15,13 +16,13 @@ namespace Scorpion
             message_shown = false;
             read_signal_off_already_set = false;
 
-            string line = default;
             ConsoleKeyInfo cki;
 
             while(true)
             {
                 while(Types.READ_SIGNAL_CURRENT == Types.READ_SIGNAL_ON)
                 {
+                    //Read key from user
                     cki = Console.ReadKey();
                     
                     //Leave stream
@@ -105,8 +106,22 @@ namespace Scorpion
         {
             ConsoleWrite.writeSpecial("\n", "Entered input stream, press CRTL+A to leave it");
             Types.READ_SIGNAL_CURRENT = Types.READ_SIGNAL_ON;
+            resetLineToEmpty();
             read_signal_off_already_set = false;
             message_shown = false;
+            return;
+        }
+
+        public static string getUnreadChars()
+        {
+            //When the signal switches to input. Console.ReadKey still runs for one character. This function is used to take the character and return it so we can append it to the beggining of whatever input method is used in another input feed.
+            return line;
+        }
+
+        public static void resetLineToEmpty()
+        {
+            //When the signal switches to input. Console.ReadKey still runs for one character. This function clears line so that the next execution will not contain the character.
+            line = string.Empty;
             return;
         }
     }

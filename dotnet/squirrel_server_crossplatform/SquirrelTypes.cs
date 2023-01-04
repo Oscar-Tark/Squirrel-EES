@@ -30,7 +30,7 @@ namespace Scorpion
         public static char[] S_UNWANTED_CHAR_NAME = { '[', ']' };
 
         //Available Scorpion.Types
-        public static Type[] S_TYPES = { new ArrayList().GetType() };
+        public static Type[] S_TYPES = { new ArrayList().GetType(), new Dictionary<string, string>().GetType() };
 
         public static string S_ROOT_LINUX = "sudo";
     }

@@ -95,7 +95,7 @@ namespace Scorpion
             }
             catch (Exception erty)
             {
-                ScorpionConsoleReadWrite.ConsoleWrite.writeError("------------------------------------------------------\nThere was an error while processing your function call [Command that caused the error: " + Scorp_Line_Exec + "]\n[Stack trace: " + erty.StackTrace + "]\n[System message: " + erty.Message + "]");
+                ScorpionConsoleReadWrite.ConsoleWrite.writeError("------------------------------------------------------\nThere was an execution error. [Command that caused the error: '" + Scorp_Line_Exec + "']");
                 showMan(function);
             }
             //End the timer to count how long it took to run the specific line of code

@@ -50,7 +50,12 @@ namespace Scorpion
         {
             //*returnable
             lineFeed.setReadSignalOn();
-            return var_create_return(Console.ReadLine(), true);
+            Console.Write(">> ");
+            Console.SetCursorPosition(4, Console.CursorTop);
+            string input = Console.ReadLine();
+            input = string.Concat(lineFeed.getUnreadChars(), input);
+            lineFeed.resetLineToEmpty();
+            return var_create_return(input, true);
         }
     }
 }
