@@ -259,7 +259,7 @@ namespace Scorpion
             {
                 //Check if the string has formatted elements within it formatted strings start with an f', all values denoted between [{{, }}] are replaced by existing variables if one is found
                 if (block_without_depth.StartsWith("f\'", StringComparison.CurrentCulture))
-                    block_without_depth= Enginefunctions.replace_format(ref block_without_depth).Remove(0, 1);
+                    block_without_depth= Enginefunctions.replace_format(ref block_with_depth).Remove(0, 1);
 
                 //Directly assign the value contained in the single quotes to the variable, or so the string contained in *''
                 o = var_cut_str_symbol(var_cut_symbol(ref block_without_depth));

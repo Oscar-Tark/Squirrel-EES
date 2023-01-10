@@ -72,7 +72,7 @@ namespace Scorpion
                 if (vars[i].StartsWith("((", StringComparison.CurrentCulture) && vars[i].EndsWith("))", StringComparison.CurrentCulture))
                 {
                     to_change = vars[i].Replace("((", "*").Replace("))", "");
-                    var = var.Replace("{" + vars[i] + "}", (string)MemoryCore.varGet(ref to_change));
+                    var = var.Replace("{" + vars[i] + "}", MemoryCore.varGet(ref to_change).ToString());
                 }
             }
             return var;
