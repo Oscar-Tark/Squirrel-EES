@@ -3,7 +3,7 @@
 [Squirrel EES:Quickstart Guide]
 -------------------------------------------------------------------
 
-Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to squirrel with functions you created in order to call them. Squirrel contains its own memory and database system. Each function call is done on an isolated thread.
+Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to squirrel with functions you created in order to call them. Squirrel contains its own memory and XML-database system. Each function call is done on an isolated thread.
 
 !NOTE: Call the `manual` function in order to view all available manuals and runnable functions for squirrel. You may use the `manual::*manual_name` function to view a manual.
 
@@ -20,9 +20,9 @@ Is a framework that uses its own syntax in order to call functions of a defined 
 
 (Example):
 
-`var::*store >> varset::*store, *'My computer store'`
+`vardictionary::*store >> vardictionaryappend::*store, *'store_name', *'My computer store'`
 
-`output::*f'Hello {((store))}!`
+`output::*f'Hello {((store[store_name]))}!`
 
 **Arrays**
 
@@ -30,11 +30,19 @@ Arrays can replace an existing variable and transport it's value into index 0 of
 
 `vararray::*name_or_existing, *if_existing_copy_value_into_new_array`
 
+Dictionary variables can be manipulated or gotten using the inbuilt functions or by using index notation with multiple-depth/dimensions '[][][]..':
+
+`output::*array[7][54][8][0]`
+
 **Dictionaries**
 
 Dictionaries act equally to arrays, except that they are arrays with key:value items. It a dictionary replaces a current array, there is no option to copy the current variable's value into the dictionary that substitutes it.
 
 `vardictionary::*name_or_existing`
+
+Dictionary variables can be manipulated or gotten using the inbuilt functions or by using index notation with single-depth/dimension '[]':
+
+`output::*dictionary[key]`
 
 **String escape sequences**
 
@@ -86,9 +94,9 @@ All of the above functions will be executed one after the other. Without using >
 
 You may run external files as scripts which contain various squirrel function calls delimited by newlines. You may call a script by sending a path argument to the function 'scriptrun', it is reccomended to not use an extension for filenames:
 
-`scriptrun::*'/home/user/myscript'`
+`scriptrun::*'/home/user/myscript', *false`
 
-You can also put other runscript calls inside of a script.
+You can also put other runscript calls inside of a script. *false (BOOL) is used to denote if all lines run on seperate threads or if every line is executed top down on a single thread.
 
 **WARNING!** Currently all function calls in a script will be called on the thread of the initial runscript function call. Multithreading for scripts is not yet supported.
 
