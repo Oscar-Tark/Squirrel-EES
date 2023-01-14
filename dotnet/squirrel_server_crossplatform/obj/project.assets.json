@@ -506,7 +506,8 @@
         "dependencies": {
           "Scorpion-Default-Paths": "1.0.0",
           "Squirrel-XMLDB": "1.0.0",
-          "consolereadwrite": "1.0.0"
+          "consolereadwrite": "1.0.0",
+          "squirrel-inheritable": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Scorpion-XMLDB-Editor.dll": {}
@@ -554,6 +555,16 @@
         },
         "runtime": {
           "bin/placeholder/Squirrel-Cryptography.dll": {}
+        }
+      },
+      "squirrel-inheritable/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/squirrel-inheritable.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/squirrel-inheritable.dll": {}
         }
       },
       "Squirrel-Logging/1.0.0": {
@@ -2673,6 +2684,11 @@
       "type": "project",
       "path": "../../../Squirrel-Cryptography/Squirrel-Cryptography.csproj",
       "msbuildProject": "../../../Squirrel-Cryptography/Squirrel-Cryptography.csproj"
+    },
+    "squirrel-inheritable/1.0.0": {
+      "type": "project",
+      "path": "../../../Squirrel-Inheritable/squirrel-inheritable.csproj",
+      "msbuildProject": "../../../Squirrel-Inheritable/squirrel-inheritable.csproj"
     },
     "Squirrel-Logging/1.0.0": {
       "type": "project",

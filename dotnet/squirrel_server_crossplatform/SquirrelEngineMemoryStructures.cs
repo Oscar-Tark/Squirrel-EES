@@ -102,13 +102,21 @@ namespace Scorpion
         public void LoadSystemVars()
         {
             //Set variables that should exist by default
-            Types.HANDLE.librarian_instance.librarian.var("", new ArrayList(5) { Types.S_Yes, Types.S_No, "null", "yes", "no", "temp", "path" });
-            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "yes", "'" + Types.S_Yes + "'" });
-            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "no", "'" + Types.S_No + "'" });
+            Types.HANDLE.librarian_instance.librarian.var("", new ArrayList(5) {
+                "yes",
+                "no",
+                "null",
+                "temp",
+                "userpath",
+                "projectpath",
+                "path"
+            });
 
             Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "null", "'" + Types.S_NULL + "'" });
             Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "path", "'" + Types.main_user_path + "'" });
-            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "true", "'" + Types.S_Yes + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "userpath", "'" + SquirrelDefaultPaths.LinuxSystemPaths.home_path + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "projectpath", "'" + SquirrelDefaultPaths.SquirrelPaths.main_user_projects_path + "'" });
+            Types.HANDLE.librarian_instance.librarian.varset("", new ArrayList(5) { "yes", "'" + Types.S_Yes + "'" });
             return;
         }
 

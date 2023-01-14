@@ -144,43 +144,42 @@ namespace Scorpion
         private string XMLDBProcessTcpGetRequest(ref string session, ref Dictionary<string, string> processed, ref string maria_db_connection_string, ref bool includedata, ref string db_page)
         {
             string reply = Types.S_NULL;
-
+            
             //Query XMLDB for Static content
             Scorpion_MDB.ScorpionMicroDB.XMLDBResult query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
 
-                        if (query_result.Length() > 0)
-                        {
-                            db_page = query_result.getFirstAsString();
+            if (query_result.Length() > 0)
+            {
+                db_page = query_result.getFirstAsString();
 
-                            //Get mysql data for specified page if data has been requested embedded in the page
-                            if(includedata)
-                            {
-                                using(ScorpionSql sql = new ScorpionSql())
-                                {
-                                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
-                                    sql.scfmtSqlGet(maria_db_connection_string, processed["tag"], processed["subtag"], "", "", session, out Dictionary<string, string> mysql_result);
-                            
-                                    MemoryCore.var_manipulate(session, mysql_result, false, true, MemoryCore.OPCODE_MERGE);
-                                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
-                                }
-                            }
+                //Get mysql data for specified page if data has been requested embedded in the page
+                if(includedata)
+                {
+                    using(ScorpionSql sql = new ScorpionSql())
+                    {
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Getting MariaDB data..");
+                        sql.scfmtSqlGet(maria_db_connection_string, processed["tag"], processed["subtag"], "", "", session, out Dictionary<string, string> mysql_result);              
+                        MemoryCore.var_manipulate(session, mysql_result, false, true, MemoryCore.OPCODE_MERGE);
+                        ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Retrieved MariaDB data");
+                    }
+                }
 
-                            //Session allows us to return the page with user loaded session data
-                            if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
-                            {
-                                //reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
-                                reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
-                                ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Reply: ", reply);
-                            }
-                            else
-                                reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)db_page, Types.S_NULL, false);
-                        }
-                        else
-                            reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Internal retrieval error: 500", session, true);
+                //Session allows us to return the page with user loaded session data
+                if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
+                {
+                    //reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                    reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Reply: ", reply);
+                }
+                else
+                    reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)db_page, Types.S_NULL, false);
+            }
+            else
+                reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Internal retrieval error: 500", session, true);
 
-                        //Clear out all MariaDB memory used to populate the page and set to defaults.
-                        if(MemoryCore.varCheck(session))
-                            sessionMemory(session, processed["tag"]);
+                //Clear out all MariaDB memory used to populate the page and set to defaults.
+                if(MemoryCore.varCheck(session))
+                    sessionMemory(session, processed["tag"]);
             return reply;
         }
 

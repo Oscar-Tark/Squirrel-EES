@@ -11,16 +11,15 @@ namespace Scorpion
             //::*if, *is, *Path, *result_must_be_equal, *threaded::bool
 
             bool threaded = bool.Parse((string)MemoryCore.varGet(objects[4]));
-            ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running script in threaded mode: ", threaded.ToString());
             
             if ((string)MemoryCore.varGet(objects[3]) == Types.S_Yes)
             {
                 if ((string)MemoryCore.varGet(objects[0]) == (string)MemoryCore.varGet(objects[1]))
                 {
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running script in threaded mode: ", threaded.ToString());
                     string line;
                     FileStream fd = new FileStream((string)MemoryCore.varGet((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);
-                    
 
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -41,6 +40,7 @@ namespace Scorpion
             {
                 if ((string)MemoryCore.varGet(objects[0]) != (string)MemoryCore.varGet(objects[1]))
                 {
+                    ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("Running script in threaded mode: ", threaded.ToString());
                     string line;
                     FileStream fd = new FileStream((string)MemoryCore.varGet((string)objects[2]), FileMode.Open);
                     StreamReader sr = new StreamReader(fd, System.Text.Encoding.UTF8);

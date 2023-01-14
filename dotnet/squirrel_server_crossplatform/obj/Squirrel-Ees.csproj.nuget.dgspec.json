@@ -524,6 +524,59 @@
         }
       }
     },
+    "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj",
+        "projectName": "squirrel-inheritable",
+        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj",
+        "packagesPath": "/home/ferret/.nuget/packages/",
+        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ferret/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ferret/.dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -850,6 +903,9 @@
               },
               "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
+              },
+              "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj": {
+                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj"
               },
               "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj"

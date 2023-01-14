@@ -773,3 +773,5 @@
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Lib/xmlrpc/client.py
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Lib/xmlrpc/server.py
 /home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/Lib/zipfile.py
+/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/squirrel-inheritable.dll
+/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/bin/Debug/net6.0/squirrel-inheritable.pdb

@@ -253,7 +253,7 @@ namespace Scorpion
                 }
                 finally { }
             }
-        
+
             //IS STRING
             else
             {

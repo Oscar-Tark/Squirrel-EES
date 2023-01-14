@@ -99,7 +99,7 @@ namespace Scorpion
             return var_create_return(ref al_ret);
         }
 
-        public void createDirectory(ref string Scorp_Line_Exec, ref ArrayList objects)
+        public void createdirectory(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
             Directory.CreateDirectory((string)MemoryCore.varGet(objects[0]));
 
