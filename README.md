@@ -177,7 +177,7 @@ Syntax:
 
 Example:
 
-`dbcreate::*f'{((path))}/Databases/database.db'`
+`dbcreate::*f'{((path))}/Databases/database.db', *'12345'`
 
 **Opening a database:XMLDB**
 
