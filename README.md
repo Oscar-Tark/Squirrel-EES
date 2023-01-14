@@ -284,7 +284,7 @@ Example:
 
 Data just as it may be inserted it may also be updated:
 
-´dbupdate::*dbname, *tag, *subtag, *new_data´
+`dbupdate::*dbname, *tag, *subtag, *new_data`
 
 **Listing all open databases:XMLDB**
 
@@ -297,7 +297,7 @@ You may view a list of all open databases by using the following commands:
 
 Data can be edited using an external editor of your choice. Each data entry will open a seperate tab or window depending on the editor:
 
-´xmldbedit::*dbname, *password, *string tag, *string editor_bin_name, *string subtag_or_null´
+`xmldbedit::*dbname, *password, *string tag, *string editor_bin_name, *string subtag_or_null`
 
 [Databases:MYSQL]
 ---------------
