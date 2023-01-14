@@ -2,6 +2,7 @@
 
 [Squirrel EES:Quickstart Guide]
 -------------------------------------------------------------------
+[Tested only on Manjaro and Linux mint!]
 
 Is a framework that uses its own syntax in order to call functions of a defined c# accessibility level with a specific type of structure. You can also compile and link C# scripts to squirrel with functions you created in order to call them. Squirrel contains its own memory and XML-database system. Each function call is done on an isolated thread.
 
@@ -279,12 +280,24 @@ Example:
 
 `dbdelete::*dbname, *null, *'first_name', *'John Doe'`
 
+**Updating data:XMLDB**
+
+Data just as it may be inserted it may also be updated:
+
+´dbupdate::*dbname, *tag, *subtag, *new_data´
+
 **Listing all open databases:XMLDB**
 
 You may view a list of all open databases by using the following commands:
 
 - `listdbs`
 - `ld`
+
+**Editing data using an external editor**
+
+Data can be edited using an external editor of your choice. Each data entry will open a seperate tab or window depending on the editor:
+
+´xmldbedit::*dbname, *password, *string tag, *string editor_bin_name, *string subtag_or_null´
 
 [Databases:MYSQL]
 ---------------
