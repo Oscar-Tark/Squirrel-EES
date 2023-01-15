@@ -1,5 +1,5 @@
-mkdir ~/GIT/squirrelproject
-cd ~/GIT/squirrelproject
+mkdir ~/GIT/Squirrel_Project
+cd ~/GIT/Squirrel_Project
 echo "Cloning repositories.."
 git clone https://github.com/Oscar-Tark/Squirrel-EES.git
 git clone https://github.com/Oscar-Tark/Squirrel-XMLDB-Editor.git
