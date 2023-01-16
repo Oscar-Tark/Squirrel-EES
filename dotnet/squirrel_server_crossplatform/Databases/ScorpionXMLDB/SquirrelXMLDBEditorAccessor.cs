@@ -19,16 +19,5 @@ namespace Scorpion
             var_arraylist_dispose(ref objects);
             return;
         }
-
-        /*public void xmldbfile(ref string Scorp_Line_Exec, ref ArrayList objects)
-        {
-            //Creates a new file for editing
-            //::*subtag
-            Types.HANDLE.xmldbeditor.newFile();
-
-            var_dispose_internal(ref Scorp_Line_Exec);
-            var_arraylist_dispose(ref objects);
-            return;
-        }*/
     }
 }

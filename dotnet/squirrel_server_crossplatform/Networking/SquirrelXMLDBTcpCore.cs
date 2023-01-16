@@ -188,10 +188,9 @@ namespace Scorpion
             //Set recieved data to mysql
             using(ScorpionSql sql = new ScorpionSql())
             {
-                sql.scfmtSqlSet(maria_db_connection_string, processed["tag"], processed["subtag"], string.Empty, processed["data"], session);
+                sql.scfmtSqlSet(maria_db_connection_string, processed["db"], processed["tag"], processed["subtag"], processed["data"], session);
             }
-
-            return string.Empty;
+            return ScorpionNetworkDriver.NetworkEngineFunctions.types["none"];
         }
 
         private void XMLDBGetClientEndPointData(object tcp_client_objects, out SimpleTCP.Message message, out int server_index, out IPEndPoint end_point)
