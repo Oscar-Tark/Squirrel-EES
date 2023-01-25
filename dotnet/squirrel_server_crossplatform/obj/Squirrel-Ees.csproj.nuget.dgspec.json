@@ -400,9 +400,6 @@
               "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
               },
-              "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/squirrel-openai.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/squirrel-openai.csproj"
-              },
               "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj": {
                 "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj"
               },
@@ -674,76 +671,6 @@
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.1.8, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/home/ferret/.dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/squirrel-openai.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/squirrel-openai.csproj",
-        "projectName": "squirrel-openai",
-        "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/squirrel-openai.csproj",
-        "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-OpenAI/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/ferret/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj"
-              },
-              "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj": {
-                "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Inheritable/squirrel-inheritable.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "OpenAI": {
-              "target": "Package",
-              "version": "[1.3.0, )"
-            },
-            "SecureStringExtensions.NetStandard": {
-              "target": "Package",
-              "version": "[1.0.0, )"
             }
           },
           "imports": [

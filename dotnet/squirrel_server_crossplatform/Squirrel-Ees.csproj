@@ -14,7 +14,6 @@
     <ProjectReference Include="..\..\..\Squirrel-XMLDB-Editor\Scorpion-XMLDB-Editor.csproj" />
     <ProjectReference Include="..\..\..\..\Scorpion-Network-Driver\scorpion_network_driver\scorpion_network_driver.csproj" />
     <ProjectReference Include="..\..\..\Squirrel-Python\squirrel-python.csproj" />
-    <ProjectReference Include="..\..\..\Squirrel-OpenAI\squirrel-openai.csproj" />
   </ItemGroup>
 
   <ItemGroup>
