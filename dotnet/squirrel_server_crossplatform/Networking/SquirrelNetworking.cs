@@ -22,14 +22,12 @@ namespace Scorpion
 
         public void xmldbtcpserverstart(ref string Scorp_Line_Exec, ref ArrayList objects)
         {
-            //::*name, *port, *[rsaprivatekeyfilepath||*null], *[rsapublickeyfilepath||*null], *api
+            //::*name, *port, *mysqlconnectionstr
             //No rsa then pass *false for rsa parameters
             string name = (string)MemoryCore.varGet(objects[0]);
             string ip = (string)MemoryCore.varGet(objects[1]);
             int port = Convert.ToInt32(MemoryCore.varGet(objects[2]));
-            string RSA_private_path = (string)MemoryCore.varGet(objects[3]);
-            string RSA_public_path = (string)MemoryCore.varGet(objects[4]);
-            string maria_db_connection_string = (string)MemoryCore.varGet(objects[5]);
+            string maria_db_connection_string = (string)MemoryCore.varGet(objects[3]);
 
             //Check if the AES encryption key exists
             if(!File.Exists(Types.main_user_aes_path_file))
@@ -38,14 +36,7 @@ namespace Scorpion
                 return;
             }
 
-            //Check if the RSA encryption keys exist
-            if(!File.Exists(RSA_private_path) || !File.Exists(RSA_public_path))
-            {
-                ConsoleWrite.writeError("The provided RSA public key: ", RSA_public_path, ", or private key: ", RSA_private_path, " could not be found");
-                return;
-            }
-
-            Types.HANDLE.sdh.AddTcpServer(name, ip, port, RSA_private_path == Types.S_NULL ? null : RSA_private_path, RSA_public_path == Types.S_NULL ? null : RSA_public_path, maria_db_connection_string);
+            Types.HANDLE.sdh.AddTcpServer(name, ip, port, maria_db_connection_string);
             ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("TCP server started, Please remember to configure your firewall appropriately");
 
             var_dispose_internal(ref Scorp_Line_Exec);
@@ -63,7 +54,7 @@ namespace Scorpion
                     ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).Stop();
                     ((SimpleTCP.SimpleTcpServer)Types.HANDLE.mem.AL_TCP[index]).DataReceived -= Types.HANDLE.sdh.ServerDataReceivedEvent;
                     Types.HANDLE.mem.AL_TCP_REF.RemoveAt(index);
-                    Types.HANDLE.mem.RemoveTcpPath(ref index);
+                    //Types.HANDLE.mem.RemoveTcpPath(ref index);
                     Types.HANDLE.mem.AL_TCP.RemoveAt(index);
                     ScorpionConsoleReadWrite.ConsoleWrite.writeSuccess("TCP server stopped");
                 }

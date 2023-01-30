@@ -1,35 +1,32 @@
 //If sessions are allowed. this class allows functionality not to be shared between sessions that are crucial in being seperate from the main partial Librarian class
+
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using ScorpionMySql;
+using SquirrelDefaultPaths;
 
 namespace Scorpion
 {
     public partial class SessionDependentNetworkHandlers
     {
-        //Partial segment that allows creating a server
-
-        /*TCP server*/
-        public void AddTcpServer(string reference, string ip, int port, string RSA_private_path, string RSA_public_path, string maria_db_connection_string)
+        public void AddTcpServer(string reference, string ip, int port, string maria_db_connection_string)
         {
             SimpleTCP.SimpleTcpServer server = new SimpleTCP.SimpleTcpServer();
+            server.AutoTrimStrings = true;
             server.ClientConnected += ServerClientConnectedEvent;
             server.ClientDisconnected += ServerClientDisconnectedEvent;
+
             lock (Types.HANDLE.mem.AL_TCP) lock (Types.HANDLE.mem.AL_TCP_REF) lock(Types.HANDLE.mem.AL_TCP_CONNECTION_STRING)
                 {
                     Types.HANDLE.mem.AL_TCP.Add(server);
                     Types.HANDLE.mem.AL_TCP_REF.Add(reference);
                     Types.HANDLE.mem.AL_TCP_CONNECTION_STRING.Add(maria_db_connection_string);
-                    Types.HANDLE.mem.AddTcpPath(RSA_private_path, RSA_public_path);
-
-                    if(RSA_public_path == null || RSA_private_path == null)
-                        ScorpionConsoleReadWrite.ConsoleWrite.writeWarning("Scorpion server started. No RSA keys have been assigned to this server. Non RSA servers can be read by MITM attacks and other sniffing techniques");
 
                     server.DataReceived += ServerDataReceivedEvent;
                     IPAddress ipa = IPAddress.Parse(ip == Types.S_NULL ? "127.0.0.1" : ip);
-                    server.Start(ipa, port);//(port, true);
+                    server.Start(ipa, port);
                 }
             return;
         }
@@ -51,6 +48,7 @@ namespace Scorpion
         {
             Thread ths = new Thread(new ParameterizedThreadStart(XMLDBProcessTcpRequest));
             ths.IsBackground = false;
+            ths.Priority = 0;
             ths.Start(new object[2]{ sender, e });
         }
     }
@@ -69,18 +67,22 @@ namespace Scorpion
             XMLDBGetClientEndPointData(param_thread_object, out SimpleTCP.Message message, out int server_index, out IPEndPoint end_point);
 
             //Inbound and outbound data
-            byte[] data = message.Data;
             string reply = null;
+            string s_data = string.Empty;
 
             //Mariadb
             string maria_db_connection_string = (string)Types.HANDLE.mem.AL_TCP_CONNECTION_STRING[server_index];
-
-            //Check if RSA
-            if (Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
-                data = Scorpion_RSA.ScorpionRSAMin.decrypt(message.Data, Types.HANDLE.mem.GetTcpKeyPath(server_index)[0]);
-
-            //Decrypt the recieved message
-            string s_data = Types.HANDLE.crypto.To_String(data);
+            using (Aes myAes = Aes.Create())
+            {
+                //Must be a 16 byte key
+                byte[] key = ScorpionAES.ScorpionAESInHouse.importKey(SquirrelPaths.main_user_aes_path_file);
+                try
+                {
+                    myAes.Key = key;
+                    s_data = ScorpionAES.ScorpionAESInHouse.decrypt(message.Data, myAes.Key, myAes.IV);
+                }
+                catch { Console.WriteLine("Unable to decrypt for: {0}", message); }
+            }
 
             //Replace TELNET and API elements
             string command = Enginefunctions.replace_fakes(ScorpionNetworkDriver.NetworkEngineFunctions.replaceTelnet(s_data));
@@ -97,7 +99,7 @@ namespace Scorpion
                     {
                         //Is there a session? if not create a session dictionary to contain session variables for the user, only GET regularly needs a user variable.
                         if(!MemoryCore.varCheck(session))
-                            sessionMemory(session, processed["tag"]);
+                            sessionMemory(session, processed["tag"], "");
 
                         //FUTURE!: Check if the session belongs to said project
                         //string passable = String.Empty;
@@ -106,9 +108,11 @@ namespace Scorpion
 
                         //Process a GET scorpion request
                         if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["get"])
-                            reply = XMLDBProcessTcpGetRequest(ref session, ref processed, ref maria_db_connection_string, ref includedata, ref XMLDB_result);
+                            reply = XMLDBProcessTcpGetRequest(ref session, ref processed, ref maria_db_connection_string, ref includedata);
                         else if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["set"])
                             reply = XMLDBProcessTcpSetRequest(ref session, ref processed, ref maria_db_connection_string);
+                        else if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["login"])
+                            reply = XMLDBProcessTcpLoginRequest(ref session, ref processed, ref maria_db_connection_string);
                         else if (processed["type"] == ScorpionNetworkDriver.NetworkEngineFunctions.api_requests["delete"])
                         {
                             //Delete a session on request from the HTTP server (Time based!)
@@ -118,7 +122,7 @@ namespace Scorpion
                         reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse("Command error. Incorrect syntax", "", true);
 
                 //RSA then encrypt and send as byte[]... CHANGE TO AES
-                if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] != null)
+                if (reply != null)
                 {
                     using (Aes myAes = Aes.Create())
                     {
@@ -128,10 +132,8 @@ namespace Scorpion
                         message.Reply(ScorpionAES.ScorpionAESInHouse.encrypt(reply, myAes.Key, myAes.IV));
                     }
                 }
-
-                //No RSA then just send as string
-                if (reply != null && Types.HANDLE.mem.GetTcpKeyPath(server_index)[0] == null)
-                    message.Reply(reply);
+                else
+                    message.Reply(new byte[] { 0x00 });
             }
             catch(Exception er){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(string.Format("Fatal Error for {0}. Closing connection", end_point)); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.StackTrace); ScorpionConsoleReadWrite.ConsoleWrite.writeError(er.Message); }
             finally
@@ -141,17 +143,33 @@ namespace Scorpion
             return;
         }
 
-        private string XMLDBProcessTcpGetRequest(ref string session, ref Dictionary<string, string> processed, ref string maria_db_connection_string, ref bool includedata, ref string db_page)
+        private string XMLDBProcessTcpGetRequest(ref string session, ref Dictionary<string, string> processed, ref string maria_db_connection_string, ref bool includedata)
         {
             string reply = Types.S_NULL;
+            string db_page = Types.S_NULL;
             
             //Query XMLDB for Static content
             Scorpion_MDB.ScorpionMicroDB.XMLDBResult query_result = Types.HANDLE.vds.doDBSelectiveNoThread(processed["db"], null, processed["tag"], processed["subtag"], Types.HANDLE.vds.OPCODE_GET);
 
-            if (query_result.Length() > 0)
+            if(query_result.Length() == 0)
             {
-                db_page = query_result.getFirstAsString();
+                //If XMLDB returns no results read from file directly
+                ScorpionConsoleReadWrite.ConsoleWrite.writeOutput("No XMLDB result found. Accessing content file instead if available..");
 
+                string path = string.Format("{0}/{1}/src/{2}", SquirrelDefaultPaths.SquirrelPaths.main_user_projects_path, processed["tag"], processed["subtag"]);
+                
+                //If no resort to finding the file on the filesytem
+                if(File.Exists(path))
+                    db_page = File.ReadAllText(path);
+            }
+            else
+            {
+                //XMLDB get result
+                db_page = query_result.getFirstAsString();
+            }
+
+            if (db_page != Types.S_NULL)
+            {
                 //Get mysql data for specified page if data has been requested embedded in the page
                 if(includedata)
                 {
@@ -166,11 +184,7 @@ namespace Scorpion
 
                 //Session allows us to return the page with user loaded session data
                 if(Types.HANDLE.mem.AL_CURR_VAR_REF.Contains(session))
-                {
-                    //reply = NetworkEngineFunctions.build_api((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
                     reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)MemoryCore.varGetCustomFormattedOnlyDictionary(ref db_page, ref session), session, false);
-                    ScorpionConsoleReadWrite.ConsoleWrite.writeDebug("Reply: ", reply);
-                }
                 else
                     reply = ScorpionNetworkDriver.NetworkEngineFunctions.buildApiResponse((string)db_page, Types.S_NULL, false);
             }
@@ -179,7 +193,7 @@ namespace Scorpion
 
                 //Clear out all MariaDB memory used to populate the page and set to defaults.
                 if(MemoryCore.varCheck(session))
-                    sessionMemory(session, processed["tag"]);
+                    sessionMemory(session, processed["tag"], "");
             return reply;
         }
 
@@ -193,6 +207,21 @@ namespace Scorpion
             return ScorpionNetworkDriver.NetworkEngineFunctions.types["none"];
         }
 
+        private string XMLDBProcessTcpLoginRequest(ref string session, ref Dictionary<string, string> processed, ref string maria_db_connection_string)
+        {
+            string uname = processed["user"];
+            string password = processed["password"];
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            //Check if exists in Mysql
+            using(ScorpionSql sql = new ScorpionSql())
+            {
+                sql.scfmtSqlGet(maria_db_connection_string, "users", processed["tag"], uname, Types.S_NULL, Types.S_NULL, out result);
+            }
+
+            return "";
+        }
+
         private void XMLDBGetClientEndPointData(object tcp_client_objects, out SimpleTCP.Message message, out int server_index, out IPEndPoint end_point)
         {
             object sender = ((object[])tcp_client_objects)[0];
@@ -201,7 +230,7 @@ namespace Scorpion
             end_point = (IPEndPoint)message.TcpClient.Client.RemoteEndPoint;
         }
 
-        private void sessionMemory(string session, string project)
+        private void sessionMemory(string session, string project, string user)
         {
             string destroyable = "\0";
             ArrayList temp = new ArrayList(){ session, false };
@@ -209,6 +238,8 @@ namespace Scorpion
             temp = new ArrayList(){ session, "\'session\'", $"\'{session}\'" };
             Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
             temp = new ArrayList(){ session, "\'project\'", $"\'{project}\'" };
+            Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
+            temp = new ArrayList(){ session, "\'user\'", $"\'{user}\'" };
             Types.HANDLE.librarian_instance.librarian.vardictionaryappend(ref destroyable, ref temp);
             return;
         }
