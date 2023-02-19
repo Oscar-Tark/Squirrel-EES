@@ -416,6 +416,9 @@
         }
       },
       "Squirrel-Logging/1.0.0": {
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0"
+        },
         "runtime": {
           "Squirrel-Logging.dll": {}
         }

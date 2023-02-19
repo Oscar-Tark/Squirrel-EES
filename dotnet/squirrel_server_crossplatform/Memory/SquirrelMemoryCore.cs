@@ -274,77 +274,53 @@ namespace Scorpion
         {
             //Only for arrays not dictionaries. Implement depth for mixed types in the future
             object returnable = o_array;
+
             //If index must be array or dictionary
             try
             {
-                if(containsdepth)
-                {
-                    //if array[n]
-                    if(t_obj_type == Types.S_TYPES[0])
-                    {
-                        //Get the index at array point
-                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
-                        int[] indexes = ParsingCore.toIntArray(s_indexes);
-
-                        if(indexes.Length > 0)
-                        {
-                            //Get the first index element
-                            returnable = ((ArrayList)o_array)[indexes[0]];
-
-                            //Single depth
-                            if(indexes.Length == 1)
-                                return returnable;
-
-                            //Multiple depths
-                            else
-                            {
-                                //Temporary array and dictionary
-                                ArrayList temp_array = (ArrayList)returnable;
-
-                                //Get multiple depths with multitypes
-                                for(int i = 0; i < indexes.Length - 1; i++)
-                                {
-                                    //if not at end of indexes contiue as arraylists else take object
-                                    if(i < (indexes.Length - 2))
-                                        temp_array = (ArrayList)temp_array[Convert.ToInt32(indexes[i+1])];
-                                    else
-                                        returnable = temp_array[indexes[i+1]];
-                                }
-                            }
-                        }
-                    }
-                    //If Dict<string, string>
-                    else if(t_obj_type == Types.S_TYPES[1])
-                    {
-                        //Get the key at dictionary point
-                        block = block.Remove(0, block.IndexOf('[', 0));
-                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
-
-                        if(s_indexes.Length > 0)
-                        {
-                            //Get the first index element
-                            string tryget_temp = string.Empty;
-                            ((Dictionary<string, string>)o_array).TryGetValue(s_indexes[0], out tryget_temp);
-                            returnable = ((string)tryget_temp);
-
-                            //Single depth
-                            if(s_indexes.Length == 1)
-                                return returnable;
-                            else
-                                ScorpionConsoleReadWrite.ConsoleWrite.writeExperimental("Not implemented, feel free to implement!");
-                        }
-                    }
-                    else //Assume string
-                    {
-                        string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
-                        int[] indexes = ParsingCore.toIntArray(s_indexes);
-
-                        return ((string)o_array)[indexes[0]];
-                    }
-                }
+                return checkDepth(block, o_array, t_obj_type, containsdepth);
             }
             catch(Exception e){ ScorpionConsoleReadWrite.ConsoleWrite.writeError(e.StackTrace); }
             return returnable;
+        }
+
+        internal static object checkDepth(string block, object o_array, Type t_obj_type, bool containsdepth)
+        {
+            object returns = o_array;
+            //Handle depth irrelevant of type
+            if(containsdepth)
+            {
+                //Get the index at array point
+                string[] s_indexes = block.Split(Types.S_UNWANTED_CHAR_NAME, StringSplitOptions.RemoveEmptyEntries);
+                    
+                if(s_indexes.Length > 0)
+                {
+                    Type type = o_array.GetType().UnderlyingSystemType;
+                    int ndx_array_list_type = 0;
+                    string temp_dict_obj = string.Empty;
+
+                    for(int i = 1; i < s_indexes.Length; i++)
+                    {
+                        type = returns.GetType().UnderlyingSystemType;
+                        if(type == typeof(ArrayList))
+                        {
+                            Int32.TryParse(s_indexes[i], out ndx_array_list_type);
+                            returns = ((ArrayList)returns)[ndx_array_list_type];
+                        }
+                        else if(type == typeof(Dictionary<string, string>))
+                        {
+                            returns = ((Dictionary<string, string>)returns).TryGetValue(s_indexes[i], out temp_dict_obj);
+                            returns = temp_dict_obj;
+                        }
+                        else if(type == typeof(string))
+                        {
+                            Int32.TryParse(s_indexes[i], out ndx_array_list_type);
+                            returns = ((string)returns)[ndx_array_list_type];
+                        }
+                    }
+                }
+            }
+            return returns;
         }
 
         internal static bool varCheck(string reference)

@@ -570,6 +570,9 @@
       "Squirrel-Logging/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Scorpion-Default-Paths": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Squirrel-Logging.dll": {}
         },
@@ -2672,8 +2675,8 @@
     },
     "scorpion_network_driver/1.0.0": {
       "type": "project",
-      "path": "../../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
-      "msbuildProject": "../../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
+      "path": "../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
+      "msbuildProject": "../../../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
     },
     "Squirrel-AES/1.0.0": {
       "type": "project",
@@ -2752,19 +2755,19 @@
     ]
   },
   "packageFolders": {
-    "/home/ferret/.nuget/packages/": {}
+    "/home/hamtaro/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+      "projectUniqueName": "/media/hamtaro/Secondary/GIT/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
       "projectName": "Squirrel-Ees",
-      "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
-      "packagesPath": "/home/ferret/.nuget/packages/",
-      "outputPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/",
+      "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-EES/dotnet/squirrel_server_crossplatform/Squirrel-Ees.csproj",
+      "packagesPath": "/home/hamtaro/.nuget/packages/",
+      "outputPath": "/media/hamtaro/Secondary/GIT/Squirrel-EES/dotnet/squirrel_server_crossplatform/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/ferret/.nuget/NuGet/NuGet.Config"
+        "/home/hamtaro/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -2776,44 +2779,44 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
-              "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
+            "/media/hamtaro/Secondary/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-AES/Squirrel-AES.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-AES/Squirrel-AES.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-AES/Squirrel-AES.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Authenticator/squirrel_authenticator.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Authenticator/squirrel_authenticator.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Console-Read-Write/consolereadwrite.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Console-Read-Write/consolereadwrite.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Cryptography/Squirrel-Cryptography.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Cryptography/Squirrel-Cryptography.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Default-Paths/Scorpion-Default-Paths.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Logging/Squirrel-Logging.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Logging/Squirrel-Logging.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Logging/Squirrel-Logging.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-MYSQL/Squirrel-MYSQL.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Processes/squirrel_processes.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Processes/squirrel_processes.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Processes/squirrel_processes.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-Python/squirrel-python.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-Python/squirrel-python.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-Python/squirrel-python.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-RSA/squirrel_rsa.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-RSA/squirrel_rsa.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-RSA/squirrel_rsa.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-XMLDB-Editor/Scorpion-XMLDB-Editor.csproj"
             },
-            "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
-              "projectPath": "/home/ferret/GIT/Squirrel_Project/Squirrel-XMLDB/Squirrel-XMLDB.csproj"
+            "/media/hamtaro/Secondary/GIT/Squirrel-XMLDB/Squirrel-XMLDB.csproj": {
+              "projectPath": "/media/hamtaro/Secondary/GIT/Squirrel-XMLDB/Squirrel-XMLDB.csproj"
             }
           }
         }
@@ -2857,7 +2860,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/ferret/.dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/media/hamtaro/Secondary/Apps/dotnet-sdk-6.0.405-linux-x64/sdk/6.0.405/RuntimeIdentifierGraph.json"
       }
     }
   }
